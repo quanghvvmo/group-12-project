@@ -1,0 +1,39 @@
+{
+  "type": "module",
+  "name": "group-12-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "nodemon server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quanghvvmo/group-12-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/quanghvvmo/group-12-project/issues"
+  },
+  "homepage": "https://github.com/quanghvvmo/group-12-project#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "http": "0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "migrate": "^1.7.0",
+    "nodemon": "^2.0.7",
+    "pg": "^8.6.0",
+    "require": "^2.4.20",
+    "router": "^1.3.5",
+    "sequelize": "^6.6.2",
+    "transaction": "0.0.2",
+    "uuid": "^8.3.2"
+  }
+}
