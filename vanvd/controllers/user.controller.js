@@ -1,9 +1,10 @@
 const e = require('express');
-const { user, userRole } = require('../models');
+const { user, userRole, sequelize, role } = require('../models');
 
 const addNewUser = async(req, res) => {
   const avatar = req.file.path;
   let {
+    roleId,
     employeeId,
     managerId,
     firstName,
@@ -16,13 +17,23 @@ const addNewUser = async(req, res) => {
     insuranceNumber
   } = req.body;
   try {
+    const t = await sequelize.transaction();
     const userCheck = await user.findOne({
       where: {
         id: managerId
       }
     });
+    const RoleCheck = await role.findOne({
+      where: {
+        id: roleId
+      }
+    });
     if (!userCheck) {
       res.status(404).send("ID of Manager is incorrect");
+      return;
+    }
+    if (!RoleCheck) {
+      res.status(404).send("ID of role is incorrect");
       return;
     }
     const newUser = await user.create({
@@ -37,10 +48,15 @@ const addNewUser = async(req, res) => {
       department,
       identificationNumber,
       insuranceNumber
-    });
-
+    }, { transaction: t });
+    const newUserRole = await userRole.create({
+      userId: newUser.id,
+      roleId
+    }, { transaction: t });
+    await t.commit();
     res.status(200).send(newUser);
   } catch (err) {
+    await t.rollback();
     console.log(err);
   }
 }
@@ -101,18 +117,26 @@ const updateUser = async(req, res) => {
 const deleteUser = async(req, res) => {
   const id = req.params.id;
   try {
-    const result = await user.destroy({
+    const t = await sequelize.transaction();
+    const resultUserRole = await userRole.destroy({
+      where: {
+        userId: id
+      }
+    }, { transaction: t });
+    const resultuser = await user.destroy({
       where: {
         id: id
       }
-    });
-
-    if (!result) {
+    }, { transaction: t });
+    if (!resultuser) {
+      await t.rollback();
       res.send("Can not delete this user");
       return;
     }
+    await t.commit();
     res.sendStatus(200);
   } catch (error) {
+    await t.rollback();
     console.log(error)
   }
 }
@@ -128,7 +152,6 @@ const getUserById = async(req, res) => {
         model: userRole
       }
     });
-
     if (!User) {
       res.send("can get this user");
       return;

@@ -25,7 +25,7 @@ module.exports = {
       achievement: {
         type: Sequelize.TEXT
       },
-      managerCommnent: {
+      managerComment: {
         type: Sequelize.TEXT
       },
       status: {

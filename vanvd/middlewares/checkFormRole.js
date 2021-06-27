@@ -61,7 +61,7 @@ const checkCanWrite = async(req, res, next) => {
   }
 }
 
-const checkCanRead = async(req, res) => {
+const checkCanRead = async(req, res, next) => {
   const token = req.header('token');
   //check if not token in request
   try {
@@ -119,7 +119,7 @@ const checkCanRead = async(req, res) => {
   }
 }
 
-const checkCanUpdate = async(req, res) => {
+const checkCanUpdate = async(req, res, next) => {
   const token = req.header('token');
   //check if not token in request
   try {
@@ -142,7 +142,7 @@ const checkCanUpdate = async(req, res) => {
       res.send("UserId in token is not exist");
       return;
     } else {
-      //get Role Permissio through RoleId 
+      //get Role Permission through RoleId 
       const RolePms = await rolePermission.findOne({
         where: {
           roleId: userRoleCheck.roleId
@@ -177,7 +177,7 @@ const checkCanUpdate = async(req, res) => {
   }
 }
 
-const checkCanDelete = async(req, res) => {
+const checkCanDelete = async(req, res, next) => {
   const token = req.header('token');
   //check if not token in request
   try {
@@ -235,7 +235,7 @@ const checkCanDelete = async(req, res) => {
   }
 }
 
-const checkCanApprove = async(req, res) => {
+const checkCanApprove = async(req, res, next) => {
   const token = req.header('token');
   //check if not token in request
   try {

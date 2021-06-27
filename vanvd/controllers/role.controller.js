@@ -1,4 +1,4 @@
-const role = require('../models').role;
+const { role, userRole, rolePermission, sequelize } = require('../models');
 
 const addNewRole = async(req, res) => {
   let {
@@ -57,18 +57,39 @@ const updateRole = async(req, res) => {
 const deleteRole = async(req, res) => {
   const id = req.params.id;
   try {
+    const t = await sequelize.transaction();
+    const resultUserRole = userRole.destroy({
+      where: {
+        roleId: id
+      }
+    }, { transaction: t });
+    if (!resultUserRole) {
+      await t.rollback();
+      res.send('Can not delete userRole contains this roleId');
+    }
+    const resultRolePermission = rolePermission.destroy({
+      where: {
+        roleId: id
+      }
+    }, { transaction: t });
+    if (!resultRolePermission) {
+      await t.rollback();
+      res.send('Can not delete RolePermission contain this roleId');
+    }
     const result = await role.destroy({
       where: {
         id: id
       }
-    });
-
+    }, { transaction: t });
     if (!result) {
-      console.log('Can not delete this role');
+      await t.rollback();
+      res.send('Can not delete this role');
     } else {
+      await t.commit();
       res.sendStatus(200);
     }
   } catch (err) {
+    await t.rollback();
     console.log(err);
   }
 }

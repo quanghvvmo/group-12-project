@@ -54,14 +54,15 @@ const updateAccount = async(req, res) => {
 const deleteAccount = async(req, res) => {
   const id = req.params.id;
   try {
-    const temp = await account.destroy({
+    const result = await account.destroy({
       where: {
         id: id
       }
     });
 
-    if (!temp) {
-      console.log('Can not delete this account');
+    if (!result) {
+      res.send('Can not delete this account');
+      return;
     } else(
       res.status(200).send("Deleted!")
     )
