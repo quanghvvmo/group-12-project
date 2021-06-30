@@ -33,6 +33,21 @@ const Employee = db.define('employee', {
     degree:{
         type: Sequelize.STRING(300)
     },
+    isDeleted:{
+        type: Sequelize.INTEGER
+    },
+    createBy: {
+        type: Sequelize.STRING(36)
+    },
+    updateBy:{
+        type: Sequelize.STRING(36)
+    },
+    createAt:{
+        type: Sequelize.DATE
+    },
+    updateAt:{
+        type: Sequelize.DATE
+    }
 })
 
 export default Employee;

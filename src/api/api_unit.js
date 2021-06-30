@@ -15,6 +15,8 @@ const add_unit = async (req, res) => {
         const date = find_date.toString()
         const check_admin = await Admin.findOne({where: {workID: adminID}});
         const duplicated_admin = await Unit.findOne({where:{adminID: adminID}});
+        const createAt = find_date.toString();
+        const createBy = req.userData.id
         console.log(duplicated_admin)
         if(check_admin && duplicated_admin === null){
             const check_unit_existence = await Unit.findOne({where: {name: name}});
@@ -23,7 +25,9 @@ const add_unit = async (req, res) => {
                     name,
                     description,
                     date,
-                    adminID
+                    adminID,
+                    createAt,
+                    createBy
                 })
                 return res.status(200).json({
                     message: "New Unit Created",
@@ -55,6 +59,9 @@ const update_unit = async (req, res) => {
             description,
             adminID
         } = req.body
+        const date = await new Date();
+        const updateAt = date.toString();
+        const updateBy = req.userData.id
         const check_admin = await Admin.findOne({where: {workID: adminID}});
         const duplicated_admin = await Unit.findOne({where: {adminID: adminID}});
         if(check_admin && duplicated_admin === null){
@@ -64,6 +71,8 @@ const update_unit = async (req, res) => {
                     name,
                     description,
                     adminID,
+                    updateBy,
+                    updateAt
                 }, {where:{id:id}})
                 return res.status(200).json({
                     message:"Success"

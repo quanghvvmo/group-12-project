@@ -1,22 +1,28 @@
-import {} from 'dotenv/config'
+import { } from 'dotenv/config'
 import jwt from "jsonwebtoken"
-
-const admin_check_JWT= (req, res, next) => {
+import Admin from "../model/admin.js"
+const admin_check_JWT = async (req, res, next) => {
     const header = req.headers.authorization;
-
-    if(header){
+    if (header) {
         const token = header.split(' ');
         const checkToken = token[1].toString()
-        jwt.verify(checkToken,process.env.SECRET, (err) => {
-            if(err){
-                res.status(401).json({
+        try {
+            const decode = jwt.verify(checkToken, process.env.SECRET);
+            const id = decode.id
+            const admin = await Admin.findOne({ where: { id: id } })
+            if (!admin) {
+                return res.status(401).json({
                     message: "Not Allowed"
                 })
-            }else{
-                next()
             }
-        })
-    }else{
+            req.userData = admin
+            next()
+        } catch (error) {
+            return res.status(401).json({
+                message: "Not Allowed"
+            })
+        }
+    } else {
         res.status(401).json({
             message: "Not Allowed"
         })

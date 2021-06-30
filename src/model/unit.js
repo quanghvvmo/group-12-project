@@ -16,8 +16,20 @@ const Unit = db.define('unit', {
     adminID:{
         type: Sequelize.STRING(300)
     },
-    date:{
-        type: Sequelize.STRING(1000),
+    isDeleted:{
+        type: Sequelize.INTEGER
+    },
+    createBy: {
+        type: Sequelize.STRING(36)
+    },
+    updateBy:{
+        type: Sequelize.STRING(36)
+    },
+    createAt:{
+        type: Sequelize.DATE
+    },
+    updateAt:{
+        type: Sequelize.DATE
     }
 })
 

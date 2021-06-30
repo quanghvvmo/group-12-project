@@ -8,8 +8,13 @@ const add_tech = async (req, res) => {
         const {
             name
         } = req.body;
+        const date = await new Date();
+        const createAt = date.toString();
+        const createBy = req.userData.id
         const new_tech = await Tech.create({
-            name
+            name,
+            createAt,
+            createBy
         });
         return res.status(201).json({
             message: "New Tech Added",
@@ -29,11 +34,16 @@ const update_tech = async (req, res) => {
             name,
             is_active
         } = req.body;
+        const date = await new Date();
+        const updateAt = date.toString();
+        const updateBy = req.userData.id
         const check_tech = await Tech.findOne({where: {id:id}})
         if(check_tech){
             Tech.update({
                 name,
-                is_active
+                is_active,
+                updateAt,
+                updateBy
             }, {where: {id:id}});
             return res.status(200).json({
                 message: "Tech Updated"

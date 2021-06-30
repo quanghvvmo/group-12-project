@@ -20,6 +20,7 @@ import tech_router from "./src/controller/tech_router.js";
 import type_router from "./src/controller/type_router.js";
 import unit_router from "./src/controller/unit_router.js";
 import employee_router from "./src/controller/employee_router.js"
+import project_router from "./src/controller/project_router.js"
 
 const app = express();
 
@@ -36,6 +37,7 @@ app.use('/api/tech', tech_router);
 app.use('/api/type', type_router);
 app.use('/api/unit', unit_router);
 app.use('/api/employee', employee_router);
+app.use('/api/project', project_router);
 
 
 db.sync({alter: true}, {logging: console.log});

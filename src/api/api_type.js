@@ -8,8 +8,13 @@ const add_tpye = async (req, res) => {
         const {
             name
         } = req.body;
+        const date = await new Date();
+        const createAt = date.toString();
+        const createBy = req.userData.id
         const new_type = await Type.create({
-            name
+            name,
+            createBy,
+            createAt
         });
         return res.status(201).json({
             message: "A New Type Added",
@@ -28,10 +33,15 @@ const update_tpye = async (req, res) => {
         const {
             name,
         } = req.body;
+        const date = await new Date();
+        const updateAt = date.toString();
+        const updateBy = req.userData.id
         const check_tpye = await Type.findOne({where: {id:id}})
         if(check_tpye){
             Type.update({
                 name,
+                updateAt,
+                updateBy
             }, {where: {id:id}});
             return res.status(200).json({
                 message: "Type Updated"

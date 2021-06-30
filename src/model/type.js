@@ -10,6 +10,21 @@ const Type = db.define('type', {
     name:{
         type: Sequelize.STRING(300)
     },
+    isDeleted:{
+        type: Sequelize.INTEGER
+    },
+    createBy: {
+        type: Sequelize.STRING(36)
+    },
+    updateBy:{
+        type: Sequelize.STRING(36)
+    },
+    createAt:{
+        type: Sequelize.STRING(300)
+    },
+    updateAt:{
+        type: Sequelize.STRING()
+    }
 })
 
 export default Type;

@@ -22,6 +22,24 @@ const Project = db.define('project', {
     status:{
         type: Sequelize.STRING,
         enum: Enum_Project_Status
+    },
+    type_id:{
+        type: Sequelize.STRING(300)
+    },
+    isDeleted:{
+        type: Sequelize.INTEGER
+    },
+    createBy: {
+        type: Sequelize.STRING(36)
+    },
+    updateBy:{
+        type: Sequelize.STRING(36)
+    },
+    createAt:{
+        type: Sequelize.DATE
+    },
+    updateAt:{
+        type: Sequelize.DATE
     }
 })
 

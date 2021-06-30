@@ -12,6 +12,21 @@ const Customer = db.define('customer', {
     },
     description:{
         type: Sequelize.STRING(2000)
+    },
+    isDeleted:{
+        type: Sequelize.INTEGER
+    },
+    createBy: {
+        type: Sequelize.STRING(36)
+    },
+    updateBy:{
+        type: Sequelize.STRING(36)
+    },
+    createAt:{
+        type: Sequelize.DATE
+    },
+    updateAt:{
+        type: Sequelize.DATE
     }
 })
 

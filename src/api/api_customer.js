@@ -2,6 +2,10 @@ import _ from "lodash";
 
 import pagination from "../common/pagination.js";
 import Customer from "../model/customer.js";
+import jwt from "jsonwebtoken"
+import {} from 'dotenv/config'
+
+
 
 const add_customer = async (req, res) => {
     try {
@@ -9,14 +13,20 @@ const add_customer = async (req, res) => {
             name,
             description
         } = req.body 
+        const date = await new Date();
+        const createAt = date.toString();
+        const createBy = req.userData.id
         const new_customer = await Customer.create({
             name,
-            description
+            description,
+            createAt,
+            createBy
         });
         return res.status(201).json({
             message: "New Customer Added"
         })
     } catch (error) {
+        console.log(error)
         return res.status(500).json({
             message: "Server Error"
         });
@@ -29,12 +39,17 @@ const update_customer = async (req, res) => {
         description
     } = req.body
     const id = req.params.id;
+    const date = await new Date();
+    const updateAt = date.toString();
+    const updateBy = req.userData.id
     try {
         const check_customer = await Customer.findOne({where: {id:id}})
         if(check_customer){
             Customer.update({
                 name,
-                description
+                description,
+                updateAt,
+                updateBy
             }, {where: {id:id}})
             return res.status(200).json({
                 message:"Update Success!"

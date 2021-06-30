@@ -13,6 +13,21 @@ const Tech = db.define('tech', {
     is_active:{
         type: Sequelize.INTEGER,
         defaultValue: 1
+    },
+    isDeleted:{
+        type: Sequelize.INTEGER
+    },
+    createBy: {
+        type: Sequelize.STRING(36)
+    },
+    updateBy:{
+        type: Sequelize.STRING(36)
+    },
+    createAt:{
+        type: Sequelize.DATE
+    },
+    updateAt:{
+        type: Sequelize.DATE
     }
 })
 
