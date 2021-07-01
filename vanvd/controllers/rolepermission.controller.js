@@ -1,10 +1,15 @@
 const { rolePermission, role } = require('../models');
 const Module = require('../models').module;
+const jwt = require('jsonwebtoken');
+const config = require('../config/auth.config');
 
+//create new role-permission
 const addNewRolePermission = async(req, res) => {
+  const token = req.header('token');
   let {
     roleId,
     moduleId,
+    url,
     canRead,
     canWrite,
     canUpdate,
@@ -13,6 +18,12 @@ const addNewRolePermission = async(req, res) => {
   } = req.body;
 
   try {
+    //check if not token in request
+    if (!token) {
+      res.send('Not Token');
+      return;
+    }
+    const payload = jwt.verify(token, config.secret);
     const roleTemp = await role.findOne({
       where: {
         id: roleId
@@ -23,32 +34,34 @@ const addNewRolePermission = async(req, res) => {
         id: moduleId
       }
     });
-
     if (!roleTemp) {
       res.status(404).send({ message: "ID of this role is not exist" });
     }
     if (!moduleTemp) {
       res.status(404).send({ message: "ID of this module is not exist" });
     }
-
     const newRolePermission = await rolePermission.create({
       roleId,
       moduleId,
+      url,
       canRead,
       canWrite,
       canUpdate,
       canDelete,
-      canApprove
+      canApprove,
+      createBy: payload.id,
+      updateBy: payload.id,
+      isDelete: 0
     });
-
     res.send(newRolePermission);
-
   } catch (error) {
     console.log(error);
   }
 }
 
+//update a role-permission by id
 const updateRolePermission = async(req, res) => {
+  const token = req.header('token');
   const id = req.params.id;
   let {
     roleId,
@@ -61,6 +74,12 @@ const updateRolePermission = async(req, res) => {
   } = req.body;
 
   try {
+    //check if not token in request
+    if (!token) {
+      res.send('Not Token');
+      return;
+    }
+    const payload = jwt.verify(token, config.secret);
     const roleTemp = await role.findOne({
       where: {
         id: roleId
@@ -71,14 +90,12 @@ const updateRolePermission = async(req, res) => {
         id: moduleId
       }
     });
-
     if (!roleTemp) {
       res.status(404).send({ message: "ID of this role is not exist" });
     }
     if (!moduleTemp) {
       res.status(404).send({ message: "ID of this module is not exist" });
     }
-
     const result = await rolePermission.update({
       roleId,
       moduleId,
@@ -86,7 +103,8 @@ const updateRolePermission = async(req, res) => {
       canWrite,
       canUpdate,
       canDelete,
-      canApprove
+      canApprove,
+      updateBy: payload.id
     }, {
       where: {
         id: id
@@ -94,6 +112,7 @@ const updateRolePermission = async(req, res) => {
     });
     if (!result) {
       res.send("Can not update this rolePermission");
+      return;
     }
     res.sendStatus(200);
   } catch (error) {
@@ -101,10 +120,13 @@ const updateRolePermission = async(req, res) => {
   }
 }
 
+//delete a role-permission by id
 const deleteRolePermission = async(req, res) => {
   const id = req.params.id;
   try {
-    const result = await rolePermission.destroy({
+    const result = await rolePermission.update({
+      isDelete: 1
+    }, {
       where: {
         id: id
       }

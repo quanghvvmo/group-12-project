@@ -25,7 +25,11 @@ module.exports = (sequelize, DataTypes) => {
     canWrite: DataTypes.INTEGER,
     canUpdate: DataTypes.INTEGER,
     canDelete: DataTypes.INTEGER,
-    canApprove: DataTypes.INTEGER
+    canApprove: DataTypes.INTEGER,
+    createBy: DataTypes.UUID,
+    updateBy: DataTypes.UUID,
+    isDelete: DataTypes.INTEGER,
+    url: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'rolePermission',

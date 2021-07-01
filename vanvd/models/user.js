@@ -32,7 +32,10 @@ module.exports = (sequelize, DataTypes) => {
     avatar: DataTypes.STRING,
     department: DataTypes.STRING,
     identificationNumber: DataTypes.STRING,
-    insuranceNumber: DataTypes.STRING
+    insuranceNumber: DataTypes.STRING,
+    createBy: DataTypes.UUID,
+    updateBy: DataTypes.UUID,
+    isDelete: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'user',

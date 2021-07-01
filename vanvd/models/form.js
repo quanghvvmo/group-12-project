@@ -23,7 +23,10 @@ module.exports = (sequelize, DataTypes) => {
     task: DataTypes.TEXT,
     achievement: DataTypes.TEXT,
     managerComment: DataTypes.TEXT,
-    status: DataTypes.STRING
+    status: DataTypes.STRING,
+    createBy: DataTypes.UUID,
+    updateBy: DataTypes.UUID,
+    isDelete: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'form',

@@ -1,5 +1,6 @@
 const multer = require('multer');
 
+//define storage of avatar in server
 var storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, './uploads/')
@@ -9,6 +10,7 @@ var storage = multer.diskStorage({
   }
 })
 
+//validation for file input
 const fileFilter = (req, file, cb) => {
   if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
     cb(null, true);

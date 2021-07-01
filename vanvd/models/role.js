@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       role.hasOne(models.userRole, {
         foreignKey: "roleId"
       });
-      role.hasMany(models.rolePermission, {
+      role.hasOne(models.rolePermission, {
         foreignKey: "roleId"
       })
     }
@@ -20,6 +20,9 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: DataTypes.UUIDV4
     },
     roleName: DataTypes.STRING,
+    createBy: DataTypes.UUID,
+    updateBy: DataTypes.UUID,
+    isDelete: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'role',

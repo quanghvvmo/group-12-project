@@ -1,7 +1,11 @@
 const e = require('express');
 const { user, userRole, sequelize, role } = require('../models');
+const jwt = require('jsonwebtoken');
+const config = require('../config/auth.config');
 
+//create new user, and create new user-role
 const addNewUser = async(req, res) => {
+  const token = req.header('token');
   const avatar = req.file.path;
   let {
     roleId,
@@ -17,6 +21,12 @@ const addNewUser = async(req, res) => {
     insuranceNumber
   } = req.body;
   try {
+    //check if not token in request
+    if (!token) {
+      res.send('Not Token');
+      return;
+    }
+    const payload = jwt.verify(token, config.secret);
     const t = await sequelize.transaction();
     const userCheck = await user.findOne({
       where: {
@@ -47,11 +57,17 @@ const addNewUser = async(req, res) => {
       address,
       department,
       identificationNumber,
-      insuranceNumber
+      insuranceNumber,
+      createBy: payload.id,
+      updateBy: payload.id,
+      isDelete: 0
     }, { transaction: t });
     const newUserRole = await userRole.create({
       userId: newUser.id,
-      roleId
+      roleId,
+      createBy: payload.id,
+      updateBy: payload.id,
+      isDelete: 0
     }, { transaction: t });
     await t.commit();
     res.status(200).send(newUser);
@@ -61,7 +77,9 @@ const addNewUser = async(req, res) => {
   }
 }
 
+//update user by id
 const updateUser = async(req, res) => {
+  const token = req.header('token');
   const id = req.params.id;
   const avatar = req.file.path;
   let {
@@ -77,53 +95,79 @@ const updateUser = async(req, res) => {
     insuranceNumber
   } = req.body;
   try {
+    //check if not token in request
+    if (!token) {
+      res.send('Not Token');
+      return;
+    }
+    const payload = jwt.verify(token, config.secret);
     const userCheck = await user.findOne({
       where: {
-        id: managerId
+        id: managerId,
+        isDelete: 0
       }
     });
     if (!userCheck) {
       res.status(404).send("ID of Manager is incorrect");
       return;
     }
-    const result = await user.update({
-      employeeId,
-      managerId,
-      firstName,
-      lastName,
-      email,
-      phone,
-      avatar,
-      address,
-      department,
-      identificationNumber,
-      insuranceNumber
-    }, {
-      where: {
-        id: id
+    let check = false;
+    for (let x in req.role) {
+      if ((req.role[x] == 'hr') || (req.role[x] == 'admin')) {
+        check = true;
+      } else {
+        if (id === payload.id) {
+          check = true;
+        }
       }
-    });
-
-    if (!result) {
-      res.send("Can not update this user");
-      return;
     }
-    res.sendStatus(200);
+    if (check) {
+      const result = await user.update({
+        employeeId,
+        managerId,
+        firstName,
+        lastName,
+        email,
+        phone,
+        avatar,
+        address,
+        department,
+        identificationNumber,
+        insuranceNumber,
+        updateBy: payload.id
+      }, {
+        where: {
+          id: id
+        }
+      });
+      if (!result) {
+        res.send("Can not update this user");
+        return;
+      }
+      res.sendStatus(200);
+    }
+    res.send("Can not update information of this user\n Permission deny");
+    return;
   } catch (err) {
     console.log(err);
   }
 }
 
+//delete user and user-role 
 const deleteUser = async(req, res) => {
   const id = req.params.id;
   try {
     const t = await sequelize.transaction();
-    const resultUserRole = await userRole.destroy({
+    const resultUserRole = await userRole.update({
+      isDelete: 1
+    }, {
       where: {
         userId: id
       }
     }, { transaction: t });
-    const resultuser = await user.destroy({
+    const resultuser = await user.update({
+      isDelete: 1
+    }, {
       where: {
         id: id
       }
@@ -146,7 +190,8 @@ const getUserById = async(req, res) => {
   try {
     const User = await user.findAll({
       where: {
-        id: id
+        id: id,
+        isDelete: 0
       },
       include: {
         model: userRole

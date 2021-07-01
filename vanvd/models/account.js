@@ -18,6 +18,10 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.UUID,
     username: DataTypes.STRING,
     password: DataTypes.STRING,
+    createBy: DataTypes.UUID,
+    updateBy: DataTypes.UUID,
+    isDelete: DataTypes.INTEGER
+
   }, {
     sequelize,
     modelName: 'account',

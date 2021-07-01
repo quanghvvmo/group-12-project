@@ -38,6 +38,18 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      createdBy: {
+        allowNull: false,
+        type: Sequelize.UUID
+      },
+      updateBy: {
+        allowNull: false,
+        type: Sequelize.UUID
+      },
+      isDelete: {
+        allowNull: false,
+        type: Sequelize.INTEGER
       }
     });
   },

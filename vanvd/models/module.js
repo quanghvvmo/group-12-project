@@ -5,7 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class module extends Model {
     static associate(models) {
-      module.hasMany(models.rolePermission, {
+      module.hasOne(models.rolePermission, {
         foreignKey: "roleId"
       })
     }
@@ -16,7 +16,10 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       defaultValue: DataTypes.UUIDV4
     },
-    moduleName: DataTypes.STRING
+    moduleName: DataTypes.STRING,
+    createBy: DataTypes.UUID,
+    updateBy: DataTypes.UUID,
+    isDelete: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'module',

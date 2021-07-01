@@ -1,11 +1,21 @@
 const Module = require('../models').module;
+const jwt = require('jsonwebtoken');
+const config = require('../config/auth.config');
 
+//create new module
 const addNewModule = async(req, res) => {
+  const token = req.header('token');
   let {
     moduleName
   } = req.body;
 
   try {
+    //check if not token in request
+    if (!token) {
+      res.send('Not Token');
+      return;
+    }
+    const payload = jwt.verify(token, config.secret);
     const existModule = await Module.findOne({
       where: {
         moduleName: moduleName
@@ -18,7 +28,10 @@ const addNewModule = async(req, res) => {
       return;
     }
     const newModule = await Module.create({
-      moduleName
+      moduleName,
+      createBy: payload.id,
+      updateBy: payload.id,
+      isDelete: 0,
     });
     res.status(200).send(newModule);
   } catch (error) {
@@ -27,15 +40,24 @@ const addNewModule = async(req, res) => {
 
 }
 
+//update a module by id
 const updateModule = async(req, res) => {
+  const token = req.header(token);
   const id = req.params.id;
   let {
     moduleName
   } = req.body;
 
   try {
+    //check if not token in request
+    if (!token) {
+      res.send('Not Token');
+      return;
+    }
+    const payload = jwt.verify(token, config.secret);
     const result = Module.update({
-      moduleName
+      moduleName,
+      updateBy: payload.id
     }, {
       where: {
         id: id
@@ -51,10 +73,13 @@ const updateModule = async(req, res) => {
   }
 }
 
+//delete module by id
 const deleteModule = async(req, res) => {
   const id = req.params.id;
   try {
-    const result = await Module.destroy({
+    const result = await Module.update({
+      isDelete: 1
+    }, {
       where: {
         id: id
       }

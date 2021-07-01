@@ -35,7 +35,24 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      createdBy: {
+        allowNull: false,
+        type: Sequelize.UUID
+      },
+      updateBy: {
+        allowNull: false,
+        type: Sequelize.UUID
+      },
+      url: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      isDelete: {
+        allowNull: false,
+        type: Sequelize.INTEGER
       }
+
     });
   },
   down: async(queryInterface, Sequelize) => {

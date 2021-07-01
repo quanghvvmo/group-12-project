@@ -20,7 +20,10 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: DataTypes.UUIDV4
     },
     userId: DataTypes.UUID,
-    roleId: DataTypes.UUID
+    roleId: DataTypes.UUID,
+    createBy: DataTypes.UUID,
+    updateBy: DataTypes.UUID,
+    isDelete: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'userRole',
