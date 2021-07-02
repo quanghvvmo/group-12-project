@@ -48,7 +48,8 @@ const addNewUserRole = async(req, res) => {
     });
     res.status(200).send(newUserRole);
   } catch (err) {
-    console.log(err);
+    console.log(error);
+    res.status(500).send("Internal server error");
   }
 
 }

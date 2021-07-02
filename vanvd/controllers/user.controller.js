@@ -30,12 +30,14 @@ const addNewUser = async(req, res) => {
     const t = await sequelize.transaction();
     const userCheck = await user.findOne({
       where: {
-        id: managerId
+        id: managerId,
+        isDelete: 0
       }
     });
     const RoleCheck = await role.findOne({
       where: {
-        id: roleId
+        id: roleId,
+        isDelete: 0
       }
     });
     if (!userCheck) {
@@ -73,7 +75,8 @@ const addNewUser = async(req, res) => {
     res.status(200).send(newUser);
   } catch (err) {
     await t.rollback();
-    console.log(err);
+    console.log(error);
+    res.status(500).send("Internal server error");
   }
 }
 
@@ -149,7 +152,8 @@ const updateUser = async(req, res) => {
     res.send("Can not update information of this user\n Permission deny");
     return;
   } catch (err) {
-    console.log(err);
+    console.log(error);
+    res.status(500).send("Internal server error");
   }
 }
 
@@ -181,7 +185,8 @@ const deleteUser = async(req, res) => {
     res.sendStatus(200);
   } catch (error) {
     await t.rollback();
-    console.log(error)
+    console.log(error);
+    res.status(500).send("Internal server error");
   }
 }
 
@@ -203,7 +208,8 @@ const getUserById = async(req, res) => {
     }
     res.status(200).send(User);
   } catch (error) {
-    console.log(error)
+    console.log(error);
+    res.status(500).send("Internal server error");
   }
 }
 

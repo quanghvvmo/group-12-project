@@ -12,6 +12,7 @@ const sendMail = async(req, res) => {
     res.sendStatus(200);
   } catch (error) {
     console.log(error);
+    res.status(500).send("Internal server error");
   }
 }
 

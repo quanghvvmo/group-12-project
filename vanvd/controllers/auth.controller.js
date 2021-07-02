@@ -7,7 +7,8 @@ const account = require('../models').account;
 const signIn = async(req, res) => {
   const temp = await account.findOne({
     where: {
-      username: req.body.username
+      username: req.body.username,
+      isDelete: 0
     }
   });
   if (!temp) {

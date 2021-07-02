@@ -51,7 +51,8 @@ const addNewForm = async(req, res) => {
     }
     res.sendStatus(200);
   } catch (error) {
-    console.log(error)
+    console.log(err);
+    res.status(500).send("Internal server error");
   }
 }
 
@@ -110,7 +111,8 @@ const submitForm = async(req, res) => {
     }
     res.sendStatus(200);
   } catch (error) {
-    console.log(error)
+    console.log(err);
+    res.status(500).send("Internal server error");
   }
 }
 
@@ -134,7 +136,9 @@ const getFormOfUser = async(req, res) => {
             isDelete: 0
           }
         });
-        result["personal"] = formPersonal;
+        if (formPersonal.length) {
+          result["personal"] = formPersonal;
+        }
 
         const formEmployee = await form.findAll({
           where: {
@@ -142,7 +146,9 @@ const getFormOfUser = async(req, res) => {
             isDelete: 0
           }
         });
-        result["employee"] = formEmployee;
+        if (formEmployee.length) {
+          result["employee"] = formEmployee;
+        }
       } else {
         if ((req.role[x] === 'hr') || (req.role[x] === 'admin')) {
           const allForm = await form.findAll({
@@ -150,7 +156,9 @@ const getFormOfUser = async(req, res) => {
               isDelete: 0
             }
           });
-          result["all"] = allForm;
+          if (allForm.length) {
+            result["all"] = allForm;
+          }
         } else {
           const formOfuser = await form.findAll({
             where: {
@@ -171,7 +179,8 @@ const getFormOfUser = async(req, res) => {
     }
     res.status(200).send(result);
   } catch (error) {
-    console.log(error);
+    console.log(err);
+    res.status(500).send("Internal server error");
   }
 }
 
@@ -216,7 +225,8 @@ const getFormById = async(req, res) => {
     }
     res.status(200).send(formTemp);
   } catch (error) {
-    console.log(error)
+    console.log(err);
+    res.status(500).send("Internal server error");
   }
 }
 
@@ -261,7 +271,8 @@ const approveForm = async(req, res) => {
     }
     res.sendStatus(200);
   } catch (error) {
-    console.log(error)
+    console.log(err);
+    res.status(500).send("Internal server error");
   }
 }
 
@@ -283,7 +294,8 @@ const closeForm = async(req, res) => {
     }
     res.sendStatus(200);
   } catch (error) {
-    console.log(error);
+    console.log(err);
+    res.status(500).send("Internal server error");
   }
 }
 
@@ -304,94 +316,114 @@ const deleteForm = async(req, res) => {
     }
     res.status(200).send("Deleted!")
   } catch (error) {
-    console.log(error)
+    console.log(err);
+    res.status(500).send("Internal server error");
   }
 }
 
 //get all finished yearly form 
 const reportFinishYearlyForm = async(req, res) => {
-  const report = await form.findAll({
-    where: {
-      typeOf: "yearly",
-      status: "Approved",
-      isDelete: 0
+  try {
+    const report = await form.findAll({
+      where: {
+        typeOf: "yearly",
+        status: "Approved",
+        isDelete: 0
+      }
+    });
+    if (!report) {
+      res.status(404).send("Can not get list finished yearly report")
     }
-  });
-  if (!report) {
-    res.status(404).send("Can not get list finished yearly report")
+    let result = [];
+    for (let x in report) {
+      result.push(report[x].userId);
+    }
+    res.status(200).send({
+      number: result.length,
+      userId: result
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal server error");
   }
-  let result = [];
-  for (let x in report) {
-    result.push(report[x].userId);
-  }
-  res.send({
-    number: result.length,
-    userId: result
-  });
-
 }
 
 const reportFinishBasicForm = async(req, res) => {
-  const report = await form.findAll({
-    where: {
-      typeOf: "basic",
-      status: "Approved",
-      isDelete: 0
+  try {
+    const report = await form.findAll({
+      where: {
+        typeOf: "basic",
+        status: "Approved",
+        isDelete: 0
+      }
+    });
+    if (!report) {
+      res.status(404).send("Can not get list finished yearly report")
     }
-  });
-  if (!report) {
-    res.status(404).send("Can not get list finished basic report")
+    let result = [];
+    for (let x in report) {
+      result.push(report[x].userId);
+    }
+    res.status(200).send({
+      number: result.length,
+      userId: result
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal server error");
   }
-  let result = [];
-  for (let x in report) {
-    result.push(report[x].userId);
-  }
-  res.send({
-    number: result.length,
-    userId: result
-  });
 }
 
 const reportIncompleteYearlyForm = async(req, res) => {
-  const report = await form.findAll({
-    where: {
-      typeOf: "yearly",
-      status: "new",
-      isDelete: 0
+  try {
+    const report = await form.findAll({
+      where: {
+        typeOf: "yearly",
+        status: "new",
+        isDelete: 0
+      }
+    });
+    if (!report) {
+      res.status(404).send("Can not get list finished yearly report")
     }
-  });
-  if (!report) {
-    res.status(404).send("Can not get list incomplete yearly report")
+    let result = [];
+    for (let x in report) {
+      result.push(report[x].userId);
+    }
+    res.status(200).send({
+      number: result.length,
+      userId: result
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal server error");
   }
-  let result = [];
-  for (let x in report) {
-    result.push(report[x].userId);
-  }
-  res.send({
-    number: result.length,
-    userId: result
-  });
 }
 
 const reportIncompleteBasicForm = async(req, res) => {
-  const report = await form.findAll({
-    where: {
-      typeOf: "basic",
-      status: "new",
-      isDelete: 0
+  try {
+    const report = await form.findAll({
+      where: {
+        typeOf: "basic",
+        status: "new",
+        isDelete: 0
+      }
+    });
+    if (!report) {
+      res.status(404).send("Can not get list finished yearly report")
     }
-  });
-  if (!report) {
-    res.status(404).send("Can not get list incomplete basic report")
+    let result = [];
+    for (let x in report) {
+      result.push(report[x].userId);
+    }
+    res.status(200).send({
+      number: result.length,
+      userId: result
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal server error");
   }
-  let result = [];
-  for (let x in report) {
-    result.push(report[x].userId);
-  }
-  res.send({
-    number: result.length,
-    userId: result
-  });
 }
 
 //test get role
@@ -421,6 +453,7 @@ const getRoleById = async(req, res) => {
     res.send(roleCheck);
   } catch (error) {
     console.log(error);
+    res.status(500).send("Internal server error");
   }
 }
 

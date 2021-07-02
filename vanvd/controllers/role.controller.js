@@ -35,7 +35,8 @@ const addNewRole = async(req, res) => {
     });
     res.status(200).send(newRole);
   } catch (err) {
-    console.log(err);
+    console.log(error);
+    res.status(500).send("Internal server error");
   }
 }
 
@@ -68,7 +69,8 @@ const updateRole = async(req, res) => {
     }
     res.sendStatus(200);
   } catch (error) {
-    console.log(error)
+    console.log(error);
+    res.status(500).send("Internal server error");
   }
 }
 
@@ -115,7 +117,8 @@ const deleteRole = async(req, res) => {
     }
   } catch (err) {
     await t.rollback();
-    console.log(err);
+    console.log(error);
+    res.status(500).send("Internal server error");
   }
 }
 
@@ -158,6 +161,7 @@ const getAllRoleOfUser = async(req, res) => {
     res.send(result);
   } catch (error) {
     console.log(error);
+    res.status(500).send("Internal server error");
   }
 }
 

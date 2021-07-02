@@ -37,6 +37,7 @@ const addNewAccount = async(req, res) => {
     res.status(200).send(newAccount);
   } catch (err) {
     console.log(err);
+    res.status(500).send("Internal server error");
   }
 }
 
@@ -76,6 +77,7 @@ const updateAccount = async(req, res) => {
     res.sendStatus(200);
   } catch (err) {
     console.log(err);
+    res.status(500).send("Internal server error");
   }
 }
 
@@ -98,6 +100,7 @@ const deleteAccount = async(req, res) => {
     res.sendStatus(200);
   } catch (err) {
     console.log(err);
+    res.status(500).send("Internal server error");
   }
 }
 

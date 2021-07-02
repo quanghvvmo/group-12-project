@@ -4,7 +4,7 @@ const emailController = require('../controllers/mail.controller');
 const express = require('express');
 const formRouter = express.Router();
 
-formRouter.post('/forms', checkRole.checkCanWrite, formController.addNewForm);
+formRouter.post('/forms', checkRole.checkClosedForm, checkRole.checkCanWrite, formController.addNewForm);
 formRouter.put('/forms', checkRole.checkCanUpdate, formController.submitForm);
 formRouter.put('/forms/:id', checkRole.checkCanUpdate, formController.approveForm);
 formRouter.put('/forms/:id/closed', checkRole.checkCanClose, formController.closeForm);

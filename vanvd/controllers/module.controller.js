@@ -36,6 +36,7 @@ const addNewModule = async(req, res) => {
     res.status(200).send(newModule);
   } catch (error) {
     console.log(error);
+    res.status(500).send("Internal server error");
   }
 
 }
@@ -69,7 +70,8 @@ const updateModule = async(req, res) => {
     }
     res.sendStatus(200);
   } catch (error) {
-    console.log(error)
+    console.log(error);
+    res.status(500).send("Internal server error");
   }
 }
 
@@ -91,7 +93,8 @@ const deleteModule = async(req, res) => {
       res.sendStatus(200);
     }
   } catch (err) {
-    console.log(err);
+    console.log(error);
+    res.status(500).send("Internal server error");
   }
 }
 

@@ -63,9 +63,11 @@ const checkCanRead = async(req, res, next) => {
     let check = false;
     let roleName = [];
     for (let x in itemCheck) {
-      roleName.push(itemCheck[x].role.roleName);
-      if (!check && itemCheck[x].role.rolePermission.canRead && req.url.includes(itemCheck[x].role.rolePermission.url)) {
-        check = true;
+      if (req.url.includes(itemCheck[x].role.rolePermission.url)) {
+        roleName.push(itemCheck[x].role.roleName);
+        if (!check && itemCheck[x].role.rolePermission.canRead) {
+          check = true;
+        }
       }
     }
     if (check) {
@@ -95,9 +97,12 @@ const checkCanUpdate = async(req, res, next) => {
     let check = false;
     let roleName = [];
     for (let x in itemCheck) {
-      roleName.push(itemCheck[x].role.roleName);
-      if (!check && itemCheck[x].role.rolePermission.canRead && req.url.includes(itemCheck[x].role.rolePermission.url)) {
-        check = true;
+      if (req.url.includes(itemCheck[x].role.rolePermission.url)) {
+        //create role array of user in token
+        roleName.push(itemCheck[x].role.roleName);
+        if (!check && itemCheck[x].role.rolePermission.canUpdate) {
+          check = true;
+        }
       }
     }
     if (check) {

@@ -56,6 +56,7 @@ const addNewRolePermission = async(req, res) => {
     res.send(newRolePermission);
   } catch (error) {
     console.log(error);
+    res.status(500).send("Internal server error");
   }
 }
 
@@ -107,7 +108,8 @@ const updateRolePermission = async(req, res) => {
       updateBy: payload.id
     }, {
       where: {
-        id: id
+        id: id,
+        isDelete: 0
       }
     });
     if (!result) {
@@ -117,6 +119,7 @@ const updateRolePermission = async(req, res) => {
     res.sendStatus(200);
   } catch (error) {
     console.log(error);
+    res.status(500).send("Internal server error");
   }
 }
 
@@ -138,7 +141,8 @@ const deleteRolePermission = async(req, res) => {
     }
     res.sendStatus(200);
   } catch (error) {
-    console.log(error)
+    console.log(error);
+    res.status(500).send("Internal server error");
   }
 }
 
