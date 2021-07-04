@@ -140,20 +140,23 @@ const updateUser = async(req, res) => {
         updateBy: payload.id
       }, {
         where: {
-          id: id
+          id: id,
+          isDelete: 0
         }
       });
-      if (!result) {
+      if (!result[0]) {
         res.send("Can not update this user");
         return;
       }
       res.sendStatus(200);
+      return;
     }
     res.send("Can not update information of this user\n Permission deny");
     return;
   } catch (err) {
-    console.log(error);
+    console.log(err);
     res.status(500).send("Internal server error");
+    return;
   }
 }
 
@@ -176,7 +179,7 @@ const deleteUser = async(req, res) => {
         id: id
       }
     }, { transaction: t });
-    if (!resultuser) {
+    if (!resultuser[0]) {
       await t.rollback();
       res.send("Can not delete this user");
       return;
@@ -202,8 +205,8 @@ const getUserById = async(req, res) => {
         model: userRole
       }
     });
-    if (!User) {
-      res.send("can get this user");
+    if (!User.length) {
+      res.status(404).send("Can not get this user");
       return;
     }
     res.status(200).send(User);

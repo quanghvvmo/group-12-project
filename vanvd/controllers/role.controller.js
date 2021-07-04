@@ -22,9 +22,7 @@ const addNewRole = async(req, res) => {
       }
     });
     if (temp) {
-      res.send({
-        message: "This Role is already exist"
-      });
+      res.send("This Role is already exist");
       return;
     }
     const newRole = await role.create({
@@ -55,17 +53,19 @@ const updateRole = async(req, res) => {
       return;
     }
     const payload = jwt.verify(token, config.secret);
-    const result = role.update({
+    const result = await role.update({
       roleName,
       updateBy: payload.id
     }, {
       where: {
-        id: id
+        id: id,
+        isDelete: 0
       }
     });
 
-    if (!result) {
+    if (!result[0]) {
       res.send("Can not update this role");
+      return;
     }
     res.sendStatus(200);
   } catch (error) {
@@ -78,45 +78,20 @@ const updateRole = async(req, res) => {
 const deleteRole = async(req, res) => {
   const id = req.params.id;
   try {
-    const t = await sequelize.transaction();
-    const resultUserRole = userRole.update({
-      isDelete: 1
-    }, {
-      where: {
-        roleId: id
-      }
-    }, { transaction: t });
-    if (!resultUserRole) {
-      await t.rollback();
-      res.send('Can not delete userRole contains this roleId');
-    }
-    const resultRolePermission = rolePermission.update({
-      isDelete: 1
-    }, {
-      where: {
-        roleId: id
-      }
-    }, { transaction: t });
-    if (!resultRolePermission) {
-      await t.rollback();
-      res.send('Can not delete RolePermission contain this roleId');
-    }
     const result = await role.update({
       isDelete: 1
     }, {
       where: {
         id: id
       }
-    }, { transaction: t });
-    if (!result) {
+    });
+    if (!result[0]) {
       await t.rollback();
       res.send('Can not delete this role');
     } else {
-      await t.commit();
       res.sendStatus(200);
     }
-  } catch (err) {
-    await t.rollback();
+  } catch (error) {
     console.log(error);
     res.status(500).send("Internal server error");
   }

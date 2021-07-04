@@ -22,9 +22,7 @@ const addNewModule = async(req, res) => {
       }
     });
     if (existModule) {
-      res.send({
-        message: "This module is already exist"
-      });
+      res.send("This module is already exist");
       return;
     }
     const newModule = await Module.create({
@@ -43,7 +41,7 @@ const addNewModule = async(req, res) => {
 
 //update a module by id
 const updateModule = async(req, res) => {
-  const token = req.header(token);
+  const token = req.header('token');
   const id = req.params.id;
   let {
     moduleName
@@ -56,17 +54,18 @@ const updateModule = async(req, res) => {
       return;
     }
     const payload = jwt.verify(token, config.secret);
-    const result = Module.update({
+    const result = await Module.update({
       moduleName,
       updateBy: payload.id
     }, {
       where: {
-        id: id
+        id: id,
+        isDelete: 0
       }
     });
-
-    if (!result) {
+    if (!result[0]) {
       res.send("Can not update this module");
+      return;
     }
     res.sendStatus(200);
   } catch (error) {
@@ -87,7 +86,7 @@ const deleteModule = async(req, res) => {
       }
     });
 
-    if (!result) {
+    if (!result[0]) {
       console.log('Can not delete this module');
     } else {
       res.sendStatus(200);

@@ -35,10 +35,12 @@ const addNewRolePermission = async(req, res) => {
       }
     });
     if (!roleTemp) {
-      res.status(404).send({ message: "ID of this role is not exist" });
+      res.status(404).send("ID of this role is not exist");
+      return;
     }
     if (!moduleTemp) {
-      res.status(404).send({ message: "ID of this module is not exist" });
+      res.status(404).send("ID of this module is not exist");
+      return;
     }
     const newRolePermission = await rolePermission.create({
       roleId,
@@ -92,10 +94,12 @@ const updateRolePermission = async(req, res) => {
       }
     });
     if (!roleTemp) {
-      res.status(404).send({ message: "ID of this role is not exist" });
+      res.status(404).send("ID of this role is not exist");
+      return;
     }
     if (!moduleTemp) {
-      res.status(404).send({ message: "ID of this module is not exist" });
+      res.status(404).send("ID of this module is not exist");
+      return;
     }
     const result = await rolePermission.update({
       roleId,
@@ -112,7 +116,7 @@ const updateRolePermission = async(req, res) => {
         isDelete: 0
       }
     });
-    if (!result) {
+    if (!result[0]) {
       res.send("Can not update this rolePermission");
       return;
     }
@@ -135,7 +139,7 @@ const deleteRolePermission = async(req, res) => {
       }
     });
 
-    if (!result) {
+    if (!result[0]) {
       res.send("Can not delete this RolePermission");
       return;
     }

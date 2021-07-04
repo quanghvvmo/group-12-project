@@ -55,11 +55,54 @@ const addNewUserRole = async(req, res) => {
 }
 
 const updateUserRole = async(req, res) => {
-
+  const id = req.params.id;
+  const token = req.header('token');
+  try {
+    const payload = jwt.verify(token, config.secret);
+    let {
+      userId,
+      roleId
+    } = req.body;
+    const userCheck = await user.findOne({
+      where: {
+        id: userId,
+        isDelete: 0
+      }
+    });
+    const roleCheck = await role.findOne({
+      where: {
+        id: roleId,
+        isDelete: 0
+      }
+    });
+    if (!userCheck) {
+      res.status(404).send("userId is not exist");;
+      return;
+    }
+    if (!roleCheck) {
+      res.status(404).send("roleId is not exist");
+      return;
+    }
+    const userRoleCheck = await userRole.update({
+      userId,
+      roleId,
+      updateBy: payload.id
+    }, {
+      where: {
+        id: id,
+        isDelete: 0
+      }
+    });
+    if (!userRoleCheck[0]) {
+      res.send("Can not update this user-role");
+      return;
+    }
+    res.sendStatus(200);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal server error");
+  }
 }
 
-const deleteUserRole = async(req, res) => {
 
-}
-
-module.exports = { addNewUserRole, updateUserRole, deleteUserRole }
+module.exports = { addNewUserRole, updateUserRole }

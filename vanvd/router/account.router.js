@@ -4,7 +4,7 @@ const express = require('express');
 const accountRouter = express.Router();
 
 accountRouter.post('/accounts', accountController.addNewAccount);
-accountRouter.patch('/accounts/:id', accountController.updateAccount)
+accountRouter.put('/accounts/:id', accountController.updateAccount)
 
 accountRouter.delete('/accounts/:id', accountController.deleteAccount)
 accountRouter.post('/signins', authController.signIn)

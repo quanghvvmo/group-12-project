@@ -34,7 +34,7 @@ const checkCanWrite = async(req, res, next) => {
     const itemCheck = await checkRole(payload.id);
     let check = false;
     for (let x in itemCheck) {
-      if (!check && itemCheck[x].role.rolePermission.canWrite && req.url.includes(itemCheck[x].role.rolePermission.url)) {
+      if (!check && itemCheck[x].role.rolePermission.canWrite && req.url.startsWith(itemCheck[x].role.rolePermission.url)) {
         check = true;
       }
     }
@@ -63,7 +63,7 @@ const checkCanRead = async(req, res, next) => {
     let check = false;
     let roleName = [];
     for (let x in itemCheck) {
-      if (req.url.includes(itemCheck[x].role.rolePermission.url)) {
+      if (req.url.startsWith(itemCheck[x].role.rolePermission.url)) {
         roleName.push(itemCheck[x].role.roleName);
         if (!check && itemCheck[x].role.rolePermission.canRead) {
           check = true;
@@ -97,7 +97,7 @@ const checkCanUpdate = async(req, res, next) => {
     let check = false;
     let roleName = [];
     for (let x in itemCheck) {
-      if (req.url.includes(itemCheck[x].role.rolePermission.url)) {
+      if (req.url.startsWith(itemCheck[x].role.rolePermission.url)) {
         //create role array of user in token
         roleName.push(itemCheck[x].role.roleName);
         if (!check && itemCheck[x].role.rolePermission.canUpdate) {
@@ -130,7 +130,7 @@ const checkCanDelete = async(req, res, next) => {
     const itemCheck = await checkRole(payload.id);
     let check = false;
     for (let x in itemCheck) {
-      if (!check && itemCheck[x].role.rolePermission.canDelete && req.url.includes(itemCheck[x].role.rolePermission.url)) {
+      if (!check && itemCheck[x].role.rolePermission.canDelete && req.url.startsWith(itemCheck[x].role.rolePermission.url)) {
         check = true;
       }
     }
@@ -158,7 +158,7 @@ const checkCanApprove = async(req, res, next) => {
     const itemCheck = await checkRole(payload.id);
     let check = false;
     for (let x in itemCheck) {
-      if (!check && itemCheck[x].role.rolePermission.canApprove && req.url.includes(itemCheck[x].role.rolePermission.url)) {
+      if (!check && itemCheck[x].role.rolePermission.canApprove && req.url.startsWith(itemCheck[x].role.rolePermission.url)) {
         check = true;
       }
     }

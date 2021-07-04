@@ -26,7 +26,7 @@ const addNewAccount = async(req, res) => {
       userId,
       username,
       password: hashedPwd,
-      createby: payload.id,
+      createBy: payload.id,
       updateBy: payload.id,
       isDelete: 0,
     });
@@ -68,16 +68,19 @@ const updateAccount = async(req, res) => {
       isDelete: 0
     }, {
       where: {
-        id: id
+        id: id,
+        isDelete: 0
       }
     });
-    if (!result) {
+    if (!result[0]) {
       res.send("Can not update this account");
+      return;
     }
     res.sendStatus(200);
   } catch (err) {
     console.log(err);
     res.status(500).send("Internal server error");
+    return;
   }
 }
 
@@ -89,11 +92,10 @@ const deleteAccount = async(req, res) => {
       isDelete: 1
     }, {
       where: {
-        id: id
+        id: id,
       }
     });
-
-    if (!result) {
+    if (!result[0]) {
       res.send('Can not delete this account');
       return;
     }

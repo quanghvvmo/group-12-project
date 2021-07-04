@@ -102,10 +102,11 @@ const submitForm = async(req, res) => {
       status: "Pending approve"
     }, {
       where: {
-        userId: payload.id
+        userId: payload.id,
+        isDelete: 0
       }
     });
-    if (!result) {
+    if (!result[0]) {
       res.send("Can not update this form");
       return;
     }
@@ -265,7 +266,7 @@ const approveForm = async(req, res) => {
         isDelete: 0
       }
     });
-    if (!result) {
+    if (!result[0]) {
       res.send("Can approve this form");
       return;
     }
@@ -288,7 +289,7 @@ const closeForm = async(req, res) => {
         isDelete: 0
       }
     });
-    if (!formClosed) {
+    if (!formClosed[0]) {
       res.send("Can not close this form");
       return;
     }
@@ -310,7 +311,7 @@ const deleteForm = async(req, res) => {
         id: id
       }
     });
-    if (!result) {
+    if (!result[0]) {
       res.send('Can not delete this account');
       return;
     }
