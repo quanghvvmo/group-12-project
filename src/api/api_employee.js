@@ -8,6 +8,8 @@ import Employee_Tech from "../model/employee_tech.js";
 import Unit from "../model/unit.js";
 import Unit_Employee from "../model/unit_employee.js";
 import Tech from "../model/tech.js"
+import Admin from "../model/admin.js"
+import Project_Employee from "../model/project_employee.js"
 
 const add_employee = async (req, res) => {
     try {
@@ -26,7 +28,7 @@ const add_employee = async (req, res) => {
         } = req.body;
         const date = await new Date();
         const createAt = date.toString();
-        const createBy = req.userData.id
+        const createBy = req.userData.id;
         let transaction = await db.transaction();
         const find_unit = await Unit.findOne({ where: { name: unit } });
         const check_phone = await Employee.findOne({ where: { phone: phone } });
@@ -114,9 +116,11 @@ const update_employee = async (req, res) => {
             english,
             degree,
             unit,
+            leave,
             tech,
             exp_years
         } = req.body;
+        console.log(tech)
         const date = await new Date();
         const updateAt = date.toString();
         const updateBy = req.userData.id
@@ -158,6 +162,9 @@ const update_employee = async (req, res) => {
                     } else {
                         continue;
                     }
+                }
+                if(leave == 1){
+                    await Unit_Employee.destroy({where: {employeeID: id}}, {transaction: transaction})
                 }
                 await transaction.commit();
                 res.status(200).json({
@@ -226,11 +233,78 @@ const employee_detail = async (req, res) => {
     }
 }
 
-//delete employee (later after finish all other API)
+const delete_employee = async (req, res) => {
+    const id = req.params.id;
+    const find_employee = await Employee.findOne({where: {id: id}})
+    const check_admin = await Admin.findOne({where: {workID: find_employee.workID}})
+    const check_project = await Project_Employee.findAll({where: {employeeID: id}})
+    const check_unit = await Unit_Employee.findOne({where: {employeeID: id}})
+    try {
+        if(check_admin === null && check_project.length === 0 && check_unit === null){
+            await Employee.update({
+                isDeleted: 1
+            }, {where: {id: id}})
+            return res.status(200).json({
+                message: "Deleted Employee"
+            })
+        }else{
+            return res.status(400).json({
+                message: "Can't Deleted this employee"
+            })
+        }
+    } catch (error) {
+        return res.status(500).json({
+            message: "Server Error"
+        })
+    }
+    
+}
 
+const employee_stat = async(req, res) => {
+    const {
+        filter,
+        techID,
+        projectID,
+    } = req.body;
+    try {
+        if(filter == "tech"){
+            const filter_by = await Employee_Tech.findAll({where: {techID: techID}})
+            if(filter_by.length !== 0){
+                return res.status(200).json({
+                    message: `${filter_by.length} employee(s)`
+                })
+            }else{
+                return res.status(404).json({
+                    message: "Invalid Tech ID"
+                })
+            }
+        }else if(filter == "project"){
+            const filter_by = await Project_Employee.findAll({where: {projectID: projectID}})
+            if(filter_by.length !== 0){
+                return res.status(200).json({
+                    message: `${filter_by.length} employee(s)`
+                })
+            }else{
+                return res.status(404).json({
+                    message: "Invalid Project ID"
+                })
+            }
+        }else{
+            return res.status(400).json({
+                message: "Invalid Filter"
+            })
+        }
+    } catch (error) {
+        return res.status(500).json({
+            message: "Server Error"
+        })
+    }
+}
 export default {
     add_employee,
     update_employee,
     employee_list,
     employee_detail,
+    delete_employee,
+    employee_stat,
 }

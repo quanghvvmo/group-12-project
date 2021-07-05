@@ -124,7 +124,8 @@ const update_project = async (req, res) => {
             Project.update({
                 name,
                 description,
-                typeID: find_type.id,
+                type_id: find_type.id,
+                status,
                 updateBy,
                 updateAt
             },{where: {id:id}}, {transaction: transaction});
@@ -171,12 +172,16 @@ const update_project = async (req, res) => {
                     continue;
                 }
             }
+            if(status == "Closed"){
+                await Project_Employee.destroy({where: {projectID: id}}, {transaction: transaction})
+                await Unit_In_Proj.destroy({where: {projectID: id}}, {transaction: transaction})
+            }
             await transaction.commit();
             return res.status(200).json({
                 message: "ok"
             })
         }else{
-            transaction.rollback();
+            await transaction.rollback();
             return res.status(404).json({
                 message: "Invalid project info"
             })
@@ -226,8 +231,97 @@ const project_detail = async (req, res) => {
             })
         }
     } catch (error) {
+        console.log(error)
         return res.status(500).json({
             message: "Server Error"
+        })
+    }
+}
+
+const delete_project = async (req, res) => {
+    const id = req.params.id;
+    const find_project = await Project.findOne({where: {id: id}})
+    const check_status = find_project.status
+    const check_employee = await Project_Employee.findAll({where: {projectID: id}})
+    const check_unit = await Unit_In_Proj.findOne({where: {projectID: id}})
+    try {
+        if(check_employee.length === 0 && check_status == "Closed" && check_unit === null){
+            await Project.update({
+                isDelete: 1
+            }, {where: {id: id}})
+            return res.status(200).json({
+                message: "Deleted"
+            })
+        }
+    } catch (error) {
+        return res.status(500).json({
+            message: "Server Error"
+        })
+    }
+}
+
+const project_stat = async (req, res) => {
+    const {
+        filter,
+        tech_id,
+        type_id,
+        status,
+        customer_id,
+    } = req.body
+    try {
+        if(filter == "status"){
+            const filter_by = await Project.findAll({where: {status: status}});
+            if(filter_by.length !== 0){
+                return res.status(200).json({
+                    message: `${filter_by.length} project(s)`
+                })
+            }else{
+                return res.status(404).json({
+                    message: "Invalid Status"
+                })
+            }
+        }else if(filter == "type"){
+            const filter_by = await Project.findAll({where: {type_id: type_id}});
+            if(filter_by.length !== 0){
+                return res.status(200).json({
+                    message: `${filter_by.length} project(s)`
+                })
+            }else{
+                return res.status(404).json({
+                    message: "Invalid Type"
+                })
+            }
+        }else if(filter == "tech"){
+            const filter_by = await Project_Tech.findAll({where: {techID: tech_id}});
+            if(filter_by.length !== 0){
+                return res.status(200).json({
+                    message: `${filter_by.length} project(s)`
+                })
+            }else{
+                return res.status(404).json({
+                    message: "Invalid Tech"
+                })
+            }
+        }else if(filter == "customer"){
+            const filter_by = await Project.findAll({where: {customerID: customer_id}});
+            if(filter_by.length !== 0){
+                return res.status(200).json({
+                    message: `${filter_by.length} project(s)`
+                })
+            }else{
+                return res.status(404).json({
+                    message: "Invalid Customer ID"
+                })
+            }
+        }else{
+            return res.status(400).json({
+                message:"Invalid Filter"
+            })
+        }
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({
+            message:"Server Error"
         })
     }
 }
@@ -237,4 +331,6 @@ export default {
     update_project,
     list_project,
     project_detail,
+    delete_project,
+    project_stat,
 }

@@ -27,7 +27,8 @@ const Project = db.define('project', {
         type: Sequelize.STRING(300)
     },
     isDeleted:{
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        defaultValue: 0
     },
     createBy: {
         type: Sequelize.STRING(36)

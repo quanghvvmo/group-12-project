@@ -4,7 +4,7 @@ import pagination from "../common/pagination.js";
 import Customer from "../model/customer.js";
 import jwt from "jsonwebtoken"
 import {} from 'dotenv/config'
-
+import Project from "../model/project.js"
 
 
 const add_customer = async (req, res) => {
@@ -112,8 +112,36 @@ const customer_detail = async (req, res) => {
     }
 }
 
-//delete customer (later after finish all other API)
-
+const delete_customer = async (req, res) => {
+    const id = req.params.id;
+    const check_customer = await Project.findAll({where: {customerID: id}})
+    try {
+        if(check_customer.length === 0){
+            await Customer.update({
+                isDeleted: 1
+            }, {where: {id: id}})
+        }else{
+            for(let i = 0; i < check_customer.length; i++){
+                if(check_customer[i].isDeleted === 1 || check_customer.length === 0){
+                    await Customer.update({
+                        isDeleted: 1
+                    }, {where: {id: id}})
+                }else{
+                    return res.status(400).json({
+                        message: "Can't delete. Customer is having a in progress project"
+                    })
+                }
+            }
+        }
+        return res.status(200).json({
+            message: "Deleted Success"
+        })
+    } catch (error) {
+        return res.status(500).json({
+            message: "Server Error"
+        })
+    }
+}
 
 
 export default {
@@ -121,4 +149,5 @@ export default {
     update_customer,
     list_customer,
     customer_detail,
+    delete_customer,
 }

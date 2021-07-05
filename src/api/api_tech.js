@@ -2,6 +2,8 @@ import _ from "lodash";
 
 import Tech from "../model/tech.js";
 import pagination from "../common/pagination.js";
+import Employee_Tech from "../model/employee_tech.js";
+import Project_Tech from "../model/project_tech.js";
 
 const add_tech = async (req, res) => {
     try {
@@ -103,11 +105,36 @@ const tech_detail = async (req, res) => {
     }
 }
 
-//delete tech (later after finish all other API)
+const delete_tech = async (req, res) => {
+    const id = req.params.id;
+    const find_tech = await Tech.findOne({where: {id: id}});
+    const check_tech = find_tech.is_active;
+    const check_employee_tech = await Employee_Tech.findAll({where: {techID: id}});
+    const check_project_tech = await Project_Tech.findAll({where: {techID: id}});
+    try {
+        if(check_tech === 0 && check_employee_tech.length === 0 && check_project_tech.length === 0){
+            await Tech.update({
+                isDeleted : 1
+            }, {where: {id: id}})
+            return res.status(200).json({
+                message: "Deleted"
+            })
+        }else{
+            return res.status(400).json({
+                message: "Can't Deleted This Tech"
+            })
+        }
+    } catch (error) {
+        return res.status(500).json({
+            message: "Server Error"
+        })
+    }
+}
 
 export default {
     add_tech,
     update_tech,
     list_tech,
     tech_detail,
+    delete_tech,
 }

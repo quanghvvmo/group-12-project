@@ -15,7 +15,8 @@ const Tech = db.define('tech', {
         defaultValue: 1
     },
     isDeleted:{
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        defaultValue: 0
     },
     createBy: {
         type: Sequelize.STRING(36)

@@ -14,7 +14,8 @@ const Customer = db.define('customer', {
         type: Sequelize.STRING(2000)
     },
     isDeleted:{
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        defaultValue: 0
     },
     createBy: {
         type: Sequelize.STRING(36)

@@ -1,6 +1,7 @@
 import _ from "lodash";
 
 import Type from "../model/type.js";
+import Project from "../model/project.js";
 import pagination from "../common/pagination.js";
 
 const add_tpye = async (req, res) => {
@@ -101,11 +102,40 @@ const type_detail = async (req, res) => {
     }
 }
 
-//delete type (later after finish all other API)
-
+const delete_type = async (req, res) => {
+    const id = req.params.id;
+    const check_type = await Project.findAll({where: {type_id: id}})
+    try {
+        if(check_type.length === 0){
+            await Type.update({
+                isDeleted: 1
+            }, {where: {id: id}})
+        }else{
+            for(let i = 0; i < check_type.length; i++){
+                if(check_type[i].isDeleted === 1 || check_type.length === 0){
+                    await Type.update({
+                        isDeleted: 1
+                    }, {where: {id: id}})
+                }else{
+                    return res.status(400).json({
+                        message: "Can't delete this project type"
+                    })
+                }
+            }
+        }
+        return res.status(200).json({
+            message: "Deleted Success"
+        })
+    } catch (error) {
+        return res.status(500).json({
+            message: "Server Error"
+        })
+    }
+}
 export default {
     add_tpye,
     update_tpye,
     list_type,
     type_detail,
+    delete_type,
 }

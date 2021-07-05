@@ -3,6 +3,8 @@ import _ from "lodash";
 import pagination from "../common/pagination.js";
 import Admin from "../model/admin.js";
 import Unit from "../model/unit.js";
+import Unit_Employee from "../model/unit_employee.js";
+import Unit_In_Proj from "../model/unit_in_proj.js";
 
 const add_unit = async (req, res) => {
     try {
@@ -137,11 +139,36 @@ const unit_detail = async (req, res) => {
     }
 }
 
-//delete unit (later after finish all other API)
-
+const delete_unit = async (req, res) => {
+    const id = req.params.id;
+    // const find_unit = await Unit.findOne({where: {id: id}});
+    const check_employee_in_unit = await Unit_Employee.findAll({where: {unitID: id}});
+    const check_unit_in_project = await Unit_In_Proj.findAll({where:{unitID: id}});
+    console.log(check_unit_in_project, check_employee_in_unit)
+    // const check_admin = await Admin.findOne({where: {id: find_unit.adminID}});
+    try {
+        if(check_employee_in_unit.length === 0 && check_unit_in_project.length === 0){
+            await Unit.update({
+                isDeleted: 1
+            }, {where: {id: id}})
+            return res.status(200).json({
+                message:"Deleted"
+            })
+        }else{
+            return res.status(400).json({
+                message: "Can't deleted this unit"
+            })
+        }
+    } catch (error) {
+        return res.status(500).json({
+            message: "Server Error"
+        })
+    }
+}
 export default {
     add_unit,
     update_unit,
     list_unit,
     unit_detail,
+    delete_unit,
 }
