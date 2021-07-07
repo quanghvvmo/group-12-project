@@ -38,12 +38,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8081/api/accounts/",
+							"raw": "http://{{url}}/api/accounts/",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"accounts",
@@ -55,9 +54,6 @@
 				},
 				{
 					"name": "create New User",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"auth": {
 							"type": "apikey",
@@ -74,7 +70,7 @@
 								}
 							]
 						},
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "formdata",
@@ -142,12 +138,11 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8081/api/users/:id",
+							"raw": "http://{{url}}/api/users/:id",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"users",
@@ -193,12 +188,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8081/api/roles",
+							"raw": "http://{{url}}/api/roles",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"roles"
@@ -237,12 +231,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8081/api/userroles",
+							"raw": "http://{{url}}/api/userroles",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"userroles"
@@ -281,12 +274,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8081/api/modules",
+							"raw": "http://{{url}}/api/modules",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"modules"
@@ -325,12 +317,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8081/api/rolepermissions",
+							"raw": "http://{{url}}/api/rolepermissions",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"rolepermissions"
@@ -380,12 +371,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8081/api/forms",
+							"raw": "http://{{url}}/api/forms",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"forms"
@@ -409,12 +399,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8081/api/sendmails",
+							"raw": "http://{{url}}/api/sendmails",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"sendmails"
@@ -434,12 +423,11 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/api/accounts/:id",
+							"raw": "http://{{url}}/api/accounts/:id",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"accounts",
@@ -461,12 +449,11 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/api/modules/:id",
+							"raw": "http://{{url}}/api/modules/:id",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"modules",
@@ -488,12 +475,11 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/api/roles/:id",
+							"raw": "http://{{url}}/api/roles/:id",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"roles",
@@ -519,12 +505,11 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8081/api/rolePermissions/:id",
+							"raw": "http://{{url}}/api/rolePermissions/:id",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"rolePermissions",
@@ -561,12 +546,11 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/api/users/:id",
+							"raw": "http://{{url}}/api/users/:id",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"users",
@@ -603,12 +587,11 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/api/forms/:id",
+							"raw": "http://{{url}}/api/forms/:id",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"forms",
@@ -650,12 +633,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/api/users/:id",
+							"raw": "http://{{url}}/api/users/:id",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"users",
@@ -692,12 +674,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/api/forms",
+							"raw": "http://{{url}}/api/forms",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"forms"
@@ -727,12 +708,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/api/reports/basic/finish",
+							"raw": "http://{{url}}/api/reports/basic/finish",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"reports",
@@ -764,12 +744,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/api/reports/yearly/finish",
+							"raw": "http://{{url}}/api/reports/yearly/finish",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"reports",
@@ -801,12 +780,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/api/reports/yearly/incomplete",
+							"raw": "http://{{url}}/api/reports/yearly/incomplete",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"reports",
@@ -838,12 +816,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/api/reports/basic/incomplete",
+							"raw": "http://{{url}}/api/reports/basic/incomplete",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"reports",
@@ -875,12 +852,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/api/roles",
+							"raw": "http://{{url}}/api/roles",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"roles"
@@ -910,12 +886,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/api/forms/:id",
+							"raw": "http://{{url}}/api/forms/:id",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"forms",
@@ -952,12 +927,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/api/roleids",
+							"raw": "http://{{url}}/api/roleids",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"roleids"
@@ -1001,12 +975,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8081/api/accounts/:id",
+							"raw": "http://{{url}}/api/accounts/:id",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"accounts",
@@ -1052,12 +1025,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8081/api/modules/:id",
+							"raw": "http://{{url}}/api/modules/:id",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"modules",
@@ -1103,12 +1075,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8081/api/roles/:id",
+							"raw": "http://{{url}}/api/roles/:id",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"roles",
@@ -1154,12 +1125,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8081/api/forms/:id",
+							"raw": "http://{{url}}/api/forms/:id",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"forms",
@@ -1205,12 +1175,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8081/api/rolePermissions/:id",
+							"raw": "http://{{url}}/api/rolePermissions/:id",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"rolePermissions",
@@ -1307,12 +1276,11 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8081/api/users/:id",
+							"raw": "http://{{url}}/api/users/:id",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"users",
@@ -1358,12 +1326,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8081/api/forms",
+							"raw": "http://{{url}}/api/forms",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"forms"
@@ -1393,12 +1360,11 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/api/forms/:id/closed",
+							"raw": "http://{{url}}/api/forms/:id/closed",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"forms",
@@ -1445,12 +1411,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8081/api/userroles/:id",
+							"raw": "http://{{url}}/api/userroles/:id",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8081",
 							"path": [
 								"api",
 								"userroles",
@@ -1483,12 +1448,11 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/api/signins",
+					"raw": "http://{{url}}/api/signins",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "8081",
 					"path": [
 						"api",
 						"signins"
