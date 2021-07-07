@@ -1,0 +1,1272 @@
+{
+	"info": {
+		"_postman_id": "a8e1bdca-77b2-4a61-90bc-4f85eba86972",
+		"name": "test Personal Proj",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"admin\",\r\n    \"workID\": \"1\",\r\n    \"username\": \"superuser\",\r\n    \"password\": \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/admin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"admin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"superuser2\",\r\n    \"password\": \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/admin/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"admin",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Customer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliYjkzYTY3LWJiNzktNGI5Mi04NzNkLTIzNmYyMmI5NTM2OCIsImlhdCI6MTYyNTQ0OTg1NCwiZXhwIjoxNjI1NTA3NDU0fQ.iX41i908m0Ego8n6DPGMl41tIGspDvK5SORDTveC5Us",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"John Pena\",\r\n    \"description\": \"Love Punch\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/customer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Customer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMThiMGRlLTVmNGEtNGY2MS1iM2I0LWNhZjY3MDk3MmZmMSIsImlhdCI6MTYyNDUwMDUyMywiZXhwIjoxNjI0NTU4MTIzfQ.AR5BcCkfRDunT62YjkqWqQMC_RYUU050d0BOE6DT7KE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Johnny B\",\r\n    \"description\":\"Not John Wick\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/customer/:id?id=7c29d424-a366-40fb-95e9-e94885546732",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customer",
+						":id"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "7c29d424-a366-40fb-95e9-e94885546732"
+						}
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "7c29d424-a366-40fb-95e9-e94885546732"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Customer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliYjkzYTY3LWJiNzktNGI5Mi04NzNkLTIzNmYyMmI5NTM2OCIsImlhdCI6MTYyNTQ0OTg1NCwiZXhwIjoxNjI1NTA3NDU0fQ.iX41i908m0Ego8n6DPGMl41tIGspDvK5SORDTveC5Us",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/customer?page=1&pagesize=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customer"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "pagesize",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Customer Detail",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMThiMGRlLTVmNGEtNGY2MS1iM2I0LWNhZjY3MDk3MmZmMSIsImlhdCI6MTYyNDUwMDUyMywiZXhwIjoxNjI0NTU4MTIzfQ.AR5BcCkfRDunT62YjkqWqQMC_RYUU050d0BOE6DT7KE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/customer/:id?id=7c29d424-a366-40fb-95e9-e94885546732",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customer",
+						":id"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "7c29d424-a366-40fb-95e9-e94885546732"
+						}
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "7c29d424-a366-40fb-95e9-e94885546732"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Customer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMThiMGRlLTVmNGEtNGY2MS1iM2I0LWNhZjY3MDk3MmZmMSIsImlhdCI6MTYyNTEwNTU5OSwiZXhwIjoxNjI1MTYzMTk5fQ.zTSUQukP2zM1q2Tabam5lWvWCC9HIZ4mkbRQx3eKkcQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/customer/delete/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customer",
+						"delete",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "c81b7a2a-f24d-4927-9f2e-eaeb3966bcaa"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Tech",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliYjkzYTY3LWJiNzktNGI5Mi04NzNkLTIzNmYyMmI5NTM2OCIsImlhdCI6MTYyNTQ0OTg1NCwiZXhwIjoxNjI1NTA3NDU0fQ.iX41i908m0Ego8n6DPGMl41tIGspDvK5SORDTveC5Us",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"name\": \"C#\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/tech",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tech"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Tech",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMThiMGRlLTVmNGEtNGY2MS1iM2I0LWNhZjY3MDk3MmZmMSIsImlhdCI6MTYyNTAzNTYxOSwiZXhwIjoxNjI1MDkzMjE5fQ.7oRcITDzWelUSOFS5GGYA8o4Uq6DkJBPzRlSfWRLnQE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"is_active\": \"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/tech/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tech",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "7d4c75c3-480c-4261-ba93-e3d40a82fcaf"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Tech",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMThiMGRlLTVmNGEtNGY2MS1iM2I0LWNhZjY3MDk3MmZmMSIsImlhdCI6MTYyNDUwMDUyMywiZXhwIjoxNjI0NTU4MTIzfQ.AR5BcCkfRDunT62YjkqWqQMC_RYUU050d0BOE6DT7KE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/tech?page=1&pagesize=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tech"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "pagesize",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tech Detail",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMThiMGRlLTVmNGEtNGY2MS1iM2I0LWNhZjY3MDk3MmZmMSIsImlhdCI6MTYyNDUwMDUyMywiZXhwIjoxNjI0NTU4MTIzfQ.AR5BcCkfRDunT62YjkqWqQMC_RYUU050d0BOE6DT7KE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/tech/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tech",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "5ab4e6f9-1292-4538-856b-cef331b31efa"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Tech",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/tech/delete/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tech",
+						"delete",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Type",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliYjkzYTY3LWJiNzktNGI5Mi04NzNkLTIzNmYyMmI5NTM2OCIsImlhdCI6MTYyNTQ0OTg1NCwiZXhwIjoxNjI1NTA3NDU0fQ.iX41i908m0Ego8n6DPGMl41tIGspDvK5SORDTveC5Us",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Out Source\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/type",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"type"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Type",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Not Product\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/type/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"type",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Type",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/type?page=1&pagesize=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"type"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "pagesize",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Type Detail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/type/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"type",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Type",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/type/delete/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"type",
+						"delete",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Unit",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliYjkzYTY3LWJiNzktNGI5Mi04NzNkLTIzNmYyMmI5NTM2OCIsImlhdCI6MTYyNTQ0OTg1NCwiZXhwIjoxNjI1NTA3NDU0fQ.iX41i908m0Ego8n6DPGMl41tIGspDvK5SORDTveC5Us",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Center 1\",\r\n    \"description\": \"Django Main\",\r\n    \"adminID\": \"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/unit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"unit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Unit",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMThiMGRlLTVmNGEtNGY2MS1iM2I0LWNhZjY3MDk3MmZmMSIsImlhdCI6MTYyNDUwMDUyMywiZXhwIjoxNjI0NTU4MTIzfQ.AR5BcCkfRDunT62YjkqWqQMC_RYUU050d0BOE6DT7KE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/unit/?page=1&pagesize=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"unit",
+						""
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "pagesize",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Unit Detail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/unit/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"unit",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Unit",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMThiMGRlLTVmNGEtNGY2MS1iM2I0LWNhZjY3MDk3MmZmMSIsImlhdCI6MTYyNDUwMDUyMywiZXhwIjoxNjI0NTU4MTIzfQ.AR5BcCkfRDunT62YjkqWqQMC_RYUU050d0BOE6DT7KE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Center 2\",\r\n    \"description\": \"Full Stack\",\r\n    \"adminID\": \"2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/unit/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"unit",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "5443afa4-eadb-4375-bdff-b78c267d2b1d"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deleted Unit",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMThiMGRlLTVmNGEtNGY2MS1iM2I0LWNhZjY3MDk3MmZmMSIsImlhdCI6MTYyNTEwNTU5OSwiZXhwIjoxNjI1MTYzMTk5fQ.zTSUQukP2zM1q2Tabam5lWvWCC9HIZ4mkbRQx3eKkcQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/unit/delete/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"unit",
+						"delete",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1381724e-da1a-11eb-8d19-0242ac130003"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Employee",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliYjkzYTY3LWJiNzktNGI5Mi04NzNkLTIzNmYyMmI5NTM2OCIsImlhdCI6MTYyNTQ0OTg1NCwiZXhwIjoxNjI1NTA3NDU0fQ.iX41i908m0Ego8n6DPGMl41tIGspDvK5SORDTveC5Us",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Employee 1\",\r\n    \"DoB\": \"2/20/1993\",\r\n    \"address\": \"19 Duy Tan\",\r\n    \"id_number\": \"88553\",\r\n    \"phone\": \"091999400\",\r\n    \"exp_years\": 3,\r\n    \"english\": \"English\",\r\n    \"workID\": \"18\",\r\n    \"degree\": \"bachelor\",\r\n    \"tech\": [\"C#\",\"C\", \"Django\"],\r\n    \"unit\": \"Center 3\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/employee",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"employee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Employee",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMThiMGRlLTVmNGEtNGY2MS1iM2I0LWNhZjY3MDk3MmZmMSIsImlhdCI6MTYyNDg2MDQzNSwiZXhwIjoxNjI0OTE4MDM1fQ.ZL7YfEWDeXH9zLWWaIXNdzfpg4sff8QHm45wfx0b3w0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Employee 19\",\r\n    \"DoB\": \"10/20/1994\",\r\n    \"address\": \"19 Duy Tan\",\r\n    \"id_number\": \"2473\",\r\n    \"phone\": \"061999410\",\r\n    \"exp_years\": 3,\r\n    \"english\": \"English\",\r\n    \"workID\": \"19\",\r\n    \"degree\": \"bachelor\",\r\n    \"tech\": [\"Python\",\"C#\",\"C\",\"Nodejs\"],\r\n    \"unit\": \"Center 2\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/employee/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"employee",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "206d2a38-db56-42d5-bf5e-8d671b2d1786"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Employee",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMThiMGRlLTVmNGEtNGY2MS1iM2I0LWNhZjY3MDk3MmZmMSIsImlhdCI6MTYyNDg2MDQzNSwiZXhwIjoxNjI0OTE4MDM1fQ.ZL7YfEWDeXH9zLWWaIXNdzfpg4sff8QHm45wfx0b3w0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/employee?page=1&pagesize=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"employee"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "pagesize",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Employee Stat",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/employee/stat",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"employee",
+						"stat"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Employee Detail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/employee/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"employee",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Employee",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMThiMGRlLTVmNGEtNGY2MS1iM2I0LWNhZjY3MDk3MmZmMSIsImlhdCI6MTYyNTE5MTcyMSwiZXhwIjoxNjI1MjQ5MzIxfQ._o9i0rRDPQ2M8NTZBE2I_WaRQIgDw6KRjz0kaPCIHvM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/employee/delete/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"employee",
+						"delete",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "7d15af81-d953-4d6f-af87-2a0956d92345"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Project",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliYjkzYTY3LWJiNzktNGI5Mi04NzNkLTIzNmYyMmI5NTM2OCIsImlhdCI6MTYyNTQ0OTg1NCwiZXhwIjoxNjI1NTA3NDU0fQ.iX41i908m0Ego8n6DPGMl41tIGspDvK5SORDTveC5Us",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" :\"project 3\",\r\n    \"description\": \"deathline 1 year\",\r\n    \"customer\" : \"John Sena\",\r\n    \"type\": \"Out Source\",\r\n    \"tech\": [\"C#\",\"C\"],\r\n    \"unit\": \"Center 1\",\r\n    \"status\" : \"InProgress\",\r\n    \"employee_work_id\":[\"20\", \"15\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/project",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"project"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Project",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMThiMGRlLTVmNGEtNGY2MS1iM2I0LWNhZjY3MDk3MmZmMSIsImlhdCI6MTYyNDk0ODEyMywiZXhwIjoxNjI1MDA1NzIzfQ.ToiOuWv-N0No2PM_5O53v5ZoUNR2oyjBmyCk8Vko_pU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" :\"project 150\",\r\n    \"description\": \"deathline 10 year\",\r\n    \"customer\" : \"Johnny B\",\r\n    \"type\": \"Product\",\r\n    \"tech\": [\"Python\",\"C#\",\"C\",\"Nodejs\"],\r\n    \"unit\": \"Center 2\",\r\n    \"status\" : \"InProgres\",\r\n    \"employee_work_id\":[\"11\", \"12\", \"10\", \"20\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/project/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"project",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "814cb781-1e51-43ee-8abf-6fa291b06e13"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Project Detail",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliYjkzYTY3LWJiNzktNGI5Mi04NzNkLTIzNmYyMmI5NTM2OCIsImlhdCI6MTYyNTQ0OTg1NCwiZXhwIjoxNjI1NTA3NDU0fQ.iX41i908m0Ego8n6DPGMl41tIGspDvK5SORDTveC5Us",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/project/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"project",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "bc3ab7a5-3f43-4c44-9b52-01ce8120bdce"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Project",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMThiMGRlLTVmNGEtNGY2MS1iM2I0LWNhZjY3MDk3MmZmMSIsImlhdCI6MTYyNTAyMTgzNiwiZXhwIjoxNjI1MDc5NDM2fQ.VKUyMiJ8Ar8VQ2Vj1xk6ITI1TPpOwcFBScngMx5kNdI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/project?page=1&pagesize=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"project"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "pagesize",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Project Stat",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliYjkzYTY3LWJiNzktNGI5Mi04NzNkLTIzNmYyMmI5NTM2OCIsImlhdCI6MTYyNTQ0OTg1NCwiZXhwIjoxNjI1NTA3NDU0fQ.iX41i908m0Ego8n6DPGMl41tIGspDvK5SORDTveC5Us",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"filter\": \"customer\",\r\n    \"status\": \"InProgress\",\r\n    \"customer_id\": \"9022e945-dd37-4005-b664-4694f3c7f6ce\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/project/stat",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"project",
+						"stat"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Project Delete",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/project/delete/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"project",
+						"delete",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

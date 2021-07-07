@@ -300,6 +300,7 @@ const employee_stat = async(req, res) => {
         })
     }
 }
+
 export default {
     add_employee,
     update_employee,
