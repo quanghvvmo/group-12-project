@@ -1,0 +1,1962 @@
+{
+	"info": {
+		"_postman_id": "8c322635-10b1-42ec-bd28-be9dc9405194",
+		"name": "VMOGD3Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/admins/login",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"admins",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add admin",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin 8\",\r\n    \"password\": \"123456\",\r\n    \"employeeId\": \"9e776146-5d61-40bb-9b67-2678446cc26b\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/admins",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"admins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List admins",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNTgyNjRlLTE2MjMtNDQ2Ni05NjEwLTZkOTUyZGRkYmU3MyIsImlhdCI6MTYyNTQ1MTExNiwiZXhwIjoxNjI1NDc5OTE2fQ.r2Mpvn4dVPeb5D_VAVTKYmIpdJj3mMvADC6AtSqbeDk",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/admins",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"admins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get admin by id",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNTgyNjRlLTE2MjMtNDQ2Ni05NjEwLTZkOTUyZGRkYmU3MyIsImlhdCI6MTYyNTU1NDcwOSwiZXhwIjoxNjI1NTgzNTA5fQ.dlU_RqBQyjPxWDKt6C6xEQ0XQo7-pbKdcwl5yneiR8M",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/admins/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"admins",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "d00025df-d600-4bef-a2e5-8b1a2eb45404"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update admin",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNTgyNjRlLTE2MjMtNDQ2Ni05NjEwLTZkOTUyZGRkYmU3MyIsImlhdCI6MTYyNTU1NDcwOSwiZXhwIjoxNjI1NTgzNTA5fQ.dlU_RqBQyjPxWDKt6C6xEQ0XQo7-pbKdcwl5yneiR8M",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"empladmin\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/admins/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"admins",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "d00025df-d600-4bef-a2e5-8b1a2eb45404"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete admin",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNTgyNjRlLTE2MjMtNDQ2Ni05NjEwLTZkOTUyZGRkYmU3MyIsImlhdCI6MTYyNTU1NDcwOSwiZXhwIjoxNjI1NTgzNTA5fQ.dlU_RqBQyjPxWDKt6C6xEQ0XQo7-pbKdcwl5yneiR8M",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/admins/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"admins",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "d00025df-d600-4bef-a2e5-8b1a2eb45404"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Employee",
+			"item": [
+				{
+					"name": "Create new employee",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNTgyNjRlLTE2MjMtNDQ2Ni05NjEwLTZkOTUyZGRkYmU3MyIsImlhdCI6MTYyNTU1NDcwOSwiZXhwIjoxNjI1NTgzNTA5fQ.dlU_RqBQyjPxWDKt6C6xEQ0XQo7-pbKdcwl5yneiR8M",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Employee 10\",\r\n    \"dob\": \"10/20/1992\",\r\n    \"address\": \"19 Duy Tan\",\r\n    \"idNumber\": \"0611\",\r\n    \"phone\": \"01951023101\",\r\n    \"experienceYear\": 5,\r\n    \"foreignLanguage\": \"English, Chinese\",\r\n    \"certificate\": \"Senior Dev\",\r\n    \"teches\": [\r\n        \"d9172cad-0ba6-48d8-8a2b-824853a54035\",\r\n        \"dfb1f4a2-317e-4580-a6d7-a565ba4ed69d\",\r\n        \"9bbe5a2e-e8f8-4593-8ead-2b12b1ff72e1\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/employees",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List employees",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNTgyNjRlLTE2MjMtNDQ2Ni05NjEwLTZkOTUyZGRkYmU3MyIsImlhdCI6MTYyNTU1NDcwOSwiZXhwIjoxNjI1NTgzNTA5fQ.dlU_RqBQyjPxWDKt6C6xEQ0XQo7-pbKdcwl5yneiR8M",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/employees?limit=14&offset=0",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"employees"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "14"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get employee by id",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNTgyNjRlLTE2MjMtNDQ2Ni05NjEwLTZkOTUyZGRkYmU3MyIsImlhdCI6MTYyNTU1NDcwOSwiZXhwIjoxNjI1NTgzNTA5fQ.dlU_RqBQyjPxWDKt6C6xEQ0XQo7-pbKdcwl5yneiR8M",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/employees/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"employees",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "9e776146-5d61-40bb-9b67-2678446cc26b"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update employee",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNTgyNjRlLTE2MjMtNDQ2Ni05NjEwLTZkOTUyZGRkYmU3MyIsImlhdCI6MTYyNTU1NDcwOSwiZXhwIjoxNjI1NTgzNTA5fQ.dlU_RqBQyjPxWDKt6C6xEQ0XQo7-pbKdcwl5yneiR8M",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Employee fix\",\r\n    \"dob\": \"10/20/1994\",\r\n    \"address\": \"19 Duy Tan\",\r\n    \"idNumber\": \"0590\",\r\n    \"phone\": \"0901523596\",\r\n    \"experienceYear\": 5,\r\n    \"foreignLanguage\": \"English, Japanese\",\r\n    \"certificate\": \"Senior Dev\",\r\n    \"teches\": [\r\n        \"d9172cad-0ba6-48d8-8a2b-824853a54035\",\r\n        \"6ca35f3f-322c-467b-8349-efac19b9332c\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/employees/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"employees",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "f48a8d4c-2b4a-4a1b-913f-c4f9bc8acd83"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set admin for employee",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNTgyNjRlLTE2MjMtNDQ2Ni05NjEwLTZkOTUyZGRkYmU3MyIsImlhdCI6MTYyNTE5NjgxOSwiZXhwIjoxNjI1MjI1NjE5fQ.90V11hiJesrioleeRq0BUXO_oJBD5YovMyW1DVqe-Ys",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"isAdmin\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/employees/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"employees",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "9e776146-5d61-40bb-9b67-2678446cc26b"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete employee",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNTgyNjRlLTE2MjMtNDQ2Ni05NjEwLTZkOTUyZGRkYmU3MyIsImlhdCI6MTYyNTQ1MTExNiwiZXhwIjoxNjI1NDc5OTE2fQ.r2Mpvn4dVPeb5D_VAVTKYmIpdJj3mMvADC6AtSqbeDk",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/employees/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"employees",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "f48a8d4c-2b4a-4a1b-913f-c4f9bc8acd83"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tech",
+			"item": [
+				{
+					"name": "Create new tech",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwMDAyNWRmLWQ2MDAtNGJlZi1hMmU1LThiMWEyZWI0NTQwNCIsImlhdCI6MTYyNTEwNTIxMywiZXhwIjoxNjI1MTM0MDEzfQ.3g-hV0y_u_0A3Xv9kDMeqMA6U_fkPa_ep8RrBh8fFu0",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"MySQL\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/techs",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"techs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List techs",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNTgyNjRlLTE2MjMtNDQ2Ni05NjEwLTZkOTUyZGRkYmU3MyIsImlhdCI6MTYyNTU1NDcwOSwiZXhwIjoxNjI1NTgzNTA5fQ.dlU_RqBQyjPxWDKt6C6xEQ0XQo7-pbKdcwl5yneiR8M",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/techs?limit=5&offset=0",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"techs"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "5"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get tech by id",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNTgyNjRlLTE2MjMtNDQ2Ni05NjEwLTZkOTUyZGRkYmU3MyIsImlhdCI6MTYyNTU1NDcwOSwiZXhwIjoxNjI1NTgzNTA5fQ.dlU_RqBQyjPxWDKt6C6xEQ0XQo7-pbKdcwl5yneiR8M",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/techs/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"techs",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "215a177f-4307-4cf3-a036-d0d0a0a41eff"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update tech",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwMDAyNWRmLWQ2MDAtNGJlZi1hMmU1LThiMWEyZWI0NTQwNCIsImlhdCI6MTYyNTEwNTIxMywiZXhwIjoxNjI1MTM0MDEzfQ.3g-hV0y_u_0A3Xv9kDMeqMA6U_fkPa_ep8RrBh8fFu0",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"NodeJS\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/techs/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"techs",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6daed0c8-b11f-4c28-950d-2b20e091ada7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete tech",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNTgyNjRlLTE2MjMtNDQ2Ni05NjEwLTZkOTUyZGRkYmU3MyIsImlhdCI6MTYyNTQ1MTExNiwiZXhwIjoxNjI1NDc5OTE2fQ.r2Mpvn4dVPeb5D_VAVTKYmIpdJj3mMvADC6AtSqbeDk",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/techs/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"techs",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "215a177f-4307-4cf3-a036-d0d0a0a41eff"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Create new customer",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwMDAyNWRmLWQ2MDAtNGJlZi1hMmU1LThiMWEyZWI0NTQwNCIsImlhdCI6MTYyNTEwNTIxMywiZXhwIjoxNjI1MTM0MDEzfQ.3g-hV0y_u_0A3Xv9kDMeqMA6U_fkPa_ep8RrBh8fFu0",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Julia\",\r\n    \"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Magna ac placerat vestibulum lectus mauris ultrices eros in cursus.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/customers",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List customers",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNTgyNjRlLTE2MjMtNDQ2Ni05NjEwLTZkOTUyZGRkYmU3MyIsImlhdCI6MTYyNTU1NDcwOSwiZXhwIjoxNjI1NTgzNTA5fQ.dlU_RqBQyjPxWDKt6C6xEQ0XQo7-pbKdcwl5yneiR8M",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/customers?limit=5&offset=0",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"customers"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "5"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get customer by id",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNTgyNjRlLTE2MjMtNDQ2Ni05NjEwLTZkOTUyZGRkYmU3MyIsImlhdCI6MTYyNTU1NDcwOSwiZXhwIjoxNjI1NTgzNTA5fQ.dlU_RqBQyjPxWDKt6C6xEQ0XQo7-pbKdcwl5yneiR8M",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/customers/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "0fd4e376-9111-46bb-a552-5fe4d64329b9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update customer",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwMDAyNWRmLWQ2MDAtNGJlZi1hMmU1LThiMWEyZWI0NTQwNCIsImlhdCI6MTYyNTEwNTIxMywiZXhwIjoxNjI1MTM0MDEzfQ.3g-hV0y_u_0A3Xv9kDMeqMA6U_fkPa_ep8RrBh8fFu0",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Emma Stoner\",\r\n    \"description\": \"Extra Lorem ipsum dolor sit amet, consectetur adipiscing elit\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/customers/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "66fdc3af-6657-4ff0-a539-393e380c5628"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete customer",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNTgyNjRlLTE2MjMtNDQ2Ni05NjEwLTZkOTUyZGRkYmU3MyIsImlhdCI6MTYyNTQ1MTExNiwiZXhwIjoxNjI1NDc5OTE2fQ.r2Mpvn4dVPeb5D_VAVTKYmIpdJj3mMvADC6AtSqbeDk",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/customers/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "f6fb945a-1fa5-4a54-bcf6-ffff4fc67e6c"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ProjectType",
+			"item": [
+				{
+					"name": "Create new project type",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwMDAyNWRmLWQ2MDAtNGJlZi1hMmU1LThiMWEyZWI0NTQwNCIsImlhdCI6MTYyNTEwNTIxMywiZXhwIjoxNjI1MTM0MDEzfQ.3g-hV0y_u_0A3Xv9kDMeqMA6U_fkPa_ep8RrBh8fFu0",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"research\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/project-types",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"project-types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List project type",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNTgyNjRlLTE2MjMtNDQ2Ni05NjEwLTZkOTUyZGRkYmU3MyIsImlhdCI6MTYyNTU1NDcwOSwiZXhwIjoxNjI1NTgzNTA5fQ.dlU_RqBQyjPxWDKt6C6xEQ0XQo7-pbKdcwl5yneiR8M",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/project-types?limit=2&offset=0",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"project-types"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get project type by id",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNTgyNjRlLTE2MjMtNDQ2Ni05NjEwLTZkOTUyZGRkYmU3MyIsImlhdCI6MTYyNTU1NDcwOSwiZXhwIjoxNjI1NTgzNTA5fQ.dlU_RqBQyjPxWDKt6C6xEQ0XQo7-pbKdcwl5yneiR8M",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/project-types/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"project-types",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "dee61708-4182-408e-bf0e-4b3bdc527eba"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update project type",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwMDAyNWRmLWQ2MDAtNGJlZi1hMmU1LThiMWEyZWI0NTQwNCIsImlhdCI6MTYyNTEwNTIxMywiZXhwIjoxNjI1MTM0MDEzfQ.3g-hV0y_u_0A3Xv9kDMeqMA6U_fkPa_ep8RrBh8fFu0",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"other\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/project-types/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"project-types",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "4df042a3-80c9-468c-abad-154c9c000b82"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete project type",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNTgyNjRlLTE2MjMtNDQ2Ni05NjEwLTZkOTUyZGRkYmU3MyIsImlhdCI6MTYyNTQ1MTExNiwiZXhwIjoxNjI1NDc5OTE2fQ.r2Mpvn4dVPeb5D_VAVTKYmIpdJj3mMvADC6AtSqbeDk",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/project-types/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"project-types",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "4df042a3-80c9-468c-abad-154c9c000b82"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Department",
+			"item": [
+				{
+					"name": "Add department",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNTgyNjRlLTE2MjMtNDQ2Ni05NjEwLTZkOTUyZGRkYmU3MyIsImlhdCI6MTYyNTU1NDcwOSwiZXhwIjoxNjI1NTgzNTA5fQ.dlU_RqBQyjPxWDKt6C6xEQ0XQo7-pbKdcwl5yneiR8M",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"R&D\",\r\n    \"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lectus mauris ultrices eros in cursus turpis massa.\",\r\n    \"foundingDate\": \"10/23/2010\",\r\n    \"adminId\": \"d00025df-d600-4bef-a2e5-8b1a2eb45404\",\r\n    \"employees\": [\r\n        \"f48a8d4c-2b4a-4a1b-913f-c4f9bc8acd83\",\r\n        \"bb4eb41b-24a9-4e78-b693-7d741261b61b\",\r\n        \"b5a0e04d-6bcc-4100-b3cc-17a5811882ef\"\r\n    ],\r\n    \"projects\": [\r\n        \r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/departments",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"departments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List departments",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNTgyNjRlLTE2MjMtNDQ2Ni05NjEwLTZkOTUyZGRkYmU3MyIsImlhdCI6MTYyNTU1NDcwOSwiZXhwIjoxNjI1NTgzNTA5fQ.dlU_RqBQyjPxWDKt6C6xEQ0XQo7-pbKdcwl5yneiR8M",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/departments",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"departments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get department by id",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNTgyNjRlLTE2MjMtNDQ2Ni05NjEwLTZkOTUyZGRkYmU3MyIsImlhdCI6MTYyNTU1NDcwOSwiZXhwIjoxNjI1NTgzNTA5fQ.dlU_RqBQyjPxWDKt6C6xEQ0XQo7-pbKdcwl5yneiR8M",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/departments/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"departments",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "8cafc6c5-68c4-433a-9af9-a711e53e54ec"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update department",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNTgyNjRlLTE2MjMtNDQ2Ni05NjEwLTZkOTUyZGRkYmU3MyIsImlhdCI6MTYyNTU1NDcwOSwiZXhwIjoxNjI1NTgzNTA5fQ.dlU_RqBQyjPxWDKt6C6xEQ0XQo7-pbKdcwl5yneiR8M",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Research and Development\",\r\n    \"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lectus mauris ultrices eros in cursus turpis massa.\",\r\n    \"foundingDate\": \"10/23/2010\",\r\n    \"adminId\": \"d00025df-d600-4bef-a2e5-8b1a2eb45404\",\r\n    \"employees\": [\r\n        \"f48a8d4c-2b4a-4a1b-913f-c4f9bc8acd83\",\r\n        \"bb4eb41b-24a9-4e78-b693-7d741261b61b\",\r\n        \"b5a0e04d-6bcc-4100-b3cc-17a5811882ef\",\r\n        \"8efb0d42-5d65-43ae-83cc-89d6e3bc6d31\"\r\n    ],\r\n    \"projects\": [\r\n        \"300dc5e4-a260-41dd-ae79-935f330442bf\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/departments/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"departments",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "8cafc6c5-68c4-433a-9af9-a711e53e54ec"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete department",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNTgyNjRlLTE2MjMtNDQ2Ni05NjEwLTZkOTUyZGRkYmU3MyIsImlhdCI6MTYyNTU1NDcwOSwiZXhwIjoxNjI1NTgzNTA5fQ.dlU_RqBQyjPxWDKt6C6xEQ0XQo7-pbKdcwl5yneiR8M",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/departments/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"departments",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "8cafc6c5-68c4-433a-9af9-a711e53e54ec"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Project",
+			"item": [
+				{
+					"name": "Add new project",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNTgyNjRlLTE2MjMtNDQ2Ni05NjEwLTZkOTUyZGRkYmU3MyIsImlhdCI6MTYyNTU1NDcwOSwiZXhwIjoxNjI1NTgzNTA5fQ.dlU_RqBQyjPxWDKt6C6xEQ0XQo7-pbKdcwl5yneiR8M",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Fresher project\",\r\n    \"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Orci a scelerisque purus semper.\",\r\n    \"type\": \"dee61708-4182-408e-bf0e-4b3bdc527eba\",\r\n    \"status\": \"InProgress\",\r\n    \"customer\": \"6efee27a-13b6-4afe-9d1f-2c7841340546\",\r\n    \"startDate\": \"05/31/2021\",\r\n    \"teches\": [\r\n        \"6daed0c8-b11f-4c28-950d-2b20e091ada7\"\r\n    ],\r\n    \"employees\": [\r\n        \"176dd3f1-97ba-49a9-a497-e67f5005eebc\",\r\n        \"f48a8d4c-2b4a-4a1b-913f-c4f9bc8acd83\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/projects",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get projects list",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNTgyNjRlLTE2MjMtNDQ2Ni05NjEwLTZkOTUyZGRkYmU3MyIsImlhdCI6MTYyNTU1NDcwOSwiZXhwIjoxNjI1NTgzNTA5fQ.dlU_RqBQyjPxWDKt6C6xEQ0XQo7-pbKdcwl5yneiR8M",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/projects",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get project by id",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNTgyNjRlLTE2MjMtNDQ2Ni05NjEwLTZkOTUyZGRkYmU3MyIsImlhdCI6MTYyNTU1NDcwOSwiZXhwIjoxNjI1NTgzNTA5fQ.dlU_RqBQyjPxWDKt6C6xEQ0XQo7-pbKdcwl5yneiR8M",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/projects/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"projects",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3fffab77-40ed-497b-8f16-24ae9b7ea3f4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update project",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNTgyNjRlLTE2MjMtNDQ2Ni05NjEwLTZkOTUyZGRkYmU3MyIsImlhdCI6MTYyNTU1NDcwOSwiZXhwIjoxNjI1NTgzNTA5fQ.dlU_RqBQyjPxWDKt6C6xEQ0XQo7-pbKdcwl5yneiR8M",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Big project\",\r\n    \"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Orci a scelerisque purus semper.\",\r\n    \"type\": \"dee61708-4182-408e-bf0e-4b3bdc527eba\",\r\n    \"status\": \"Maintain\",\r\n    \"customer\": \"5b119ad0-4ae2-4c7f-b815-cb8395838939\",\r\n    \"startDate\": \"05/21/2021\",\r\n    \"teches\": [\r\n        \"9bbe5a2e-e8f8-4593-8ead-2b12b1ff72e1\",\r\n        \"215a177f-4307-4cf3-a036-d0d0a0a41eff\",\r\n        \"44685a01-1549-4a59-832d-7964ec86f648\",\r\n        \"3ed0ab8d-204d-4803-8586-d521822d9268\"\r\n    ],\r\n    \"employees\": [\r\n        \"b5a0e04d-6bcc-4100-b3cc-17a5811882ef\",\r\n        \"4841b4dc-9825-4a34-8e62-b40159beef20\",\r\n        \"559a479d-99c2-4441-95d4-6ab00b44c7a4\",\r\n        \"8efb0d42-5d65-43ae-83cc-89d6e3bc6d31\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/projects/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"projects",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3fffab77-40ed-497b-8f16-24ae9b7ea3f4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete project",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNTgyNjRlLTE2MjMtNDQ2Ni05NjEwLTZkOTUyZGRkYmU3MyIsImlhdCI6MTYyNTU1NDcwOSwiZXhwIjoxNjI1NTgzNTA5fQ.dlU_RqBQyjPxWDKt6C6xEQ0XQo7-pbKdcwl5yneiR8M",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/projects/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"projects",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6aaa9770-0871-4a00-ac73-4e5c1c80c6ca"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Report",
+			"item": [
+				{
+					"name": "Employee report (tech, project)",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNTgyNjRlLTE2MjMtNDQ2Ni05NjEwLTZkOTUyZGRkYmU3MyIsImlhdCI6MTYyNTU1NDcwOSwiZXhwIjoxNjI1NTgzNTA5fQ.dlU_RqBQyjPxWDKt6C6xEQ0XQo7-pbKdcwl5yneiR8M",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/reports/employees?tech=Java",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"reports",
+								"employees"
+							],
+							"query": [
+								{
+									"key": "tech",
+									"value": "Java"
+								},
+								{
+									"key": "project",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Project report (status, type, tech, customer, date)",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFlNTgyNjRlLTE2MjMtNDQ2Ni05NjEwLTZkOTUyZGRkYmU3MyIsImlhdCI6MTYyNTU1NDcwOSwiZXhwIjoxNjI1NTgzNTA5fQ.dlU_RqBQyjPxWDKt6C6xEQ0XQo7-pbKdcwl5yneiR8M",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/reports/projects?status=InProgress",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"reports",
+								"projects"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "InProgress"
+								},
+								{
+									"key": "type",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "tech",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "customer",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "date",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
