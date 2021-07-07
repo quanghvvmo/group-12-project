@@ -69,6 +69,8 @@ const createNewUser = async (req, res) => {
       {
         user_id: newUser.id,
         role_id,
+        createBy,
+        updateBy
       },
       { transaction }
     );
