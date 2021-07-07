@@ -111,7 +111,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMThiMGRlLTVmNGEtNGY2MS1iM2I0LWNhZjY3MDk3MmZmMSIsImlhdCI6MTYyNDUwMDUyMywiZXhwIjoxNjI0NTU4MTIzfQ.AR5BcCkfRDunT62YjkqWqQMC_RYUU050d0BOE6DT7KE",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliYjkzYTY3LWJiNzktNGI5Mi04NzNkLTIzNmYyMmI5NTM2OCIsImlhdCI6MTYyNTY0NDUxOSwiZXhwIjoxNjI1NzAyMTE5fQ.5i_RX_ruEugw-q-rAv3m_S3mk37uiU7sJK3Y3cHjj7I",
 							"type": "string"
 						}
 					]
@@ -128,7 +128,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/customer/:id?id=7c29d424-a366-40fb-95e9-e94885546732",
+					"raw": "http://localhost:8080/api/customer/:id",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -141,14 +141,15 @@
 					],
 					"query": [
 						{
-							"key": "id",
-							"value": "7c29d424-a366-40fb-95e9-e94885546732"
+							"key": "",
+							"value": "",
+							"disabled": true
 						}
 					],
 					"variable": [
 						{
 							"key": "id",
-							"value": "7c29d424-a366-40fb-95e9-e94885546732"
+							"value": "3886af6d-e093-4ea0-a58e-95fed25f042e"
 						}
 					]
 				}
@@ -206,7 +207,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMThiMGRlLTVmNGEtNGY2MS1iM2I0LWNhZjY3MDk3MmZmMSIsImlhdCI6MTYyNDUwMDUyMywiZXhwIjoxNjI0NTU4MTIzfQ.AR5BcCkfRDunT62YjkqWqQMC_RYUU050d0BOE6DT7KE",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliYjkzYTY3LWJiNzktNGI5Mi04NzNkLTIzNmYyMmI5NTM2OCIsImlhdCI6MTYyNTY0NDUxOSwiZXhwIjoxNjI1NzAyMTE5fQ.5i_RX_ruEugw-q-rAv3m_S3mk37uiU7sJK3Y3cHjj7I",
 							"type": "string"
 						}
 					]
@@ -218,7 +219,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/customer/:id?id=7c29d424-a366-40fb-95e9-e94885546732",
+					"raw": "http://localhost:8080/api/customer/:id",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -231,14 +232,15 @@
 					],
 					"query": [
 						{
-							"key": "id",
-							"value": "7c29d424-a366-40fb-95e9-e94885546732"
+							"key": "",
+							"value": "",
+							"disabled": true
 						}
 					],
 					"variable": [
 						{
 							"key": "id",
-							"value": "7c29d424-a366-40fb-95e9-e94885546732"
+							"value": "3886af6d-e093-4ea0-a58e-95fed25f042e"
 						}
 					]
 				}
@@ -952,8 +954,27 @@
 		{
 			"name": "Employee Stat",
 			"request": {
-				"method": "GET",
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliYjkzYTY3LWJiNzktNGI5Mi04NzNkLTIzNmYyMmI5NTM2OCIsImlhdCI6MTYyNTY0NDUxOSwiZXhwIjoxNjI1NzAyMTE5fQ.5i_RX_ruEugw-q-rAv3m_S3mk37uiU7sJK3Y3cHjj7I",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"filter\": \"tech\",\r\n    \"techID\": \"025987c5-6af0-419d-b9aa-4aef6a1477de\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "http://localhost:8080/api/employee/stat",
 					"protocol": "http",
@@ -1199,9 +1220,6 @@
 		},
 		{
 			"name": "Project Stat",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -1213,7 +1231,7 @@
 						}
 					]
 				},
-				"method": "GET",
+				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",

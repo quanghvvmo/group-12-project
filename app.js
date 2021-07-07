@@ -1,5 +1,6 @@
 import express from "express";
 import db from "./src/service/db.js"
+import cors from 'cors';
 
 import Employee from "./src/model/employee.js";
 import Admin from "./src/model/admin.js";
@@ -28,6 +29,7 @@ db.authenticate()
     .then(() => console.log("Database connect successfully"))
     .catch(err => console.log("Error" + err))
 
+app.use(cors());
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
