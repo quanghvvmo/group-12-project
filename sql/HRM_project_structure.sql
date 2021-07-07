@@ -1,7 +1,10 @@
-CREATE DATABASE  IF NOT EXISTS `HRM_project`;
-USE `HRM_project`;
+--
+-- Table structure for table `account`
+--
 
 DROP TABLE IF EXISTS `account`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `account` (
   `id` varchar(36) NOT NULL,
   `userId` varchar(36) DEFAULT NULL,
@@ -14,11 +17,15 @@ CREATE TABLE `account` (
   `isDelete` int DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='					';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-LOCK TABLES `account` WRITE;
-UNLOCK TABLES;
+--
+-- Table structure for table `form`
+--
 
 DROP TABLE IF EXISTS `form`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `form` (
   `id` varchar(36) NOT NULL,
   `userId` varchar(36) DEFAULT NULL,
@@ -36,10 +43,15 @@ CREATE TABLE `form` (
   `isDelete` int DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-LOCK TABLES `form` WRITE;
-UNLOCK TABLES;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `module`
+--
 
 DROP TABLE IF EXISTS `module`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `module` (
   `id` varchar(36) NOT NULL,
   `moduleName` varchar(45) DEFAULT NULL,
@@ -50,11 +62,15 @@ CREATE TABLE `module` (
   `isDelete` int DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-LOCK TABLES `module` WRITE;
-UNLOCK TABLES;
+--
+-- Table structure for table `role`
+--
 
 DROP TABLE IF EXISTS `role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `role` (
   `id` varchar(36) NOT NULL,
   `roleName` varchar(45) DEFAULT NULL,
@@ -65,12 +81,15 @@ CREATE TABLE `role` (
   `isDelete` int DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-LOCK TABLES `role` WRITE;
-UNLOCK TABLES;
+--
+-- Table structure for table `rolepermission`
+--
 
 DROP TABLE IF EXISTS `rolepermission`;
-
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `rolepermission` (
   `id` varchar(36) NOT NULL,
   `roleId` varchar(36) DEFAULT NULL,
@@ -88,11 +107,15 @@ CREATE TABLE `rolepermission` (
   `isDelete` int DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-LOCK TABLES `rolepermission` WRITE;
-UNLOCK TABLES;
+--
+-- Table structure for table `user`
+--
 
 DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
   `id` varchar(36) NOT NULL,
   `employeeid` varchar(45) DEFAULT NULL,
@@ -113,11 +136,15 @@ CREATE TABLE `user` (
   `isDelete` int DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-LOCK TABLES `user` WRITE;
-UNLOCK TABLES;
+--
+-- Table structure for table `userrole`
+--
 
 DROP TABLE IF EXISTS `userrole`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `userrole` (
   `id` varchar(36) NOT NULL,
   `userId` varchar(36) DEFAULT NULL,
@@ -130,5 +157,3 @@ CREATE TABLE `userrole` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-LOCK TABLES `userrole` WRITE;
-UNLOCK TABLES;

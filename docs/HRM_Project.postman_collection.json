@@ -55,13 +55,16 @@
 				},
 				{
 					"name": "create New User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
 							"type": "apikey",
 							"apikey": [
 								{
 									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIwOTE2MCwiZXhwIjoxNjI1Mjk1NTYwfQ.DtTKEdY1dvExpT5ohCE8GeLjst9Km2-S8IsTyFcnk7I",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTU0NDYxNywiZXhwIjoxNjI1NjMxMDE3fQ.0hnxLy1yW9ZVYYYmhTlvzpdjrwa66Qg2k81EqFH7KgM",
 									"type": "string"
 								},
 								{
@@ -71,7 +74,7 @@
 								}
 							]
 						},
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "formdata",
@@ -93,12 +96,12 @@
 								},
 								{
 									"key": "firstName",
-									"value": "Le",
+									"value": "Bui",
 									"type": "text"
 								},
 								{
 									"key": "lastName",
-									"value": "chi employee",
+									"value": "Le Anh Duc",
 									"type": "text"
 								},
 								{
@@ -114,7 +117,7 @@
 								{
 									"key": "avatar",
 									"type": "file",
-									"src": "/home/black_panther/Documents/vmoTraining/group-12-project/vanvd/uploads/anh2.png"
+									"src": "/home/black_panther/Documents/vmoTraining/group-12-project/vanvd/uploads/anh1.png"
 								},
 								{
 									"key": "address",
@@ -139,7 +142,7 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8081/api/users/",
+							"raw": "http://localhost:8081/api/users/:id",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -148,7 +151,13 @@
 							"path": [
 								"api",
 								"users",
-								""
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "cab64ec3-e333-4675-985e-1c7cde4b444b"
+								}
 							]
 						}
 					},
@@ -349,7 +358,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTE5MTA2OSwiZXhwIjoxNjI1Mjc3NDY5fQ.zhKc2x8hTbBU4BYRjp_S7Xfw4TZ3spOqaRqT86KGhMw",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTU0NDc0OSwiZXhwIjoxNjI1NjMxMTQ5fQ.ZDBkJLiFSHeMquJPTRajPWfnC0I6GKBN9GCGbcNpSj0",
 									"type": "string"
 								},
 								{
@@ -363,7 +372,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userId\": [\n        \"2b105106-25ed-49d1-8bb5-d0d1001d5793\",\n        \"8b8ba587-5ec4-4bac-aab7-4923f7af447e\"\n    ],\n    \"typeOf\": \"yearly\",\n    \"status\": \"new\"\n}",
+							"raw": "{\n    \"userId\": [\n        \"2b105106-25ed-49d1-8bb5-d0d1001d5793\",\n        \"8b8ba587-5ec4-4bac-aab7-4923f7af447e\",\n        \"cab64ec3-e333-4675-985e-1c7cde4b444b\",\n        \"9b878523-8f7c-4e8e-8ce0-bc9ae261a19f\",\n        \"fbd0d11c-6ae5-46f9-bd84-87e496a142f5\"\n    ],\n    \"typeOf\": \"yearly\",\n    \"status\": \"new\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -742,7 +751,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTQzODM5MCwiZXhwIjoxNjI1NTI0NzkwfQ.9BC1BJN4oKPYiKYPaPWTF636zlmit6sCLNp8FLcHAJk",
 									"type": "string"
 								},
 								{
@@ -853,7 +862,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTQzODM5MCwiZXhwIjoxNjI1NTI0NzkwfQ.9BC1BJN4oKPYiKYPaPWTF636zlmit6sCLNp8FLcHAJk",
 									"type": "string"
 								},
 								{
@@ -888,7 +897,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFjM2E0YzRiLTEwMzctNDI3ZC1hMGFkLWMzYjIwMjljNzA5YiIsImlhdCI6MTYyNTA2NjY2NiwiZXhwIjoxNjI1MTUzMDY2fQ.v-jQl0B5l8O_Ejwn_lDE8VyuVuBVoRioZ77u2prTCf8",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTQzODM5MCwiZXhwIjoxNjI1NTI0NzkwfQ.9BC1BJN4oKPYiKYPaPWTF636zlmit6sCLNp8FLcHAJk",
 									"type": "string"
 								},
 								{
