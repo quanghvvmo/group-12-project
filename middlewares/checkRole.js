@@ -1,9 +1,6 @@
 const jwt = require('jsonwebtoken');
 const config = require('../config/auth.config');
 const { userRole, role, rolePermission, form } = require('../models');
-const Module = require('../models').module;
-
-
 
 //check role from id in token
 const checkRole = async(id) => {

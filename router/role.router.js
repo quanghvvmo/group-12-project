@@ -1,5 +1,4 @@
 const roleController = require('../controllers/role.controller');
-
 const express = require('express');
 const roleRouter = express();
 

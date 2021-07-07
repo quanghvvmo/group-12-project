@@ -322,7 +322,7 @@ const deleteForm = async(req, res) => {
   }
 }
 
-//get all finished yearly form 
+//get all finish yearly form 
 const reportFinishYearlyForm = async(req, res) => {
   try {
     const report = await form.findAll({
@@ -349,6 +349,7 @@ const reportFinishYearlyForm = async(req, res) => {
   }
 }
 
+//gegt all finish basic form
 const reportFinishBasicForm = async(req, res) => {
   try {
     const report = await form.findAll({
@@ -375,6 +376,7 @@ const reportFinishBasicForm = async(req, res) => {
   }
 }
 
+//get all imcomplete yearly form
 const reportIncompleteYearlyForm = async(req, res) => {
   try {
     const report = await form.findAll({
@@ -401,6 +403,7 @@ const reportIncompleteYearlyForm = async(req, res) => {
   }
 }
 
+//get all incomplete basic form
 const reportIncompleteBasicForm = async(req, res) => {
   try {
     const report = await form.findAll({
@@ -427,36 +430,6 @@ const reportIncompleteBasicForm = async(req, res) => {
   }
 }
 
-//test get role
-const getRoleById = async(req, res) => {
-  const token = req.header('token');
-  try {
-    //check if not token in request
-    if (!token) {
-      res.send('Not Token');
-      return;
-    }
-    const payload = jwt.verify(token, config.secret); //decode token to get user id
-    const roleCheck = await userRole.findAll({
-      where: {
-        userId: payload.id,
-        isDelete: 0
-      },
-
-      include: {
-        model: role,
-        include: {
-          model: rolePermission,
-        },
-      },
-
-    });
-    res.send(roleCheck);
-  } catch (error) {
-    console.log(error);
-    res.status(500).send("Internal server error");
-  }
-}
 
 module.exports = {
   addNewForm,
@@ -470,5 +443,4 @@ module.exports = {
   reportFinishBasicForm,
   reportIncompleteYearlyForm,
   reportIncompleteBasicForm,
-  getRoleById
 }

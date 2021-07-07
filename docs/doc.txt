@@ -1,0 +1,48 @@
+//Account 
+
+tao account : check token, hash password tu pass lay o request
+              verify token de co userId
+
+update account: tuong tu add, dung ham update cua sequelize
+delete account : update voi isDelete = 1;
+
+//signIn
+- check username tu request trong database
+- compare password voi password ma co username tuong ung
+- sign token tu userId
+
+//Form
+
+- Tao Form: verify token de lay userId,
+userId tu request la 1 mang cac userId, dung 1 vong for de tao tung form tuong ung
+Tao 1 form voi cac truong : userId, typeOf, status: "new";
+Khi tao form thi dung nodeMailer, ket hop voi events de gui mail toi tung email ung voi userId
+
+- submitForm : update form tu userId tuong ung voi cac truong: managerId, note, task, achievement, status: "Pending approve" ;
+- getFormOfUser: middleware check role cua user tra ve mot list cac role neu co
+verify token de co userId
+tu userId, tuy theo role co duoc tu middleware se tra ve form tuong ung
+vi du: manager thi tra ve form co managerId = id tu token
+
+- approveForm: update form tuong ung voi id nhap vao, voi cac truong : managerCommnet, status: "Approved";
+- closeForm: update form tuong ung voi status: "close",
+kem theo la mot middleware check xem user co phai la HR (vi chi HR moi duoc close form)
+
+- get report : get all form voi typeOf, va status theo yeu cua
+
+//Module, role, rolePermission, userRole
+
+- Tao moi : lay thong tin tu request, check role, check token , su dung create() de tao moi mot ban ghi
+- delete: update doi tuong voi isDelete = 1;
+
+//Check Role permission
+- su dung 2 vong include de lay mot ban ghi tu UserRole bao gom : userRole - role - rolePermission;
+khi co duoc mot list cac userRole tren thi check permission tuong ung: 
+vi du: checkCanWrite: check userRole.role.rolePermission.canWrite && req.url.startsWith(userRole.role.rolePermission.url);
+neu dung thi next();
+sai thi tra ve " Permission deny";
+
+- checkCanClose: check xem roleName cua userId trong token === 'hr'
+- checkClosedForm: check  status cua form ung voi userId trong token.
+neu ko co form nao chua "closed" thi next(), va nguoc lai
+

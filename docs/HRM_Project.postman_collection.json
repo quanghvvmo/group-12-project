@@ -1,0 +1,1492 @@
+{
+	"info": {
+		"_postman_id": "11b7a2e5-3b24-4977-a294-1dea29b9a01c",
+		"name": "HRM_Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create new data",
+			"item": [
+				{
+					"name": "create new account",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"cab64ec3-e333-4675-985e-1c7cde4b444b\",\n    \"username\": \"employee3\",\n    \"password\": \"director01\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/accounts/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"accounts",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create New User",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIwOTE2MCwiZXhwIjoxNjI1Mjk1NTYwfQ.DtTKEdY1dvExpT5ohCE8GeLjst9Km2-S8IsTyFcnk7I",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "roleId",
+									"value": "d9d0ed97-3459-47fe-b60d-a5bb9ca4233c",
+									"type": "text"
+								},
+								{
+									"key": "employeeId",
+									"value": "vmo009",
+									"type": "text"
+								},
+								{
+									"key": "managerId",
+									"value": "ac3a4c4b-1037-427d-a0ad-c3b2029c709b",
+									"type": "text"
+								},
+								{
+									"key": "firstName",
+									"value": "Le",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "chi employee",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "hrdv@vmodev.com",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "0932217422",
+									"type": "text"
+								},
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/home/black_panther/Documents/vmoTraining/group-12-project/vanvd/uploads/anh2.png"
+								},
+								{
+									"key": "address",
+									"value": "22, Ba Dinh",
+									"type": "text"
+								},
+								{
+									"key": "department",
+									"value": "C3",
+									"type": "text"
+								},
+								{
+									"key": "identificationNumber",
+									"value": "789",
+									"type": "text"
+								},
+								{
+									"key": "insuranceNumber",
+									"value": "367",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create new Role",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDEzMSwiZXhwIjoxNjI1Mjk2NTMxfQ.YI8Goc71WzOwnRwHyO7vtIFsOudJamMGdjhX5s-mG4k",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roleName\": \"sale\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/roles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create new UserRole",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTAzNDA3NiwiZXhwIjoxNjI1MTIwNDc2fQ.bgQjpJjALedV49QRNWbB2LP6Ik5et7UlEjwQoLmG-1g",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"b8552298-7075-45bb-9fc1-4f9e28c127a1\",\n    \"roleId\": \"258c3db8-5a98-40e4-94bc-753c2c0eb73c\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/userroles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"userroles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create new module",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"moduleName\": \"role\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/modules",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"modules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create new role permission",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roleId\": \"1de057e3-9867-4bbe-b0ad-7c509151f226\",\n    \"moduleId\": \"6b33259f-fcb2-4178-ab81-589cd894f9f4\",\n    \"url\": \"/roles\",\n    \"canRead\": 1,\n    \"canWrite\": 0 ,\n    \"canUpdate\":0,\n    \"canDelete\": 0,\n    \"canApprove\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/rolepermissions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"rolepermissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create new form",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTE5MTA2OSwiZXhwIjoxNjI1Mjc3NDY5fQ.zhKc2x8hTbBU4BYRjp_S7Xfw4TZ3spOqaRqT86KGhMw",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": [\n        \"2b105106-25ed-49d1-8bb5-d0d1001d5793\",\n        \"8b8ba587-5ec4-4bac-aab7-4923f7af447e\"\n    ],\n    \"typeOf\": \"yearly\",\n    \"status\": \"new\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/forms",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"forms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test send mail",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"to\": \"vanvd@vmodev.com\",\n    \"subject\": \"test nodemail\",\n    \"body\": \"Hello boy\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/sendmails",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"sendmails"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delete data",
+			"item": [
+				{
+					"name": "delete account by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/accounts/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"accounts",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "8fc3233a-674a-4107-8fa4-cfbcb148d59a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete module",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/modules/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"modules",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6b33259f-fcb2-4178-ab81-589cd894f9f4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete role",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/roles/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"roles",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1de057e3-9867-4bbe-b0ad-7c509151f226"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete rolePermission",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/rolePermissions/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"rolePermissions",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "a6a542b1-0156-49f7-af49-d7f96b140693"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user by id",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIwOTE2MCwiZXhwIjoxNjI1Mjk1NTYwfQ.DtTKEdY1dvExpT5ohCE8GeLjst9Km2-S8IsTyFcnk7I",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/users/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "cab64ec3-e333-4675-985e-1c7cde4b444b"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete form by id",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiMTA1MTA2LTI1ZWQtNDlkMS04YmI1LWQwZDEwMDFkNTc5MyIsImlhdCI6MTYyNDg1NDA0MSwiZXhwIjoxNjI0OTQwNDQxfQ.lUtH3Eg0tk3jefVhLYB7cRhwFotr-7bbPJ8BRht1I6k",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/forms/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"forms",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "dedacfb7-afea-4f69-aa5d-9901d49837a2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get data",
+			"item": [
+				{
+					"name": "get user by id",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIwOTE2MCwiZXhwIjoxNjI1Mjk1NTYwfQ.DtTKEdY1dvExpT5ohCE8GeLjst9Km2-S8IsTyFcnk7a",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/users/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "cab64ec3-e333-4675-985e-1c7cde4b444b"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all form of user by userId in token",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiMTA1MTA2LTI1ZWQtNDlkMS04YmI1LWQwZDEwMDFkNTc5MyIsImlhdCI6MTYyNTE5MDc1MCwiZXhwIjoxNjI1Mjc3MTUwfQ.Vrlv3B0eCOOYutIPN0AKSF6lUL_oqpyMTdfWRZPmiwU",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/forms",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"forms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get  report finish basic finish",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/reports/basic/finish",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"reports",
+								"basic",
+								"finish"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get report finish yearly form",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/reports/yearly/finish",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"reports",
+								"yearly",
+								"finish"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get report incomplete yearly form",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/reports/yearly/incomplete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"reports",
+								"yearly",
+								"incomplete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get report incomplete basic form",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/reports/basic/incomplete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"reports",
+								"basic",
+								"incomplete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get role of user when login",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/roles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get form by ID",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFjM2E0YzRiLTEwMzctNDI3ZC1hMGFkLWMzYjIwMjljNzA5YiIsImlhdCI6MTYyNTA2NjY2NiwiZXhwIjoxNjI1MTUzMDY2fQ.v-jQl0B5l8O_Ejwn_lDE8VyuVuBVoRioZ77u2prTCf8",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/forms/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"forms",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "f04b05ba-29ba-462e-857a-66a088ebb29c"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test get role by id in token",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTAzNDA3NiwiZXhwIjoxNjI1MTIwNDc2fQ.bgQjpJjALedV49QRNWbB2LP6Ik5et7UlEjwQoLmG-1g",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/roleids",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"roleids"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "update data",
+			"item": [
+				{
+					"name": "update account by id",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"cab64ec3-e333-4675-985e-1c7cde4b444b\",\n    \"username\": \"employee3\",\n    \"password\": \"employee01\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/accounts/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"accounts",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "8fc3233a-674a-4107-8fa4-cfbcb148d59a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update module by id",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"moduleName\": \"role\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/modules/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"modules",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6b33259f-fcb2-4178-ab81-589cd894f9f4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update role by id",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roleName\": \"sale\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/roles/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"roles",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1de057e3-9867-4bbe-b0ad-7c509151f226"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "approve form of user",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFjM2E0YzRiLTEwMzctNDI3ZC1hMGFkLWMzYjIwMjljNzA5YiIsImlhdCI6MTYyNDc1Nzg0NiwiZXhwIjoxNjI0ODQ0MjQ2fQ.rsbaZoTNE1CLExGeAPm5MbjMpGt3onot5peYiRsRmrg",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"managerCommnet\": \"Ok Done\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/forms/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"forms",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "f04b05ba-29ba-462e-857a-66a088ebb29c"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update rolePermission by id",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"roleId\": \"faafd1f0-518f-4fe4-ae36-654d67da1562\",\n    \"moduleId\": \"aa221bae-884e-4d41-8ca5-f2d36beeab8c\",\n    \"canRead\": 1,\n    \"canWrite\": 1 ,\n    \"canUpdate\":0,\n    \"canDelete\": 0,\n    \"canApprove\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/rolePermissions/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"rolePermissions",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "a6a542b1-0156-49f7-af49-d7f96b140693"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIwOTE2MCwiZXhwIjoxNjI1Mjk1NTYwfQ.DtTKEdY1dvExpT5ohCE8GeLjst9Km2-S8IsTyFcnk7I",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "employeeId",
+									"value": "vmo0009",
+									"type": "text"
+								},
+								{
+									"key": "managerId",
+									"value": "ac3a4c4b-1037-427d-a0ad-c3b2029c709b",
+									"type": "text"
+								},
+								{
+									"key": "firstName",
+									"value": "hahah",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "hihihi",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "aaaaaa",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/home/black_panther/Documents/vmoTraining/group-12-project/vanvd/uploads/anh1.png"
+								},
+								{
+									"key": "address",
+									"value": "123123",
+									"type": "text"
+								},
+								{
+									"key": "department",
+									"value": "fff",
+									"type": "text"
+								},
+								{
+									"key": "identificationNumber",
+									"value": "6666",
+									"type": "text"
+								},
+								{
+									"key": "insuranceNumber",
+									"value": "4444",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/users/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "cab64ec3-e333-4675-985e-1c7cde4b444b"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "submit form (employee)",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhiOGJhNTg3LTVlYzQtNGJhYy1hYWI3LTQ5MjNmN2FmNDQ3ZSIsImlhdCI6MTYyNDYxMDEzMiwiZXhwIjoxNjI0Njk2NTMyfQ.FRt_lGDF6QSj6xZqntmSuFB14p3pJO-Q5QLROyKcpZE",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"managerId\": \"ac3a4c4b-1037-427d-a0ad-c3b2029c709b\",\n    \"note\": \"Not \",\n    \"task\": \"Not \",\n    \"achievement\": \"Dont \"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/forms",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"forms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "close form by HR",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNDg2OTQ1NiwiZXhwIjoxNjI0OTU1ODU2fQ.3ujlx8PmkFgc-JFj4rbau3aBB-s5F26wVBWffoAQ99k",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/forms/:id/closed",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"forms",
+								":id",
+								"closed"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "f04b05ba-29ba-462e-857a-66a088ebb29c"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update User-Role",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTE5NzMyMiwiZXhwIjoxNjI1MjgzNzIyfQ.HBMnMqGv2yUHZbj3t5JW5zLPA_LrdiLESEGt6kSHtQg",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"8b8ba587-5ec4-4bac-aab7-4923f7af447e\",\n    \"roleId\": \"258c3db8-5a98-40e4-94bc-753c2c0eb73c\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/userroles/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"userroles",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "fb636f57-8603-48b3-904f-f89706304530"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"hraccount\",\n    \"password\": \"hraccount01\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/signins",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"signins"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

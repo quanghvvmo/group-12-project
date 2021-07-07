@@ -16,5 +16,4 @@ formRouter.get('/reports/basic/finish', checkRole.checkRoleGetReport, formContro
 formRouter.get('/reports/basic/incomplete', checkRole.checkRoleGetReport, formController.reportIncompleteBasicForm);
 formRouter.get('/reports/yearly/incomplete', checkRole.checkRoleGetReport, formController.reportIncompleteYearlyForm);
 formRouter.post('/sendmails', emailController.sendMail);
-formRouter.get('/roleids', formController.getRoleById);
 module.exports = formRouter;
