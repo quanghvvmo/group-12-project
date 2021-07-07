@@ -1,5 +1,4 @@
-const { form, user_role } = require("../models");
-const jwt = require("jsonwebtoken");
+const { form, user_role, role } = require("../models");
 
 const getAllReports = async (req, res) => {
   try {
@@ -8,14 +7,15 @@ const getAllReports = async (req, res) => {
 
     const rolePermission = await user_role.findOne({
       where: { user_id: userId },
+      include: { model: role },
     });
 
-    console.log(rolePermission);
+    console.log(rolePermission.role.role_name);
     // Check user role permission
     if (
-      rolePermission.role_id === "ce9ee71e-e287-4998-912f-bc70b708fb53" ||
-      rolePermission.role_id === "c6220169-3d04-4ce4-86bc-e5ddb251e3dc" ||
-      rolePermission.role_id === "ffc8c623-ee2f-48e7-9f7c-42edad317a69"
+      rolePermission.role.role_name === "manager" ||
+      rolePermission.role.role_name === "director" ||
+      rolePermission.role.role_name === "admin"
     ) {
       // Find form by status
       const allSubmittedReport = await form.findAll({
@@ -44,12 +44,13 @@ const getAllManagerReport = async (req, res) => {
     // Check if invalid user id
     const rolePermission = await user_role.findOne({
       where: { user_id: userId },
+      include: { model: role },
     });
 
     if (
-      rolePermission.role_id === "ffc8c623-ee2f-48e7-9f7c-42edad317a69" ||
-      rolePermission.role_id === "7b8badc1-44a6-4e12-9f25-5d7753468549" ||
-      rolePermission.role_id === "ffc8c623-ee2f-48e7-9f7c-42edad317a69"
+      rolePermission.role.role_name === "manager" ||
+      rolePermission.role.role_name === "director" ||
+      rolePermission.role.role_name === "admin"
     ) {
       const reports = await form.findOne({
         where: { manager: userId },
@@ -79,13 +80,14 @@ const getAllReportByStatus = async (req, res) => {
     // Check if invalid user id
     const rolePermission = await user_role.findOne({
       where: { user_id: userId },
+      include: { model: role },
     });
 
     // Check user role permission
     if (
-      rolePermission.role_id === "ce9ee71e-e287-4998-912f-bc70b708fb53" ||
-      rolePermission.role_id === "c6220169-3d04-4ce4-86bc-e5ddb251e3dc" ||
-      rolePermission.role_id === "ffc8c623-ee2f-48e7-9f7c-42edad317a69"
+      rolePermission.role.role_name === "manager" ||
+      rolePermission.role.role_name === "director" ||
+      rolePermission.role.role_name === "admin"
     ) {
       // Check if invalid status
       if (
