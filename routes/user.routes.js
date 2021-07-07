@@ -24,7 +24,7 @@ const router = express.Router();
 // User routes
 router.get("/users", checkCanRead, getAllUsers);
 router.get("/users/:id", checkCanRead, getUserById);
-router.post("/users", upload.single("avatar"), createNewUser);
+router.post("/users", checkCanWrite, upload.single("avatar"), createNewUser);
 router.put("/users/:id", checkCanUpdate, upload.single("avatar"), updateUser);
 router.delete("/users/:id", checkCanDelete, deleteUser);
 

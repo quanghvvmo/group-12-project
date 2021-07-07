@@ -59,9 +59,10 @@ const checkCanRead = async (req, res, next) => {
       rolePermission[userRole].role.role_permission_forms.forEach(function (
         check
       ) {
+        // console.log(rolePermission[userRole].role.role_name);
         if (
           (!temp && check.canRead === 1 && req.url.includes(check.url)) ||
-          userId === "2d4683cd-37ae-4952-af63-da027f8cc6af"
+          rolePermission[userRole].role.role_name === "admin"
         ) {
           return (temp = true);
         }
@@ -140,7 +141,7 @@ const checkCanWrite = async (req, res, next) => {
       ) {
         if (
           (!temp && check.canCreate === 1 && req.url.includes(check.url)) ||
-          userId === "2d4683cd-37ae-4952-af63-da027f8cc6af"
+          rolePermission[userRole].role.role_name === "admin"
         ) {
           return (temp = true);
         }
@@ -219,7 +220,7 @@ const checkCanUpdate = async (req, res, next) => {
       ) {
         if (
           (!temp && check.canUpdate === 1 && req.url.includes(check.url)) ||
-          userId === "2d4683cd-37ae-4952-af63-da027f8cc6af"
+          rolePermission[userRole].role.role_name === "admin"
         ) {
           return (temp = true);
         }
@@ -298,7 +299,7 @@ const checkCanDelete = async (req, res, next) => {
       ) {
         if (
           (!temp && check.canDelete === 1 && req.url.includes(check.url)) ||
-          userId === "2d4683cd-37ae-4952-af63-da027f8cc6af"
+          rolePermission[userRole].role.role_name === "admin"
         ) {
           return (temp = true);
         }
@@ -377,7 +378,7 @@ const checkCanApprove = async (req, res, next) => {
       ) {
         if (
           (!temp && check.canApprove === 1 && req.url.includes(check.url)) ||
-          userId === "2d4683cd-37ae-4952-af63-da027f8cc6af"
+          rolePermission[userRole].role.role_name === "admin"
         ) {
           return (temp = true);
         }

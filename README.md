@@ -15,7 +15,7 @@
 ## For Linux
 
 - [Node.js](https://nodejs.org/en/) v10.x or latest
-- [MySQL](https://dev.mysql.com/downloads/installer/) v8.x or lastest
+- [MySQL](https://dev.mysql.com/downloads/repo/apt/) v8.x or lastest
 - [Postman](https://www.postman.com/downloads/) for testing APIs
 
 ### Install MySQL For Ubuntu
