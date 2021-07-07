@@ -25,6 +25,7 @@ const createNewModule = async (req, res) => {
 
 const getAllModules = async (req, res) => {
   try {
+    // Find all modules which has isDeleted properties equal to 0
     const allModules = await modules.findAll({ where: { isDeleted: "0" } });
 
     return res.status(200).json({ message: "Module Found", allModules });
@@ -38,6 +39,7 @@ const deleteModule = async (req, res) => {
   const { id } = req.params;
 
   try {
+    // Get admin If from token
     const adminId = req.user.id;
 
     // Udpate module

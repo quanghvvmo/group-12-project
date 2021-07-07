@@ -10,6 +10,7 @@ const storage = multer.diskStorage({
   },
 });
 
+// Filter image extension
 const fileFilter = (req, file, cb) => {
   if (
     file.mimetype === "image/jpg" ||

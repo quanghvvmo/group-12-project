@@ -6,15 +6,16 @@ const getAllReports = async (req, res) => {
     // Get user id from payload
     const userId = req.user.id;
 
-    // Check if invalid user id
     const rolePermission = await user_role.findOne({
       where: { user_id: userId },
     });
 
+    console.log(rolePermission);
     // Check user role permission
     if (
       rolePermission.role_id === "ce9ee71e-e287-4998-912f-bc70b708fb53" ||
-      rolePermission.role_id === "c6220169-3d04-4ce4-86bc-e5ddb251e3dc"
+      rolePermission.role_id === "c6220169-3d04-4ce4-86bc-e5ddb251e3dc" ||
+      rolePermission.role_id === "ffc8c623-ee2f-48e7-9f7c-42edad317a69"
     ) {
       // Find form by status
       const allSubmittedReport = await form.findAll({
@@ -37,18 +38,8 @@ const getAllReports = async (req, res) => {
 
 const getAllManagerReport = async (req, res) => {
   try {
-    // Get token from header
-    const token = req.header("jwt");
-    // Check if invalid token
-    if (!token) {
-      return res.status(400).json({ message: "Access Denied" });
-    }
-
-    // Verify token
-    const verifyToken = await jwt.verify(token, process.env.SECRET_TOKEN);
-
     // Get user id from payload
-    const userId = verifyToken.id;
+    const userId = req.user.id;
 
     // Check if invalid user id
     const rolePermission = await user_role.findOne({
@@ -57,7 +48,8 @@ const getAllManagerReport = async (req, res) => {
 
     if (
       rolePermission.role_id === "ffc8c623-ee2f-48e7-9f7c-42edad317a69" ||
-      rolePermission.role_id === "7b8badc1-44a6-4e12-9f25-5d7753468549"
+      rolePermission.role_id === "7b8badc1-44a6-4e12-9f25-5d7753468549" ||
+      rolePermission.role_id === "ffc8c623-ee2f-48e7-9f7c-42edad317a69"
     ) {
       const reports = await form.findOne({
         where: { manager: userId },
@@ -81,18 +73,8 @@ const getAllReportByStatus = async (req, res) => {
   const { status } = req.query;
 
   try {
-    // Get token from header
-    const token = req.header("jwt");
-    // Check if invalid token
-    if (!token) {
-      return res.status(400).json({ message: "Access Denied" });
-    }
-
-    // Verify token
-    const verifyToken = await jwt.verify(token, process.env.SECRET_TOKEN);
-
     // Get user id from payload
-    const userId = verifyToken.id;
+    const userId = req.user.id;
 
     // Check if invalid user id
     const rolePermission = await user_role.findOne({
@@ -102,7 +84,8 @@ const getAllReportByStatus = async (req, res) => {
     // Check user role permission
     if (
       rolePermission.role_id === "ce9ee71e-e287-4998-912f-bc70b708fb53" ||
-      rolePermission.role_id === "c6220169-3d04-4ce4-86bc-e5ddb251e3dc"
+      rolePermission.role_id === "c6220169-3d04-4ce4-86bc-e5ddb251e3dc" ||
+      rolePermission.role_id === "ffc8c623-ee2f-48e7-9f7c-42edad317a69"
     ) {
       // Check if invalid status
       if (

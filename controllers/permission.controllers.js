@@ -50,6 +50,7 @@ const createNewRolePermissionForm = async (req, res) => {
 
 const getAllRolePermissionForms = async (req, res) => {
   try {
+    // Get all role permission form and their detail roles
     const rolePermission = await role_permission_form.findAll({
       include: { model: role },
     });

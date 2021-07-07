@@ -96,12 +96,6 @@ const getAllUsers = async (req, res) => {
       include: { model: user_role, attributes: { exclude: ["id"] } },
     });
 
-    // const allUsers = await user.findAll({
-    //   attributes: {
-    //     exclude: ["id"],
-    //   },
-    // });
-
     return res.status(200).json(allUsers);
   } catch (error) {
     console.log(error);
