@@ -27,17 +27,32 @@ const createNewUserRole = async (req, res) => {
       return res.status(404).json({ message: "Invalid Role ID" });
     }
 
-    // Create new user role
-    const newUserRole = await user_role.create({
-      role_id,
-      user_id,
-      createBy: adminId,
-      updateBy: adminId,
+    // Get role name
+    const checkRole = await user_role.findAll({
+      where: { user_id: adminId },
+      include: { model: role },
     });
 
-    return res
-      .status(200)
-      .json({ message: "Created New User Role Successfully", newUserRole });
+    // Check if admin then can create new user
+    for (let checkAdmin in checkRole) {
+      if (checkRole[checkAdmin].role.role_name === "admin") {
+        // Create new user role
+        const newUserRole = await user_role.create({
+          role_id,
+          user_id,
+          createBy: adminId,
+          updateBy: adminId,
+        });
+
+        return res
+          .status(200)
+          .json({ message: "Created New User Role Successfully", newUserRole });
+      } else {
+        return res
+          .status(404)
+          .json({ message: "You have no permission to create new user role" });
+      }
+    }
   } catch (error) {
     console.log(error);
     return res.status(404).json({ message: "Create New User Role Failed" });
@@ -46,24 +61,38 @@ const createNewUserRole = async (req, res) => {
 
 const getAllUserRoles = async (req, res) => {
   try {
-    // Get All User Role
-    const allUserRole = await user_role.findAll({
-      include: {
-        model: role,
-        include: { model: role_permission_form },
-      },
+    // Get admin id from token
+    const adminId = req.user.id;
+
+    // Get role name
+    const checkRole = await user_role.findAll({
+      where: { user_id: adminId },
+      include: { model: role },
     });
 
-    // Count number of user role based on isDeleted props
-    let count = 0;
-    for (let ur in allUserRole) {
-      allUserRole[ur].isDeleted === "0";
-      count++;
-    }
+    // Check if admin then can get all user roles
+    for (let checkAdmin in checkRole) {
+      if (checkRole[checkAdmin].role.role_name === "admin") {
+        // Get All User Role
+        const allUserRole = await user_role.findAll({
+          include: {
+            model: role,
+            include: { model: role_permission_form },
+          },
+        });
 
-    return res
-      .status(200)
-      .json({ message: "User Role Found", count, allUserRole });
+        // Count number of user role based on isDeleted props
+        let count = allUserRole.length;
+
+        return res
+          .status(200)
+          .json({ message: "User Role Found", count, allUserRole });
+      } else {
+        return res
+          .status(404)
+          .json({ message: "You have no permission to get all user roles" });
+      }
+    }
   } catch (error) {
     console.log(error);
     return res.status(404).json({ message: "User Role Not Found" });
@@ -74,16 +103,34 @@ const getUserRoleById = async (req, res) => {
   const { id } = req.params;
 
   try {
-    // Get All User Role
-    const userRoleId = await user_role.findOne({
-      where: { id },
+    // Get admin id from token
+    const adminId = req.user.id;
+
+    // Get role name
+    const checkRole = await user_role.findAll({
+      where: { user_id: adminId },
+      include: { model: role },
     });
 
-    if (!userRoleId) {
-      return res.status(404).json({ message: "Invalid User Role ID" });
-    }
+    // Check if admin then can get user role detail
+    for (let checkAdmin in checkRole) {
+      if (checkRole[checkAdmin].role.role_name === "admin") {
+        // Get All User Role
+        const userRoleId = await user_role.findOne({
+          where: { id },
+        });
 
-    return res.status(200).json({ message: "User Role Found", userRoleId });
+        if (!userRoleId) {
+          return res.status(404).json({ message: "Invalid User Role ID" });
+        }
+
+        return res.status(200).json({ message: "User Role Found", userRoleId });
+      } else {
+        return res
+          .status(404)
+          .json({ message: "You have no permission to get user role detail" });
+      }
+    }
   } catch (error) {
     console.log(error);
     return res.status(404).json({ message: "User Role Not Found" });
@@ -105,15 +152,30 @@ const updateUserRole = async (req, res) => {
       return res.status(404).json({ message: "Invalid User Id" });
     }
 
-    // Update role
-    const updatedUserRole = await user_role.update(
-      { updateBy: adminId },
-      { where: { id } }
-    );
+    // Get role name
+    const checkRole = await user_role.findAll({
+      where: { user_id: adminId },
+      include: { model: role },
+    });
 
-    return res
-      .status(200)
-      .json({ message: "Update User Role Successfully", updatedUserRole });
+    // Check if admin then can update user role
+    for (let checkAdmin in checkRole) {
+      if (checkRole[checkAdmin].role.role_name === "admin") {
+        // Update role
+        const updatedUserRole = await user_role.update(
+          { updateBy: adminId },
+          { where: { id } }
+        );
+
+        return res
+          .status(200)
+          .json({ message: "Update User Role Successfully", updatedUserRole });
+      } else {
+        return res
+          .status(404)
+          .json({ message: "You have no permission to update user role" });
+      }
+    }
   } catch (error) {
     console.log(error);
     return res.status(404).json({ message: "Update User Role Failed" });
@@ -134,14 +196,32 @@ const deleteUserRole = async (req, res) => {
       return res.status(404).json({ message: "Invalid User Role ID" });
     }
 
-    // Delete user role
-    await userRole.destroy({
-      where: { id },
+    // Get user id from token
+    const userIdToken = req.user.id;
+
+    // Get role name
+    const checkRole = await user_role.findAll({
+      where: { user_id: userIdToken },
+      include: { model: role },
     });
 
-    return res
-      .status(200)
-      .json({ message: "Deleted User Role Successfully", userRole });
+    // Check if admin then can delete user role
+    for (let checkAdmin in checkRole) {
+      if (checkRole[checkAdmin].role.role_name === "admin") {
+        // Delete user role
+        await userRole.destroy({
+          where: { id },
+        });
+
+        return res
+          .status(200)
+          .json({ message: "Deleted User Role Successfully", userRole });
+      } else {
+        return res.status(404).json({
+          message: "You have no permission to delete user role",
+        });
+      }
+    }
   } catch (error) {
     console.log(error);
     return res.status(404).json({ message: "Delete User Role Failed" });
