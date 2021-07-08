@@ -1,0 +1,1292 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: test Personal Proj
+  contact: {}
+host: 'localhost:8080'
+basePath: /api
+securityDefinitions: {}
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /admin:
+    post:
+      summary: Register
+      tags:
+        - Misc
+      operationId: Register
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/RegisterRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /admin/login:
+    post:
+      summary: Login
+      tags:
+        - Misc
+      operationId: Login
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/LoginRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /customer:
+    post:
+      summary: Add Customer
+      tags:
+        - Misc
+      operationId: AddCustomer
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/AddCustomerRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    get:
+      summary: List Customer
+      tags:
+        - Misc
+      operationId: ListCustomer
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: page
+          in: query
+          required: true
+          type: integer
+          format: int32
+          description: ''
+        - name: pagesize
+          in: query
+          required: true
+          type: integer
+          format: int32
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  '/customer/{id}':
+    patch:
+      summary: Update Customer
+      tags:
+        - Misc
+      operationId: UpdateCustomer
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/UpdateCustomerRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    get:
+      summary: Customer Detail
+      tags:
+        - Misc
+      operationId: CustomerDetail
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  '/customer/delete/{id}':
+    patch:
+      summary: Delete Customer
+      tags:
+        - Misc
+      operationId: DeleteCustomer
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /tech:
+    post:
+      summary: Add Tech
+      tags:
+        - Misc
+      operationId: AddTech
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/AddTechRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    get:
+      summary: List Tech
+      tags:
+        - Misc
+      operationId: ListTech
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: page
+          in: query
+          required: true
+          type: integer
+          format: int32
+          description: ''
+        - name: pagesize
+          in: query
+          required: true
+          type: integer
+          format: int32
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  '/tech/{id}':
+    patch:
+      summary: Update Tech
+      tags:
+        - Misc
+      operationId: UpdateTech
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/UpdateTechRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    get:
+      summary: Tech Detail
+      tags:
+        - Misc
+      operationId: TechDetail
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  '/tech/delete/{id}':
+    patch:
+      summary: Delete Tech
+      tags:
+        - Misc
+      operationId: DeleteTech
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /type:
+    post:
+      summary: Add Type
+      tags:
+        - Misc
+      operationId: AddType
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/AddTypeRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    get:
+      summary: List Type
+      tags:
+        - Misc
+      operationId: ListType
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: page
+          in: query
+          required: true
+          type: integer
+          format: int32
+          description: ''
+        - name: pagesize
+          in: query
+          required: true
+          type: integer
+          format: int32
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  '/type/{id}':
+    patch:
+      summary: Update Type
+      tags:
+        - Misc
+      operationId: UpdateType
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/UpdateTypeRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    get:
+      summary: Type Detail
+      tags:
+        - Misc
+      operationId: TypeDetail
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  '/type/delete/{id}':
+    patch:
+      summary: Delete Type
+      tags:
+        - Misc
+      operationId: DeleteType
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /unit:
+    post:
+      summary: Add Unit
+      tags:
+        - Misc
+      operationId: AddUnit
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/AddUnitRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    get:
+      summary: List Unit
+      tags:
+        - Misc
+      operationId: ListUnit
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: page
+          in: query
+          required: true
+          type: integer
+          format: int32
+          description: ''
+        - name: pagesize
+          in: query
+          required: true
+          type: integer
+          format: int32
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  '/unit/{id}':
+    get:
+      summary: Unit Detail
+      tags:
+        - Misc
+      operationId: UnitDetail
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    patch:
+      summary: Update Unit
+      tags:
+        - Misc
+      operationId: UpdateUnit
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/UpdateUnitRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  '/unit/delete/{id}':
+    patch:
+      summary: Deleted Unit
+      tags:
+        - Misc
+      operationId: DeletedUnit
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /employee:
+    post:
+      summary: Add Employee
+      tags:
+        - Misc
+      operationId: AddEmployee
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/AddEmployeeRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    get:
+      summary: List Employee
+      tags:
+        - Misc
+      operationId: ListEmployee
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: page
+          in: query
+          required: true
+          type: integer
+          format: int32
+          description: ''
+        - name: pagesize
+          in: query
+          required: true
+          type: integer
+          format: int32
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  '/employee/{id}':
+    patch:
+      summary: Update Employee
+      tags:
+        - Misc
+      operationId: UpdateEmployee
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/UpdateEmployeeRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    get:
+      summary: Employee Detail
+      tags:
+        - Misc
+      operationId: EmployeeDetail
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /employee/stat:
+    post:
+      summary: Employee Stat
+      tags:
+        - Misc
+      operationId: EmployeeStat
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/EmployeeStatRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  '/employee/delete/{id}':
+    patch:
+      summary: Delete Employee
+      tags:
+        - Misc
+      operationId: DeleteEmployee
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /project:
+    post:
+      summary: Add Project
+      tags:
+        - Misc
+      operationId: AddProject
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/AddProjectRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    get:
+      summary: List Project
+      tags:
+        - Misc
+      operationId: ListProject
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: page
+          in: query
+          required: true
+          type: integer
+          format: int32
+          description: ''
+        - name: pagesize
+          in: query
+          required: true
+          type: integer
+          format: int32
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  '/project/{id}':
+    patch:
+      summary: Update Project
+      tags:
+        - Misc
+      operationId: UpdateProject
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/UpdateProjectRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    get:
+      summary: Project Detail
+      tags:
+        - Misc
+      operationId: ProjectDetail
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /project/stat:
+    post:
+      summary: Project Stat
+      tags:
+        - Misc
+      operationId: ProjectStat
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/ProjectStatRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  '/project/delete/{id}':
+    patch:
+      summary: Project Delete
+      tags:
+        - Misc
+      operationId: ProjectDelete
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: 'Bearer {token}'
+          type: string
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+definitions:
+  RegisterRequest:
+    title: RegisterRequest
+    example:
+      name: admin
+      workID: '1'
+      username: superuser
+      password: '123'
+    type: object
+    properties:
+      name:
+        type: string
+      workID:
+        type: string
+      username:
+        type: string
+      password:
+        type: string
+    required:
+      - name
+      - workID
+      - username
+      - password
+  LoginRequest:
+    title: LoginRequest
+    example:
+      username: superuser2
+      password: '123'
+    type: object
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+    required:
+      - username
+      - password
+  AddCustomerRequest:
+    title: AddCustomerRequest
+    example:
+      name: John Pena
+      description: Love Punch
+    type: object
+    properties:
+      name:
+        type: string
+      description:
+        type: string
+    required:
+      - name
+      - description
+  UpdateCustomerRequest:
+    title: UpdateCustomerRequest
+    example:
+      name: Johnny B
+      description: Not John Wick
+    type: object
+    properties:
+      name:
+        type: string
+      description:
+        type: string
+    required:
+      - name
+      - description
+  AddTechRequest:
+    title: AddTechRequest
+    example:
+      name: C#
+    type: object
+    properties:
+      name:
+        type: string
+    required:
+      - name
+  UpdateTechRequest:
+    title: UpdateTechRequest
+    example:
+      is_active: '1'
+    type: object
+    properties:
+      is_active:
+        type: string
+    required:
+      - is_active
+  AddTypeRequest:
+    title: AddTypeRequest
+    example:
+      name: Out Source
+    type: object
+    properties:
+      name:
+        type: string
+    required:
+      - name
+  UpdateTypeRequest:
+    title: UpdateTypeRequest
+    example:
+      name: Not Product
+    type: object
+    properties:
+      name:
+        type: string
+    required:
+      - name
+  AddUnitRequest:
+    title: AddUnitRequest
+    example:
+      name: Center 1
+      description: Django Main
+      adminID: '1'
+    type: object
+    properties:
+      name:
+        type: string
+      description:
+        type: string
+      adminID:
+        type: string
+    required:
+      - name
+      - description
+      - adminID
+  UpdateUnitRequest:
+    title: UpdateUnitRequest
+    example:
+      name: Center 2
+      description: Full Stack
+      adminID: '2'
+    type: object
+    properties:
+      name:
+        type: string
+      description:
+        type: string
+      adminID:
+        type: string
+    required:
+      - name
+      - description
+      - adminID
+  AddEmployeeRequest:
+    title: AddEmployeeRequest
+    example:
+      name: Employee 1
+      DoB: 2/20/1993
+      address: 19 Duy Tan
+      id_number: '88553'
+      phone: 091999400
+      exp_years: 3
+      english: English
+      workID: '18'
+      degree: bachelor
+      tech:
+        - C#
+        - C
+        - Django
+      unit: Center 3
+    type: object
+    properties:
+      name:
+        type: string
+      DoB:
+        type: string
+      address:
+        type: string
+      id_number:
+        type: string
+      phone:
+        type: string
+      exp_years:
+        type: integer
+        format: int32
+      english:
+        type: string
+      workID:
+        type: string
+      degree:
+        type: string
+      tech:
+        type: array
+        items:
+          type: string
+      unit:
+        type: string
+    required:
+      - name
+      - DoB
+      - address
+      - id_number
+      - phone
+      - exp_years
+      - english
+      - workID
+      - degree
+      - tech
+      - unit
+  UpdateEmployeeRequest:
+    title: UpdateEmployeeRequest
+    example:
+      name: Employee 19
+      DoB: 10/20/1994
+      address: 19 Duy Tan
+      id_number: '2473'
+      phone: 061999410
+      exp_years: 3
+      english: English
+      workID: '19'
+      degree: bachelor
+      tech:
+        - Python
+        - C#
+        - C
+        - Nodejs
+      unit: Center 2
+    type: object
+    properties:
+      name:
+        type: string
+      DoB:
+        type: string
+      address:
+        type: string
+      id_number:
+        type: string
+      phone:
+        type: string
+      exp_years:
+        type: integer
+        format: int32
+      english:
+        type: string
+      workID:
+        type: string
+      degree:
+        type: string
+      tech:
+        type: array
+        items:
+          type: string
+      unit:
+        type: string
+    required:
+      - name
+      - DoB
+      - address
+      - id_number
+      - phone
+      - exp_years
+      - english
+      - workID
+      - degree
+      - tech
+      - unit
+  EmployeeStatRequest:
+    title: EmployeeStatRequest
+    example:
+      filter: tech
+      techID: 025987c5-6af0-419d-b9aa-4aef6a1477de
+    type: object
+    properties:
+      filter:
+        type: string
+      techID:
+        type: string
+    required:
+      - filter
+      - techID
+  AddProjectRequest:
+    title: AddProjectRequest
+    example:
+      name: project 3
+      description: deathline 1 year
+      customer: John Sena
+      type: Out Source
+      tech:
+        - C#
+        - C
+      unit: Center 1
+      status: InProgress
+      employee_work_id:
+        - '20'
+        - '15'
+    type: object
+    properties:
+      name:
+        type: string
+      description:
+        type: string
+      customer:
+        type: string
+      type:
+        type: string
+      tech:
+        type: array
+        items:
+          type: string
+      unit:
+        type: string
+      status:
+        type: string
+      employee_work_id:
+        type: array
+        items:
+          type: string
+    required:
+      - name
+      - description
+      - customer
+      - type
+      - tech
+      - unit
+      - status
+      - employee_work_id
+  UpdateProjectRequest:
+    title: UpdateProjectRequest
+    example:
+      name: project 150
+      description: deathline 10 year
+      customer: Johnny B
+      type: Product
+      tech:
+        - Python
+        - C#
+        - C
+        - Nodejs
+      unit: Center 2
+      status: InProgres
+      employee_work_id:
+        - '11'
+        - '12'
+        - '10'
+        - '20'
+    type: object
+    properties:
+      name:
+        type: string
+      description:
+        type: string
+      customer:
+        type: string
+      type:
+        type: string
+      tech:
+        type: array
+        items:
+          type: string
+      unit:
+        type: string
+      status:
+        type: string
+      employee_work_id:
+        type: array
+        items:
+          type: string
+    required:
+      - name
+      - description
+      - customer
+      - type
+      - tech
+      - unit
+      - status
+      - employee_work_id
+  ProjectStatRequest:
+    title: ProjectStatRequest
+    example:
+      filter: customer
+      status: InProgress
+      customer_id: 9022e945-dd37-4005-b664-4694f3c7f6ce
+    type: object
+    properties:
+      filter:
+        type: string
+      status:
+        type: string
+      customer_id:
+        type: string
+    required:
+      - filter
+      - status
+      - customer_id
+tags:
+  - name: Misc
+    description: ''

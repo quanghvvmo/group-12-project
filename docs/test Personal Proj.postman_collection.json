@@ -450,7 +450,7 @@
 		{
 			"name": "Delete Tech",
 			"request": {
-				"method": "GET",
+				"method": "PATCH",
 				"header": [],
 				"url": {
 					"raw": "http://localhost:8080/api/tech/delete/:id",

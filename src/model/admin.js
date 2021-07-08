@@ -20,7 +20,8 @@ const Admin = db.define('admin', {
         type: Sequelize.STRING(300)
     },
     isActive:{
-        type: Sequelize.INTEGER(1)
+        type: Sequelize.INTEGER(1),
+        defaultValue: 1
     }
 })
 

@@ -29,6 +29,7 @@
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "migrate": "^1.7.0",
+    "mysql2": "^2.2.5",
     "nodemon": "^2.0.7",
     "pg": "^8.6.0",
     "require": "^2.4.20",
