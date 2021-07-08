@@ -1,0 +1,1055 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: HRM_Project
+  contact: {}
+host: 'localhost:8081'
+basePath: /api
+securityDefinitions:
+  token:
+    type: apiKey
+    description: ''
+    name: token
+    in: header
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /accounts:
+    post:
+      summary: create new account
+      tags:
+        - Create new data
+      operationId: createnewaccount
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/createnewaccountrequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  '/users/{id}':
+    post:
+      summary: create New User
+      tags:
+        - Create new data
+      operationId: createNewUser
+      deprecated: false
+      produces:
+        - application/json
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+        - name: roleId
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: employeeId
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: managerId
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: firstName
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: lastName
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: email
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: phone
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: avatar
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: address
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: department
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: identificationNumber
+          in: formData
+          required: true
+          type: integer
+          format: int32
+          description: ''
+        - name: insuranceNumber
+          in: formData
+          required: true
+          type: integer
+          format: int32
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    delete:
+      summary: delete user by id
+      tags:
+        - Delete data
+      operationId: deleteuserbyid
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    get:
+      summary: get user by id
+      tags:
+        - Get data
+      operationId: getuserbyid
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    put:
+      summary: update user
+      tags:
+        - update data
+      operationId: updateuser
+      deprecated: false
+      produces:
+        - application/json
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+        - name: employeeId
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: managerId
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: firstName
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: lastName
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: email
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: phone
+          in: formData
+          required: true
+          type: integer
+          format: int32
+          description: ''
+        - name: avatar
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: address
+          in: formData
+          required: true
+          type: integer
+          format: int32
+          description: ''
+        - name: department
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: identificationNumber
+          in: formData
+          required: true
+          type: integer
+          format: int32
+          description: ''
+        - name: insuranceNumber
+          in: formData
+          required: true
+          type: integer
+          format: int32
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /roles:
+    post:
+      summary: create new Role
+      tags:
+        - Create new data
+      operationId: createnewRole
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/createnewRoleRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    get:
+      summary: get role of user when login
+      tags:
+        - Get data
+      operationId: getroleofuserwhenlogin
+      deprecated: false
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /userroles:
+    post:
+      summary: create new UserRole
+      tags:
+        - Create new data
+      operationId: createnewUserRole
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/createnewUserRoleRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /modules:
+    post:
+      summary: create new module
+      tags:
+        - Create new data
+      operationId: createnewmodule
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/createnewmodulerequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /rolepermissions:
+    post:
+      summary: create new role permission
+      tags:
+        - Create new data
+      operationId: createnewrolepermission
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/createnewrolepermissionrequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /forms:
+    post:
+      summary: create new form
+      tags:
+        - Create new data
+      operationId: createnewform
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/createnewformrequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    get:
+      summary: get all form of user by userId in token
+      tags:
+        - Get data
+      operationId: getallformofuserbyuserIdintoken
+      deprecated: false
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    put:
+      summary: submit form (employee)
+      tags:
+        - update data
+      operationId: submitform(employee)
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/submitform%28employee%29request'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /sendmails:
+    post:
+      summary: test send mail
+      tags:
+        - Create new data
+      operationId: testsendmail
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/testsendmailrequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  '/accounts/{id}':
+    delete:
+      summary: delete account by id
+      tags:
+        - Delete data
+      operationId: deleteaccountbyid
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    put:
+      summary: update account by id
+      tags:
+        - update data
+      operationId: updateaccountbyid
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/updateaccountbyidrequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  '/modules/{id}':
+    delete:
+      summary: delete module
+      tags:
+        - Delete data
+      operationId: deletemodule
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    put:
+      summary: update module by id
+      tags:
+        - update data
+      operationId: updatemodulebyid
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/updatemodulebyidrequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  '/roles/{id}':
+    delete:
+      summary: delete role
+      tags:
+        - Delete data
+      operationId: deleterole
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    put:
+      summary: update role by id
+      tags:
+        - update data
+      operationId: updaterolebyid
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/updaterolebyidrequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  '/rolePermissions/{id}':
+    delete:
+      summary: delete rolePermission
+      tags:
+        - Delete data
+      operationId: deleterolePermission
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    put:
+      summary: update rolePermission by id
+      tags:
+        - update data
+      operationId: updaterolePermissionbyid
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/updaterolePermissionbyidRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  '/forms/{id}':
+    delete:
+      summary: delete form by id
+      tags:
+        - Delete data
+      operationId: deleteformbyid
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    get:
+      summary: get form by ID
+      tags:
+        - Get data
+      operationId: getformbyID
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    put:
+      summary: approve form of user
+      tags:
+        - update data
+      operationId: approveformofuser
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/approveformofuserrequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /reports/basic/finish:
+    get:
+      summary: get  report finish basic finish
+      tags:
+        - Get data
+      operationId: getreportfinishbasicfinish
+      deprecated: false
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /reports/yearly/finish:
+    get:
+      summary: get report finish yearly form
+      tags:
+        - Get data
+      operationId: getreportfinishyearlyform
+      deprecated: false
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /reports/yearly/incomplete:
+    get:
+      summary: get report incomplete yearly form
+      tags:
+        - Get data
+      operationId: getreportincompleteyearlyform
+      deprecated: false
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /reports/basic/incomplete:
+    get:
+      summary: get report incomplete basic form
+      tags:
+        - Get data
+      operationId: getreportincompletebasicform
+      deprecated: false
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /roleids:
+    get:
+      summary: test get role by id in token
+      tags:
+        - Get data
+      operationId: testgetrolebyidintoken
+      deprecated: false
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  '/forms/{id}/closed':
+    put:
+      summary: close form by HR
+      tags:
+        - update data
+      operationId: closeformbyHR
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  '/userroles/{id}':
+    put:
+      summary: update User-Role
+      tags:
+        - update data
+      operationId: updateUser-Role
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/updateUser-RoleRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /signins:
+    post:
+      summary: Login
+      tags:
+        - Misc
+      operationId: Login
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/LoginRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+definitions:
+  createnewaccountrequest:
+    title: createnewaccountrequest
+    example:
+      userId: cab64ec3-e333-4675-985e-1c7cde4b444b
+      username: employee3
+      password: director01
+    type: object
+    properties:
+      userId:
+        type: string
+      username:
+        type: string
+      password:
+        type: string
+    required:
+      - userId
+      - username
+      - password
+  createnewRoleRequest:
+    title: createnewRoleRequest
+    example:
+      roleName: sale
+    type: object
+    properties:
+      roleName:
+        type: string
+    required:
+      - roleName
+  createnewUserRoleRequest:
+    title: createnewUserRoleRequest
+    example:
+      userId: b8552298-7075-45bb-9fc1-4f9e28c127a1
+      roleId: 258c3db8-5a98-40e4-94bc-753c2c0eb73c
+    type: object
+    properties:
+      userId:
+        type: string
+      roleId:
+        type: string
+    required:
+      - userId
+      - roleId
+  createnewmodulerequest:
+    title: createnewmodulerequest
+    example:
+      moduleName: role
+    type: object
+    properties:
+      moduleName:
+        type: string
+    required:
+      - moduleName
+  createnewrolepermissionrequest:
+    title: createnewrolepermissionrequest
+    example:
+      roleId: 1de057e3-9867-4bbe-b0ad-7c509151f226
+      moduleId: 6b33259f-fcb2-4178-ab81-589cd894f9f4
+      url: /roles
+      canRead: 1
+      canWrite: 0
+      canUpdate: 0
+      canDelete: 0
+      canApprove: 0
+    type: object
+    properties:
+      roleId:
+        type: string
+      moduleId:
+        type: string
+      url:
+        type: string
+      canRead:
+        type: integer
+        format: int32
+      canWrite:
+        type: integer
+        format: int32
+      canUpdate:
+        type: integer
+        format: int32
+      canDelete:
+        type: integer
+        format: int32
+      canApprove:
+        type: integer
+        format: int32
+    required:
+      - roleId
+      - moduleId
+      - url
+      - canRead
+      - canWrite
+      - canUpdate
+      - canDelete
+      - canApprove
+  createnewformrequest:
+    title: createnewformrequest
+    example:
+      userId:
+        - 2b105106-25ed-49d1-8bb5-d0d1001d5793
+        - 8b8ba587-5ec4-4bac-aab7-4923f7af447e
+        - cab64ec3-e333-4675-985e-1c7cde4b444b
+        - 9b878523-8f7c-4e8e-8ce0-bc9ae261a19f
+        - fbd0d11c-6ae5-46f9-bd84-87e496a142f5
+      typeOf: yearly
+      status: new
+    type: object
+    properties:
+      userId:
+        type: array
+        items:
+          type: string
+      typeOf:
+        type: string
+      status:
+        type: string
+    required:
+      - userId
+      - typeOf
+      - status
+  testsendmailrequest:
+    title: testsendmailrequest
+    example:
+      to: vanvd@vmodev.com
+      subject: test nodemail
+      body: Hello boy
+    type: object
+    properties:
+      to:
+        type: string
+      subject:
+        type: string
+      body:
+        type: string
+    required:
+      - to
+      - subject
+      - body
+  updateaccountbyidrequest:
+    title: updateaccountbyidrequest
+    example:
+      userId: cab64ec3-e333-4675-985e-1c7cde4b444b
+      username: employee3
+      password: employee01
+    type: object
+    properties:
+      userId:
+        type: string
+      username:
+        type: string
+      password:
+        type: string
+    required:
+      - userId
+      - username
+      - password
+  updatemodulebyidrequest:
+    title: updatemodulebyidrequest
+    example:
+      moduleName: role
+    type: object
+    properties:
+      moduleName:
+        type: string
+    required:
+      - moduleName
+  updaterolebyidrequest:
+    title: updaterolebyidrequest
+    example:
+      roleName: sale
+    type: object
+    properties:
+      roleName:
+        type: string
+    required:
+      - roleName
+  approveformofuserrequest:
+    title: approveformofuserrequest
+    example:
+      managerCommnet: Ok Done
+    type: object
+    properties:
+      managerCommnet:
+        type: string
+    required:
+      - managerCommnet
+  updaterolePermissionbyidRequest:
+    title: updaterolePermissionbyidRequest
+    example:
+      roleId: faafd1f0-518f-4fe4-ae36-654d67da1562
+      moduleId: aa221bae-884e-4d41-8ca5-f2d36beeab8c
+      canRead: 1
+      canWrite: 1
+      canUpdate: 0
+      canDelete: 0
+      canApprove: 0
+    type: object
+    properties:
+      roleId:
+        type: string
+      moduleId:
+        type: string
+      canRead:
+        type: integer
+        format: int32
+      canWrite:
+        type: integer
+        format: int32
+      canUpdate:
+        type: integer
+        format: int32
+      canDelete:
+        type: integer
+        format: int32
+      canApprove:
+        type: integer
+        format: int32
+    required:
+      - roleId
+      - moduleId
+      - canRead
+      - canWrite
+      - canUpdate
+      - canDelete
+      - canApprove
+  submitform(employee)request:
+    title: submitform(employee)request
+    example:
+      managerId: ac3a4c4b-1037-427d-a0ad-c3b2029c709b
+      note: 'Not '
+      task: 'Not '
+      achievement: 'Dont '
+    type: object
+    properties:
+      managerId:
+        type: string
+      note:
+        type: string
+      task:
+        type: string
+      achievement:
+        type: string
+    required:
+      - managerId
+      - note
+      - task
+      - achievement
+  updateUser-RoleRequest:
+    title: updateUser-RoleRequest
+    example:
+      userId: 8b8ba587-5ec4-4bac-aab7-4923f7af447e
+      roleId: 258c3db8-5a98-40e4-94bc-753c2c0eb73c
+    type: object
+    properties:
+      userId:
+        type: string
+      roleId:
+        type: string
+    required:
+      - userId
+      - roleId
+  LoginRequest:
+    title: LoginRequest
+    example:
+      username: hraccount
+      password: hraccount01
+    type: object
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+    required:
+      - username
+      - password
+security:
+  - token: []
+tags:
+  - name: Create new data
+  - name: Delete data
+  - name: Get data
+  - name: update data
+  - name: Misc
+    description: ''
