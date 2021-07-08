@@ -1,0 +1,1773 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "VMOGD3Project",
+    "contact": {}
+  },
+  "host": "localhost:5000",
+  "basePath": "/api/v1",
+  "securityDefinitions": {
+    "token": {
+      "type": "apiKey",
+      "description": "",
+      "name": "token",
+      "in": "header"
+    }
+  },
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/admins/login": {
+      "post": {
+        "summary": "Login",
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "Login",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/LoginRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/admins": {
+      "post": {
+        "summary": "Add admin",
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "Addadmin",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AddadminRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "get": {
+        "summary": "List admins",
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "Listadmins",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/admins/{id}": {
+      "get": {
+        "summary": "Get admin by id",
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "Getadminbyid",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "put": {
+        "summary": "Update admin",
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "Updateadmin",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateadminRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete admin",
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "Deleteadmin",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DeleteadminRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/employees": {
+      "post": {
+        "summary": "Create new employee",
+        "tags": [
+          "Employee"
+        ],
+        "operationId": "Createnewemployee",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreatenewemployeeRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "summary": "List employees",
+        "tags": [
+          "Employee"
+        ],
+        "operationId": "Listemployees",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/employees/{id}": {
+      "get": {
+        "summary": "Get employee by id",
+        "tags": [
+          "Employee"
+        ],
+        "operationId": "Getemployeebyid",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "put": {
+        "summary": "Update employee",
+        "tags": [
+          "Employee"
+        ],
+        "operationId": "Updateemployee",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateemployeeRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "patch": {
+        "summary": "Set admin for employee",
+        "tags": [
+          "Employee"
+        ],
+        "operationId": "Setadminforemployee",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SetadminforemployeeRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete employee",
+        "tags": [
+          "Employee"
+        ],
+        "operationId": "Deleteemployee",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/techs": {
+      "post": {
+        "summary": "Create new tech",
+        "tags": [
+          "Tech"
+        ],
+        "operationId": "Createnewtech",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreatenewtechRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "summary": "List techs",
+        "tags": [
+          "Tech"
+        ],
+        "operationId": "Listtechs",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/techs/{id}": {
+      "get": {
+        "summary": "Get tech by id",
+        "tags": [
+          "Tech"
+        ],
+        "operationId": "Gettechbyid",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "put": {
+        "summary": "Update tech",
+        "tags": [
+          "Tech"
+        ],
+        "operationId": "Updatetech",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdatetechRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete tech",
+        "tags": [
+          "Tech"
+        ],
+        "operationId": "Deletetech",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/customers": {
+      "post": {
+        "summary": "Create new customer",
+        "tags": [
+          "Customer"
+        ],
+        "operationId": "Createnewcustomer",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreatenewcustomerRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "summary": "List customers",
+        "tags": [
+          "Customer"
+        ],
+        "operationId": "Listcustomers",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/customers/{id}": {
+      "get": {
+        "summary": "Get customer by id",
+        "tags": [
+          "Customer"
+        ],
+        "operationId": "Getcustomerbyid",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "put": {
+        "summary": "Update customer",
+        "tags": [
+          "Customer"
+        ],
+        "operationId": "Updatecustomer",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdatecustomerRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete customer",
+        "tags": [
+          "Customer"
+        ],
+        "operationId": "Deletecustomer",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/project-types": {
+      "post": {
+        "summary": "Create new project type",
+        "tags": [
+          "ProjectType"
+        ],
+        "operationId": "Createnewprojecttype",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreatenewprojecttypeRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "summary": "List project type",
+        "tags": [
+          "ProjectType"
+        ],
+        "operationId": "Listprojecttype",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/project-types/{id}": {
+      "get": {
+        "summary": "Get project type by id",
+        "tags": [
+          "ProjectType"
+        ],
+        "operationId": "Getprojecttypebyid",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "put": {
+        "summary": "Update project type",
+        "tags": [
+          "ProjectType"
+        ],
+        "operationId": "Updateprojecttype",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateprojecttypeRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete project type",
+        "tags": [
+          "ProjectType"
+        ],
+        "operationId": "Deleteprojecttype",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/departments": {
+      "post": {
+        "summary": "Add department",
+        "tags": [
+          "Department"
+        ],
+        "operationId": "Adddepartment",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AdddepartmentRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "summary": "List departments",
+        "tags": [
+          "Department"
+        ],
+        "operationId": "Listdepartments",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/departments/{id}": {
+      "get": {
+        "summary": "Get department by id",
+        "tags": [
+          "Department"
+        ],
+        "operationId": "Getdepartmentbyid",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "put": {
+        "summary": "Update department",
+        "tags": [
+          "Department"
+        ],
+        "operationId": "Updatedepartment",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdatedepartmentRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete department",
+        "tags": [
+          "Department"
+        ],
+        "operationId": "Deletedepartment",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/projects": {
+      "post": {
+        "summary": "Add new project",
+        "tags": [
+          "Project"
+        ],
+        "operationId": "Addnewproject",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AddnewprojectRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "summary": "Get projects list",
+        "tags": [
+          "Project"
+        ],
+        "operationId": "Getprojectslist",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/projects/{id}": {
+      "get": {
+        "summary": "Get project by id",
+        "tags": [
+          "Project"
+        ],
+        "operationId": "Getprojectbyid",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "put": {
+        "summary": "Update project",
+        "tags": [
+          "Project"
+        ],
+        "operationId": "Updateproject",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateprojectRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete project",
+        "tags": [
+          "Project"
+        ],
+        "operationId": "Deleteproject",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/reports/employees": {
+      "get": {
+        "summary": "Employee report (tech, project)",
+        "tags": [
+          "Report"
+        ],
+        "operationId": "Employeereport(tech,project)",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "tech",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/reports/projects": {
+      "get": {
+        "summary": "Project report (status, type, tech, customer, date)",
+        "tags": [
+          "Report"
+        ],
+        "operationId": "Projectreport(status,type,tech,customer,date)",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "LoginRequest": {
+      "title": "LoginRequest",
+      "example": {
+        "username": "admin",
+        "password": "123456"
+      },
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "username",
+        "password"
+      ]
+    },
+    "AddadminRequest": {
+      "title": "AddadminRequest",
+      "example": {
+        "username": "admin 8",
+        "password": "123456",
+        "employeeId": "9e776146-5d61-40bb-9b67-2678446cc26b"
+      },
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "employeeId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "username",
+        "password",
+        "employeeId"
+      ]
+    },
+    "UpdateadminRequest": {
+      "title": "UpdateadminRequest",
+      "example": {
+        "username": "empladmin",
+        "password": "12345678"
+      },
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "username",
+        "password"
+      ]
+    },
+    "DeleteadminRequest": {
+      "title": "DeleteadminRequest",
+      "example": {
+        "status": 1
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "status"
+      ]
+    },
+    "CreatenewemployeeRequest": {
+      "title": "CreatenewemployeeRequest",
+      "example": {
+        "name": "Employee 10",
+        "dob": "10/20/1992",
+        "address": "19 Duy Tan",
+        "idNumber": "0611",
+        "phone": "01951023101",
+        "experienceYear": 5,
+        "foreignLanguage": "English, Chinese",
+        "certificate": "Senior Dev",
+        "teches": [
+          "d9172cad-0ba6-48d8-8a2b-824853a54035",
+          "dfb1f4a2-317e-4580-a6d7-a565ba4ed69d",
+          "9bbe5a2e-e8f8-4593-8ead-2b12b1ff72e1"
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "dob": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "idNumber": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "experienceYear": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "foreignLanguage": {
+          "type": "string"
+        },
+        "certificate": {
+          "type": "string"
+        },
+        "teches": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "name",
+        "dob",
+        "address",
+        "idNumber",
+        "phone",
+        "experienceYear",
+        "foreignLanguage",
+        "certificate",
+        "teches"
+      ]
+    },
+    "UpdateemployeeRequest": {
+      "title": "UpdateemployeeRequest",
+      "example": {
+        "name": "Employee fix",
+        "dob": "10/20/1994",
+        "address": "19 Duy Tan",
+        "idNumber": "0590",
+        "phone": "0901523596",
+        "experienceYear": 5,
+        "foreignLanguage": "English, Japanese",
+        "certificate": "Senior Dev",
+        "teches": [
+          "d9172cad-0ba6-48d8-8a2b-824853a54035",
+          "6ca35f3f-322c-467b-8349-efac19b9332c"
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "dob": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "idNumber": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "experienceYear": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "foreignLanguage": {
+          "type": "string"
+        },
+        "certificate": {
+          "type": "string"
+        },
+        "teches": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "name",
+        "dob",
+        "address",
+        "idNumber",
+        "phone",
+        "experienceYear",
+        "foreignLanguage",
+        "certificate",
+        "teches"
+      ]
+    },
+    "SetadminforemployeeRequest": {
+      "title": "SetadminforemployeeRequest",
+      "example": {
+        "isAdmin": 0
+      },
+      "type": "object",
+      "properties": {
+        "isAdmin": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "isAdmin"
+      ]
+    },
+    "CreatenewtechRequest": {
+      "title": "CreatenewtechRequest",
+      "example": {
+        "name": "MySQL"
+      },
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "UpdatetechRequest": {
+      "title": "UpdatetechRequest",
+      "example": {
+        "name": "NodeJS"
+      },
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "CreatenewcustomerRequest": {
+      "title": "CreatenewcustomerRequest",
+      "example": {
+        "name": "Julia",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Magna ac placerat vestibulum lectus mauris ultrices eros in cursus."
+      },
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "description"
+      ]
+    },
+    "UpdatecustomerRequest": {
+      "title": "UpdatecustomerRequest",
+      "example": {
+        "name": "Emma Stoner",
+        "description": "Extra Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+      },
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "description"
+      ]
+    },
+    "CreatenewprojecttypeRequest": {
+      "title": "CreatenewprojecttypeRequest",
+      "example": {
+        "name": "research"
+      },
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "UpdateprojecttypeRequest": {
+      "title": "UpdateprojecttypeRequest",
+      "example": {
+        "name": "other"
+      },
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "AdddepartmentRequest": {
+      "title": "AdddepartmentRequest",
+      "example": {
+        "name": "R&D",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lectus mauris ultrices eros in cursus turpis massa.",
+        "foundingDate": "10/23/2010",
+        "adminId": "d00025df-d600-4bef-a2e5-8b1a2eb45404",
+        "employees": [
+          "f48a8d4c-2b4a-4a1b-913f-c4f9bc8acd83",
+          "bb4eb41b-24a9-4e78-b693-7d741261b61b",
+          "b5a0e04d-6bcc-4100-b3cc-17a5811882ef"
+        ],
+        "projects": []
+      },
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "foundingDate": {
+          "type": "string"
+        },
+        "adminId": {
+          "type": "string"
+        },
+        "employees": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "projects": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "name",
+        "description",
+        "foundingDate",
+        "adminId",
+        "employees",
+        "projects"
+      ]
+    },
+    "UpdatedepartmentRequest": {
+      "title": "UpdatedepartmentRequest",
+      "example": {
+        "name": "Research and Development",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lectus mauris ultrices eros in cursus turpis massa.",
+        "foundingDate": "10/23/2010",
+        "adminId": "d00025df-d600-4bef-a2e5-8b1a2eb45404",
+        "employees": [
+          "f48a8d4c-2b4a-4a1b-913f-c4f9bc8acd83",
+          "bb4eb41b-24a9-4e78-b693-7d741261b61b",
+          "b5a0e04d-6bcc-4100-b3cc-17a5811882ef",
+          "8efb0d42-5d65-43ae-83cc-89d6e3bc6d31"
+        ],
+        "projects": [
+          "300dc5e4-a260-41dd-ae79-935f330442bf"
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "foundingDate": {
+          "type": "string"
+        },
+        "adminId": {
+          "type": "string"
+        },
+        "employees": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "projects": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "name",
+        "description",
+        "foundingDate",
+        "adminId",
+        "employees",
+        "projects"
+      ]
+    },
+    "AddnewprojectRequest": {
+      "title": "AddnewprojectRequest",
+      "example": {
+        "name": "Fresher project",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Orci a scelerisque purus semper.",
+        "type": "dee61708-4182-408e-bf0e-4b3bdc527eba",
+        "status": "InProgress",
+        "customer": "6efee27a-13b6-4afe-9d1f-2c7841340546",
+        "startDate": "05/31/2021",
+        "teches": [
+          "6daed0c8-b11f-4c28-950d-2b20e091ada7"
+        ],
+        "employees": [
+          "176dd3f1-97ba-49a9-a497-e67f5005eebc",
+          "f48a8d4c-2b4a-4a1b-913f-c4f9bc8acd83"
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "customer": {
+          "type": "string"
+        },
+        "startDate": {
+          "type": "string"
+        },
+        "teches": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "employees": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "name",
+        "description",
+        "type",
+        "status",
+        "customer",
+        "startDate",
+        "teches",
+        "employees"
+      ]
+    },
+    "UpdateprojectRequest": {
+      "title": "UpdateprojectRequest",
+      "example": {
+        "name": "Big project",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Orci a scelerisque purus semper.",
+        "type": "dee61708-4182-408e-bf0e-4b3bdc527eba",
+        "status": "Maintain",
+        "customer": "5b119ad0-4ae2-4c7f-b815-cb8395838939",
+        "startDate": "05/21/2021",
+        "teches": [
+          "9bbe5a2e-e8f8-4593-8ead-2b12b1ff72e1",
+          "215a177f-4307-4cf3-a036-d0d0a0a41eff",
+          "44685a01-1549-4a59-832d-7964ec86f648",
+          "3ed0ab8d-204d-4803-8586-d521822d9268"
+        ],
+        "employees": [
+          "b5a0e04d-6bcc-4100-b3cc-17a5811882ef",
+          "4841b4dc-9825-4a34-8e62-b40159beef20",
+          "559a479d-99c2-4441-95d4-6ab00b44c7a4",
+          "8efb0d42-5d65-43ae-83cc-89d6e3bc6d31"
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "customer": {
+          "type": "string"
+        },
+        "startDate": {
+          "type": "string"
+        },
+        "teches": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "employees": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "name",
+        "description",
+        "type",
+        "status",
+        "customer",
+        "startDate",
+        "teches",
+        "employees"
+      ]
+    }
+  },
+  "security": [
+    {
+      "token": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Admin"
+    },
+    {
+      "name": "Employee"
+    },
+    {
+      "name": "Tech"
+    },
+    {
+      "name": "Customer"
+    },
+    {
+      "name": "ProjectType"
+    },
+    {
+      "name": "Department"
+    },
+    {
+      "name": "Project"
+    },
+    {
+      "name": "Report"
+    }
+  ]
+}

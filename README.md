@@ -1,6 +1,8 @@
 # group-12-project
 
-### Install
+### Setup
+Change `.env.example` file to `.env`
+
 Dependency install
 ```
 npm install
@@ -15,3 +17,4 @@ Contain 2 .sql files, one with project sql commands for database structure only 
 
 ### Docs folder
 Contain postman export file, import this file to postman to test and run all apis
+Contain swagger json file and swagger yaml file, import either of these files to swagger editor to run and test apis
