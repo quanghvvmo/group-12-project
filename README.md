@@ -159,11 +159,11 @@ HR Management System Project
 |    │_  sequelize.txt
 |
 └───middlewares
-     |_  permission.middlewares.js
-     |_  verify-token.js
+|    |_  permission.middlewares.js
+|    |_  verify-token.js
 |
 └───migrations
-     |_ migration files of models
+|    |_ migration files of models
 |
 └───models
 |    |_  account.js

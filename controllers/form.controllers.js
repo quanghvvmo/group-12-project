@@ -38,7 +38,7 @@ const createNewForm = async (req, res) => {
           // Content of email
           const subject = "[Announcement] - Yearly Review Form";
           const text = `A new yearly review form is created`;
-          // Initialize a event
+          // Initialize an event
           emailEvent.on("addNewForm", async () => {
             await sendMail(userId.email, subject, text);
           });

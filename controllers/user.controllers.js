@@ -1,5 +1,15 @@
-const { sequelize, user, account, form, user_role } = require("../models");
+const {
+  sequelize,
+  user,
+  account,
+  form,
+  user_role,
+  role,
+} = require("../models");
 const bcrypt = require("bcrypt");
+const { sendMail } = require("./mail.controllers");
+const EventEmitter = require("events");
+const emailEvent = new EventEmitter();
 
 // User APIs
 const createNewUser = async (req, res) => {
@@ -17,8 +27,6 @@ const createNewUser = async (req, res) => {
     position,
     password,
     role_id,
-    createBy,
-    updateBy,
   } = req.body;
 
   const avatar = req.file.path;
@@ -31,59 +39,92 @@ const createNewUser = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    // Create new user
-    const newUser = await user.create(
+    // Get user id from token
+    const adminId = req.user.id;
+
+    // Get role name
+    const checkRole = await user_role.findAll(
       {
-        employee_code,
-        firstname,
-        lastname,
-        email,
-        phone,
-        avatar,
-        identification_card,
-        social_insurance,
-        address,
-        department,
-        parent,
-        position,
-        createBy,
-        updateBy,
+        where: { user_id: adminId },
+        include: { model: role },
       },
       { transaction }
     );
 
-    // Create new account
-    const newAccount = await account.create(
-      {
-        user_id: newUser.id,
-        email,
-        password: hashedPassword,
-        createBy,
-        updateBy,
-      },
-      { transaction }
-    );
+    // Check if admin then can create new user
+    for (let checkAdmin in checkRole) {
+      if (checkRole[checkAdmin].role.role_name === "admin") {
+        // Create new user
+        const newUser = await user.create(
+          {
+            employee_code,
+            firstname,
+            lastname,
+            email,
+            phone,
+            avatar,
+            identification_card,
+            social_insurance,
+            address,
+            department,
+            parent,
+            position,
+            createBy: adminId,
+            updateBy: adminId,
+          },
+          { transaction }
+        );
 
-    // Create role
-    const addRole = await user_role.create(
-      {
-        user_id: newUser.id,
-        role_id,
-        createBy,
-        updateBy,
-      },
-      { transaction }
-    );
+        // Create new account
+        const newAccount = await account.create(
+          {
+            user_id: newUser.id,
+            email,
+            password: hashedPassword,
+            createBy: adminId,
+            updateBy: adminId,
+          },
+          { transaction }
+        );
 
-    // Commit transaction
-    await transaction.commit();
+        // Create role
+        const addRole = await user_role.create(
+          {
+            user_id: newUser.id,
+            role_id,
+            createBy: adminId,
+            updateBy: adminId,
+          },
+          { transaction }
+        );
 
-    return res.status(200).json({
-      message: "Created New User Successfully",
-      newUser,
-      newAccount,
-      addRole,
-    });
+        // Define subject and text for email
+        const subject = "[Register] - HRM Register Notification";
+        const text = `Your account is created`;
+
+        // Initialize an event
+        emailEvent.on("createNewUser", async () => {
+          await sendMail(email, subject, text);
+        });
+
+        // Emit event
+        emailEvent.emit("createNewUser");
+
+        // Commit transaction
+        await transaction.commit();
+
+        return res.status(200).json({
+          message: "Created New User Successfully",
+          newUser,
+          newAccount,
+          addRole,
+        });
+      } else {
+        return res
+          .status(404)
+          .json({ message: "You have no permission to create new user" });
+      }
+    }
   } catch (error) {
     console.log(error);
     await transaction.rollback();
@@ -109,28 +150,52 @@ const getUserById = async (req, res) => {
   const { id } = req.params;
 
   try {
-    // Get user id
-    const userId = await user.findOne({
-      where: { id },
-      // Get account info of user and hide account id and password
-      include: [
-        { model: account, attributes: { exclude: ["id", "password"] } },
-        { model: form, attributes: ["id"] },
-        {
-          model: user_role,
-          attributes: {
-            exclude: ["id", "createdAt", "updatedAt", "createBy", "updateBy"],
-          },
-        },
-      ],
+    // Get user id from token
+    const userId = req.user.id;
+
+    // Get role name
+    const checkRole = await user_role.findAll({
+      where: { user_id: userId },
+      include: { model: role },
     });
 
-    // Check if invalid user id
-    if (!userId) {
-      return res.status(404).json({ message: "Invalid User ID" });
-    }
+    // Check if admin then can create new user
+    for (let checkAdmin in checkRole) {
+      if (checkRole[checkAdmin].role.role_name === "admin" || userId === id) {
+        // Get user id
+        const userId = await user.findOne({
+          where: { id },
+          // Get account info of user and hide account id and password
+          include: [
+            { model: account, attributes: { exclude: ["id", "password"] } },
+            { model: form, attributes: ["id"] },
+            {
+              model: user_role,
+              attributes: {
+                exclude: [
+                  "id",
+                  "createdAt",
+                  "updatedAt",
+                  "createBy",
+                  "updateBy",
+                ],
+              },
+            },
+          ],
+        });
 
-    return res.status(200).json({ message: "User Found", userId });
+        // Check if invalid user id
+        if (!userId) {
+          return res.status(404).json({ message: "Invalid User ID" });
+        }
+
+        return res.status(200).json({ message: "User Found", userId });
+      } else {
+        return res
+          .status(404)
+          .json({ message: "You have no permission to read this user data" });
+      }
+    }
   } catch (error) {
     console.log(error);
     return res.status(404).json({ message: "User Not Found" });
@@ -162,7 +227,14 @@ const updateUser = async (req, res) => {
     // Initialize transaction
     const transaction = await sequelize.transaction();
 
-    const userId = await user.findOne({ where: { id }, transaction });
+    // const userId = await user.findOne({ where: { id }, transaction });
+
+    // Encode password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    // Get user id from token
+    const userId = req.user.id;
 
     // Check if user does not exsist
     if (!userId) {
@@ -170,57 +242,69 @@ const updateUser = async (req, res) => {
         message: "Invalid user ID",
       });
     }
-    // Encode password
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
 
-    // Update user info
-    await userId.update(
-      {
-        employee_code,
-        firstname,
-        lastname,
-        email,
-        phone,
-        avatar,
-        identification_card,
-        social_insurance,
-        address,
-        department,
-        parent,
-        position,
-      },
-      { where: { id }, transaction }
-    );
-
-    // Update account info
-    const accountUpdated = await account.update(
-      {
-        user_id: userId.id,
-        email,
-        password: hashedPassword,
-      },
-      { where: { user_id: id }, transaction }
-    );
-
-    // Update role id to  role
-    const updateRoleId = await user_role.update(
-      {
-        user_id: id,
-        role_id,
-      },
-      { where: { user_id: id }, transaction }
-    );
-
-    // Commit transaction
-    await transaction.commit();
-
-    return res.status(200).json({
-      message: "Update User and Account Successfully",
-      userId,
-      accountUpdated,
-      updateRoleId,
+    // Get role name
+    const checkRole = await user_role.findAll({
+      where: { user_id: userId },
+      include: { model: role },
     });
+
+    // Check if admin then can create new user
+    for (let checkAdmin in checkRole) {
+      if (checkRole[checkAdmin].role.role_name === "admin" || userId === id) {
+        // Update user info
+        await userId.update(
+          {
+            employee_code,
+            firstname,
+            lastname,
+            email,
+            phone,
+            avatar,
+            identification_card,
+            social_insurance,
+            address,
+            department,
+            parent,
+            position,
+          },
+          { where: { id }, transaction }
+        );
+
+        // Update account info
+        const accountUpdated = await account.update(
+          {
+            user_id: userId.id,
+            email,
+            password: hashedPassword,
+          },
+          { where: { user_id: id }, transaction }
+        );
+
+        // Update role id to  role
+        const updateRoleId = await user_role.update(
+          {
+            user_id: id,
+            role_id,
+          },
+          { where: { user_id: id }, transaction }
+        );
+
+        // Commit transaction
+        await transaction.commit();
+
+        return res.status(200).json({
+          message: "Update User and Account Successfully",
+          userId,
+          accountUpdated,
+          updateRoleId,
+        });
+      } else {
+        return res
+          .status(404)
+          .json({ message: "You have no permission to update this user data" });
+      }
+    }
   } catch (error) {
     console.log(error);
     await transaction.rollback();
@@ -236,32 +320,50 @@ const deleteUser = async (req, res) => {
     const transaction = await sequelize.transaction();
 
     // Get user id
-    const userId = await user.findByPk(id);
+    const userCheck = await user.findByPk(id);
 
-    if (!userId) {
+    // Get user id from token
+    const userId = req.user.id;
+
+    if (!userId === userCheck) {
       return res.status(404).json({ message: "Invalid User ID" });
     }
 
-    // Delete user
-    await userId.destroy({
-      where: { id },
+    // Get role name
+    const checkRole = await user_role.findAll({
+      where: { user_id: userId },
+      include: { model: role },
       transaction,
     });
 
-    // Delete account
-    const accountId = await account.destroy({
-      where: { user_id: id },
-      transaction,
-    });
+    // Check if admin then can create new user
+    for (let checkAdmin in checkRole) {
+      if (checkRole[checkAdmin].role.role_name === "admin" || userId === id) {
+        // Delete user
+        await userCheck.destroy({
+          where: { id },
+          transaction,
+        });
 
-    // Commit transaction
-    await transaction.commit();
+        // Delete account
+        const accountId = await account.destroy({
+          where: { user_id: id },
+          transaction,
+        });
 
-    return res.status(200).json({
-      message: "Delete User and Account Successfully",
-      accountId,
-      userId,
-    });
+        // Commit transaction
+        await transaction.commit();
+
+        return res.status(200).json({
+          message: "Delete User and Account Successfully",
+          accountId,
+        });
+      } else {
+        return res
+          .status(404)
+          .json({ message: "You have no permission to delete this user data" });
+      }
+    }
   } catch (error) {
     console.log(error);
     await transaction.rollback();
