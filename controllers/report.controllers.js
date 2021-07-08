@@ -58,7 +58,7 @@ const getAllManagerReport = async (req, res) => {
 
       return res
         .status(200)
-        .json({ message: "Manager's Report Found", reports });
+        .json({ message: "Manager's Report Found", count, reports });
     } else {
       return res
         .status(404)
@@ -100,11 +100,7 @@ const getAllReportByStatus = async (req, res) => {
           where: { status },
         });
 
-        let count = 0;
-        for (let rp in allSubmittedReport) {
-          allSubmittedReport[rp].status;
-          count++;
-        }
+        let count = allSubmittedReport.length;
 
         return res
           .status(200)

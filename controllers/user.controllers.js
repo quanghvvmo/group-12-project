@@ -134,12 +134,33 @@ const createNewUser = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
   try {
-    // Get all users
-    const allUsers = await user.findAll({
-      include: { model: user_role, attributes: { exclude: ["id"] } },
+    // Get user id from token
+    const userIdToken = req.user.id;
+
+    // Get role name
+    const checkRole = await user_role.findAll({
+      where: { user_id: userIdToken },
+      include: { model: role },
     });
 
-    return res.status(200).json(allUsers);
+    // Check if admin then can get all users
+    for (let checkAdmin in checkRole) {
+      if (checkRole[checkAdmin].role.role_name === "admin") {
+        // Get all users
+        const allUsers = await user.findAll({
+          include: { model: user_role, attributes: { exclude: ["id"] } },
+        });
+
+        // Count number of users
+        let count = allUsers.length;
+
+        return res.status(200).json({ count, allUsers });
+      } else {
+        return res.status(404).json({
+          message: "You have no permission to get all users information",
+        });
+      }
+    }
   } catch (error) {
     console.log(error);
     return res.status(404).json({ message: "Users Not Found" });
@@ -159,7 +180,7 @@ const getUserById = async (req, res) => {
       include: { model: role },
     });
 
-    // Check if admin then can create new user
+    // Check if admin then can get user info detail
     for (let checkAdmin in checkRole) {
       if (checkRole[checkAdmin].role.role_name === "admin" || userId === id) {
         // Get user id
@@ -193,7 +214,7 @@ const getUserById = async (req, res) => {
       } else {
         return res
           .status(404)
-          .json({ message: "You have no permission to read this user data" });
+          .json({ message: "You have no permission to read user information" });
       }
     }
   } catch (error) {
@@ -249,7 +270,7 @@ const updateUser = async (req, res) => {
       include: { model: role },
     });
 
-    // Check if admin then can create new user
+    // Check if admin then can update user info
     for (let checkAdmin in checkRole) {
       if (checkRole[checkAdmin].role.role_name === "admin" || userId === id) {
         // Update user info
@@ -300,9 +321,9 @@ const updateUser = async (req, res) => {
           updateRoleId,
         });
       } else {
-        return res
-          .status(404)
-          .json({ message: "You have no permission to update this user data" });
+        return res.status(404).json({
+          message: "You have no permission to update this user information",
+        });
       }
     }
   } catch (error) {
@@ -336,7 +357,7 @@ const deleteUser = async (req, res) => {
       transaction,
     });
 
-    // Check if admin then can create new user
+    // Check if admin then can delete user
     for (let checkAdmin in checkRole) {
       if (checkRole[checkAdmin].role.role_name === "admin" || userId === id) {
         // Delete user
@@ -359,9 +380,9 @@ const deleteUser = async (req, res) => {
           accountId,
         });
       } else {
-        return res
-          .status(404)
-          .json({ message: "You have no permission to delete this user data" });
+        return res.status(404).json({
+          message: "You have no permission to delete this user information",
+        });
       }
     }
   } catch (error) {
@@ -374,14 +395,35 @@ const deleteUser = async (req, res) => {
 // User Account APIs
 const getAllAccounts = async (req, res) => {
   try {
-    // Find all user accounts
-    const accounts = await account.findAll({ include: { model: user } });
+    // Get user id from token
+    const userIdToken = req.user.id;
 
-    if (!accounts) {
-      return res.status(404).json({ message: "User Accounts Not Found" });
+    // Get role name
+    const checkRole = await user_role.findAll({
+      where: { user_id: userIdToken },
+      include: { model: role },
+    });
+
+    // Check if admin then can get all accounts
+    for (let checkAdmin in checkRole) {
+      if (checkRole[checkAdmin].role.role_name === "admin") {
+        // Find all user accounts
+        const accounts = await account.findAll({ include: { model: user } });
+
+        if (!accounts) {
+          return res.status(404).json({ message: "User Accounts Not Found" });
+        }
+
+        return res
+          .status(200)
+          .json({ message: "User Accounts Found", accounts });
+      } else {
+        return res.status(404).json({
+          message:
+            "You have no permission to get all user accounts information",
+        });
+      }
     }
-
-    return res.status(200).json({ message: "User Accounts Found", accounts });
   } catch (error) {
     console.log(error);
   }
@@ -391,16 +433,37 @@ const getUserAccountById = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const accountId = await account.findOne({
-      where: { id },
-      include: { model: user },
+    // Get user id from token
+    const userId = req.user.id;
+
+    // Get role name
+    const checkRole = await user_role.findAll({
+      where: { user_id: userId },
+      include: { model: role },
     });
 
-    if (!accountId) {
-      return res.status(404).json({ message: "Invalid Account Id" });
-    }
+    // Check if admin then can get user account info detail
+    for (let checkAdmin in checkRole) {
+      if (checkRole[checkAdmin].role.role_name === "admin" || userId === id) {
+        const accountId = await account.findOne({
+          where: { id },
+          include: { model: user },
+        });
 
-    return res.status(200).json({ message: "User Account Found", accountId });
+        if (!accountId) {
+          return res.status(404).json({ message: "Invalid Account Id" });
+        }
+
+        return res
+          .status(200)
+          .json({ message: "User Account Found", accountId });
+      } else {
+        return res.status(404).json({
+          message: "You have no permission to get user account information",
+          accountId,
+        });
+      }
+    }
   } catch (error) {
     console.log(error);
     return res.status(404).json({ message: "User Account Not Found" });
@@ -415,58 +478,75 @@ const updateUserAccount = async (req, res) => {
     // Initialize transaction
     const transaction = await sequelize.transaction();
 
-    // Check user id
+    // Get user id from database
     const userId = await user.findOne({ where: { id: user_id } });
 
-    if (!userId) {
+    // Get user id from token
+    const userIdToken = req.user.id;
+
+    // Check if invalid user id
+    if (!userId === userIdToken) {
       return res.status(404).json({ message: "User ID does not exist" });
     }
 
-    // Get account id
-    const accountId = await account.findOne({
-      where: { id },
-      transaction,
+    // Get role name
+    const checkRole = await user_role.findAll({
+      where: { user_id: userIdToken },
+      include: { model: role },
     });
 
-    // Check if account id is invalid
-    if (!accountId) {
-      return res.status(404).json({ message: "Invalid Account ID" });
+    // Check if admin then can update user account info
+    for (let checkAdmin in checkRole) {
+      if (
+        checkRole[checkAdmin].role.role_name === "admin" ||
+        userIdToken === id
+      ) {
+        // Get account id
+        const accountId = await account.findOne({
+          where: { id },
+          transaction,
+        });
+
+        // Check if account id is invalid
+        if (!accountId) {
+          return res.status(404).json({ message: "Invalid Account ID" });
+        }
+
+        // Encode password
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+
+        // Update account info
+        const accountInfo = await account.update(
+          {
+            user_id,
+            email,
+            password: hashedPassword,
+          },
+          { where: { id }, transaction }
+        );
+
+        // Update email to user table
+        await userId.update(
+          {
+            email,
+          },
+          { where: { id: user_id }, transaction }
+        );
+
+        await transaction.commit();
+        return res.status(200).json({
+          message: "Update User Account Successfuly",
+          accountInfo,
+          userId,
+        });
+      } else {
+        return res.status(404).json({
+          message: "You have no permission to update user account information",
+          accountId,
+        });
+      }
     }
-
-    // Encode password
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
-
-    // Update account info
-    const accountInfo = await account.update(
-      {
-        user_id,
-        email,
-        password: hashedPassword,
-      },
-      { where: { id }, transaction }
-    );
-
-    // Update email to user
-    // const userInfo = await user.update(
-    //   {
-    //     email,
-    //   },
-    //   { where: { id: user_id }, transaction }
-    // );
-    await userId.update(
-      {
-        email,
-      },
-      { where: { id: user_id }, transaction }
-    );
-
-    await transaction.commit();
-    return res.status(200).json({
-      message: "Update User Account Successfuly",
-      accountInfo,
-      userId,
-    });
   } catch (error) {
     console.log(error);
     return res.status(204).json({ message: "Update User Account Failed" });
@@ -477,21 +557,48 @@ const deleteUserAccount = async (req, res) => {
   const { id } = req.params;
 
   try {
-    // Get user account id
-    const accountId = await account.findByPk(id);
-
-    if (!accountId) {
-      return res.status(404).json({ message: "Invalid Account ID" });
-    }
-
-    // Delete user account
-    await accountId.destroy({
+    // Get user account id from database
+    const accounts = await account.findOne({
       where: { id },
+      include: { model: user },
     });
 
-    return res
-      .status(200)
-      .json({ message: "Deleted User Account Successfully", accountId });
+    // Get user id from token
+    const userIdToken = req.user.id;
+
+    // Get role name
+    const checkRole = await user_role.findAll({
+      where: { user_id: userIdToken },
+      include: { model: role },
+    });
+
+    // Check if admin then can update user account info
+    for (let checkAdmin in checkRole) {
+      if (
+        checkRole[checkAdmin].role.role_name === "admin" ||
+        userIdToken === accounts.user.id
+      ) {
+        // Get user account id
+        const accountId = await account.findByPk(id);
+
+        if (!accountId) {
+          return res.status(404).json({ message: "Invalid Account ID" });
+        }
+
+        // Delete user account
+        await accountId.destroy({
+          where: { id },
+        });
+
+        return res
+          .status(200)
+          .json({ message: "Deleted User Account Successfully", accountId });
+      } else {
+        return res.status(404).json({
+          message: "You have no permission to delete this user account",
+        });
+      }
+    }
   } catch (error) {
     console.log(error);
     return res.status(400).json({ message: "Delete User Account Failed" });
