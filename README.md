@@ -2,7 +2,8 @@
 HR Management System is a NodeJS project for HR department manage informantion and form of employees
 ### Requirement
 ```
-NodeJs 14.x
+NodeJS 14.x
+npm 6.x
 MySQL Server
 ```
 
@@ -42,7 +43,7 @@ Run command `npm start` to run server
 ### Swagger
 import .yaml file in folder docs to  [Swagger](https://editor.swagger.io/)
 
-### folder Docs
+### folder docs
 Contain export file of Postman: folders of API
 
 ### folder sql 
