@@ -1,4 +1,4 @@
-const { role_permission_form, role, user } = require("../models");
+const { role_permission_form, role, user, user_role } = require("../models");
 
 const createNewRolePermissionForm = async (req, res) => {
   const {
@@ -22,24 +22,43 @@ const createNewRolePermissionForm = async (req, res) => {
     if (!roleId) {
       return res.status(404).json({ message: "Invalid Role ID" });
     }
-    // Create new role permission form
-    const rolePermission = await role_permission_form.create({
-      role_id,
-      module_id,
-      canCreate,
-      canRead,
-      canUpdate,
-      canDelete,
-      canApprove,
-      url,
-      createBy,
-      updateBy,
+
+    // Get user id from token
+    const adminId = req.user.id;
+
+    // Get role name
+    const checkRole = await user_role.findAll({
+      where: { user_id: adminId },
+      include: { model: role },
     });
 
-    return res.status(200).json({
-      message: "Created New Permission Form Successfully",
-      rolePermission,
-    });
+    // Check if admin then can create new role permission form
+    for (let checkAdmin in checkRole) {
+      if (checkRole[checkAdmin].role.role_name === "admin") {
+        // Create new role permission form
+        const rolePermission = await role_permission_form.create({
+          role_id,
+          module_id,
+          canCreate,
+          canRead,
+          canUpdate,
+          canDelete,
+          canApprove,
+          url,
+          createBy,
+          updateBy,
+        });
+
+        return res.status(200).json({
+          message: "Created New Permission Form Successfully",
+          rolePermission,
+        });
+      } else {
+        return res.status(404).json({
+          message: "You have no permission to create new role permission form",
+        });
+      }
+    }
   } catch (error) {
     console.log(error);
     return res
@@ -50,12 +69,33 @@ const createNewRolePermissionForm = async (req, res) => {
 
 const getAllRolePermissionForms = async (req, res) => {
   try {
-    // Get all role permission form and their detail roles
-    const rolePermission = await role_permission_form.findAll({
+    // Get user id from token
+    const adminId = req.user.id;
+
+    // Get role name
+    const checkRole = await user_role.findAll({
+      where: { user_id: adminId },
       include: { model: role },
     });
 
-    return res.status(200).json(rolePermission);
+    // Check if admin then can create new role permission form
+    for (let checkAdmin in checkRole) {
+      if (checkRole[checkAdmin].role.role_name === "admin") {
+        // Get all role permission form and their detail roles
+        const rolePermissions = await role_permission_form.findAll({
+          include: { model: role },
+        });
+
+        // Count number of role permission form
+        const count = rolePermissions.length;
+
+        return res.status(200).json({ count, rolePermissions });
+      } else {
+        return res.status(404).json({
+          message: "You have no permission to get all role permission forms",
+        });
+      }
+    }
   } catch (error) {
     console.log(error);
     return res.status(404).json({ message: "Role Permission Form Not Found" });
@@ -76,18 +116,36 @@ const updateRolePermissionForm = async (req, res) => {
       return res.status(404).json({ message: "Invalid User Id" });
     }
 
-    // Update role permission form
-    const rolePermissionForm = await role_permission_form.update(
-      {
-        ...req.body,
-      },
-      { where: { id } }
-    );
+    // Get user id from token
+    const adminId = req.user.id;
 
-    return res.status(200).json({
-      message: "Update Role Permission Form Successfully",
-      rolePermissionForm,
+    // Get role name
+    const checkRole = await user_role.findAll({
+      where: { user_id: adminId },
+      include: { model: role },
     });
+
+    // Check if admin then can create new role permission form
+    for (let checkAdmin in checkRole) {
+      if (checkRole[checkAdmin].role.role_name === "admin") {
+        // Update role permission form
+        const rolePermissionForm = await role_permission_form.update(
+          {
+            ...req.body,
+          },
+          { where: { id } }
+        );
+
+        return res.status(200).json({
+          message: "Update Role Permission Form Successfully",
+          rolePermissionForm,
+        });
+      } else {
+        return res.status(404).json({
+          message: "You have no permission to update role permission form",
+        });
+      }
+    }
   } catch (error) {
     console.log(error);
     return res
@@ -110,15 +168,33 @@ const deleteRolePermissionForm = async (req, res) => {
       return res.status(404).json({ message: "Invalid Role Permission ID" });
     }
 
-    // Delete role permission
-    await rolePermissionId.destroy({
-      where: { id },
+    // Get user id from token
+    const adminId = req.user.id;
+
+    // Get role name
+    const checkRole = await user_role.findAll({
+      where: { user_id: adminId },
+      include: { model: role },
     });
 
-    return res.status(200).json({
-      message: "Deleted Role Permission Successfully",
-      rolePermissionId,
-    });
+    // Check if admin then can create new role permission form
+    for (let checkAdmin in checkRole) {
+      if (checkRole[checkAdmin].role.role_name === "admin") {
+        // Delete role permission
+        await rolePermissionId.destroy({
+          where: { id },
+        });
+
+        return res.status(200).json({
+          message: "Deleted Role Permission Successfully",
+          rolePermissionId,
+        });
+      } else {
+        return res.status(404).json({
+          message: "You have no permission to delete role permission form",
+        });
+      }
+    }
   } catch (error) {
     console.log(error);
     return res.status(404).json({ message: "Delete Failed" });
