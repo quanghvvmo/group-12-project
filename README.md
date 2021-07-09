@@ -117,7 +117,7 @@ npm install
 sequelize db:create
 ```
 
-- Step 4: Run those commands in [sequelize.txt](https://github.com/quanghvvmo/group-12-project/tree/ducbla/docs/sequelize.txt) to create tables
+- Step 4: Open MySQL Workbench. Login to local instance, from side bar click to Administration. You can see `Data Import/Restore` function. Click on that function. After that load folder contents from [sql](https://github.com/quanghvvmo/group-12-project/blob/ducbla/sql/hrm-script.sql) file. Next, select `Default Target Schema` (name of database) and start import. All the datas and database structure will be imported
 
 - Step 5: Create a new `.env` file in the root folder
 

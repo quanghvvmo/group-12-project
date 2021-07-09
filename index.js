@@ -25,7 +25,7 @@ app.use("/api/v1", formRoutes);
 app.use("/api/v1", moduleRoutes);
 
 // Listener
-const port = process.env.PORT || 5001;
+const port = process.env.PORT || 5002;
 app.listen(port, async () => {
   console.log(`Server is running on port ${port}`);
   await sequelize.authenticate();
