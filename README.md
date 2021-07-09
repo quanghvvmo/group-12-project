@@ -8,19 +8,19 @@ MySQL
 ```
 
 ### Setup
-*Change `.env.example` file to `.env`
+-Change `.env.example` file to `.env`
 
-*Dependency install
+-Dependency install
 ```
 npm install
 ```
 
-*Run or import one of these sql file
-    *For database structure only
+-Run or import one of these sql file
+    -For database structure only
         ```
         VMOGD3(Structure only).sql
         ```
-    *For database structure and data
+    -For database structure and data
         ```
         VMOGD3(Structure+Data).sql
         ```
@@ -31,6 +31,7 @@ To run as a dev for bug fixing and testing use `npm run dev`
 
 ### Run api
 Import `VMOGD3swagger.yaml` or `VMOGD3swagger.json` to [Swagger](https://editor.swagger.io/)
+
 ***Make sure to run project with `npm start` or `npm run dev` first*** 
 
 ### SQL folder
