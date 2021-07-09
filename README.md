@@ -8,22 +8,21 @@ MySQL
 ```
 
 ### Setup
--Change `.env.example` file to `.env`
+- Change `.env.example` file to `.env`
 
--Dependency install
+- Dependency install
 ```
 npm install
 ```
 
--Run or import one of these sql file
-    -For database structure only
-        ```
-        VMOGD3(Structure only).sql
-        ```
-    -For database structure and data
-        ```
-        VMOGD3(Structure+Data).sql
-        ```
+- Run or import one of these sql file
+```
+//For database structure only
+VMOGD3(Structure only).sql
+
+//For database structure and data
+VMOGD3(Structure+Data).sql
+```
 
 ### Run project
 To run as a local user use `npm start`
