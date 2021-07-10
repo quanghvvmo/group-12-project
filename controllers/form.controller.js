@@ -51,7 +51,7 @@ const addNewForm = async(req, res) => {
     }
     res.sendStatus(200);
   } catch (error) {
-    console.log(err);
+    console.log(error);
     res.status(500).send("Internal server error");
   }
 }
@@ -112,7 +112,7 @@ const submitForm = async(req, res) => {
     }
     res.sendStatus(200);
   } catch (error) {
-    console.log(err);
+    console.log(error);
     res.status(500).send("Internal server error");
   }
 }
@@ -180,7 +180,7 @@ const getFormOfUser = async(req, res) => {
     }
     res.status(200).send(result);
   } catch (error) {
-    console.log(err);
+    console.log(error);
     res.status(500).send("Internal server error");
   }
 }
@@ -226,7 +226,7 @@ const getFormById = async(req, res) => {
     }
     res.status(200).send(formTemp);
   } catch (error) {
-    console.log(err);
+    console.log(error);
     res.status(500).send("Internal server error");
   }
 }
@@ -272,7 +272,7 @@ const approveForm = async(req, res) => {
     }
     res.sendStatus(200);
   } catch (error) {
-    console.log(err);
+    console.log(error);
     res.status(500).send("Internal server error");
   }
 }
@@ -295,7 +295,7 @@ const closeForm = async(req, res) => {
     }
     res.sendStatus(200);
   } catch (error) {
-    console.log(err);
+    console.log(error);
     res.status(500).send("Internal server error");
   }
 }
@@ -317,7 +317,7 @@ const deleteForm = async(req, res) => {
     }
     res.status(200).send("Deleted!")
   } catch (error) {
-    console.log(err);
+    console.log(error);
     res.status(500).send("Internal server error");
   }
 }

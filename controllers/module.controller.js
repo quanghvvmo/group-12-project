@@ -91,7 +91,7 @@ const deleteModule = async(req, res) => {
     } else {
       res.sendStatus(200);
     }
-  } catch (err) {
+  } catch (error) {
     console.log(error);
     res.status(500).send("Internal server error");
   }

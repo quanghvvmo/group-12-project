@@ -53,14 +53,14 @@
 					"response": []
 				},
 				{
-					"name": "create New User",
+					"name": "create new user",
 					"request": {
 						"auth": {
 							"type": "apikey",
 							"apikey": [
 								{
 									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTU0NDYxNywiZXhwIjoxNjI1NjMxMDE3fQ.0hnxLy1yW9ZVYYYmhTlvzpdjrwa66Qg2k81EqFH7KgM",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTg3Nzc1OSwiZXhwIjoxNjI1OTY0MTU5fQ._hJD9CeiQ_0GQv86o5AZlQRe9tpmWe63Wea59TTrF1o",
 									"type": "string"
 								},
 								{
@@ -87,22 +87,22 @@
 								},
 								{
 									"key": "managerId",
-									"value": "ac3a4c4b-1037-427d-a0ad-c3b2029c709b",
+									"value": "f2d0582a-0c5e-4716-b834-ae1b8076077f",
 									"type": "text"
 								},
 								{
 									"key": "firstName",
-									"value": "Bui",
+									"value": "Le ",
 									"type": "text"
 								},
 								{
 									"key": "lastName",
-									"value": "Le Anh Duc",
+									"value": "Thi employee4",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "hrdv@vmodev.com",
+									"value": "canthietcuatoi.van@gmail.com",
 									"type": "text"
 								},
 								{
@@ -113,7 +113,7 @@
 								{
 									"key": "avatar",
 									"type": "file",
-									"src": "/home/black_panther/Documents/vmoTraining/group-12-project/vanvd/uploads/anh1.png"
+									"src": "/home/black_panther/Documents/vmoTraining/group-12-project/uploads/anh2.png"
 								},
 								{
 									"key": "address",
@@ -138,49 +138,27 @@
 							]
 						},
 						"url": {
-							"raw": "http://{{url}}/api/users/:id",
+							"raw": "http://{{url}}/api/users",
 							"protocol": "http",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"api",
-								"users",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "cab64ec3-e333-4675-985e-1c7cde4b444b"
-								}
+								"users"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "create new Role",
+					"name": "create new role",
 					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDEzMSwiZXhwIjoxNjI1Mjk2NTMxfQ.YI8Goc71WzOwnRwHyO7vtIFsOudJamMGdjhX5s-mG4k",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"roleName\": \"sale\"\n}",
+							"raw": "{\n    \"roleName\": \"admin\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -202,7 +180,7 @@
 					"response": []
 				},
 				{
-					"name": "create new UserRole",
+					"name": "create new userrole",
 					"request": {
 						"auth": {
 							"type": "apikey",
@@ -620,7 +598,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIwOTE2MCwiZXhwIjoxNjI1Mjk1NTYwfQ.DtTKEdY1dvExpT5ohCE8GeLjst9Km2-S8IsTyFcnk7a",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYyZDA1ODJhLTBjNWUtNDcxNi1iODM0LWFlMWI4MDc2MDc3ZiIsImlhdCI6MTYyNTg4MTAyNywiZXhwIjoxNjI1OTY3NDI3fQ.oUHxlCfrriQWvd_5n-DJ3bO7JlCt9Od-ARRviHmeExI",
 									"type": "string"
 								},
 								{
@@ -646,7 +624,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "cab64ec3-e333-4675-985e-1c7cde4b444b"
+									"value": "1e43299c-0c8d-4e3f-8163-b97e4be26fc5"
 								}
 							]
 						}
@@ -661,7 +639,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiMTA1MTA2LTI1ZWQtNDlkMS04YmI1LWQwZDEwMDFkNTc5MyIsImlhdCI6MTYyNTE5MDc1MCwiZXhwIjoxNjI1Mjc3MTUwfQ.Vrlv3B0eCOOYutIPN0AKSF6lUL_oqpyMTdfWRZPmiwU",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFjM2E0YzRiLTEwMzctNDI3ZC1hMGFkLWMzYjIwMjljNzA5YiIsImlhdCI6MTYyNTg4MTA3MCwiZXhwIjoxNjI1OTY3NDcwfQ.GTa1Nvdiy6Q948q2sIHN_r8RD36we-eDZqlVShggESM",
 									"type": "string"
 								},
 								{
@@ -695,7 +673,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiMTA1MTA2LTI1ZWQtNDlkMS04YmI1LWQwZDEwMDFkNTc5MyIsImlhdCI6MTYyNTg4MTE0MywiZXhwIjoxNjI1OTY3NTQzfQ.bftkIsTyfQncwaJxJQGnd-XRyC03__Ox3KeUJamO2Ic",
 									"type": "string"
 								},
 								{
@@ -731,7 +709,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTQzODM5MCwiZXhwIjoxNjI1NTI0NzkwfQ.9BC1BJN4oKPYiKYPaPWTF636zlmit6sCLNp8FLcHAJk",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYwMzdhMmRiLTUwMDItNDNjMS04MGNiLTFiYmZmYzQ3NThmMiIsImlhdCI6MTYyNTg4MTEwNiwiZXhwIjoxNjI1OTY3NTA2fQ.q3BigwWLMX0wl5GqEA4P8mixbC30MWFiuDb6ua5Ct_Y",
 									"type": "string"
 								},
 								{
@@ -839,7 +817,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTQzODM5MCwiZXhwIjoxNjI1NTI0NzkwfQ.9BC1BJN4oKPYiKYPaPWTF636zlmit6sCLNp8FLcHAJk",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiMTA1MTA2LTI1ZWQtNDlkMS04YmI1LWQwZDEwMDFkNTc5MyIsImlhdCI6MTYyNTg4MTE0MywiZXhwIjoxNjI1OTY3NTQzfQ.bftkIsTyfQncwaJxJQGnd-XRyC03__Ox3KeUJamO2Ic",
 									"type": "string"
 								},
 								{
@@ -866,14 +844,14 @@
 					"response": []
 				},
 				{
-					"name": "get form by ID",
+					"name": "get form by id",
 					"request": {
 						"auth": {
 							"type": "apikey",
 							"apikey": [
 								{
 									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTQzODM5MCwiZXhwIjoxNjI1NTI0NzkwfQ.9BC1BJN4oKPYiKYPaPWTF636zlmit6sCLNp8FLcHAJk",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiMTA1MTA2LTI1ZWQtNDlkMS04YmI1LWQwZDEwMDFkNTc5MyIsImlhdCI6MTYyNTg4MTE0MywiZXhwIjoxNjI1OTY3NTQzfQ.bftkIsTyfQncwaJxJQGnd-XRyC03__Ox3KeUJamO2Ic",
 									"type": "string"
 								},
 								{
@@ -943,7 +921,7 @@
 			]
 		},
 		{
-			"name": "update data",
+			"name": "Update data",
 			"item": [
 				{
 					"name": "update account by id",
@@ -1203,7 +1181,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIwOTE2MCwiZXhwIjoxNjI1Mjk1NTYwfQ.DtTKEdY1dvExpT5ohCE8GeLjst9Km2-S8IsTyFcnk7I",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTg3Nzc1OSwiZXhwIjoxNjI1OTY0MTU5fQ._hJD9CeiQ_0GQv86o5AZlQRe9tpmWe63Wea59TTrF1o",
 									"type": "string"
 								},
 								{
@@ -1220,27 +1198,27 @@
 							"formdata": [
 								{
 									"key": "employeeId",
-									"value": "vmo0009",
+									"value": "vmo0007",
 									"type": "text"
 								},
 								{
 									"key": "managerId",
-									"value": "ac3a4c4b-1037-427d-a0ad-c3b2029c709b",
+									"value": "f2d0582a-0c5e-4716-b834-ae1b8076077f",
 									"type": "text"
 								},
 								{
 									"key": "firstName",
-									"value": "hahah",
+									"value": "Le ",
 									"type": "text"
 								},
 								{
 									"key": "lastName",
-									"value": "hihihi",
+									"value": "Thi Employees",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "aaaaaa",
+									"value": "canthietcuatoi.van@gmail.com",
 									"type": "text"
 								},
 								{
@@ -1251,7 +1229,7 @@
 								{
 									"key": "avatar",
 									"type": "file",
-									"src": "/home/black_panther/Documents/vmoTraining/group-12-project/vanvd/uploads/anh1.png"
+									"src": "/home/black_panther/Documents/vmoTraining/group-12-project/uploads/anh2.png"
 								},
 								{
 									"key": "address",
@@ -1289,7 +1267,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "cab64ec3-e333-4675-985e-1c7cde4b444b"
+									"value": "1e43299c-0c8d-4e3f-8163-b97e4be26fc5"
 								}
 							]
 						}
@@ -1382,7 +1360,7 @@
 					"response": []
 				},
 				{
-					"name": "update User-Role",
+					"name": "update userrole",
 					"request": {
 						"auth": {
 							"type": "apikey",
@@ -1440,7 +1418,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\": \"hraccount\",\n    \"password\": \"hraccount01\"\n}",
+					"raw": "{\n    \"username\": \"employee\",\n    \"password\": \"employee01\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"

@@ -1,11 +1,12 @@
-# HR Management System
-HR Management System is a NodeJS project for HR department manage informantion and form of employees
+# HR Management API
+HR Management API is a NodeJS project of HR Management System
+
+HRM System is a application for HR department manage information and form of employees
 ### Requirement
-```
-NodeJS 14.x
-npm 6.x
-MySQL Server
-```
+
+[NodeJS](https://nodejs.org/en/download/) v14.x or lastest
+
+[MySQL Server](https://dev.mysql.com/downloads/mysql/)
 
 ### NPM
 install packages: 
@@ -22,13 +23,13 @@ npx sequelize db:create
 npx sequelize db:migrate
 
 ```
-* use .sql file in folder sql
+* use .sql file in folder `sql`
 ```JavaScript
 //only database structure
 HRM_project_structure.sql
 
 //both structure and data
-HRM-structure-data.sql
+HRM_structure_data.sql
 ```
 * config
 ```
@@ -40,6 +41,12 @@ DB_HOST = localhost
 Run command `npm start` to run server
 ```
 
+### Postman
+
+* enviroment variable
+```JavaScript
+url: "localhost:8081"
+```
 ### Swagger
 import .yaml file in folder docs to  [Swagger](https://editor.swagger.io/)
 

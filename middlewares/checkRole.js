@@ -69,7 +69,6 @@ const checkCanRead = async(req, res, next) => {
     }
     if (check) {
       req.role = roleName;
-      console.log(req.role);
       next();
     } else {
       res.send("Permission deny");

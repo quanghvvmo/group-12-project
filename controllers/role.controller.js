@@ -32,7 +32,7 @@ const addNewRole = async(req, res) => {
       isDelete: 0
     });
     res.status(200).send(newRole);
-  } catch (err) {
+  } catch (error) {
     console.log(error);
     res.status(500).send("Internal server error");
   }

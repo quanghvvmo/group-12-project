@@ -55,7 +55,7 @@ const addNewRolePermission = async(req, res) => {
       updateBy: payload.id,
       isDelete: 0
     });
-    res.send(newRolePermission);
+    res.status(200).send(newRolePermission);
   } catch (error) {
     console.log(error);
     res.status(500).send("Internal server error");

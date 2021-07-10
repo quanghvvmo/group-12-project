@@ -73,7 +73,7 @@ const addNewUser = async(req, res) => {
     }, { transaction: t });
     await t.commit();
     res.status(200).send(newUser);
-  } catch (err) {
+  } catch (error) {
     await t.rollback();
     console.log(error);
     res.status(500).send("Internal server error");
