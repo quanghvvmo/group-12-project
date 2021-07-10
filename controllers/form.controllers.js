@@ -100,14 +100,37 @@ const getFormById = async (req, res) => {
   const { id } = req.params;
 
   try {
+    // Get user id from token
+    const userId = req.user.id;
+
     // Get form by id
     const formId = await form.findOne({ where: { id } });
-    // Check if invalid form id
+
     if (!formId) {
+      // Check if invalid form id
       return res.status(404).json({ message: "Invalid Form Id" });
     }
 
-    return res.status(200).json({ message: "Form Found", formId });
+    // Get role name
+    const checkRole = await user_role.findAll({
+      where: { user_id: userId },
+      include: { model: role },
+    });
+
+    for (let checkAdmin in checkRole) {
+      // Check if hr or admin then can delete form
+      if (
+        checkRole[checkAdmin].role.role_name === "admin" ||
+        formId.user_id === userId ||
+        formId.manager === userId
+      ) {
+        return res.status(200).json({ message: "Form Found", formId });
+      } else {
+        return res
+          .status(404)
+          .json({ message: "You have no access to read this form detail" });
+      }
+    }
   } catch (error) {
     console.log(error);
     return res.status(404).json({ message: "Form Not Found" });
