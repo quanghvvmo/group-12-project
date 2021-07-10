@@ -1,5 +1,5 @@
 const EventEmitter = require("events");
-const { form, user } = require("../models");
+const { form, user, user_role, role } = require("../models");
 const { sendMail } = require("./mail.controllers");
 
 const emailEvent = new EventEmitter();
@@ -124,31 +124,39 @@ const updateForm = async (req, res) => {
 
     // Check if form belongs to user
     const formUserId = await form.findOne({
-      where: { user_id: userId },
+      where: { id },
     });
 
-    if (!formUserId) {
-      return res
-        .status(404)
-        .json({ message: "You have no access to update this form" });
+    // Check if user owns form then can update form
+    if (formUserId.user_id === userId) {
+      // Check if form is closed. User can not update
+      if (!formUserId.status === "closed") {
+        // Update form
+        const updatedForm = await form.update(
+          {
+            manager,
+            status,
+            personal_review,
+            task,
+            archivement,
+            updateBy: userId,
+          },
+          { where: { id } }
+        );
+
+        return res
+          .status(200)
+          .json({ message: "Update Form Successfully", updatedForm });
+      } else {
+        return res
+          .status(404)
+          .json({ message: "Form is closed. You can not update" });
+      }
+    } else {
+      return res.status(404).json({
+        message: "You are not own this form. You can not update this form",
+      });
     }
-
-    // Update form
-    const updatedForm = await form.update(
-      {
-        manager,
-        status,
-        personal_review,
-        task,
-        archivement,
-        updateBy: userId,
-      },
-      { where: { id } }
-    );
-
-    return res
-      .status(200)
-      .json({ message: "Update Form Successfully", updatedForm });
   } catch (error) {
     console.log(error);
     return res.status(204).json({ message: "Update Form Failed" });
@@ -163,25 +171,86 @@ const approveForm = async (req, res) => {
     // Get user id from token
     const userId = req.user.id;
 
-    // Check manager ID
-    const managerId = await form.findOne({ where: { manager: userId } });
+    // Get manager Id of form
+    const formId = await form.findOne({ where: { id } });
 
-    if (!managerId) {
-      return res.status(404).json({ message: "You can not approve this form" });
+    if (formId.manager === userId) {
+      // Check if form is pending approve or closed then can not approve form
+      if (formId.status === "pending approve" || !formId.status === "closed") {
+        // If form is in pending approve status and not closed then can approve form
+        const approvedForm = await form.update(
+          { manager_review, status, updateBy: userId },
+          { where: { id } }
+        );
+
+        return res
+          .status(200)
+          .json({ message: "Approved Form Successfully", approvedForm });
+      } else {
+        return res.status(404).json({
+          message:
+            "Form is not pending approve or closed. You can not approve this form",
+        });
+      }
     } else {
-      // Approve form
-      const approvedForm = await form.update(
-        { manager_review, status, updateBy: userId },
-        { where: { id } }
-      );
-
-      return res
-        .status(200)
-        .json({ message: "Approved Form Successfully", approvedForm });
+      return res.status(404).json({
+        message: "You are not own this form. You can not approve this form",
+      });
     }
   } catch (error) {
     console.log(error);
-    return res.status(404).json({ message: "Approve Failed" });
+    return res.status(404).json({ message: "Approve Form Failed" });
+  }
+};
+
+const closeForm = async (req, res) => {
+  const { id } = req.params;
+  const { status } = req.body;
+
+  try {
+    // Get hr id from token
+    const hrId = req.user.id;
+
+    // Find hr id of form
+    const checkHrId = await form.findOne({
+      where: { id },
+    });
+
+    console.log(hrId);
+    console.log(checkHrId.createBy);
+
+    // Check if hr owns form then can close form
+    if (hrId === checkHrId.createBy) {
+      if (checkHrId.status === "closed") {
+        return res
+          .status(404)
+          .json({ message: "Form is closed, You can not close the form" });
+      } else if (checkHrId.status === "approved") {
+        // Close form by hr
+        const formClosed = await form.update(
+          {
+            status,
+            updateBy: hrId,
+          },
+          { where: { id } }
+        );
+
+        return res
+          .status(200)
+          .json({ message: "Close Form Successfully", formClosed });
+      } else {
+        return res.status(404).json({
+          message: "Form is not approved, You can not close the form",
+        });
+      }
+    } else {
+      return res
+        .status(404)
+        .json({ message: "You are not owner of this form" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(404).json({ message: "Close Form Failed" });
   }
 };
 
@@ -189,25 +258,41 @@ const deleteForm = async (req, res) => {
   const { id } = req.params;
 
   try {
-    if (!formUserId) {
-      return res
-        .status(404)
-        .json({ message: "You have no access to delete this form" });
-    }
-
     // Get form id
     const formId = await form.findOne({ where: { id } });
+
     // CHeck if invalid form id
     if (!formId) {
       return res.status(404).json({ message: "Invalid Form Id" });
     }
 
-    // Delete form
-    await formId.destroy({ where: { id } });
+    // Get user id form token
+    const userId = req.user.id;
 
-    return res
-      .status(200)
-      .json({ message: "Delete Form Successfully", formId });
+    // Get role name
+    const checkRole = await user_role.findAll({
+      where: { user_id: userId },
+      include: { model: role },
+    });
+
+    for (let checkAdmin in checkRole) {
+      // Check if hr or admin then can delete form
+      if (
+        checkRole[checkAdmin].role.role_name === "admin" ||
+        formId.createBy === userId
+      ) {
+        // Delete form
+        await formId.destroy({ where: { id } });
+
+        return res
+          .status(200)
+          .json({ message: "Delete Form Successfully", formId });
+      } else {
+        return res
+          .status(404)
+          .json({ message: "You have no access to delete this form" });
+      }
+    }
   } catch (error) {
     console.log(error);
     return res.status(404).json({ message: "Delete Form Failed" });
@@ -220,5 +305,6 @@ module.exports = {
   updateForm,
   approveForm,
   getFormById,
+  closeForm,
   deleteForm,
 };

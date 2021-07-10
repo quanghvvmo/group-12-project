@@ -225,7 +225,6 @@ const getUserById = async (req, res) => {
 
 const updateUser = async (req, res) => {
   const {
-    employee_code,
     firstname,
     lastname,
     email,
@@ -274,9 +273,8 @@ const updateUser = async (req, res) => {
     for (let checkAdmin in checkRole) {
       if (checkRole[checkAdmin].role.role_name === "admin" || userId === id) {
         // Update user info
-        await userId.update(
+        const userUpdated = await user.update(
           {
-            employee_code,
             firstname,
             lastname,
             email,
@@ -295,7 +293,7 @@ const updateUser = async (req, res) => {
         // Update account info
         const accountUpdated = await account.update(
           {
-            user_id: userId.id,
+            user_id: userId,
             email,
             password: hashedPassword,
           },
@@ -316,7 +314,7 @@ const updateUser = async (req, res) => {
 
         return res.status(200).json({
           message: "Update User and Account Successfully",
-          userId,
+          userUpdated,
           accountUpdated,
           updateRoleId,
         });

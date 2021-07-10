@@ -5,6 +5,7 @@ const {
   getFormById,
   updateForm,
   approveForm,
+  closeForm,
   deleteForm,
 } = require("../controllers/form.controllers");
 const {
@@ -28,6 +29,7 @@ router.get("/forms/:id", checkCanRead, getFormById);
 router.post("/forms", checkCanWrite, createNewForm);
 router.patch("/forms/:id", checkCanUpdate, updateForm);
 router.put("/forms/:id", checkCanApprove, approveForm);
+router.put("/forms-close/:id", checkCanUpdate, closeForm);
 router.delete("/forms/:id", checkCanDelete, deleteForm);
 
 // Report routes
