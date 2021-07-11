@@ -4,6 +4,7 @@ const config = require('../config/auth.config');
 const events = require('events');
 const eventEmitter = new events.EventEmitter();
 const mailer = require('../utils/mailer');
+const FORM_EMUM = require('../const/form.enum');
 
 //create new form, and send mail to userId in each form
 const addNewForm = async(req, res) => {
@@ -11,7 +12,6 @@ const addNewForm = async(req, res) => {
   let {
     userId,
     typeOf,
-    status
   } = req.body;
 
   try {
@@ -21,34 +21,37 @@ const addNewForm = async(req, res) => {
       return;
     }
     const payload = jwt.verify(token, config.secret);
-    //userId in request body is a array
-    //use a for loop to get all userId
-    for (let x in userId) {
-      const userTemp = await user.findOne({
-        where: {
-          id: userId[x]
-        }
-      });
-      if (!userTemp) {
-        res.status(404).send(`UserId ${userId[x]} is not exist`);
-        return;
-      }
-      const newForm = await form.create({
-        userId: userId[x],
-        typeOf,
-        status,
-        createBy: payload.id,
-        updateBy: payload.id,
+    const Employees = await user.findAll({
+      where: {
+        id: userId,
         isDelete: 0
-      });
-      //send email to employee
-      const subject = `[Annoucement] ${typeOf} form for employee`;
-      const body = `You have a new ${typeOf} form, Let's finish`;
-      eventEmitter.on('addNewForm', async function() {
-        await mailer.sendMail(userTemp.email, subject, body);
-      });
-      eventEmitter.emit('addNewForm');
+      }
+    });
+    let listEmail = [];
+    let listEmployees = [];
+    Employees.forEach(e => {
+      listEmployees.push({
+          userId: e.id,
+          typeOf: typeOf,
+          status: FORM_EMUM.STATUS.NEW,
+          createBy: payload.id,
+          updateBy: payload.id,
+          isDelete: 0
+        }),
+        listEmail.push(e.email);
+    })
+    const newForm = await form.bulkCreate(listEmployees);
+    if (!newForm) {
+      res.send("Can not add new form");
+      return;
     }
+    //send email to employee
+    const subject = `[Annoucement] ${typeOf} form for employee`;
+    const body = `You have a new ${typeOf} form, Let's finish`;
+    eventEmitter.on('addNewForm', async function() {
+      await mailer.sendMail(listEmail, subject, body);
+    });
+    eventEmitter.emit('addNewForm');
     res.sendStatus(200);
   } catch (error) {
     console.log(error);
@@ -99,7 +102,7 @@ const submitForm = async(req, res) => {
       note,
       task,
       achievement,
-      status: "Pending approve"
+      status: FORM_EMUM.STATUS.PENDING_APPROVE
     }, {
       where: {
         userId: payload.id,
@@ -259,7 +262,7 @@ const approveForm = async(req, res) => {
     }
     const result = await form.update({
       managerComment,
-      status: "Approved"
+      status: FORM_EMUM.STATUS.APPROVED
     }, {
       where: {
         id: id,
@@ -282,7 +285,7 @@ const closeForm = async(req, res) => {
   const id = req.params.id;
   try {
     const formClosed = form.update({
-      status: "closed"
+      status: FORM_EMUM.STATUS.CLOSED
     }, {
       where: {
         id: id,
@@ -328,7 +331,7 @@ const reportFinishYearlyForm = async(req, res) => {
     const report = await form.findAll({
       where: {
         typeOf: "yearly",
-        status: "Approved",
+        status: FORM_EMUM.STATUS.APPROVED,
         isDelete: 0
       }
     });
@@ -355,7 +358,7 @@ const reportFinishBasicForm = async(req, res) => {
     const report = await form.findAll({
       where: {
         typeOf: "basic",
-        status: "Approved",
+        status: FORM_EMUM.STATUS.APPROVED,
         isDelete: 0
       }
     });
@@ -382,7 +385,7 @@ const reportIncompleteYearlyForm = async(req, res) => {
     const report = await form.findAll({
       where: {
         typeOf: "yearly",
-        status: "new",
+        status: FORM_EMUM.STATUS.NEW,
         isDelete: 0
       }
     });
@@ -409,7 +412,7 @@ const reportIncompleteBasicForm = async(req, res) => {
     const report = await form.findAll({
       where: {
         typeOf: "basic",
-        status: "new",
+        status: FORM_EMUM.STATUS.NEW,
         isDelete: 0
       }
     });

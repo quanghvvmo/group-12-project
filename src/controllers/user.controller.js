@@ -6,6 +6,10 @@ const config = require('../config/auth.config');
 //create new user, and create new user-role
 const addNewUser = async(req, res) => {
   const token = req.header('token');
+  if (!req.file) {
+    res.send('Please upload a iamge');
+    return;
+  }
   const avatar = req.file.path;
   let {
     roleId,

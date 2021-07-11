@@ -1,5 +1,5 @@
 const multer = require('multer');
-
+const mimeType = require('../const/imageType.enum');
 //define storage of avatar in server
 var storage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -11,17 +11,17 @@ var storage = multer.diskStorage({
 })
 
 //validation for file input
-const fileFilter = (req, file, cb) => {
-  if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
+const fileFilter = (req, file, cb, res) => {
+  if (mimeType.includes(file.mimetype)) {
     cb(null, true);
   } else {
     cb(null, false);
-    return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
+    return cb(new Error('Invalid type of input image'));
   }
 }
 var upload = multer({
   storage: storage,
-  fileFilter: fileFilter
+  fileFilter: fileFilter,
 })
 
 
