@@ -1,4 +1,5 @@
 const { user_role, user, role, role_permission_form } = require("../models");
+const { ROLE_ENUMS } = require("../constants/role-enums");
 
 const createNewUserRole = async (req, res) => {
   const { role_id, user_id } = req.body;
@@ -35,7 +36,7 @@ const createNewUserRole = async (req, res) => {
 
     // Check if admin then can create new user
     for (let checkAdmin in checkRole) {
-      if (checkRole[checkAdmin].role.role_name === "admin") {
+      if (checkRole[checkAdmin].role.role_name === ROLE_ENUMS.ROLE.ADMIN) {
         // Create new user role
         const newUserRole = await user_role.create({
           role_id,
@@ -72,7 +73,7 @@ const getAllUserRoles = async (req, res) => {
 
     // Check if admin then can get all user roles
     for (let checkAdmin in checkRole) {
-      if (checkRole[checkAdmin].role.role_name === "admin") {
+      if (checkRole[checkAdmin].role.role_name === ROLE_ENUMS.ROLE.ADMIN) {
         // Get All User Role
         const allUserRole = await user_role.findAll({
           include: {
@@ -114,7 +115,7 @@ const getUserRoleById = async (req, res) => {
 
     // Check if admin then can get user role detail
     for (let checkAdmin in checkRole) {
-      if (checkRole[checkAdmin].role.role_name === "admin") {
+      if (checkRole[checkAdmin].role.role_name === ROLE_ENUMS.ROLE.ADMIN) {
         // Get All User Role
         const userRoleId = await user_role.findOne({
           where: { id },
@@ -160,7 +161,7 @@ const updateUserRole = async (req, res) => {
 
     // Check if admin then can update user role
     for (let checkAdmin in checkRole) {
-      if (checkRole[checkAdmin].role.role_name === "admin") {
+      if (checkRole[checkAdmin].role.role_name === ROLE_ENUMS.ROLE.ADMIN) {
         // Update role
         const updatedUserRole = await user_role.update(
           { updateBy: adminId },
@@ -207,7 +208,7 @@ const deleteUserRole = async (req, res) => {
 
     // Check if admin then can delete user role
     for (let checkAdmin in checkRole) {
-      if (checkRole[checkAdmin].role.role_name === "admin") {
+      if (checkRole[checkAdmin].role.role_name === ROLE_ENUMS.ROLE.ADMIN) {
         // Delete user role
         await userRole.destroy({
           where: { id },

@@ -1,6 +1,8 @@
 const EventEmitter = require("events");
 const { form, user, user_role, role } = require("../models");
 const { sendMail } = require("./mail.controllers");
+const { FORM_ENUMS } = require("../constants/form-enums");
+const { ROLE_ENUMS } = require("../constants/role-enums");
 
 const emailEvent = new EventEmitter();
 
@@ -18,51 +20,55 @@ const createNewForm = async (req, res) => {
     }
 
     // Check form type
-    if (form_type === "0" || form_type === "1") {
-      if (
-        status === "submitted" ||
-        status === "pending approve" ||
-        status === "approved"
-      ) {
-        // Create new form
-        const newForm = await form.create({
-          user_id,
-          form_type,
-          status,
-          hr_review,
-          createBy: creator,
-          updateBy: creator,
-        });
-
-        if (form_type === "0") {
-          // Content of email
-          const subject = "[Announcement] - Yearly Review Form";
-          const text = `A new yearly review form is created`;
-          // Initialize an event
-          emailEvent.on("addNewForm", async () => {
-            await sendMail(userId.email, subject, text);
-          });
-        } else if (form_type === "1") {
-          const subject = "[Announcement] - Working Form";
-          const text = `A new working form is created`;
-          // Initialize a event
-          emailEvent.on("addNewForm", async () => {
-            await sendMail(userId.email, subject, text);
-          });
-        }
-
-        // Emit mail event
-        emailEvent.emit("addNewForm");
-
-        return res
-          .status(200)
-          .json({ message: "Create New Fomr Successfully", newForm });
-      } else {
-        return res.status(404).json({ message: "Invalid status" });
-      }
-    } else {
+    if (
+      form_type !== FORM_ENUMS.FORM_TYPE.YEARLY_FORM &&
+      form_type !== FORM_ENUMS.FORM_TYPE.WORKING_FORM
+    ) {
       return res.status(404).json({ message: "Invalid form type" });
     }
+
+    // Check status
+    if (
+      status !== FORM_ENUMS.STATUS.SUBMITTED &&
+      status !== FORM_ENUMS.STATUS.PENDING_APPROVAL &&
+      status !== FORM_ENUMS.STATUS.APPROVAL
+    ) {
+      return res.status(404).json({ message: "Invalid form status" });
+    }
+
+    // Create new form
+    const newForm = await form.create({
+      user_id,
+      form_type,
+      status,
+      hr_review,
+      createBy: creator,
+      updateBy: creator,
+    });
+
+    if (form_type === FORM_ENUMS.FORM_TYPE.YEARLY_FORM) {
+      // Content of email
+      const subject = "[Announcement] - Yearly Review Form";
+      const text = `A new yearly review form is created`;
+      // Initialize an event
+      emailEvent.on("addNewForm", async () => {
+        await sendMail(userId.email, subject, text);
+      });
+    } else if (form_type === FORM_ENUMS.FORM_TYPE.WORKING_FORM) {
+      const subject = "[Announcement] - Working Form";
+      const text = `A new working form is created`;
+      // Initialize a event
+      emailEvent.on("addNewForm", async () => {
+        await sendMail(userId.email, subject, text);
+      });
+    }
+
+    // Emit mail event
+    emailEvent.emit("addNewForm");
+
+    return res
+      .status(200)
+      .json({ message: "Create New Fomr Successfully", newForm });
   } catch (error) {
     console.log(error);
     return res.status(404).json({ message: "Create New Form Failed" });
@@ -120,7 +126,7 @@ const getFormById = async (req, res) => {
     for (let checkAdmin in checkRole) {
       // Check if hr or admin then can delete form
       if (
-        checkRole[checkAdmin].role.role_name === "admin" ||
+        checkRole[checkAdmin].role.role_name === ROLE_ENUMS.ROLE.ADMIN ||
         formId.user_id === userId ||
         formId.manager === userId
       ) {
@@ -151,35 +157,35 @@ const updateForm = async (req, res) => {
     });
 
     // Check if user owns form then can update form
-    if (formUserId.user_id === userId) {
-      // Check if form is closed. User can not update
-      if (!formUserId.status === "closed") {
-        // Update form
-        const updatedForm = await form.update(
-          {
-            manager,
-            status,
-            personal_review,
-            task,
-            archivement,
-            updateBy: userId,
-          },
-          { where: { id } }
-        );
-
-        return res
-          .status(200)
-          .json({ message: "Update Form Successfully", updatedForm });
-      } else {
-        return res
-          .status(404)
-          .json({ message: "Form is closed. You can not update" });
-      }
-    } else {
+    if (formUserId.user_id !== userId) {
       return res.status(404).json({
         message: "You are not own this form. You can not update this form",
       });
     }
+
+    // Check if form is closed. User can not update
+    if (formUserId.status === FORM_ENUMS.STATUS.CLOSED) {
+      return res
+        .status(404)
+        .json({ message: "Form is closed. You can not update" });
+    }
+
+    // Update form
+    const updatedForm = await form.update(
+      {
+        manager,
+        status,
+        personal_review,
+        task,
+        archivement,
+        updateBy: userId,
+      },
+      { where: { id } }
+    );
+
+    return res
+      .status(200)
+      .json({ message: "Update Form Successfully", updatedForm });
   } catch (error) {
     console.log(error);
     return res.status(204).json({ message: "Update Form Failed" });
@@ -197,29 +203,33 @@ const approveForm = async (req, res) => {
     // Get manager Id of form
     const formId = await form.findOne({ where: { id } });
 
-    if (formId.manager === userId) {
-      // Check if form is pending approve or closed then can not approve form
-      if (formId.status === "pending approve" || !formId.status === "closed") {
-        // If form is in pending approve status and not closed then can approve form
-        const approvedForm = await form.update(
-          { manager_review, status, updateBy: userId },
-          { where: { id } }
-        );
-
-        return res
-          .status(200)
-          .json({ message: "Approved Form Successfully", approvedForm });
-      } else {
-        return res.status(404).json({
-          message:
-            "Form is not pending approve or closed. You can not approve this form",
-        });
-      }
-    } else {
+    // Check if user is manager of the form then can approve form
+    if (formId.manager !== userId) {
       return res.status(404).json({
         message: "You are not own this form. You can not approve this form",
       });
     }
+
+    // Check if form is pending approve or closed then can not approve form
+    if (
+      formId.status !== FORM_ENUMS.STATUS.PENDING_APPROVAL ||
+      formId.status !== FORM_ENUMS.STATUS.CLOSED
+    ) {
+      return res.status(404).json({
+        message:
+          "Form is not pending approve or closed. You can not approve this form",
+      });
+    }
+
+    // If form is in pending approve status and not closed then can approve form
+    const approvedForm = await form.update(
+      { manager_review, status, updateBy: userId },
+      { where: { id } }
+    );
+
+    return res
+      .status(200)
+      .json({ message: "Approved Form Successfully", approvedForm });
   } catch (error) {
     console.log(error);
     return res.status(404).json({ message: "Approve Form Failed" });
@@ -239,38 +249,39 @@ const closeForm = async (req, res) => {
       where: { id },
     });
 
-    console.log(hrId);
-    console.log(checkHrId.createBy);
-
     // Check if hr owns form then can close form
-    if (hrId === checkHrId.createBy) {
-      if (checkHrId.status === "closed") {
-        return res
-          .status(404)
-          .json({ message: "Form is closed, You can not close the form" });
-      } else if (checkHrId.status === "approved") {
-        // Close form by hr
-        const formClosed = await form.update(
-          {
-            status,
-            updateBy: hrId,
-          },
-          { where: { id } }
-        );
-
-        return res
-          .status(200)
-          .json({ message: "Close Form Successfully", formClosed });
-      } else {
-        return res.status(404).json({
-          message: "Form is not approved, You can not close the form",
-        });
-      }
-    } else {
+    if (hrId !== checkHrId.createBy) {
       return res
         .status(404)
         .json({ message: "You are not owner of this form" });
     }
+
+    // Check if form status is closed then can not close form
+    if (checkHrId.status === FORM_ENUMS.STATUS.CLOSED) {
+      return res
+        .status(404)
+        .json({ message: "Form is closed, You can not close the form" });
+    }
+
+    // Check if form status is not in approved status then can not close form
+    if (checkHrId.status !== FORM_ENUMS.STATUS.APPROVED) {
+      return res.status(404).json({
+        message: "Form is not approved, You can not close the form",
+      });
+    }
+
+    // If form is in approved status and not closed then can close form
+    const formClosed = await form.update(
+      {
+        status,
+        updateBy: hrId,
+      },
+      { where: { id } }
+    );
+
+    return res
+      .status(200)
+      .json({ message: "Close Form Successfully", formClosed });
   } catch (error) {
     console.log(error);
     return res.status(404).json({ message: "Close Form Failed" });
@@ -301,7 +312,7 @@ const deleteForm = async (req, res) => {
     for (let checkAdmin in checkRole) {
       // Check if hr or admin then can delete form
       if (
-        checkRole[checkAdmin].role.role_name === "admin" ||
+        checkRole[checkAdmin].role.role_name === ROLE_ENUMS.ROLE.ADMIN ||
         formId.createBy === userId
       ) {
         // Delete form

@@ -1,4 +1,6 @@
 const { form, user_role, role } = require("../models");
+const { ROLE_ENUMS } = require("../constants/role-enums");
+const { FORM_ENUMS } = require("../constants/form-enums");
 
 const getAllReports = async (req, res) => {
   try {
@@ -13,9 +15,9 @@ const getAllReports = async (req, res) => {
     console.log(rolePermission.role.role_name);
     // Check user role permission
     if (
-      rolePermission.role.role_name === "manager" ||
-      rolePermission.role.role_name === "director" ||
-      rolePermission.role.role_name === "admin"
+      rolePermission.role.role_name === ROLE_ENUMS.ROLE.MANAGER ||
+      rolePermission.role.role_name === ROLE_ENUMS.ROLE.DIRECTOR ||
+      rolePermission.role.role_name === ROLE_ENUMS.ROLE.ADMIN
     ) {
       // Find form by status
       const allSubmittedReport = await form.findAll({
@@ -48,9 +50,9 @@ const getAllManagerReport = async (req, res) => {
     });
 
     if (
-      rolePermission.role.role_name === "manager" ||
-      rolePermission.role.role_name === "director" ||
-      rolePermission.role.role_name === "admin"
+      rolePermission.role.role_name === ROLE_ENUMS.ROLE.MANAGER ||
+      rolePermission.role.role_name === ROLE_ENUMS.ROLE.DIRECTOR ||
+      rolePermission.role.role_name === ROLE_ENUMS.ROLE.ADMIN
     ) {
       const reports = await form.findOne({
         where: { manager: userId },
@@ -85,34 +87,35 @@ const getAllReportByStatus = async (req, res) => {
 
     // Check user role permission
     if (
-      rolePermission.role.role_name === "manager" ||
-      rolePermission.role.role_name === "director" ||
-      rolePermission.role.role_name === "admin"
+      rolePermission.role.role_name !== ROLE_ENUMS.ROLE.MANAGER &&
+      rolePermission.role.role_name !== ROLE_ENUMS.ROLE.DIRECTOR &&
+      rolePermission.role.role_name !== ROLE_ENUMS.ROLE.ADMIN
     ) {
-      // Check if invalid status
-      if (
-        status === "submitted" ||
-        status === "pending approve" ||
-        status === "approved"
-      ) {
-        // Find form by status
-        const allSubmittedReport = await form.findAll({
-          where: { status },
-        });
-
-        let count = allSubmittedReport.length;
-
-        return res
-          .status(200)
-          .json({ message: "Report Found", count, allSubmittedReport });
-      } else {
-        return res.status(404).json({ message: "Invalid Form Status" });
-      }
-    } else {
       return res
         .status(404)
         .json({ message: "Your role have no access to view all reports" });
     }
+
+    // Check if invalid status
+    if (
+      status !== FORM_ENUMS.STATUS.SUBMITTED &&
+      status !== FORM_ENUMS.STATUS.PENDING_APPROVAL &&
+      status !== FORM_ENUMS.STATUS.APPROVED &&
+      status !== FORM_ENUMS.STATUS.CLOSED
+    ) {
+      return res.status(404).json({ message: "Invalid Form Status" });
+    }
+    // Find form by status
+    const allSubmittedReport = await form.findAll({
+      where: { status },
+    });
+
+    // Count number of reports
+    let count = allSubmittedReport.length;
+
+    return res
+      .status(200)
+      .json({ message: "Report Found", count, allSubmittedReport });
   } catch (error) {
     console.log(error);
     return res.status(404).json({ message: "Report Not Found" });

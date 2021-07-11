@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const { user_role, role_permission_form, role } = require("../models");
+const { ROLE_ENUMS } = require("../constants/role-enums");
 
 const checkCanRead = async (req, res, next) => {
   try {
@@ -68,8 +69,10 @@ const checkCanRead = async (req, res, next) => {
       ) {
         // console.log(rolePermission[userRole].role.role_name);
         if (
-          (!temp && check.canRead === 1 && req.url.includes(check.url)) ||
-          rolePermission[userRole].role.role_name === "admin"
+          (!temp &&
+            check.canRead === ROLE_ENUMS.PERMISSION.CAN_READ &&
+            req.url.includes(check.url)) ||
+          rolePermission[userRole].role.role_name === ROLE_ENUMS.ROLE.ADMIN
         ) {
           return (temp = true);
         }
@@ -153,8 +156,10 @@ const checkCanWrite = async (req, res, next) => {
         check
       ) {
         if (
-          (!temp && check.canCreate === 1 && req.url.includes(check.url)) ||
-          rolePermission[userRole].role.role_name === "admin"
+          (!temp &&
+            check.canCreate === ROLE_ENUMS.PERMISSION.CAN_CREATE &&
+            req.url.includes(check.url)) ||
+          rolePermission[userRole].role.role_name === ROLE_ENUMS.ROLE.ADMIN
         ) {
           return (temp = true);
         }
@@ -238,8 +243,10 @@ const checkCanUpdate = async (req, res, next) => {
         check
       ) {
         if (
-          (!temp && check.canUpdate === 1 && req.url.includes(check.url)) ||
-          rolePermission[userRole].role.role_name === "admin"
+          (!temp &&
+            check.canUpdate === ROLE_ENUMS.PERMISSION.CAN_UPDATE &&
+            req.url.includes(check.url)) ||
+          rolePermission[userRole].role.role_name === ROLE_ENUMS.ROLE.ADMIN
         ) {
           return (temp = true);
         }
@@ -323,8 +330,10 @@ const checkCanDelete = async (req, res, next) => {
         check
       ) {
         if (
-          (!temp && check.canDelete === 1 && req.url.includes(check.url)) ||
-          rolePermission[userRole].role.role_name === "admin"
+          (!temp &&
+            check.canDelete === ROLE_ENUMS.PERMISSION.CAN_DELETE &&
+            req.url.includes(check.url)) ||
+          rolePermission[userRole].role.role_name === ROLE_ENUMS.ROLE.ADMIN
         ) {
           return (temp = true);
         }
@@ -408,8 +417,10 @@ const checkCanApprove = async (req, res, next) => {
         check
       ) {
         if (
-          (!temp && check.canApprove === 1 && req.url.includes(check.url)) ||
-          rolePermission[userRole].role.role_name === "admin"
+          (!temp &&
+            check.canApprove === ROLE_ENUMS.PERMISSION.CAN_APPROVE &&
+            req.url.includes(check.url)) ||
+          rolePermission[userRole].role.role_name === ROLE_ENUMS.ROLE.ADMIN
         ) {
           return (temp = true);
         }

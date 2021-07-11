@@ -1,5 +1,6 @@
 const multer = require("multer");
 const path = require("path");
+const { FILE_ENUMS } = require("../constants/file-enums");
 
 const storage = multer.diskStorage({
   destination: function (req, res, cb) {
@@ -13,9 +14,9 @@ const storage = multer.diskStorage({
 // Filter image extension
 const fileFilter = (req, file, cb) => {
   if (
-    file.mimetype === "image/jpg" ||
-    file.mimetype === "image/png" ||
-    file.mimetype === "image/svg"
+    file.mimetype === FILE_ENUMS.TYPE.JPG ||
+    file.mimetype === FILE_ENUMS.TYPE.PNG ||
+    file.mimetype === FILE_ENUMS.TYPE.SVG
   ) {
     cb(null, true);
   } else {

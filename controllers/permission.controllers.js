@@ -1,4 +1,5 @@
 const { role_permission_form, role, user, user_role } = require("../models");
+const { ROLE_ENUMS } = require("../constants/role-enums");
 
 const createNewRolePermissionForm = async (req, res) => {
   const {
@@ -34,7 +35,7 @@ const createNewRolePermissionForm = async (req, res) => {
 
     // Check if admin then can create new role permission form
     for (let checkAdmin in checkRole) {
-      if (checkRole[checkAdmin].role.role_name === "admin") {
+      if (checkRole[checkAdmin].role.role_name === ROLE_ENUMS.ROLE.ADMIN) {
         // Create new role permission form
         const rolePermission = await role_permission_form.create({
           role_id,
@@ -80,7 +81,7 @@ const getAllRolePermissionForms = async (req, res) => {
 
     // Check if admin then can create new role permission form
     for (let checkAdmin in checkRole) {
-      if (checkRole[checkAdmin].role.role_name === "admin") {
+      if (checkRole[checkAdmin].role.role_name === ROLE_ENUMS.ROLE.ADMIN) {
         // Get all role permission form and their detail roles
         const rolePermissions = await role_permission_form.findAll({
           include: { model: role },
@@ -127,7 +128,7 @@ const updateRolePermissionForm = async (req, res) => {
 
     // Check if admin then can create new role permission form
     for (let checkAdmin in checkRole) {
-      if (checkRole[checkAdmin].role.role_name === "admin") {
+      if (checkRole[checkAdmin].role.role_name === ROLE_ENUMS.ROLE.ADMIN) {
         // Update role permission form
         const rolePermissionForm = await role_permission_form.update(
           {
@@ -179,7 +180,7 @@ const deleteRolePermissionForm = async (req, res) => {
 
     // Check if admin then can create new role permission form
     for (let checkAdmin in checkRole) {
-      if (checkRole[checkAdmin].role.role_name === "admin") {
+      if (checkRole[checkAdmin].role.role_name === ROLE_ENUMS.ROLE.ADMIN) {
         // Delete role permission
         await rolePermissionId.destroy({
           where: { id },

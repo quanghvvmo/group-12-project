@@ -10,6 +10,7 @@ const bcrypt = require("bcrypt");
 const { sendMail } = require("./mail.controllers");
 const EventEmitter = require("events");
 const emailEvent = new EventEmitter();
+const { ROLE_ENUMS } = require("../constants/role-enums");
 
 // User APIs
 const createNewUser = async (req, res) => {
@@ -53,7 +54,7 @@ const createNewUser = async (req, res) => {
 
     // Check if admin then can create new user
     for (let checkAdmin in checkRole) {
-      if (checkRole[checkAdmin].role.role_name === "admin") {
+      if (checkRole[checkAdmin].role.role_name === ROLE_ENUMS.ROLE.ADMIN) {
         // Create new user
         const newUser = await user.create(
           {
@@ -145,7 +146,7 @@ const getAllUsers = async (req, res) => {
 
     // Check if admin then can get all users
     for (let checkAdmin in checkRole) {
-      if (checkRole[checkAdmin].role.role_name === "admin") {
+      if (checkRole[checkAdmin].role.role_name === ROLE_ENUMS.ROLE.ADMIN) {
         // Get all users
         const allUsers = await user.findAll({
           include: { model: user_role, attributes: { exclude: ["id"] } },
@@ -182,7 +183,10 @@ const getUserById = async (req, res) => {
 
     // Check if admin then can get user info detail
     for (let checkAdmin in checkRole) {
-      if (checkRole[checkAdmin].role.role_name === "admin" || userId === id) {
+      if (
+        checkRole[checkAdmin].role.role_name === ROLE_ENUMS.ROLE.ADMIN ||
+        userId === id
+      ) {
         // Get user id
         const userId = await user.findOne({
           where: { id },
@@ -271,7 +275,10 @@ const updateUser = async (req, res) => {
 
     // Check if admin then can update user info
     for (let checkAdmin in checkRole) {
-      if (checkRole[checkAdmin].role.role_name === "admin" || userId === id) {
+      if (
+        checkRole[checkAdmin].role.role_name === ROLE_ENUMS.ROLE.ADMIN ||
+        userId === id
+      ) {
         // Update user info
         const userUpdated = await user.update(
           {
@@ -357,7 +364,10 @@ const deleteUser = async (req, res) => {
 
     // Check if admin then can delete user
     for (let checkAdmin in checkRole) {
-      if (checkRole[checkAdmin].role.role_name === "admin" || userId === id) {
+      if (
+        checkRole[checkAdmin].role.role_name === ROLE_ENUMS.ROLE.ADMIN ||
+        userId === id
+      ) {
         // Delete user
         await userCheck.destroy({
           where: { id },
@@ -404,7 +414,7 @@ const getAllAccounts = async (req, res) => {
 
     // Check if admin then can get all accounts
     for (let checkAdmin in checkRole) {
-      if (checkRole[checkAdmin].role.role_name === "admin") {
+      if (checkRole[checkAdmin].role.role_name === ROLE_ENUMS.ROLE.ADMIN) {
         // Find all user accounts
         const accounts = await account.findAll({ include: { model: user } });
 
@@ -442,7 +452,10 @@ const getUserAccountById = async (req, res) => {
 
     // Check if admin then can get user account info detail
     for (let checkAdmin in checkRole) {
-      if (checkRole[checkAdmin].role.role_name === "admin" || userId === id) {
+      if (
+        checkRole[checkAdmin].role.role_name === ROLE_ENUMS.ROLE.ADMIN ||
+        userId === id
+      ) {
         const accountId = await account.findOne({
           where: { id },
           include: { model: user },
@@ -496,7 +509,7 @@ const updateUserAccount = async (req, res) => {
     // Check if admin then can update user account info
     for (let checkAdmin in checkRole) {
       if (
-        checkRole[checkAdmin].role.role_name === "admin" ||
+        checkRole[checkAdmin].role.role_name === ROLE_ENUMS.ROLE.ADMIN ||
         userIdToken === id
       ) {
         // Get account id
@@ -573,7 +586,7 @@ const deleteUserAccount = async (req, res) => {
     // Check if admin then can update user account info
     for (let checkAdmin in checkRole) {
       if (
-        checkRole[checkAdmin].role.role_name === "admin" ||
+        checkRole[checkAdmin].role.role_name === ROLE_ENUMS.ROLE.ADMIN ||
         userIdToken === accounts.user.id
       ) {
         // Get user account id
