@@ -11,7 +11,14 @@ const checkCanRead = async (req, res, next) => {
     }
     // Verify token
     const verifyToken = await jwt.verify(token, process.env.SECRET_TOKEN);
+
+    // Check if verifyToken is null or undefined
+    if (!verifyToken) {
+      return res.status(404).json({ message: "Token is null or undefined" });
+    }
+
     req.user = verifyToken;
+
     // Get user id from payload
     const userId = verifyToken.id;
 
@@ -91,6 +98,12 @@ const checkCanWrite = async (req, res, next) => {
     }
     // Verify token
     const verifyToken = await jwt.verify(token, process.env.SECRET_TOKEN);
+
+    // Check if verifyToken is null or undefined
+    if (!verifyToken) {
+      return res.status(404).json({ message: "Token is null or undefined" });
+    }
+
     req.user = verifyToken;
     // Get user id from payload
     const userId = verifyToken.id;
@@ -170,6 +183,12 @@ const checkCanUpdate = async (req, res, next) => {
     }
     // Verify token
     const verifyToken = await jwt.verify(token, process.env.SECRET_TOKEN);
+
+    // Check if verifyToken is null or undefined
+    if (!verifyToken) {
+      return res.status(404).json({ message: "Token is null or undefined" });
+    }
+
     req.user = verifyToken;
     // Get user id from payload
     const userId = verifyToken.id;
@@ -249,6 +268,12 @@ const checkCanDelete = async (req, res, next) => {
     }
     // Verify token
     const verifyToken = await jwt.verify(token, process.env.SECRET_TOKEN);
+
+    // Check if verifyToken is null or undefined
+    if (!verifyToken) {
+      return res.status(404).json({ message: "Token is null or undefined" });
+    }
+
     req.user = verifyToken;
     // Get user id from payload
     const userId = verifyToken.id;
@@ -328,6 +353,12 @@ const checkCanApprove = async (req, res, next) => {
     }
     // Verify token
     const verifyToken = await jwt.verify(token, process.env.SECRET_TOKEN);
+
+    // Check if verifyToken is null or undefined
+    if (!verifyToken) {
+      return res.status(404).json({ message: "Token is null or undefined" });
+    }
+
     req.user = verifyToken;
     // Get user id from payload
     const userId = verifyToken.id;
