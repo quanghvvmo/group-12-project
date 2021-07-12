@@ -12,6 +12,12 @@ const addDepartment = async (req, res) => {
     try {
         const currentAdmin = req.admin.id;
 
+        if (currentAdmin === null) {
+            return res.status(404).json({
+                message: "Admin not found, contact tech staff for instruction"
+            });
+        }
+
         const findCurrentAdmin = await Admin.findOne({
             where: {
                 id: currentAdmin
@@ -60,40 +66,38 @@ const addDepartment = async (req, res) => {
             createBy
         }, { transaction: t });
 
-        for (let i = 0; i < employees.length; i++) {
-            const id = employees[i];
-
-            const findEmployee = await Employee.findOne({
-                where: {
-                    id: id,
-                    isAdmin: 0
-                }
-            });
-
-            if (findEmployee) {
-                await DepartmentEmployee.create({
-                    departmentId: newDepartment.id,
-                    employeeId: findEmployee.id
-                }, { transaction: t });
+        const findEmployees = await Employee.findAll({
+            where: {
+                id: employees,
+                isAdmin: 0
             }
-        }
+        });
 
-        for (let i = 0; i < projects.length; i++) {
-            const id = projects[i];
+        let departmentEmployees = [];
+        findEmployees.forEach(employee => {
+            departmentEmployees.push({
+                departmentId: newDepartment.id,
+                employeeId: employee.id
+            })
+        });
 
-            const findProject = await Project.findOne({
-                where: {
-                    id: id,
-                }
-            });
+        await DepartmentEmployee.bulkCreate(departmentEmployees, { transaction: t });
 
-            if (findProject) {
-                await DepartmentProject.create({
-                    departmentId: newDepartment.id,
-                    employeeId: findProject.id
-                }, { transaction: t });
+        const findProjects = await Project.findAll({
+            where: {
+                id: projects
             }
-        }
+        });
+
+        let departmentProjects = [];
+        findProjects.forEach(project => {
+            departmentProjects.push({
+                departmentId: newDepartment.id,
+                projectId: project.id
+            })
+        });
+
+        await DepartmentProject.bulkCreate(departmentProjects, { transaction: t });
 
         await t.commit();
 
@@ -114,6 +118,26 @@ const addDepartment = async (req, res) => {
 
 const getDepartments = async (req, res) => {
     try {
+        const currentAdmin = req.admin.id;
+
+        if (currentAdmin === null) {
+            return res.status(404).json({
+                message: "Admin not found, contact tech staff for instruction"
+            });
+        }
+
+        const findCurrentAdmin = await Admin.findOne({
+            where: {
+                id: currentAdmin
+            }
+        });
+
+        if (!findCurrentAdmin) {
+            return res.status(403).json({
+                message: "You are not admin"
+            });
+        }
+
         const size = req.query.limit;
         const page = req.query.offset;
 
@@ -150,6 +174,26 @@ const getDepartments = async (req, res) => {
 
 const getDepartment = async (req, res) => {
     try {
+        const currentAdmin = req.admin.id;
+
+        if (currentAdmin === null) {
+            return res.status(404).json({
+                message: "Admin not found, contact tech staff for instruction"
+            });
+        }
+
+        const findCurrentAdmin = await Admin.findOne({
+            where: {
+                id: currentAdmin
+            }
+        });
+
+        if (!findCurrentAdmin) {
+            return res.status(403).json({
+                message: "You are not admin"
+            });
+        }
+
         const id = req.params.id;
 
         const findDepartment = await Department.findOne({
@@ -191,6 +235,12 @@ const updateDepartment = async (req, res) => {
     const t = await db.transaction();
     try {
         const currentAdmin = req.admin.id;
+
+        if (currentAdmin === null) {
+            return res.status(404).json({
+                message: "Admin not found, contact tech staff for instruction"
+            });
+        }
 
         const findCurrentAdmin = await Admin.findOne({
             where: {
@@ -271,40 +321,38 @@ const updateDepartment = async (req, res) => {
             }
         }, { transaction: t });
 
-        for (let i = 0; i < employees.length; i++) {
-            const id = employees[i];
-
-            const findEmployee = await Employee.findOne({
-                where: {
-                    id: id,
-                    isAdmin: 0
-                }
-            });
-
-            if (findEmployee) {
-                await DepartmentEmployee.create({
-                    departmentId: findDepartment.id,
-                    employeeId: findEmployee.id
-                }, { transaction: t });
+        const findEmployees = await Employee.findAll({
+            where: {
+                id: employees,
+                isAdmin: 0
             }
-        }
+        });
 
-        for (let i = 0; i < projects.length; i++) {
-            const id = projects[i];
+        let departmentEmployees = [];
+        findEmployees.forEach(employee => {
+            departmentEmployees.push({
+                departmentId: findDepartment.id,
+                employeeId: employee.id
+            })
+        });
 
-            const findProject = await Project.findOne({
-                where: {
-                    id: id,
-                }
-            });
+        await DepartmentEmployee.bulkCreate(departmentEmployees, { transaction: t });
 
-            if (findProject) {
-                await DepartmentProject.create({
-                    departmentId: findDepartment.id,
-                    employeeId: findProject.id
-                }, { transaction: t });
+        const findProjects = await Project.findAll({
+            where: {
+                id: projects
             }
-        }
+        });
+
+        let departmentProjects = [];
+        findProjects.forEach(project => {
+            departmentProjects.push({
+                departmentId: findDepartment.id,
+                projectId: project.id
+            })
+        });
+
+        await DepartmentProject.bulkCreate(departmentProjects, { transaction: t });
 
         await t.commit();
 
@@ -326,15 +374,21 @@ const updateDepartment = async (req, res) => {
 const deleteDepartment = async (req, res) => {
     const t = await db.transaction();
     try {
-        const adminId = req.admin.id;
+        const currentAdmin = req.admin.id;
 
-        const findAdmin = await Admin.findOne({
+        if (currentAdmin === null) {
+            return res.status(404).json({
+                message: "Admin not found, contact tech staff for instruction"
+            });
+        }
+
+        const findCurrentAdmin = await Admin.findOne({
             where: {
-                id: adminId
+                id: currentAdmin
             }
         });
 
-        if (!findAdmin) {
+        if (!findCurrentAdmin) {
             return res.status(403).json({
                 message: "You are not admin"
             });

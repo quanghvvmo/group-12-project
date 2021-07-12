@@ -1,8 +1,6 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import db from '../config/db.js';
-import sequelize from 'sequelize';
-const { Op } = sequelize;
 import Admin from '../models/admin-model.js';
 import Employee from '../models/employee-model.js';
 import Tech from '../models/tech-model.js';
@@ -14,15 +12,21 @@ import moment from 'moment';
 const createEmployee = async (req, res) => {
     const t = await db.transaction();
     try {
-        const adminId = req.admin.id;
+        const currentAdmin = req.admin.id;
 
-        const findAdmin = await Admin.findOne({
+        if (currentAdmin === null) {
+            return res.status(404).json({
+                message: "Admin not found, contact tech staff for instruction"
+            });
+        }
+
+        const findCurrentAdmin = await Admin.findOne({
             where: {
-                id: adminId
+                id: currentAdmin
             }
         });
 
-        if(!findAdmin) {
+        if (!findCurrentAdmin) {
             return res.status(403).json({
                 message: "You are not admin"
             });
@@ -31,7 +35,7 @@ const createEmployee = async (req, res) => {
         const { name, dob, address, idNumber, phone, experienceYear,
             foreignLanguage, certificate, teches } = req.body;
 
-        const createBy = findAdmin.id;
+        const createBy = findCurrentAdmin.id;
 
         const findEmployee = await Employee.findOne({
             where: {
@@ -75,23 +79,22 @@ const createEmployee = async (req, res) => {
             createBy
         }, { transaction: t });
 
-        for (let i = 0; i < teches.length; i++) {
-            const id = teches[i];
-
-            const findTech = await Tech.findOne({
-                where: {
-                    id: id,
-                    status: 1
-                }
-            });
-
-            if (findTech) {
-                await EmployeeTech.create({
-                    employeeId: newEmployee.id,
-                    techId: findTech.id
-                }, { transaction: t });
+        const findTeches = await Tech.findAll({
+            where: {
+                id: teches,
+                status: 1
             }
-        }
+        });
+
+        let employeeTechs = [];
+        findTeches.forEach(tech => {
+            employeeTechs.push({
+                employeeId: newEmployee.id,
+                techId: tech.id
+            })
+        });
+
+        await EmployeeTech.bulkCreate(employeeTechs, { transaction: t });
 
         await t.commit();
 
@@ -112,6 +115,26 @@ const createEmployee = async (req, res) => {
 
 const getEmployees = async (req, res) => {
     try {
+        const currentAdmin = req.admin.id;
+
+        if (currentAdmin === null) {
+            return res.status(404).json({
+                message: "Admin not found, contact tech staff for instruction"
+            });
+        }
+
+        const findCurrentAdmin = await Admin.findOne({
+            where: {
+                id: currentAdmin
+            }
+        });
+
+        if (!findCurrentAdmin) {
+            return res.status(403).json({
+                message: "You are not admin"
+            });
+        }
+
         const size = req.query.limit;
         const page = req.query.offset;
 
@@ -150,6 +173,26 @@ const getEmployees = async (req, res) => {
 
 const getEmployee = async (req, res) => {
     try {
+        const currentAdmin = req.admin.id;
+
+        if (currentAdmin === null) {
+            return res.status(404).json({
+                message: "Admin not found, contact tech staff for instruction"
+            });
+        }
+
+        const findCurrentAdmin = await Admin.findOne({
+            where: {
+                id: currentAdmin
+            }
+        });
+
+        if (!findCurrentAdmin) {
+            return res.status(403).json({
+                message: "You are not admin"
+            });
+        }
+
         const id = req.params.id;
 
         const findEmployee = await Employee.findOne({
@@ -186,15 +229,21 @@ const getEmployee = async (req, res) => {
 const updateEmployee = async (req, res) => {
     const t = await db.transaction();
     try {
-        const adminId = req.admin.id;
+        const currentAdmin = req.admin.id;
 
-        const findAdmin = await Admin.findOne({
+        if (currentAdmin === null) {
+            return res.status(404).json({
+                message: "Admin not found, contact tech staff for instruction"
+            });
+        }
+
+        const findCurrentAdmin = await Admin.findOne({
             where: {
-                id: adminId
+                id: currentAdmin
             }
         });
 
-        if(!findAdmin) {
+        if (!findCurrentAdmin) {
             return res.status(403).json({
                 message: "You are not admin"
             });
@@ -217,7 +266,7 @@ const updateEmployee = async (req, res) => {
         const { name, dob, address, idNumber, phone, experienceYear,
             foreignLanguage, certificate, teches } = req.body;
 
-        const updateBy = findAdmin.id;
+        const updateBy = findCurrentAdmin.id;
 
         if (!moment(dob).isValid()) {
             return res.status(301).json({
@@ -260,25 +309,24 @@ const updateEmployee = async (req, res) => {
             where: {
                 employeeId: findEmployee.id
             }
+        }, { transaction: t });
+
+        const findTeches = await Tech.findAll({
+            where: {
+                id: teches,
+                status: 1
+            }
         });
 
-        for (let i = 0; i < teches.length; i++) {
-            const id = teches[i];
+        let employeeTechs = [];
+        findTeches.forEach(tech => {
+            employeeTechs.push({
+                employeeId: findEmployee.id,
+                techId: tech.id
+            })
+        });
 
-            const findTech = await Tech.findOne({
-                where: {
-                    id: id,
-                    status: 1
-                }
-            });
-
-            if (findTech) {
-                await EmployeeTech.create({
-                    employeeId: findEmployee.id,
-                    techId: findTech.id
-                }, { transaction: t });
-            }
-        }
+        await EmployeeTech.bulkCreate(employeeTechs, { transaction: t });
 
         await t.commit();
 
@@ -302,6 +350,26 @@ const updateEmployee = async (req, res) => {
 
 const setAdmin = async (req, res) => {
     try {
+        const currentAdmin = req.admin.id;
+
+        if (currentAdmin === null) {
+            return res.status(404).json({
+                message: "Admin not found, contact tech staff for instruction"
+            });
+        }
+
+        const findCurrentAdmin = await Admin.findOne({
+            where: {
+                id: currentAdmin
+            }
+        });
+
+        if (!findCurrentAdmin) {
+            return res.status(403).json({
+                message: "You are not admin"
+            });
+        }
+
         const id = req.params.id;
 
         const findEmployee = await Employee.findOne({
@@ -338,20 +406,26 @@ const setAdmin = async (req, res) => {
 const deleteEmployee = async (req, res) => {
     const t = await db.transaction();
     try {
-        const adminId = req.admin.id;
+        const currentAdmin = req.admin.id;
 
-        const findAdmin = await Admin.findOne({
+        if (currentAdmin === null) {
+            return res.status(404).json({
+                message: "Admin not found, contact tech staff for instruction"
+            });
+        }
+
+        const findCurrentAdmin = await Admin.findOne({
             where: {
-                id: adminId
+                id: currentAdmin
             }
         });
 
-        if(!findAdmin) {
+        if (!findCurrentAdmin) {
             return res.status(403).json({
                 message: "You are not admin"
             });
         }
-        
+
         const id = req.params.id;
 
         const findEmployee = await Employee.findOne({
@@ -380,7 +454,7 @@ const deleteEmployee = async (req, res) => {
 
         const deleteEmployee = await Employee.update({
             isDeleted: 1,
-        }, { where: {id: id}}, { transaction: t });
+        }, { where: { id: id } }, { transaction: t });
 
         await EmployeeTech.destroy({
             where: {

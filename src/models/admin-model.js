@@ -1,49 +1,38 @@
 import db from '../config/db.js';
 import sequelize from 'sequelize';
+import Employee from './employee-model.js';
 
-const Employee = db.define('employee', {
+const Admin = db.define('admin', {
     id: {
         type: sequelize.UUID,
         defaultValue: sequelize.UUIDV4,
         primaryKey: true
     },
 
+    employeeId: {
+        type: sequelize.UUID,
+        references: {
+            model: Employee,
+            key: 'id'
+        }
+    },
+
+    username: {
+        type: sequelize.STRING(50),
+    },
+
+    password: {
+        type: sequelize.STRING,
+    },
+
     name: {
-        type: sequelize.STRING,
+        type: sequelize.STRING(100),
     },
 
-    dob: {
-        type: sequelize.DATE,
-    },
-
-    address: {
-        type: sequelize.STRING,
-    },
-
-    idNumber: {
-        type: sequelize.STRING,
-    },
-
-    phone: {
-        type: sequelize.STRING,
-    },
-
-    experienceYear: {
-        type: sequelize.INTEGER,
-    },
-
-    foreignLanguage: {
-        type: sequelize.STRING,
-    },
-
-    certificate: {
-        type: sequelize.STRING,
-    },
-
-    isAdmin: {
+    status: {
         type: sequelize.BOOLEAN,
-        defaultValue: 0
-    }, 
+        defaultValue: 1,
+    },
 
     createAt: {
         type: sequelize.DATE,
@@ -72,4 +61,7 @@ const Employee = db.define('employee', {
     }
 );
 
-export default Employee;
+Employee.hasOne(Admin, { foreignKey: 'employeeId' });
+Admin.belongsTo(Employee, { foreignKey: 'employeeId' });
+
+export default Admin;

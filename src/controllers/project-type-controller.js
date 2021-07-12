@@ -4,15 +4,21 @@ import Admin from '../models/admin-model.js';
 
 const createProjectType = async (req, res) => {
     try {
-        const adminId = req.admin.id;
+        const currentAdmin = req.admin.id;
 
-        const findAdmin = await Admin.findOne({
+        if(currentAdmin === null) {
+            return res.status(404).json({
+                message: "Admin not found, contact tech staff for instruction"
+            });
+        }
+
+        const findCurrentAdmin = await Admin.findOne({
             where: {
-                id: adminId
+                id: currentAdmin
             }
         });
 
-        if(!findAdmin) {
+        if (!findCurrentAdmin) {
             return res.status(403).json({
                 message: "You are not admin"
             });
@@ -20,7 +26,7 @@ const createProjectType = async (req, res) => {
 
         const { name } = req.body;
 
-        const createBy = findAdmin.id;
+        const createBy = findCurrentAdmin.id;
 
         if(!name) {
             return res.status(301).json({
@@ -61,6 +67,26 @@ const createProjectType = async (req, res) => {
 
 const getTypes = async (req, res) => {
     try {
+        const currentAdmin = req.admin.id;
+
+        if(currentAdmin === null) {
+            return res.status(404).json({
+                message: "Admin not found, contact tech staff for instruction"
+            });
+        }
+
+        const findCurrentAdmin = await Admin.findOne({
+            where: {
+                id: currentAdmin
+            }
+        });
+
+        if (!findCurrentAdmin) {
+            return res.status(403).json({
+                message: "You are not admin"
+            });
+        }
+
         const size = req.query.limit;
         const page = req.query.offset;
 
@@ -97,6 +123,26 @@ const getTypes = async (req, res) => {
 
 const getType = async (req, res) => {
     try {
+        const currentAdmin = req.admin.id;
+
+        if(currentAdmin === null) {
+            return res.status(404).json({
+                message: "Admin not found, contact tech staff for instruction"
+            });
+        }
+
+        const findCurrentAdmin = await Admin.findOne({
+            where: {
+                id: currentAdmin
+            }
+        });
+
+        if (!findCurrentAdmin) {
+            return res.status(403).json({
+                message: "You are not admin"
+            });
+        }
+
         const id = req.params.id;
 
         const findType = await ProjectType.findOne({
@@ -126,15 +172,21 @@ const getType = async (req, res) => {
 
 const updateType = async (req, res) => {
     try {
-        const adminId = req.admin.id;
+        const currentAdmin = req.admin.id;
 
-        const findAdmin = await Admin.findOne({
+        if(currentAdmin === null) {
+            return res.status(404).json({
+                message: "Admin not found, contact tech staff for instruction"
+            });
+        }
+
+        const findCurrentAdmin = await Admin.findOne({
             where: {
-                id: adminId
+                id: currentAdmin
             }
         });
 
-        if(!findAdmin) {
+        if (!findCurrentAdmin) {
             return res.status(403).json({
                 message: "You are not admin"
             });
@@ -144,7 +196,7 @@ const updateType = async (req, res) => {
 
         const { name } = req.body;
 
-        const updateBy = findAdmin.id;
+        const updateBy = findCurrentAdmin.id;
 
         const findType = await ProjectType.findOne({
             where: {
@@ -179,15 +231,21 @@ const updateType = async (req, res) => {
 
 const deleteType = async (req, res) => {
     try {
-        const adminId = req.admin.id;
+        const currentAdmin = req.admin.id;
 
-        const findAdmin = await Admin.findOne({
+        if(currentAdmin === null) {
+            return res.status(404).json({
+                message: "Admin not found, contact tech staff for instruction"
+            });
+        }
+
+        const findCurrentAdmin = await Admin.findOne({
             where: {
-                id: adminId
+                id: currentAdmin
             }
         });
 
-        if(!findAdmin) {
+        if (!findCurrentAdmin) {
             return res.status(403).json({
                 message: "You are not admin"
             });

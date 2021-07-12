@@ -107,6 +107,26 @@ const login = async (req, res) => {
 
 const getAdmins = async (req, res) => {
     try {
+        const currentAdmin = req.admin.id;
+
+        if(currentAdmin === null) {
+            return res.status(404).json({
+                message: "Admin not found, contact tech staff for instruction"
+            });
+        }
+
+        const findCurrentAdmin = await Admin.findOne({
+            where: {
+                id: currentAdmin
+            }
+        });
+
+        if (!findCurrentAdmin) {
+            return res.status(403).json({
+                message: "You are not admin"
+            });
+        }
+
         const size = req.query.limit;
         const page = req.query.offset;
 
@@ -141,6 +161,26 @@ const getAdmins = async (req, res) => {
 
 const getAdmin = async (req, res) => {
     try {
+        const currentAdmin = req.admin.id;
+
+        if(currentAdmin === null) {
+            return res.status(404).json({
+                message: "Admin not found, contact tech staff for instruction"
+            });
+        }
+
+        const findCurrentAdmin = await Admin.findOne({
+            where: {
+                id: currentAdmin
+            }
+        });
+
+        if (!findCurrentAdmin) {
+            return res.status(403).json({
+                message: "You are not admin"
+            });
+        }
+
         const id = req.params.id;
 
         const findAdmin = await Admin.findOne({
@@ -176,6 +216,26 @@ const getAdmin = async (req, res) => {
 
 const updateAdmin = async (req, res) => {
     try {
+        const currentAdmin = req.admin.id;
+
+        if(currentAdmin === null) {
+            return res.status(404).json({
+                message: "Admin not found, contact tech staff for instruction"
+            });
+        }
+
+        const findCurrentAdmin = await Admin.findOne({
+            where: {
+                id: currentAdmin
+            }
+        });
+
+        if (!findCurrentAdmin) {
+            return res.status(403).json({
+                message: "You are not admin"
+            });
+        }
+
         const id = req.params.id;
 
         const findAdmin = await Admin.findOne({
@@ -215,15 +275,21 @@ const updateAdmin = async (req, res) => {
 
 const deleteAdmin = async (req, res) => {
     try {
-        const adminId = req.admin.id;
+        const currentAdmin = req.admin.id;
 
-        const findLoginAdmin = await Admin.findOne({
+        if(currentAdmin === null) {
+            return res.status(404).json({
+                message: "Admin not found, contact tech staff for instruction"
+            });
+        }
+
+        const findCurrentAdmin = await Admin.findOne({
             where: {
-                id: adminId
+                id: currentAdmin
             }
         });
 
-        if(!findLoginAdmin) {
+        if (!findCurrentAdmin) {
             return res.status(403).json({
                 message: "You are not admin"
             });

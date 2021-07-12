@@ -1,7 +1,8 @@
 import db from '../config/db.js';
 import sequelize from 'sequelize';
+import Admin from './admin-model.js';
 
-const ProjectType = db.define('projecttype', {
+const Department = db.define('department', {
     id: {
         type: sequelize.UUID,
         defaultValue: sequelize.UUIDV4,
@@ -9,13 +10,24 @@ const ProjectType = db.define('projecttype', {
     },
 
     name: {
-        type: sequelize.STRING,
+        type: sequelize.STRING(100),
     },
 
-    status: {
-        type: sequelize.BOOLEAN,
-        defaultValue: 1
-    }, 
+    description: {
+        type: sequelize.STRING(300),
+    },
+
+    foundingDate: {
+        type: sequelize.DATE,
+    },
+
+    adminId: {
+        type: sequelize.UUID,
+        references: {
+            model: Admin,
+            key: 'id'
+        }
+    },
 
     createAt: {
         type: sequelize.DATE,
@@ -39,9 +51,12 @@ const ProjectType = db.define('projecttype', {
         defaultValue: 0
     }
 },
-{
-    freezeTableName: true,
-}
+    {
+        freezeTableName: true,
+    }
 );
 
-export default ProjectType;
+Admin.hasOne(Department, { foreignKey: 'adminId' });
+Department.belongsTo(Admin, { foreignKey: 'adminId' });
+
+export default Department;

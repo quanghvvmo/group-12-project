@@ -1,37 +1,21 @@
 import db from '../config/db.js';
 import sequelize from 'sequelize';
-import Employee from './employee-model.js';
 
-const Admin = db.define('admin', {
+const Tech = db.define('tech', {
     id: {
         type: sequelize.UUID,
         defaultValue: sequelize.UUIDV4,
         primaryKey: true
     },
 
-    employeeId: {
-        type: sequelize.UUID,
-        references: {
-            model: Employee,
-            key: 'id'
-        }
-    },
-
-    username: {
-        type: sequelize.STRING,
-    },
-
-    password: {
-        type: sequelize.STRING,
-    },
-
     name: {
-        type: sequelize.STRING,
+        type: sequelize.STRING(100),
+        unique: true
     },
 
     status: {
         type: sequelize.BOOLEAN,
-        defaultValue: 1,
+        defaultValue: 1
     },
 
     createAt: {
@@ -56,12 +40,9 @@ const Admin = db.define('admin', {
         defaultValue: 0
     }
 },
-    {
-        freezeTableName: true,
-    }
+{
+    freezeTableName: true,
+}
 );
 
-Employee.hasOne(Admin, { foreignKey: 'employeeId' });
-Admin.belongsTo(Employee, { foreignKey: 'employeeId' });
-
-export default Admin;
+export default Tech;

@@ -9,11 +9,11 @@ const Customer = db.define('customer', {
     },
 
     name: {
-        type: sequelize.STRING,
+        type: sequelize.STRING(100),
     },
 
     description: {
-        type: sequelize.STRING,
+        type: sequelize.STRING(300),
     },
 
     createAt: {

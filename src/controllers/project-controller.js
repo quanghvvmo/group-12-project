@@ -1,6 +1,6 @@
 import db from '../config/db.js';
 import Project from '../models/project-model.js';
-import Department from '../models/department-model.js';
+//import Department from '../models/department-model.js';
 import Admin from '../models/admin-model.js';
 import Tech from '../models/tech-model.js';
 import Customer from '../models/customer-model.js';
@@ -13,15 +13,21 @@ import moment from 'moment';
 const addProject = async (req, res) => {
     const t = await db.transaction();
     try {
-        const adminId = req.admin.id;
+        const currentAdmin = req.admin.id;
 
-        const findAdmin = await Admin.findOne({
+        if (currentAdmin === null) {
+            return res.status(404).json({
+                message: "Admin not found, contact tech staff for instruction"
+            });
+        }
+
+        const findCurrentAdmin = await Admin.findOne({
             where: {
-                id: adminId
+                id: currentAdmin
             }
         });
 
-        if(!findAdmin) {
+        if (!findCurrentAdmin) {
             return res.status(403).json({
                 message: "You are not admin"
             });
@@ -72,40 +78,38 @@ const addProject = async (req, res) => {
             createBy
         }, { transaction: t });
 
-        for (let i = 0; i < teches.length; i++) {
-            const id = teches[i];
-
-            const findTech = await Tech.findOne({
-                where: {
-                    id: id,
-                    status: 1
-                }
-            });
-
-            if (findTech) {
-                await ProjectTech.create({
-                    projectId: newProject.id,
-                    techId: findTech.id
-                }, { transaction: t });
+        const findTeches = await Tech.findAll({
+            where: {
+                id: teches,
+                status: 1
             }
-        }
+        });
 
-        for (let i = 0; i < employees.length; i++) {
-            const id = employees[i];
+        let projectTechs = [];
+        findTeches.forEach(tech => {
+            projectTechs.push({
+                projectId: newProject.id,
+                techId: tech.id
+            })
+        });
 
-            const findEmployee = await Employee.findOne({
-                where: {
-                    id: id,
-                }
-            });
+        await ProjectTech.bulkCreate(projectTechs, { transaction: t });
 
-            if (findEmployee) {
-                await ProjectEmployee.create({
-                    projectId: newProject.id,
-                    employeeId: findEmployee.id
-                }, { transaction: t });
+        const findEmployees = await Employee.findAll({
+            where: {
+                id: employees
             }
-        }
+        });
+
+        let projectEmployees = [];
+        findEmployees.forEach(employee => {
+            projectEmployees.push({
+                projectId: newProject.id,
+                employeeId: employee.id
+            })
+        });
+
+        await ProjectEmployee.bulkCreate(projectEmployees, { transaction: t });
 
         await t.commit();
 
@@ -126,6 +130,26 @@ const addProject = async (req, res) => {
 
 const getProjects = async (req, res) => {
     try {
+        const currentAdmin = req.admin.id;
+
+        if (currentAdmin === null) {
+            return res.status(404).json({
+                message: "Admin not found, contact tech staff for instruction"
+            });
+        }
+
+        const findCurrentAdmin = await Admin.findOne({
+            where: {
+                id: currentAdmin
+            }
+        });
+
+        if (!findCurrentAdmin) {
+            return res.status(403).json({
+                message: "You are not admin"
+            });
+        }
+
         const size = req.query.limit;
         const page = req.query.offset;
 
@@ -175,6 +199,26 @@ const getProjects = async (req, res) => {
 
 const getProject = async (req, res) => {
     try {
+        const currentAdmin = req.admin.id;
+
+        if (currentAdmin === null) {
+            return res.status(404).json({
+                message: "Admin not found, contact tech staff for instruction"
+            });
+        }
+
+        const findCurrentAdmin = await Admin.findOne({
+            where: {
+                id: currentAdmin
+            }
+        });
+
+        if (!findCurrentAdmin) {
+            return res.status(403).json({
+                message: "You are not admin"
+            });
+        }
+
         const id = req.params.id;
 
         const findProject = await Project.findOne({
@@ -222,15 +266,21 @@ const getProject = async (req, res) => {
 const updateProject = async (req, res) => {
     const t = await db.transaction();
     try {
-        const adminId = req.admin.id;
+        const currentAdmin = req.admin.id;
 
-        const findAdmin = await Admin.findOne({
+        if (currentAdmin === null) {
+            return res.status(404).json({
+                message: "Admin not found, contact tech staff for instruction"
+            });
+        }
+
+        const findCurrentAdmin = await Admin.findOne({
             where: {
-                id: adminId
+                id: currentAdmin
             }
         });
 
-        if(!findAdmin) {
+        if (!findCurrentAdmin) {
             return res.status(403).json({
                 message: "You are not admin"
             });
@@ -308,48 +358,38 @@ const updateProject = async (req, res) => {
             }
         }, { transaction: t });
 
-        for (let i = 0; i < teches.length; i++) {
-            const id = teches[i];
-
-            const findTech = await Tech.findOne({
-                where: {
-                    id: id,
-                    status: 1
-                }
-            });
-
-            if (!findTech) {
-                return res.status(404).json({
-                    message: "Tech not exist"
-                });
+        const findTeches = await Tech.findAll({
+            where: {
+                id: teches,
+                status: 1
             }
+        });
 
-            await ProjectTech.create({
+        let projectTechs = [];
+        findTeches.forEach(tech => {
+            projectTechs.push({
                 projectId: findProject.id,
-                techId: findTech.id
-            }, { transaction: t });
-        }
+                techId: tech.id
+            })
+        });
 
-        for (let i = 0; i < employees.length; i++) {
-            const id = employees[i];
+        await ProjectTech.bulkCreate(projectTechs, { transaction: t });
 
-            const findEmployee = await Employee.findOne({
-                where: {
-                    id: id,
-                }
-            });
-
-            if (!findEmployee) {
-                return res.status(404).json({
-                    message: "Employee not exist"
-                });
+        const findEmployees = await Employee.findAll({
+            where: {
+                id: employees
             }
+        });
 
-            await ProjectEmployee.create({
+        let projectEmployees = [];
+        findEmployees.forEach(employee => {
+            projectEmployees.push({
                 projectId: findProject.id,
-                employeeId: findEmployee.id
-            });
-        }
+                employeeId: employee.id
+            })
+        });
+
+        await ProjectEmployee.bulkCreate(projectEmployees, { transaction: t });
 
         await t.commit();
 
@@ -371,15 +411,21 @@ const updateProject = async (req, res) => {
 const deleteProject = async (req, res) => {
     const t = await db.transaction();
     try {
-        const adminId = req.admin.id;
+        const currentAdmin = req.admin.id;
 
-        const findAdmin = await Admin.findOne({
+        if (currentAdmin === null) {
+            return res.status(404).json({
+                message: "Admin not found, contact tech staff for instruction"
+            });
+        }
+
+        const findCurrentAdmin = await Admin.findOne({
             where: {
-                id: adminId
+                id: currentAdmin
             }
         });
 
-        if(!findAdmin) {
+        if (!findCurrentAdmin) {
             return res.status(403).json({
                 message: "You are not admin"
             });
@@ -399,7 +445,7 @@ const deleteProject = async (req, res) => {
             });
         }
 
-        if(findProject.projectStatus !== 'Closed') {
+        if (findProject.projectStatus !== 'Closed') {
             return res.status(409).json({
                 message: "Project status must be set to closed first"
             });
@@ -407,7 +453,7 @@ const deleteProject = async (req, res) => {
 
         const deleteProject = await Project.update({
             isDeleted: 1
-        }, { where: { id: id}}, { transaction: t });
+        }, { where: { id: id } }, { transaction: t });
 
         await ProjectEmployee.destroy({
             where: {
@@ -427,7 +473,7 @@ const deleteProject = async (req, res) => {
             message: "Project deleted",
             data: deleteProject
         });
-        
+
     } catch (error) {
         console.error(error.message);
         await t.rollback();

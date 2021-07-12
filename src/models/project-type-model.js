@@ -1,7 +1,7 @@
 import db from '../config/db.js';
 import sequelize from 'sequelize';
 
-const Tech = db.define('tech', {
+const ProjectType = db.define('projecttype', {
     id: {
         type: sequelize.UUID,
         defaultValue: sequelize.UUIDV4,
@@ -9,14 +9,13 @@ const Tech = db.define('tech', {
     },
 
     name: {
-        type: sequelize.STRING,
-        unique: true
+        type: sequelize.STRING(100),
     },
 
     status: {
         type: sequelize.BOOLEAN,
         defaultValue: 1
-    },
+    }, 
 
     createAt: {
         type: sequelize.DATE,
@@ -45,4 +44,4 @@ const Tech = db.define('tech', {
 }
 );
 
-export default Tech;
+export default ProjectType;

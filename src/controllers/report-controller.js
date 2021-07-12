@@ -4,20 +4,26 @@ import Tech from '../models/tech-model.js';
 import Project from '../models/project-model.js';
 import ProjectType from '../models/project-type-model.js';
 import Customer from '../models/customer-model.js';
-import ProjectEmployee from '../models/project-employee-model.js';
-import EmployeeTech from '../models/employee-tech-model.js';
+//import ProjectEmployee from '../models/project-employee-model.js';
+//import EmployeeTech from '../models/employee-tech-model.js';
 
 const employeeReport = async (req, res) => {
     try {
-        const adminId = req.admin.id;
+        const currentAdmin = req.admin.id;
 
-        const findAdmin = await Admin.findOne({
+        if(currentAdmin === null) {
+            return res.status(404).json({
+                message: "Admin not found, contact tech staff for instruction"
+            });
+        }
+
+        const findCurrentAdmin = await Admin.findOne({
             where: {
-                id: adminId
+                id: currentAdmin
             }
         });
 
-        if(!findAdmin) {
+        if (!findCurrentAdmin) {
             return res.status(403).json({
                 message: "You are not admin"
             });
@@ -86,15 +92,21 @@ const employeeReport = async (req, res) => {
 
 const projectReport = async (req, res) => {
     try {
-        const adminId = req.admin.id;
+        const currentAdmin = req.admin.id;
 
-        const findAdmin = await Admin.findOne({
+        if(currentAdmin === null) {
+            return res.status(404).json({
+                message: "Admin not found, contact tech staff for instruction"
+            });
+        }
+
+        const findCurrentAdmin = await Admin.findOne({
             where: {
-                id: adminId
+                id: currentAdmin
             }
         });
 
-        if(!findAdmin) {
+        if (!findCurrentAdmin) {
             return res.status(403).json({
                 message: "You are not admin"
             });

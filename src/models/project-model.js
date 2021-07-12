@@ -11,11 +11,11 @@ const Project = db.define('project', {
     },
 
     name: {
-        type: sequelize.STRING,
+        type: sequelize.STRING(100),
     },
 
     description: {
-        type: sequelize.STRING,
+        type: sequelize.STRING(300),
     },
 
     projectTypeId: {
