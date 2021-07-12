@@ -26,7 +26,7 @@ router.get("/users", checkCanRead, getAllUsers);
 router.get("/users/:id", checkCanRead, getUserById);
 router.post("/users", checkCanWrite, upload.single("avatar"), createNewUser);
 router.put("/users/:id", checkCanUpdate, upload.single("avatar"), updateUser);
-router.delete("/users/:id", checkCanDelete, deleteUser);
+router.patch("/users/:id", checkCanDelete, deleteUser);
 
 // User account routes
 router.get("/accounts", checkCanRead, getAllAccounts);

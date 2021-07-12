@@ -78,13 +78,35 @@ const getAllUserRoles = async (req, res) => {
         const allUserRole = await user_role.findAll({
           include: {
             model: role,
-            include: { model: role_permission_form },
+            attributes: {
+              exclude: [
+                "id",
+                "createBy",
+                "updateBy",
+                "isDeleted",
+                "createdAt",
+                "updatedAt",
+              ],
+            },
+            include: {
+              model: role_permission_form,
+              attributes: {
+                exclude: [
+                  "id",
+                  "createBy",
+                  "updateBy",
+                  "isDeleted",
+                  "createdAt",
+                  "updatedAt",
+                ],
+              },
+            },
           },
         });
 
         // Count number of user role based on isDeleted props
-        let count = allUserRole.length;
 
+        let count = allUserRole.length;
         return res
           .status(200)
           .json({ message: "User Role Found", count, allUserRole });

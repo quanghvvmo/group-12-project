@@ -11,8 +11,6 @@ const createNewRolePermissionForm = async (req, res) => {
     canDelete,
     canApprove,
     url,
-    createBy,
-    updateBy,
   } = req.body;
 
   try {
@@ -46,8 +44,8 @@ const createNewRolePermissionForm = async (req, res) => {
           canDelete,
           canApprove,
           url,
-          createBy,
-          updateBy,
+          createBy: adminId,
+          updateBy: adminId,
         });
 
         return res.status(200).json({

@@ -11,6 +11,7 @@ const { sendMail } = require("./mail.controllers");
 const EventEmitter = require("events");
 const emailEvent = new EventEmitter();
 const { ROLE_ENUMS } = require("../constants/role-enums");
+const { FORM_ENUMS } = require("../constants/form-enums");
 
 // User APIs
 const createNewUser = async (req, res) => {
@@ -149,6 +150,7 @@ const getAllUsers = async (req, res) => {
       if (checkRole[checkAdmin].role.role_name === ROLE_ENUMS.ROLE.ADMIN) {
         // Get all users
         const allUsers = await user.findAll({
+          where: { isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
           include: { model: user_role, attributes: { exclude: ["id"] } },
         });
 
@@ -189,7 +191,7 @@ const getUserById = async (req, res) => {
       ) {
         // Get user id
         const userId = await user.findOne({
-          where: { id },
+          where: { id, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
           // Get account info of user and hide account id and password
           include: [
             { model: account, attributes: { exclude: ["id", "password"] } },
@@ -369,16 +371,20 @@ const deleteUser = async (req, res) => {
         userId === id
       ) {
         // Delete user
-        await userCheck.destroy({
-          where: { id },
-          transaction,
-        });
+        await userCheck.update(
+          {
+            isDeleted: FORM_ENUMS.IS_DELETE.DELETED,
+          },
+          { where: { id }, transaction }
+        );
 
         // Delete account
-        const accountId = await account.destroy({
-          where: { user_id: id },
-          transaction,
-        });
+        const accountId = await account.update(
+          {
+            isDeleted: FORM_ENUMS.IS_DELETE.DELETED,
+          },
+          { where: { user_id: id }, transaction }
+        );
 
         // Commit transaction
         await transaction.commit();
@@ -444,17 +450,22 @@ const getUserAccountById = async (req, res) => {
     // Get user id from token
     const userId = req.user.id;
 
+    // Get user owns account
+    const userIdAccount = await account.findOne({
+      where: { user_id: userId },
+    });
+
     // Get role name
     const checkRole = await user_role.findAll({
       where: { user_id: userId },
       include: { model: role },
     });
 
-    // Check if admin then can get user account info detail
+    // Check if admin or user owns account then can get user account info detail
     for (let checkAdmin in checkRole) {
       if (
         checkRole[checkAdmin].role.role_name === ROLE_ENUMS.ROLE.ADMIN ||
-        userId === id
+        userIdAccount
       ) {
         const accountId = await account.findOne({
           where: { id },
@@ -483,17 +494,17 @@ const getUserAccountById = async (req, res) => {
 
 const updateUserAccount = async (req, res) => {
   const { id } = req.params;
-  const { user_id, email, password } = req.body;
+  const { email, password } = req.body;
 
   try {
     // Initialize transaction
     const transaction = await sequelize.transaction();
 
-    // Get user id from database
-    const userId = await user.findOne({ where: { id: user_id } });
-
     // Get user id from token
     const userIdToken = req.user.id;
+
+    // Get user id from user table
+    const userId = await user.findOne({ where: { id: userIdToken } });
 
     // Check if invalid user id
     if (!userId === userIdToken) {
@@ -510,7 +521,7 @@ const updateUserAccount = async (req, res) => {
     for (let checkAdmin in checkRole) {
       if (
         checkRole[checkAdmin].role.role_name === ROLE_ENUMS.ROLE.ADMIN ||
-        userIdToken === id
+        userIdToken === userId.id
       ) {
         // Get account id
         const accountId = await account.findOne({
@@ -530,7 +541,7 @@ const updateUserAccount = async (req, res) => {
         // Update account info
         const accountInfo = await account.update(
           {
-            user_id,
+            user_id: userIdToken,
             email,
             password: hashedPassword,
           },
@@ -542,7 +553,7 @@ const updateUserAccount = async (req, res) => {
           {
             email,
           },
-          { where: { id: user_id }, transaction }
+          { where: { id: userIdToken }, transaction }
         );
 
         await transaction.commit();
@@ -554,13 +565,12 @@ const updateUserAccount = async (req, res) => {
       } else {
         return res.status(404).json({
           message: "You have no permission to update user account information",
-          accountId,
         });
       }
     }
   } catch (error) {
     console.log(error);
-    return res.status(204).json({ message: "Update User Account Failed" });
+    return res.status(404).json({ message: "Update User Account Failed" });
   }
 };
 

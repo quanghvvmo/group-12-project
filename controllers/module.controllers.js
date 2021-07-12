@@ -1,4 +1,4 @@
-const { modules } = require("../models");
+const { modules, user_role, role } = require("../models");
 const { ROLE_ENUMS } = require("../constants/role-enums");
 const { FORM_ENUMS } = require("../constants/form-enums");
 
@@ -13,7 +13,6 @@ const createNewModule = async (req, res) => {
     const checkRole = await user_role.findAll({
       where: { user_id: userId },
       include: { model: role },
-      transaction,
     });
 
     // Check if admin then can create new module
@@ -50,7 +49,6 @@ const getAllModules = async (req, res) => {
     const checkRole = await user_role.findAll({
       where: { user_id: userId },
       include: { model: role },
-      transaction,
     });
 
     // Check if admin then can create new module
@@ -85,7 +83,6 @@ const deleteModule = async (req, res) => {
     const checkRole = await user_role.findAll({
       where: { user_id: userId },
       include: { model: role },
-      transaction,
     });
 
     // Check if admin then can create new module
@@ -127,7 +124,6 @@ const updateModule = async (req, res) => {
     const checkRole = await user_role.findAll({
       where: { user_id: userId },
       include: { model: role },
-      transaction,
     });
 
     // Check if admin then can create new module

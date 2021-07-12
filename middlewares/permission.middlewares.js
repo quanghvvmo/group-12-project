@@ -67,7 +67,6 @@ const checkCanRead = async (req, res, next) => {
       rolePermission[userRole].role.role_permission_forms.forEach(function (
         check
       ) {
-        // console.log(rolePermission[userRole].role.role_name);
         if (
           (!temp &&
             check.canRead === ROLE_ENUMS.PERMISSION.CAN_READ &&
