@@ -30,7 +30,7 @@ router.post("/forms", checkCanWrite, createNewForm);
 router.patch("/forms/:id", checkCanUpdate, updateForm);
 router.put("/forms/:id", checkCanApprove, approveForm);
 router.put("/forms-close/:id", checkCanUpdate, closeForm);
-router.delete("/forms/:id", checkCanDelete, deleteForm);
+router.patch("/forms/delete/:id", checkCanDelete, deleteForm);
 
 // Report routes
 router.get("/reports/forms", checkCanRead, getAllReports);

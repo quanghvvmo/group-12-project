@@ -78,6 +78,7 @@ const createNewForm = async (req, res) => {
 const getAllForm = async (req, res) => {
   try {
     const allForm = await form.findAll({
+      where: { isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
       include: {
         model: user,
         attributes: {
@@ -109,14 +110,6 @@ const getFormById = async (req, res) => {
     // Get user id from token
     const userId = req.user.id;
 
-    // Get form by id
-    const formId = await form.findOne({ where: { id } });
-
-    if (!formId) {
-      // Check if invalid form id
-      return res.status(404).json({ message: "Invalid Form Id" });
-    }
-
     // Get role name
     const checkRole = await user_role.findAll({
       where: { user_id: userId },
@@ -130,6 +123,16 @@ const getFormById = async (req, res) => {
         formId.user_id === userId ||
         formId.manager === userId
       ) {
+        // Get form by id
+        const formId = await form.findOne({
+          where: { id, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
+        });
+
+        if (!formId) {
+          // Check if invalid form id
+          return res.status(404).json({ message: "Invalid Form Id" });
+        }
+
         return res.status(200).json({ message: "Form Found", formId });
       } else {
         return res
@@ -316,7 +319,12 @@ const deleteForm = async (req, res) => {
         formId.createBy === userId
       ) {
         // Delete form
-        await formId.destroy({ where: { id } });
+        await formId.update(
+          {
+            isDeleted: FORM_ENUMS.IS_DELETE.DELETED,
+          },
+          { where: { id } }
+        );
 
         return res
           .status(200)

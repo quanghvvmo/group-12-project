@@ -1,5 +1,6 @@
 const { role_permission_form, role, user, user_role } = require("../models");
 const { ROLE_ENUMS } = require("../constants/role-enums");
+const { FORM_ENUMS } = require("../constants/form-enums");
 
 const createNewRolePermissionForm = async (req, res) => {
   const {
@@ -82,6 +83,7 @@ const getAllRolePermissionForms = async (req, res) => {
       if (checkRole[checkAdmin].role.role_name === ROLE_ENUMS.ROLE.ADMIN) {
         // Get all role permission form and their detail roles
         const rolePermissions = await role_permission_form.findAll({
+          where: { isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
           include: { model: role },
         });
 
@@ -180,9 +182,12 @@ const deleteRolePermissionForm = async (req, res) => {
     for (let checkAdmin in checkRole) {
       if (checkRole[checkAdmin].role.role_name === ROLE_ENUMS.ROLE.ADMIN) {
         // Delete role permission
-        await rolePermissionId.destroy({
-          where: { id },
-        });
+        await rolePermissionId.update(
+          {
+            isDeleted: FORM_ENUMS.IS_DELETE.DELETED,
+          },
+          { where: { id } }
+        );
 
         return res.status(200).json({
           message: "Deleted Role Permission Successfully",

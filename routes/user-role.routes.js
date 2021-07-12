@@ -18,6 +18,6 @@ router.get("/user-roles", checkCanRead, getAllUserRoles);
 router.get("/user-roles/:id", checkCanRead, getUserRoleById);
 router.post("/user-roles", checkCanWrite, createNewUserRole);
 router.put("/user-roles/:id", checkCanUpdate, updateUserRole);
-router.delete("/user-roles/:id", checkCanDelete, deleteUserRole);
+router.patch("/user-roles/:id", checkCanDelete, deleteUserRole);
 
 module.exports = router;

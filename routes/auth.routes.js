@@ -30,12 +30,12 @@ router.get("/roles", checkCanRead, getAllRoles);
 router.get("/roles/:id", checkCanRead, getRoleById);
 router.post("/roles", checkCanWrite, createNewRole);
 router.put("/roles/:id", checkCanUpdate, updateRole);
-router.delete("/roles/:id", checkCanDelete, deleteRole);
+router.patch("/roles/:id", checkCanDelete, deleteRole);
 
 // Role permission form routes
 router.get("/permissions", checkCanRead, getAllRolePermissionForms);
 router.post("/permissions", checkCanWrite, createNewRolePermissionForm);
 router.patch("/permissions/:id", checkCanUpdate, updateRolePermissionForm);
-router.delete("/permissions/:id", checkCanDelete, deleteRolePermissionForm);
+router.put("/permissions/:id", checkCanDelete, deleteRolePermissionForm);
 
 module.exports = router;
