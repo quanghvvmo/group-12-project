@@ -5,12 +5,15 @@ const Employee = db.define('employee', {
     id: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
-        primaryKey: true},
+        primaryKey: true,
+        unique:true
+    },
     name:{
         type: Sequelize.STRING(300)
     },
     workID:{
-        type: Sequelize.STRING(300)
+        type: Sequelize.STRING(300),
+        unique: true
     },
     DoB:{
         type: Sequelize.STRING(300)

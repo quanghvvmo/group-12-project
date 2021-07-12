@@ -2,19 +2,6 @@ import express from "express";
 import db from "./src/service/db.js"
 import cors from 'cors';
 
-import Employee from "./src/model/employee.js";
-import Admin from "./src/model/admin.js";
-import Customer from "./src/model/customer.js";
-import Employee_Tech from "./src/model/employee_tech.js";
-import Project_Tech from "./src/model/project_tech.js";
-import Project_Employee from "./src/model/project_employee.js";
-import Project from "./src/model/project.js";
-import Tech from "./src/model/tech.js";
-import Type from "./src/model/type.js";
-import Unit_Employee from "./src/model/unit_employee.js";
-import Unit_In_Proj from "./src/model/unit_in_proj.js";
-import Unit from "./src/model/unit.js";
-
 import admin_router from "./src/controller/admin_router.js";
 import customer_router from "./src/controller/customer_router.js";
 import tech_router from "./src/controller/tech_router.js";
@@ -42,6 +29,6 @@ app.use('/api/employee', employee_router);
 app.use('/api/project', project_router);
 
 
-db.sync({alter: true}, {logging: console.log});
+db.sync({force: true}, {logging: console.log});
 
 export default app;

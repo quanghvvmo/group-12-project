@@ -5,7 +5,8 @@ const Unit = db.define('unit', {
     id:{
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
-        primaryKey: true
+        primaryKey: true,
+        unique: true
     },
     name:{
         type: Sequelize.STRING(300)
@@ -14,7 +15,7 @@ const Unit = db.define('unit', {
         type: Sequelize.STRING(2000)
     },
     adminID:{
-        type: Sequelize.STRING(300)
+        type: Sequelize.STRING(300),
     },
     isDeleted:{
         type: Sequelize.INTEGER,

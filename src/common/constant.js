@@ -1,7 +1,7 @@
 const Enum_Project_Status = {
-    IN_PROGRESS: 'InProgress',
-    MAINTAIN: 'Maintain',
-    CLOSED: 'Closed'
+    IN_PROGRESS: 'INPROGRESS',
+    MAINTAIN: 'MAINTAIN',
+    CLOSED: 'CLOSED'
 }
 
 export default Enum_Project_Status;
