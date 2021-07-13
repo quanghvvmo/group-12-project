@@ -116,6 +116,16 @@ const getFormById = async (req, res) => {
       include: { model: role },
     });
 
+    // Get form by id
+    const formId = await form.findOne({
+      where: { id, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
+    });
+
+    if (!formId) {
+      // Check if invalid form id
+      return res.status(404).json({ message: "Invalid Form Id" });
+    }
+
     for (let checkAdmin in checkRole) {
       // Check if hr or admin then can delete form
       if (
@@ -123,16 +133,6 @@ const getFormById = async (req, res) => {
         formId.user_id === userId ||
         formId.manager === userId
       ) {
-        // Get form by id
-        const formId = await form.findOne({
-          where: { id, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
-        });
-
-        if (!formId) {
-          // Check if invalid form id
-          return res.status(404).json({ message: "Invalid Form Id" });
-        }
-
         return res.status(200).json({ message: "Form Found", formId });
       } else {
         return res
@@ -216,7 +216,7 @@ const approveForm = async (req, res) => {
     // Check if form is pending approve or closed then can not approve form
     if (
       formId.status !== FORM_ENUMS.STATUS.PENDING_APPROVAL ||
-      formId.status !== FORM_ENUMS.STATUS.CLOSED
+      formId.status == FORM_ENUMS.STATUS.CLOSED
     ) {
       return res.status(404).json({
         message:
