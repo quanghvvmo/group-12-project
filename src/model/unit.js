@@ -1,5 +1,6 @@
 import db from "../service/db.js";
 import Sequelize from "sequelize";
+import Admin from "./admin.js";
 
 const Unit = db.define('unit', {
     id:{
@@ -16,6 +17,10 @@ const Unit = db.define('unit', {
     },
     adminID:{
         type: Sequelize.STRING(300),
+        references:{
+            model: Admin,
+            key:'workID'
+        }
     },
     isDeleted:{
         type: Sequelize.INTEGER,
@@ -34,5 +39,9 @@ const Unit = db.define('unit', {
         type: Sequelize.DATE
     }
 })
+
+
+Admin.hasOne(Unit, {foreignKey: 'adminID'})
+Unit.belongsTo(Admin, {foreignKey: 'adminID'})
 
 export default Unit;

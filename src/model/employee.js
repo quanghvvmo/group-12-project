@@ -54,4 +54,6 @@ const Employee = db.define('employee', {
     }
 })
 
+
+
 export default Employee;

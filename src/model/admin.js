@@ -11,10 +11,7 @@ const Admin = db.define('admin', {
     },
     workID:{
         type: Sequelize.STRING(300),
-        references: {
-            model: Employee,
-            key: "workID"
-        }
+        unique: true
     },
     name:{
         type: Sequelize.STRING(300)
@@ -31,7 +28,5 @@ const Admin = db.define('admin', {
     }
 })
 
-Employee.hasOne(Admin, {foreignKey: "workID"})
-Admin.belongsTo(Employee, {foreignKey: "workID"})
 
 export default Admin;

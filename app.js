@@ -29,6 +29,6 @@ app.use('/api/employee', employee_router);
 app.use('/api/project', project_router);
 
 
-db.sync({force: true}, {logging: console.log});
+db.sync({alter: true}, {logging: console.log});
 
 export default app;
