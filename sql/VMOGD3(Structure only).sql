@@ -27,9 +27,9 @@ DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `employeeId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  `username` varchar(255) DEFAULT NULL,
+  `username` varchar(50) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
   `status` tinyint(1) DEFAULT '1',
   `createAt` datetime DEFAULT NULL,
   `createBy` varchar(36) DEFAULT NULL,
@@ -51,8 +51,8 @@ DROP TABLE IF EXISTS `customer`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `customer` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `description` varchar(300) DEFAULT NULL,
   `createAt` datetime DEFAULT NULL,
   `createBy` varchar(36) DEFAULT NULL,
   `updateBy` varchar(36) DEFAULT NULL,
@@ -71,15 +71,15 @@ DROP TABLE IF EXISTS `department`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `department` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `description` varchar(300) DEFAULT NULL,
   `foundingDate` datetime DEFAULT NULL,
   `adminId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `createAt` datetime DEFAULT NULL,
   `createBy` varchar(36) DEFAULT NULL,
   `updateBy` varchar(36) DEFAULT NULL,
   `updateAt` datetime DEFAULT NULL,
   `isDeleted` tinyint(1) DEFAULT '0',
-  `createAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `adminId` (`adminId`),
   CONSTRAINT `department_ibfk_1` FOREIGN KEY (`adminId`) REFERENCES `admin` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -100,8 +100,8 @@ CREATE TABLE `departmentemployee` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `departmentemployee_employeeId_departmentId_unique` (`departmentId`,`employeeId`),
   KEY `employeeId` (`employeeId`),
-  CONSTRAINT `departmentemployee_ibfk_1023` FOREIGN KEY (`departmentId`) REFERENCES `department` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `departmentemployee_ibfk_1024` FOREIGN KEY (`employeeId`) REFERENCES `employee` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `departmentemployee_ibfk_1` FOREIGN KEY (`departmentId`) REFERENCES `department` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `departmentemployee_ibfk_2` FOREIGN KEY (`employeeId`) REFERENCES `employee` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -119,8 +119,8 @@ CREATE TABLE `departmentproject` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `departmentproject_projectId_departmentId_unique` (`departmentId`,`projectId`),
   KEY `projectId` (`projectId`),
-  CONSTRAINT `departmentproject_ibfk_387` FOREIGN KEY (`departmentId`) REFERENCES `department` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `departmentproject_ibfk_388` FOREIGN KEY (`projectId`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `departmentproject_ibfk_1` FOREIGN KEY (`departmentId`) REFERENCES `department` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `departmentproject_ibfk_2` FOREIGN KEY (`projectId`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -133,54 +133,21 @@ DROP TABLE IF EXISTS `employee`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `employee` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
   `dob` datetime DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
+  `address` varchar(300) DEFAULT NULL,
   `idNumber` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
+  `phone` varchar(10) DEFAULT NULL,
   `experienceYear` int DEFAULT NULL,
   `foreignLanguage` varchar(255) DEFAULT NULL,
   `certificate` varchar(255) DEFAULT NULL,
   `isAdmin` tinyint(1) DEFAULT '0',
+  `createAt` datetime DEFAULT NULL,
   `createBy` varchar(36) DEFAULT NULL,
   `updateBy` varchar(36) DEFAULT NULL,
   `updateAt` datetime DEFAULT NULL,
   `isDeleted` tinyint(1) DEFAULT '0',
-  `createAt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `idNumber` (`idNumber`),
-  UNIQUE KEY `idNumber_2` (`idNumber`),
-  UNIQUE KEY `idNumber_3` (`idNumber`),
-  UNIQUE KEY `idNumber_4` (`idNumber`),
-  UNIQUE KEY `idNumber_5` (`idNumber`),
-  UNIQUE KEY `idNumber_6` (`idNumber`),
-  UNIQUE KEY `idNumber_7` (`idNumber`),
-  UNIQUE KEY `idNumber_8` (`idNumber`),
-  UNIQUE KEY `idNumber_9` (`idNumber`),
-  UNIQUE KEY `idNumber_10` (`idNumber`),
-  UNIQUE KEY `idNumber_11` (`idNumber`),
-  UNIQUE KEY `idNumber_12` (`idNumber`),
-  UNIQUE KEY `idNumber_13` (`idNumber`),
-  UNIQUE KEY `idNumber_14` (`idNumber`),
-  UNIQUE KEY `idNumber_15` (`idNumber`),
-  UNIQUE KEY `idNumber_16` (`idNumber`),
-  UNIQUE KEY `idNumber_17` (`idNumber`),
-  UNIQUE KEY `idNumber_18` (`idNumber`),
-  UNIQUE KEY `idNumber_19` (`idNumber`),
-  UNIQUE KEY `idNumber_20` (`idNumber`),
-  UNIQUE KEY `idNumber_21` (`idNumber`),
-  UNIQUE KEY `idNumber_22` (`idNumber`),
-  UNIQUE KEY `idNumber_23` (`idNumber`),
-  UNIQUE KEY `idNumber_24` (`idNumber`),
-  UNIQUE KEY `idNumber_25` (`idNumber`),
-  UNIQUE KEY `idNumber_26` (`idNumber`),
-  UNIQUE KEY `idNumber_27` (`idNumber`),
-  UNIQUE KEY `idNumber_28` (`idNumber`),
-  UNIQUE KEY `idNumber_29` (`idNumber`),
-  UNIQUE KEY `idNumber_30` (`idNumber`),
-  UNIQUE KEY `idNumber_31` (`idNumber`),
-  UNIQUE KEY `idNumber_32` (`idNumber`),
-  UNIQUE KEY `idNumber_33` (`idNumber`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -198,8 +165,8 @@ CREATE TABLE `employeetech` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `employeetech_techId_employeeId_unique` (`employeeId`,`techId`),
   KEY `techId` (`techId`),
-  CONSTRAINT `employeetech_ibfk_471` FOREIGN KEY (`employeeId`) REFERENCES `employee` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `employeetech_ibfk_472` FOREIGN KEY (`techId`) REFERENCES `tech` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `employeetech_ibfk_1` FOREIGN KEY (`employeeId`) REFERENCES `employee` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `employeetech_ibfk_2` FOREIGN KEY (`techId`) REFERENCES `tech` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -212,22 +179,22 @@ DROP TABLE IF EXISTS `project`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `project` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `description` varchar(300) DEFAULT NULL,
   `projectTypeId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   `projectStatus` enum('InProgress','Maintain','Closed') DEFAULT NULL,
   `customerId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   `startDate` datetime DEFAULT NULL,
+  `createAt` datetime DEFAULT NULL,
   `createBy` varchar(36) DEFAULT NULL,
   `updateBy` varchar(36) DEFAULT NULL,
   `updateAt` datetime DEFAULT NULL,
   `isDeleted` tinyint(1) DEFAULT '0',
-  `createAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `projectTypeId` (`projectTypeId`),
   KEY `customerId` (`customerId`),
-  CONSTRAINT `project_ibfk_1059` FOREIGN KEY (`projectTypeId`) REFERENCES `projecttype` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `project_ibfk_1060` FOREIGN KEY (`customerId`) REFERENCES `customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `project_ibfk_1` FOREIGN KEY (`projectTypeId`) REFERENCES `projecttype` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `project_ibfk_2` FOREIGN KEY (`customerId`) REFERENCES `customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -245,8 +212,8 @@ CREATE TABLE `projectemployee` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `projectemployee_employeeId_projectId_unique` (`projectId`,`employeeId`),
   KEY `employeeId` (`employeeId`),
-  CONSTRAINT `projectemployee_ibfk_1033` FOREIGN KEY (`projectId`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `projectemployee_ibfk_1034` FOREIGN KEY (`employeeId`) REFERENCES `employee` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `projectemployee_ibfk_1` FOREIGN KEY (`projectId`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `projectemployee_ibfk_2` FOREIGN KEY (`employeeId`) REFERENCES `employee` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -264,8 +231,8 @@ CREATE TABLE `projecttech` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `projecttech_techId_projectId_unique` (`projectId`,`techId`),
   KEY `techId` (`techId`),
-  CONSTRAINT `projecttech_ibfk_1037` FOREIGN KEY (`projectId`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `projecttech_ibfk_1038` FOREIGN KEY (`techId`) REFERENCES `tech` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `projecttech_ibfk_1` FOREIGN KEY (`projectId`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `projecttech_ibfk_2` FOREIGN KEY (`techId`) REFERENCES `tech` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -278,13 +245,13 @@ DROP TABLE IF EXISTS `projecttype`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `projecttype` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
   `status` tinyint(1) DEFAULT '1',
+  `createAt` datetime DEFAULT NULL,
   `createBy` varchar(36) DEFAULT NULL,
   `updateBy` varchar(36) DEFAULT NULL,
   `updateAt` datetime DEFAULT NULL,
   `isDeleted` tinyint(1) DEFAULT '0',
-  `createAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -298,7 +265,7 @@ DROP TABLE IF EXISTS `tech`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tech` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
   `status` tinyint(1) DEFAULT '1',
   `createAt` datetime DEFAULT NULL,
   `createBy` varchar(36) DEFAULT NULL,
@@ -319,4 +286,4 @@ CREATE TABLE `tech` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-07 10:14:33
+-- Dump completed on 2021-07-14 16:49:09

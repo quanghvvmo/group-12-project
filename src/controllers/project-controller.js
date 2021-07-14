@@ -1,6 +1,5 @@
 import db from '../config/db.js';
 import Project from '../models/project-model.js';
-//import Department from '../models/department-model.js';
 import Admin from '../models/admin-model.js';
 import Tech from '../models/tech-model.js';
 import Customer from '../models/customer-model.js';
@@ -36,7 +35,7 @@ const addProject = async (req, res) => {
         const { name, description, type, status, customer, startDate, teches, employees }
             = req.body;
 
-        const createBy = findAdmin.id;
+        const createBy = findCurrentAdmin.id;
 
         const findProjectType = await ProjectType.findOne({
             where: {
@@ -303,7 +302,7 @@ const updateProject = async (req, res) => {
         const { name, description, type, status, teches, employees, customer, startDate }
             = req.body;
 
-        const updateBy = findAdmin.id;
+        const updateBy = findCurrentAdmin.id;
 
         const findProjectType = await ProjectType.findOne({
             where: {
