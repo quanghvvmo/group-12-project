@@ -36,39 +36,71 @@ const createNewForm = async (req, res) => {
       return res.status(404).json({ message: "Invalid form status" });
     }
 
-    // Create new form
-    const newForm = await form.create({
-      user_id,
-      form_type,
-      status,
-      hr_review,
-      createBy: creator,
-      updateBy: creator,
+    // Check if form is not closed, cannot create new form
+    const userForms = await user.findAll({
+      where: { id: user_id },
+      include: {
+        model: form,
+        attributes: {
+          exclude: [
+            "createBy",
+            "updateBy",
+            "createdAt",
+            "updatedAt",
+            "isDeleted",
+          ],
+        },
+      },
     });
 
-    if (form_type === FORM_ENUMS.FORM_TYPE.YEARLY_FORM) {
-      // Content of email
-      const subject = "[Announcement] - Yearly Review Form";
-      const text = `Hello ${userId.lastname} ${userId.firstname} - A new yearly review form is created for you`;
-      // Initialize an event
-      emailEvent.on("addNewForm", async () => {
-        await sendMail(userId.email, subject, text);
-      });
-    } else if (form_type === FORM_ENUMS.FORM_TYPE.WORKING_FORM) {
-      const subject = "[Announcement] - Working Form";
-      const text = `Hello ${userId.lastname} ${userId.firstname} - A new working form is created`;
-      // Initialize a event
-      emailEvent.on("addNewForm", async () => {
-        await sendMail(userId.email, subject, text);
+    let temp = false;
+
+    // Check if user has closed form, then can create a new form
+    for (let uf in userForms) {
+      userForms[uf].forms.forEach(function (checkStatus) {
+        if (checkStatus.status.includes(FORM_ENUMS.STATUS.CLOSED)) {
+          return (temp = true);
+        }
       });
     }
 
-    // Emit mail event
-    emailEvent.emit("addNewForm");
+    if (temp) {
+      // Create new form
+      const newForm = await form.create({
+        user_id,
+        form_type,
+        status,
+        hr_review,
+        createBy: creator,
+        updateBy: creator,
+      });
 
-    return res
-      .status(200)
-      .json({ message: "Create New Fomr Successfully", newForm });
+      if (form_type === FORM_ENUMS.FORM_TYPE.YEARLY_FORM) {
+        // Content of email
+        const subject = "[Announcement] - Yearly Review Form";
+        const text = `Hello ${userId.lastname} ${userId.firstname} - A new yearly review form is created for you`;
+        // Initialize an event
+        emailEvent.on("addNewForm", async () => {
+          await sendMail(userId.email, subject, text);
+        });
+      } else if (form_type === FORM_ENUMS.FORM_TYPE.WORKING_FORM) {
+        const subject = "[Announcement] - Working Form";
+        const text = `Hello ${userId.lastname} ${userId.firstname} - A new working form is created`;
+        // Initialize a event
+        emailEvent.on("addNewForm", async () => {
+          await sendMail(userId.email, subject, text);
+        });
+      }
+
+      // Emit mail event
+      emailEvent.emit("addNewForm");
+
+      return res
+        .status(200)
+        .json({ message: "Create New Form Successfully", newForm });
+    } else {
+      return res.status(404).json({ message: "You have form is not closed" });
+    }
   } catch (error) {
     console.log(error);
     return res.status(404).json({ message: "Create New Form Failed" });
