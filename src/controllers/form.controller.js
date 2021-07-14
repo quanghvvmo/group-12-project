@@ -237,7 +237,7 @@ const getFormById = async(req, res) => {
 //manager approve form of employee
 const approveForm = async(req, res) => {
   const id = req.params.id;
-  const { managerComment } = req.body;
+  let { managerComment } = req.body;
   const token = req.header('token');
   const payload = jwt.verify(token, config.secret);
   try {
@@ -284,7 +284,7 @@ const approveForm = async(req, res) => {
 const closeForm = async(req, res) => {
   const id = req.params.id;
   try {
-    const formClosed = form.update({
+    const formClosed = await form.update({
       status: FORM_EMUM.STATUS.CLOSED
     }, {
       where: {
@@ -331,7 +331,7 @@ const reportFinishYearlyForm = async(req, res) => {
     const report = await form.findAll({
       where: {
         typeOf: "yearly",
-        status: FORM_EMUM.STATUS.APPROVED,
+        status: FORM_EMUM.STATUS.CLOSED,
         isDelete: 0
       }
     });
@@ -358,7 +358,7 @@ const reportFinishBasicForm = async(req, res) => {
     const report = await form.findAll({
       where: {
         typeOf: "basic",
-        status: FORM_EMUM.STATUS.APPROVED,
+        status: FORM_EMUM.STATUS.CLOSED,
         isDelete: 0
       }
     });

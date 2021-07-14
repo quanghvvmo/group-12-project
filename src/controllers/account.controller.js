@@ -106,4 +106,24 @@ const deleteAccount = async(req, res) => {
   }
 }
 
-module.exports = { addNewAccount, updateAccount, deleteAccount }
+//get account by id
+const getAccountById = async(req, res) => {
+  const id = req.params.id;
+  try {
+    const Account = await account.findAll({
+      where: {
+        id: id,
+        isDelete: 0
+      }
+    });
+    if (!Account.length) {
+      res.status(404).send("Can not get this account");
+      return;
+    }
+    res.status(200).send(Account);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal server error");
+  }
+}
+module.exports = { addNewAccount, updateAccount, deleteAccount, getAccountById }

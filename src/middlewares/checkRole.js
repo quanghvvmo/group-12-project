@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const config = require('../config/auth.config');
 const { userRole, role, rolePermission, form } = require('../models');
+const FORM_ENUM = require('../const/form.enum');
 
 //check role from id in token
 const checkRole = async(id) => {
@@ -171,41 +172,25 @@ const checkCanApprove = async(req, res, next) => {
 
 const checkCanClose = async(req, res, next) => {
   const token = req.header('token');
-  //check if not token in request
+  let check = false;
   try {
+    //check if not token in request
     if (!token) {
       res.send('Not Token');
       return;
     }
-  } catch (err) {
-    console.log(err);
-  }
-  try {
     const payload = jwt.verify(token, config.secret); //decode token to get user id
-    const userRoleCheck = await userRole.findOne({
-      where: {
-        userId: payload.id
+    const itemCheck = await checkRole(payload.id);
+    for (let x in itemCheck) {
+      if (!check && itemCheck[x].role.roleName === 'hr') {
+        check = true;
       }
-    });
-    if (!userRoleCheck) {
-      res.send("user-role is not exist");
-      return;
     }
-    const roleCheck = await role.findOne({
-      where: {
-        id: userRoleCheck.roleId
-      }
-    });
-    if (!roleCheck) {
-      res.send("The role belong userId in token is not exist");
-      return;
-    }
-    if (roleCheck.roleName === 'hr') {
-      next();
-    } else {
+    if (!check) {
       res.send("Permission deny");
       return;
     }
+    next();
   } catch (error) {
     console.log(error);
   }
@@ -213,16 +198,19 @@ const checkCanClose = async(req, res, next) => {
 
 //check if user have a form not closed yet
 const checkClosedForm = async(req, res, next) => {
-  const { userId } = req.body;
-  for (let x in userId) {
-    const formCheck = form.findOne({
-      where: {
-        userId: userId[x]
+  let { userId } = req.body;
+  const FormClose = await form.findAll({
+    where: {
+      userId: userId,
+      isDelete: 0
+    }
+  });
+  if (FormClose.length) {
+    for (let i in FormClose) {
+      if (FormClose[i].status !== FORM_ENUM.STATUS.CLOSED) {
+        res.send(`${FormClose[i].userId} has a form not closed yet`);
+        return;
       }
-    });
-    if (formCheck.status !== 'closed') {
-      res.send(`userId ${userId[x]} has a form not closed yet`);
-      return;
     }
   }
   next();

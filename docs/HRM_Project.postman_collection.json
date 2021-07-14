@@ -6,52 +6,8 @@
 	},
 	"item": [
 		{
-			"name": "Create new data",
+			"name": "User API",
 			"item": [
-				{
-					"name": "create new account",
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"userId\": \"cab64ec3-e333-4675-985e-1c7cde4b444b\",\n    \"username\": \"employee3\",\n    \"password\": \"director01\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://{{url}}/api/accounts/",
-							"protocol": "http",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"accounts",
-								""
-							]
-						}
-					},
-					"response": []
-				},
 				{
 					"name": "create new user",
 					"request": {
@@ -60,7 +16,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTg3Nzc1OSwiZXhwIjoxNjI1OTY0MTU5fQ._hJD9CeiQ_0GQv86o5AZlQRe9tpmWe63Wea59TTrF1o",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTk2OTg5MywiZXhwIjoxNjI2MDU2MjkzfQ.Ps-vYbfwxf-f8T_SokHCDpSizwl0bIxiN19aWaJWPG0",
 									"type": "string"
 								},
 								{
@@ -82,7 +38,7 @@
 								},
 								{
 									"key": "employeeId",
-									"value": "vmo009",
+									"value": "vmo0010",
 									"type": "text"
 								},
 								{
@@ -92,12 +48,12 @@
 								},
 								{
 									"key": "firstName",
-									"value": "Le ",
+									"value": "Do",
 									"type": "text"
 								},
 								{
 									"key": "lastName",
-									"value": "Thi employee4",
+									"value": "Thi employee5",
 									"type": "text"
 								},
 								{
@@ -152,358 +108,6 @@
 					"response": []
 				},
 				{
-					"name": "create new role",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"roleName\": \"admin\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://{{url}}/api/roles",
-							"protocol": "http",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"roles"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "create new userrole",
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTAzNDA3NiwiZXhwIjoxNjI1MTIwNDc2fQ.bgQjpJjALedV49QRNWbB2LP6Ik5et7UlEjwQoLmG-1g",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"userId\": \"b8552298-7075-45bb-9fc1-4f9e28c127a1\",\n    \"roleId\": \"258c3db8-5a98-40e4-94bc-753c2c0eb73c\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://{{url}}/api/userroles",
-							"protocol": "http",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"userroles"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "create new module",
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"moduleName\": \"role\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://{{url}}/api/modules",
-							"protocol": "http",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"modules"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "create new role permission",
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"roleId\": \"1de057e3-9867-4bbe-b0ad-7c509151f226\",\n    \"moduleId\": \"6b33259f-fcb2-4178-ab81-589cd894f9f4\",\n    \"url\": \"/roles\",\n    \"canRead\": 1,\n    \"canWrite\": 0 ,\n    \"canUpdate\":0,\n    \"canDelete\": 0,\n    \"canApprove\": 0\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://{{url}}/api/rolepermissions",
-							"protocol": "http",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"rolepermissions"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "create new form",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTU0NDc0OSwiZXhwIjoxNjI1NjMxMTQ5fQ.ZDBkJLiFSHeMquJPTRajPWfnC0I6GKBN9GCGbcNpSj0",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"userId\": [\n        \"2b105106-25ed-49d1-8bb5-d0d1001d5793\",\n        \"8b8ba587-5ec4-4bac-aab7-4923f7af447e\",\n        \"cab64ec3-e333-4675-985e-1c7cde4b444b\",\n        \"9b878523-8f7c-4e8e-8ce0-bc9ae261a19f\",\n        \"fbd0d11c-6ae5-46f9-bd84-87e496a142f5\"\n    ],\n    \"typeOf\": \"yearly\",\n    \"status\": \"new\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://{{url}}/api/forms",
-							"protocol": "http",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"forms"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "test send mail",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"to\": \"vanvd@vmodev.com\",\n    \"subject\": \"test nodemail\",\n    \"body\": \"Hello boy\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://{{url}}/api/sendmails",
-							"protocol": "http",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"sendmails"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Delete data",
-			"item": [
-				{
-					"name": "delete account by id",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://{{url}}/api/accounts/:id",
-							"protocol": "http",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"accounts",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "8fc3233a-674a-4107-8fa4-cfbcb148d59a"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete module",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://{{url}}/api/modules/:id",
-							"protocol": "http",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"modules",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "6b33259f-fcb2-4178-ab81-589cd894f9f4"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete role",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://{{url}}/api/roles/:id",
-							"protocol": "http",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"roles",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "1de057e3-9867-4bbe-b0ad-7c509151f226"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete rolePermission",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://{{url}}/api/rolePermissions/:id",
-							"protocol": "http",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"rolePermissions",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "a6a542b1-0156-49f7-af49-d7f96b140693"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "delete user by id",
 					"request": {
 						"auth": {
@@ -545,52 +149,6 @@
 					"response": []
 				},
 				{
-					"name": "delete form by id",
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiMTA1MTA2LTI1ZWQtNDlkMS04YmI1LWQwZDEwMDFkNTc5MyIsImlhdCI6MTYyNDg1NDA0MSwiZXhwIjoxNjI0OTQwNDQxfQ.lUtH3Eg0tk3jefVhLYB7cRhwFotr-7bbPJ8BRht1I6k",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://{{url}}/api/forms/:id",
-							"protocol": "http",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"forms",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "dedacfb7-afea-4f69-aa5d-9901d49837a2"
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Get data",
-			"item": [
-				{
 					"name": "get user by id",
 					"request": {
 						"auth": {
@@ -598,7 +156,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYyZDA1ODJhLTBjNWUtNDcxNi1iODM0LWFlMWI4MDc2MDc3ZiIsImlhdCI6MTYyNTg4MTAyNywiZXhwIjoxNjI1OTY3NDI3fQ.oUHxlCfrriQWvd_5n-DJ3bO7JlCt9Od-ARRviHmeExI",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTk5MDMwOSwiZXhwIjoxNjI2MDc2NzA5fQ.FUMKIw6wtcHdhiWpgx6NNMzyNQtbGwzE3-QISoHq3fM",
 									"type": "string"
 								},
 								{
@@ -625,548 +183,6 @@
 								{
 									"key": "id",
 									"value": "1e43299c-0c8d-4e3f-8163-b97e4be26fc5"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get all form of user by userId in token",
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFjM2E0YzRiLTEwMzctNDI3ZC1hMGFkLWMzYjIwMjljNzA5YiIsImlhdCI6MTYyNTg4MTA3MCwiZXhwIjoxNjI1OTY3NDcwfQ.GTa1Nvdiy6Q948q2sIHN_r8RD36we-eDZqlVShggESM",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://{{url}}/api/forms",
-							"protocol": "http",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"forms"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get  report finish basic finish",
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiMTA1MTA2LTI1ZWQtNDlkMS04YmI1LWQwZDEwMDFkNTc5MyIsImlhdCI6MTYyNTg4MTE0MywiZXhwIjoxNjI1OTY3NTQzfQ.bftkIsTyfQncwaJxJQGnd-XRyC03__Ox3KeUJamO2Ic",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://{{url}}/api/reports/basic/finish",
-							"protocol": "http",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"reports",
-								"basic",
-								"finish"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get report finish yearly form",
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYwMzdhMmRiLTUwMDItNDNjMS04MGNiLTFiYmZmYzQ3NThmMiIsImlhdCI6MTYyNTg4MTEwNiwiZXhwIjoxNjI1OTY3NTA2fQ.q3BigwWLMX0wl5GqEA4P8mixbC30MWFiuDb6ua5Ct_Y",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://{{url}}/api/reports/yearly/finish",
-							"protocol": "http",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"reports",
-								"yearly",
-								"finish"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get report incomplete yearly form",
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://{{url}}/api/reports/yearly/incomplete",
-							"protocol": "http",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"reports",
-								"yearly",
-								"incomplete"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get report incomplete basic form",
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://{{url}}/api/reports/basic/incomplete",
-							"protocol": "http",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"reports",
-								"basic",
-								"incomplete"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get role of user when login",
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiMTA1MTA2LTI1ZWQtNDlkMS04YmI1LWQwZDEwMDFkNTc5MyIsImlhdCI6MTYyNTg4MTE0MywiZXhwIjoxNjI1OTY3NTQzfQ.bftkIsTyfQncwaJxJQGnd-XRyC03__Ox3KeUJamO2Ic",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://{{url}}/api/roles",
-							"protocol": "http",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"roles"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get form by id",
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiMTA1MTA2LTI1ZWQtNDlkMS04YmI1LWQwZDEwMDFkNTc5MyIsImlhdCI6MTYyNTg4MTE0MywiZXhwIjoxNjI1OTY3NTQzfQ.bftkIsTyfQncwaJxJQGnd-XRyC03__Ox3KeUJamO2Ic",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://{{url}}/api/forms/:id",
-							"protocol": "http",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"forms",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "f04b05ba-29ba-462e-857a-66a088ebb29c"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "test get role by id in token",
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTAzNDA3NiwiZXhwIjoxNjI1MTIwNDc2fQ.bgQjpJjALedV49QRNWbB2LP6Ik5et7UlEjwQoLmG-1g",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://{{url}}/api/roleids",
-							"protocol": "http",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"roleids"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Update data",
-			"item": [
-				{
-					"name": "update account by id",
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"userId\": \"cab64ec3-e333-4675-985e-1c7cde4b444b\",\n    \"username\": \"employee3\",\n    \"password\": \"employee01\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://{{url}}/api/accounts/:id",
-							"protocol": "http",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"accounts",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "8fc3233a-674a-4107-8fa4-cfbcb148d59a"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update module by id",
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"moduleName\": \"role\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://{{url}}/api/modules/:id",
-							"protocol": "http",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"modules",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "6b33259f-fcb2-4178-ab81-589cd894f9f4"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update role by id",
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"roleName\": \"sale\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://{{url}}/api/roles/:id",
-							"protocol": "http",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"roles",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "1de057e3-9867-4bbe-b0ad-7c509151f226"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "approve form of user",
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFjM2E0YzRiLTEwMzctNDI3ZC1hMGFkLWMzYjIwMjljNzA5YiIsImlhdCI6MTYyNDc1Nzg0NiwiZXhwIjoxNjI0ODQ0MjQ2fQ.rsbaZoTNE1CLExGeAPm5MbjMpGt3onot5peYiRsRmrg",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"managerCommnet\": \"Ok Done\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://{{url}}/api/forms/:id",
-							"protocol": "http",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"forms",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "f04b05ba-29ba-462e-857a-66a088ebb29c"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update rolePermission by id",
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "token",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n        \"roleId\": \"faafd1f0-518f-4fe4-ae36-654d67da1562\",\n    \"moduleId\": \"aa221bae-884e-4d41-8ca5-f2d36beeab8c\",\n    \"canRead\": 1,\n    \"canWrite\": 1 ,\n    \"canUpdate\":0,\n    \"canDelete\": 0,\n    \"canApprove\": 0\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://{{url}}/api/rolePermissions/:id",
-							"protocol": "http",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"rolePermissions",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "a6a542b1-0156-49f7-af49-d7f96b140693"
 								}
 							]
 						}
@@ -1273,6 +289,928 @@
 						}
 					},
 					"response": []
+				}
+			]
+		},
+		{
+			"name": "UserRole API",
+			"item": [
+				{
+					"name": "create new userrole",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTAzNDA3NiwiZXhwIjoxNjI1MTIwNDc2fQ.bgQjpJjALedV49QRNWbB2LP6Ik5et7UlEjwQoLmG-1g",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"b8552298-7075-45bb-9fc1-4f9e28c127a1\",\n    \"roleId\": \"258c3db8-5a98-40e4-94bc-753c2c0eb73c\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}/api/userroles",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"userroles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update userrole",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTE5NzMyMiwiZXhwIjoxNjI1MjgzNzIyfQ.HBMnMqGv2yUHZbj3t5JW5zLPA_LrdiLESEGt6kSHtQg",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"8b8ba587-5ec4-4bac-aab7-4923f7af447e\",\n    \"roleId\": \"258c3db8-5a98-40e4-94bc-753c2c0eb73c\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}/api/userroles/:id",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"userroles",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "fb636f57-8603-48b3-904f-f89706304530"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Role API",
+			"item": [
+				{
+					"name": "create new role",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roleName\": \"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}/api/roles",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete role",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/api/roles/:id",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"roles",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1de057e3-9867-4bbe-b0ad-7c509151f226"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get role of user when login",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiMTA1MTA2LTI1ZWQtNDlkMS04YmI1LWQwZDEwMDFkNTc5MyIsImlhdCI6MTYyNTg4MTE0MywiZXhwIjoxNjI1OTY3NTQzfQ.bftkIsTyfQncwaJxJQGnd-XRyC03__Ox3KeUJamO2Ic",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/api/roles",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test get role by id in token",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTAzNDA3NiwiZXhwIjoxNjI1MTIwNDc2fQ.bgQjpJjALedV49QRNWbB2LP6Ik5et7UlEjwQoLmG-1g",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/api/roleids",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"roleids"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update role by id",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roleName\": \"sale\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}/api/roles/:id",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"roles",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1de057e3-9867-4bbe-b0ad-7c509151f226"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "RolePermission API",
+			"item": [
+				{
+					"name": "create new role permission",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roleId\": \"1de057e3-9867-4bbe-b0ad-7c509151f226\",\n    \"moduleId\": \"6b33259f-fcb2-4178-ab81-589cd894f9f4\",\n    \"url\": \"/roles\",\n    \"canRead\": 1,\n    \"canWrite\": 0 ,\n    \"canUpdate\":0,\n    \"canDelete\": 0,\n    \"canApprove\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}/api/rolepermissions",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"rolepermissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete rolePermission",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{url}}/api/rolePermissions/:id",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"rolePermissions",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "a6a542b1-0156-49f7-af49-d7f96b140693"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update rolePermission by id",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"roleId\": \"faafd1f0-518f-4fe4-ae36-654d67da1562\",\n    \"moduleId\": \"aa221bae-884e-4d41-8ca5-f2d36beeab8c\",\n    \"canRead\": 1,\n    \"canWrite\": 1 ,\n    \"canUpdate\":0,\n    \"canDelete\": 0,\n    \"canApprove\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}/api/rolePermissions/:id",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"rolePermissions",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "a6a542b1-0156-49f7-af49-d7f96b140693"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Module API",
+			"item": [
+				{
+					"name": "create new module",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"moduleName\": \"role\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}/api/modules",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"modules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete module",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/api/modules/:id",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"modules",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6b33259f-fcb2-4178-ab81-589cd894f9f4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update module by id",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"moduleName\": \"role\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}/api/modules/:id",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"modules",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6b33259f-fcb2-4178-ab81-589cd894f9f4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get module by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/api/modules/:id",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"modules",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "aa221bae-884e-4d41-8ca5-f2d36beeab8c"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Form API",
+			"item": [
+				{
+					"name": "create new form",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTk5MDMwOSwiZXhwIjoxNjI2MDc2NzA5fQ.FUMKIw6wtcHdhiWpgx6NNMzyNQtbGwzE3-QISoHq3fM",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": [\n        \"2b105106-25ed-49d1-8bb5-d0d1001d5793\",\n        \"8b8ba587-5ec4-4bac-aab7-4923f7af447e\",\n        \"cab64ec3-e333-4675-985e-1c7cde4b444b\",\n        \"9b878523-8f7c-4e8e-8ce0-bc9ae261a19f\",\n        \"fbd0d11c-6ae5-46f9-bd84-87e496a142f5\"\n    ],\n    \"typeOf\": \"yearly\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}/api/forms",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"forms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete form by id",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiMTA1MTA2LTI1ZWQtNDlkMS04YmI1LWQwZDEwMDFkNTc5MyIsImlhdCI6MTYyNDg1NDA0MSwiZXhwIjoxNjI0OTQwNDQxfQ.lUtH3Eg0tk3jefVhLYB7cRhwFotr-7bbPJ8BRht1I6k",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/api/forms/:id",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"forms",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "dedacfb7-afea-4f69-aa5d-9901d49837a2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all form of user by userId in token",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFjM2E0YzRiLTEwMzctNDI3ZC1hMGFkLWMzYjIwMjljNzA5YiIsImlhdCI6MTYyNTg4MTA3MCwiZXhwIjoxNjI1OTY3NDcwfQ.GTa1Nvdiy6Q948q2sIHN_r8RD36we-eDZqlVShggESM",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/api/forms",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"forms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get form by id",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiMTA1MTA2LTI1ZWQtNDlkMS04YmI1LWQwZDEwMDFkNTc5MyIsImlhdCI6MTYyNTg4MTE0MywiZXhwIjoxNjI1OTY3NTQzfQ.bftkIsTyfQncwaJxJQGnd-XRyC03__Ox3KeUJamO2Ic",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/api/forms/:id",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"forms",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "f04b05ba-29ba-462e-857a-66a088ebb29c"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get  report finish basic finish",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTk2OTg5MywiZXhwIjoxNjI2MDU2MjkzfQ.Ps-vYbfwxf-f8T_SokHCDpSizwl0bIxiN19aWaJWPG0",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/api/reports/basic/finish",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"reports",
+								"basic",
+								"finish"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get report finish yearly form",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTk2OTg5MywiZXhwIjoxNjI2MDU2MjkzfQ.Ps-vYbfwxf-f8T_SokHCDpSizwl0bIxiN19aWaJWPG0",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/api/reports/yearly/finish",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"reports",
+								"yearly",
+								"finish"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get report incomplete yearly form",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTk2OTg5MywiZXhwIjoxNjI2MDU2MjkzfQ.Ps-vYbfwxf-f8T_SokHCDpSizwl0bIxiN19aWaJWPG0",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/api/reports/yearly/incomplete",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"reports",
+								"yearly",
+								"incomplete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get report incomplete basic form",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTk2OTg5MywiZXhwIjoxNjI2MDU2MjkzfQ.Ps-vYbfwxf-f8T_SokHCDpSizwl0bIxiN19aWaJWPG0",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/api/reports/basic/incomplete",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"reports",
+								"basic",
+								"incomplete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "approve form of user",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFjM2E0YzRiLTEwMzctNDI3ZC1hMGFkLWMzYjIwMjljNzA5YiIsImlhdCI6MTYyNDc1Nzg0NiwiZXhwIjoxNjI0ODQ0MjQ2fQ.rsbaZoTNE1CLExGeAPm5MbjMpGt3onot5peYiRsRmrg",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"managerCommnet\": \"Ok Done\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}/api/forms/:id",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"forms",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "f04b05ba-29ba-462e-857a-66a088ebb29c"
+								}
+							]
+						}
+					},
+					"response": []
 				},
 				{
 					"name": "submit form (employee)",
@@ -1358,16 +1296,91 @@
 						}
 					},
 					"response": []
-				},
+				}
+			]
+		},
+		{
+			"name": "Account API",
+			"item": [
 				{
-					"name": "update userrole",
+					"name": "create new account",
 					"request": {
 						"auth": {
 							"type": "apikey",
 							"apikey": [
 								{
 									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTE5NzMyMiwiZXhwIjoxNjI1MjgzNzIyfQ.HBMnMqGv2yUHZbj3t5JW5zLPA_LrdiLESEGt6kSHtQg",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"cab64ec3-e333-4675-985e-1c7cde4b444b\",\n    \"username\": \"employee3\",\n    \"password\": \"director01\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}/api/accounts/",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"accounts",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete account by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/api/accounts/:id",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"accounts",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "8fc3233a-674a-4107-8fa4-cfbcb148d59a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update account by id",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
 									"type": "string"
 								},
 								{
@@ -1381,7 +1394,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userId\": \"8b8ba587-5ec4-4bac-aab7-4923f7af447e\",\n    \"roleId\": \"258c3db8-5a98-40e4-94bc-753c2c0eb73c\"\n}",
+							"raw": "{\n    \"userId\": \"cab64ec3-e333-4675-985e-1c7cde4b444b\",\n    \"username\": \"employee3\",\n    \"password\": \"employee01\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1389,20 +1402,46 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{url}}/api/userroles/:id",
+							"raw": "http://{{url}}/api/accounts/:id",
 							"protocol": "http",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"api",
-								"userroles",
+								"accounts",
 								":id"
 							],
 							"variable": [
 								{
 									"key": "id",
-									"value": "fb636f57-8603-48b3-904f-f89706304530"
+									"value": "8fc3233a-674a-4107-8fa4-cfbcb148d59a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get account by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/api/accounts/:id",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"accounts",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "06161f12-a647-4dbe-89d7-cb338693d53e"
 								}
 							]
 						}
@@ -1418,7 +1457,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\": \"employee\",\n    \"password\": \"employee01\"\n}",
+					"raw": "{\n    \"username\": \"hraccount\",\n    \"password\": \"hraccount01\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1434,6 +1473,34 @@
 					"path": [
 						"api",
 						"signins"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test send mail",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"to\": \"vanvd@vmodev.com\",\n    \"subject\": \"test nodemail\",\n    \"body\": \"Hello boy\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{url}}/api/sendmails",
+					"protocol": "http",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"sendmails"
 					]
 				}
 			},

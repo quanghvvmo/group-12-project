@@ -97,4 +97,24 @@ const deleteModule = async(req, res) => {
   }
 }
 
-module.exports = { addNewModule, updateModule, deleteModule }
+//get module by id 
+const getModuleById = async(req, res) => {
+  const id = req.params.id;
+  try {
+    const getModule = await Module.findAll({
+      where: {
+        id: id,
+        isDelete: 0
+      }
+    });
+    if (!getModule.length) {
+      res.status(404).send("Can not get this module");
+      return;
+    }
+    res.status(200).send(getModule);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal server error");
+  }
+}
+module.exports = { addNewModule, updateModule, deleteModule, getModuleById }
