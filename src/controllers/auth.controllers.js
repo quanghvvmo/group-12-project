@@ -37,7 +37,10 @@ const login = async (req, res) => {
     // Signup token
     const token = jwt.sign(
       { id: userCredential.user_id },
-      process.env.SECRET_TOKEN
+      process.env.SECRET_TOKEN,
+      {
+        expiresIn: "24h",
+      }
     );
 
     return res.status(200).json({

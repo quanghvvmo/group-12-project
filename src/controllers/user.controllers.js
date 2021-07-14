@@ -253,8 +253,6 @@ const updateUser = async (req, res) => {
     // Initialize transaction
     const transaction = await sequelize.transaction();
 
-    // const userId = await user.findOne({ where: { id }, transaction });
-
     // Encode password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);

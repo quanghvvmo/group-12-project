@@ -49,14 +49,14 @@ const createNewForm = async (req, res) => {
     if (form_type === FORM_ENUMS.FORM_TYPE.YEARLY_FORM) {
       // Content of email
       const subject = "[Announcement] - Yearly Review Form";
-      const text = `A new yearly review form is created`;
+      const text = `Hello ${userId.lastname} ${userId.firstname} - A new yearly review form is created for you`;
       // Initialize an event
       emailEvent.on("addNewForm", async () => {
         await sendMail(userId.email, subject, text);
       });
     } else if (form_type === FORM_ENUMS.FORM_TYPE.WORKING_FORM) {
       const subject = "[Announcement] - Working Form";
-      const text = `A new working form is created`;
+      const text = `Hello ${userId.lastname} ${userId.firstname} - A new working form is created`;
       // Initialize a event
       emailEvent.on("addNewForm", async () => {
         await sendMail(userId.email, subject, text);
@@ -96,7 +96,10 @@ const getAllForm = async (req, res) => {
       },
     });
 
-    return res.status(200).json(allForm);
+    // Count number of forms
+    const count = allForm.length;
+
+    return res.status(200).json({ count, allForm });
   } catch (error) {
     console.log(error);
     return res.status(404).json({ message: "Form Not Found" });
@@ -131,7 +134,8 @@ const getFormById = async (req, res) => {
       if (
         checkRole[checkAdmin].role.role_name === ROLE_ENUMS.ROLE.ADMIN ||
         formId.user_id === userId ||
-        formId.manager === userId
+        formId.manager === userId ||
+        formId.createBy === userId
       ) {
         return res.status(200).json({ message: "Form Found", formId });
       } else {
