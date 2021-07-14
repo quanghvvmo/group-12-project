@@ -37,6 +37,20 @@ const createNewUser = async (req, res) => {
     // Initialize transaction
     const transaction = await sequelize.transaction();
 
+    // Get email from database
+    const checkEmail = await user.findOne(
+      { where: { email } },
+      { transaction }
+    );
+
+    // Check if email is existed
+    if (checkEmail) {
+      return res.status(404).json({
+        message:
+          "Email is already used by another account. Please use a new email",
+      });
+    }
+
     // Encode password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -252,6 +266,20 @@ const updateUser = async (req, res) => {
   try {
     // Initialize transaction
     const transaction = await sequelize.transaction();
+
+    // Get email from database
+    const checkEmail = await user.findOne(
+      { where: { email } },
+      { transaction }
+    );
+
+    // Check if email is existed
+    if (checkEmail) {
+      return res.status(404).json({
+        message:
+          "Email is already used by another account. Please use a new email",
+      });
+    }
 
     // Encode password
     const salt = await bcrypt.genSalt(10);
