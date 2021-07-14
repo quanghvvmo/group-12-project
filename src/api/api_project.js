@@ -27,7 +27,7 @@ const add_project = async (req, res) => {
         } = req.body;
         const createBy = req.userData.id
         const transaction = await db.transaction();
-        const check_name = await Project.findOne({where: {name: name}})
+        const check_name = await Project.findOne({ where: { name: name } })
         const find_unit = await Unit.findOne({ where: { name: unit } });
         const find_customer = await Customer.findOne({ where: { name: customer } });
         const find_type = await Type.findOne({ where: { name: type } });
@@ -43,46 +43,49 @@ const add_project = async (req, res) => {
                     customerID: find_customer.id,
                     startDate: date,
                     status,
-                    createBy, 
+                    createBy,
                     createAt
                 }, { transaction: transaction });
                 const new_unit_proj = await Unit_In_Proj.create({
                     projectID: new_project.id,
                     unitID: find_unit.id
                 }, { transaction: transaction });
-                for (let i = 0; i < tech.length; i++) {
-                    let tech_name = tech[i];
-                    let find_tech = await Tech.findOne({ where: { name: tech_name } })
-                    if (find_tech) {
-                        let new_project_tech = await Project_Tech.create({
+                let find_tech = await Tech.findAll({ where: { name: tech } });
+                if (find_tech) {
+                    let project_tech = [];
+                    find_tech.forEach(tech => {
+                        project_tech.push({
                             projectID: new_project.id,
-                            techID: find_tech.id
-                        }, { transaction: transaction });
-                    } else {
-                        return res.status(404).json({
-                            message: `${tech[i]} Invalid Tech`
+                            techID: tech.id
                         })
-                    }
+                    })
+                    await Project_Tech.bulkCreate(project_tech, { transaction: transaction })
+                } else {
+                    return res.status(404).json({
+                        message: "Invalid Tech"
+                    })
                 }
-                for (let i = 0; i < employee_work_id.length; i++) {
-                    let employee_id = employee_work_id[i];
-                    let find_employee = await Employee.findOne({ where: { workID: employee_id } })
-                    if (find_employee) {
-                        let new_project_employee = await Project_Employee.create({
+                let find_employee = await Employee.findAll({ where: { workID: employee_work_id } });
+                if (find_employee) {
+                    let project_employee = [];
+                    find_employee.forEach(employee => {
+                        project_employee.push({
                             projectID: new_project.id,
-                            employeeID: find_employee.id
-                        }, { transaction: transaction });
-                    } else {
-                        return res.status(404).json({
-                            message: `${employee_work_id[i]} Invalid Employee Work ID`
+                            employeeID: employee.id
                         })
-                    }
+                    })
+                    await Project_Employee.bulkCreate(project_employee, { transaction: transaction })
+                } else {
+                    return res.status(404).json({
+                        message: "Invalid Employee"
+                    })
                 }
                 await transaction.commit();
                 return res.status(200).json({
                     message: "New Project Added"
                 })
             } catch (error) {
+                console.log(error)
                 await transaction.rollback();
                 res.status(500).json({
                     message: "Server Error"
@@ -117,10 +120,10 @@ const update_project = async (req, res) => {
         const date = await new Date();
         const updateAt = date.toString();
         const updateBy = req.userData.id
-        const check_name = await Project.findOne({where: {name: name}});
-        const find_unit = await Unit.findOne({ where: { name: unit}});
-        const find_type = await Type.findOne({ where: { name: type}});
-        if(find_type && find_unit && check_name === null){
+        const check_name = await Project.findOne({ where: { name: name } });
+        const find_unit = await Unit.findOne({ where: { name: unit } });
+        const find_type = await Type.findOne({ where: { name: type } });
+        if (find_type && find_unit && check_name === null) {
             Project.update({
                 name,
                 description,
@@ -128,59 +131,40 @@ const update_project = async (req, res) => {
                 status,
                 updateBy,
                 updateAt
-            },{where: {id:id}}, {transaction: transaction});
+            }, { where: { id: id } }, { transaction: transaction });
             Unit_In_Proj.update({
                 unitID: find_unit.id,
-            }, {where: {projectID: id}}, {transaction: transaction});
-            const check_current_tech = await Project_Tech.findOne({where: {projectID: id}})
-            const check_current_empployee = await Project_Employee.findOne({where: {projectID: id}})
-            await Project_Tech.destroy({ where: {projectID: id}});
-            await Project_Employee.destroy({where: {projectID:id}});
-            for (let i = 0; i < tech.length; i++) {
-                let tech_name = tech[i];
-                let find_tech = await Tech.findOne({ where: { name: tech_name } })
-                if (check_current_tech.techID !== find_tech.id) {
-                    if (find_tech) {
-                        let project_new_tech = await Project_Tech.create({
-                            projectID: id,
-                            techID: find_tech.id
-                        }, { transaction: transaction });
-                    } else {
-                        return res.status(404).json({
-                            message: "Invalid Tech"
-                        })
-                    }
-                } else {
-                    continue;
-                }
-            }
-            for (let i = 0; i < employee_work_id.length; i++) {
-                let employee_id = employee_work_id[i];
-                let find_employee = await Employee.findOne({ where: { workID: employee_id } })
-                if (check_current_empployee.employeeID !== find_employee.id) {
-                    if (find_employee) {
-                        let new_project_employee = await Project_Employee.create({
-                            employeeID: find_employee.id,
-                            projectID: id
-                        }, { transaction: transaction });
-                    } else {
-                        return res.status(404).json({
-                            message: "Invalid Employee"
-                        })
-                    }
-                } else {
-                    continue;
-                }
-            }
-            if(status == "Closed"){
-                await Project_Employee.destroy({where: {projectID: id}}, {transaction: transaction})
-                await Unit_In_Proj.destroy({where: {projectID: id}}, {transaction: transaction})
+            }, { where: { projectID: id } }, { transaction: transaction });
+            await Project_Tech.destroy({ where: { projectID: id } });
+            await Project_Employee.destroy({ where: { projectID: id } });
+            let find_tech = await Tech.findAll({ where: { name: tech } });
+            let project_tech = [];
+            find_tech.forEach(tech => {
+                project_tech.push({
+                    projectID: id,
+                    techID: tech.id
+                })
+            })
+            await Project_Tech.bulkCreate(project_tech, { transaction: transaction })
+
+            let find_employee = await Employee.findAll({ where: { workID: employee_work_id } });
+            let project_employee = [];
+            find_employee.forEach(employee => {
+                project_employee.push({
+                    projectID: id,
+                    employeeID: employee.id
+                })
+            })
+            await Project_Employee.bulkCreate(project_employee, { transaction: transaction })
+            if (status == "Closed") {
+                await Project_Employee.destroy({ where: { projectID: id } }, { transaction: transaction })
+                await Unit_In_Proj.destroy({ where: { projectID: id } }, { transaction: transaction })
             }
             await transaction.commit();
             return res.status(200).json({
                 message: "ok"
             })
-        }else{
+        } else {
             await transaction.rollback();
             return res.status(404).json({
                 message: "Invalid project info"
@@ -240,15 +224,15 @@ const project_detail = async (req, res) => {
 
 const delete_project = async (req, res) => {
     const id = req.params.id;
-    const find_project = await Project.findOne({where: {id: id}})
+    const find_project = await Project.findOne({ where: { id: id } })
     const check_status = find_project.status
-    const check_employee = await Project_Employee.findAll({where: {projectID: id}})
-    const check_unit = await Unit_In_Proj.findOne({where: {projectID: id}})
+    const check_employee = await Project_Employee.findAll({ where: { projectID: id } })
+    const check_unit = await Unit_In_Proj.findOne({ where: { projectID: id } })
     try {
-        if(check_employee.length === 0 && check_status == "Closed" && check_unit === null){
+        if (check_employee.length === 0 && check_status == "Closed" && check_unit === null) {
             await Project.update({
                 isDelete: 1
-            }, {where: {id: id}})
+            }, { where: { id: id } })
             return res.status(200).json({
                 message: "Deleted"
             })
@@ -269,59 +253,59 @@ const project_stat = async (req, res) => {
         customer_id,
     } = req.body
     try {
-        if(filter == "status"){
-            const filter_by = await Project.findAll({where: {status: status}});
-            if(filter_by.length !== 0){
+        if (filter == "status") {
+            const filter_by = await Project.findAll({ where: { status: status } });
+            if (filter_by.length !== 0) {
                 return res.status(200).json({
                     message: `${filter_by.length} project(s)`
                 })
-            }else{
+            } else {
                 return res.status(404).json({
                     message: "Invalid Status"
                 })
             }
-        }else if(filter == "type"){
-            const filter_by = await Project.findAll({where: {type_id: type_id}});
-            if(filter_by.length !== 0){
+        } else if (filter == "type") {
+            const filter_by = await Project.findAll({ where: { type_id: type_id } });
+            if (filter_by.length !== 0) {
                 return res.status(200).json({
                     message: `${filter_by.length} project(s)`
                 })
-            }else{
+            } else {
                 return res.status(404).json({
                     message: "Invalid Type"
                 })
             }
-        }else if(filter == "tech"){
-            const filter_by = await Project_Tech.findAll({where: {techID: tech_id}});
-            if(filter_by.length !== 0){
+        } else if (filter == "tech") {
+            const filter_by = await Project_Tech.findAll({ where: { techID: tech_id } });
+            if (filter_by.length !== 0) {
                 return res.status(200).json({
                     message: `${filter_by.length} project(s)`
                 })
-            }else{
+            } else {
                 return res.status(404).json({
                     message: "Invalid Tech"
                 })
             }
-        }else if(filter == "customer"){
-            const filter_by = await Project.findAll({where: {customerID: customer_id}});
-            if(filter_by.length !== 0){
+        } else if (filter == "customer") {
+            const filter_by = await Project.findAll({ where: { customerID: customer_id } });
+            if (filter_by.length !== 0) {
                 return res.status(200).json({
                     message: `${filter_by.length} project(s)`
                 })
-            }else{
+            } else {
                 return res.status(404).json({
                     message: "Invalid Customer ID"
                 })
             }
-        }else{
+        } else {
             return res.status(400).json({
-                message:"Invalid Filter"
+                message: "Invalid Filter"
             })
         }
     } catch (error) {
         console.log(error)
         return res.status(500).json({
-            message:"Server Error"
+            message: "Server Error"
         })
     }
 }

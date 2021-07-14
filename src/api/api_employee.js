@@ -7,9 +7,9 @@ import Employee from "../model/employee.js";
 import Employee_Tech from "../model/employee_tech.js";
 import Unit from "../model/unit.js";
 import Unit_Employee from "../model/unit_employee.js";
-import Tech from "../model/tech.js"
-import Admin from "../model/admin.js"
-import Project_Employee from "../model/project_employee.js"
+import Tech from "../model/tech.js";
+import Admin from "../model/admin.js";
+import Project_Employee from "../model/project_employee.js";
 
 const add_employee = async (req, res) => {
     try {
@@ -55,19 +55,20 @@ const add_employee = async (req, res) => {
                         unitID: find_unit.id
                     }, { transaction: transaction });
                     try {
-                        for (let i = 0; i < tech.length; i++) {
-                            let tech_name = tech[i];
-                            let find_tech = await Tech.findOne({ where: { name: tech_name } })
-                            if (find_tech) {
-                                let new_employee_tech = await Employee_Tech.create({
+                        let find_tech = await Tech.findAll({ where: { name: tech } });
+                        if (find_tech) {
+                            let employee_tech = [];
+                            find_tech.forEach(tech => {
+                                employee_tech.push({
                                     employeeID: new_employee.id,
-                                    techID: find_tech.id
-                                }, { transaction: transaction });
-                            } else {
-                                return res.status(404).json({
-                                    message: "Invalid Tech"
+                                    techID: tech.id
                                 })
-                            }
+                            })
+                            await Employee_Tech.bulkCreate(employee_tech, { transaction: transaction })
+                        } else {
+                            return res.status(404).json({
+                                message: "Invalid Tech"
+                            })
                         }
                         res.status(200).json({
                             message: "Employee Added",
@@ -88,16 +89,19 @@ const add_employee = async (req, res) => {
                     });
                 }
             } else {
+                await transaction.rollback();
                 return res.status.json({
                     message: "Invalid Unit Name"
                 })
             }
         } else {
+            await transaction.rollback();
             return res.status(400).json({
                 message: "Multiple Phone Number or Work ID or ID Number are not allowed"
             })
         }
     } catch (error) {
+        await transaction.rollback();
         console.log(error)
         return res.status(500).json({
             message: "Server Error"
@@ -120,7 +124,6 @@ const update_employee = async (req, res) => {
             tech,
             exp_years
         } = req.body;
-        console.log(tech)
         const date = await new Date();
         const updateAt = date.toString();
         const updateBy = req.userData.id
@@ -145,23 +148,20 @@ const update_employee = async (req, res) => {
                 }, { where: { employeeID: id } }, { transaction: transaction });
                 const check_knowed_tech = await Employee_Tech.findOne({ where: { employeeID: id } })
                 await Employee_Tech.destroy({ where: { employeeID: id } });
-                for (let i = 0; i < tech.length; i++) {
-                    let tech_name = tech[i];
-                    let find_tech = await Tech.findOne({ where: { name: tech_name } })
-                    if (check_knowed_tech.techID !== find_tech.id) {
-                        if (find_tech) {
-                            let employee_new_tech = await Employee_Tech.create({
-                                employeeID: find_employee.id,
-                                techID: find_tech.id
-                            }, { transaction: transaction });
-                        } else {
-                            return res.status(404).json({
-                                message: "Invalid Tech"
-                            })
-                        }
-                    } else {
-                        continue;
-                    }
+                let find_tech = await Tech.findAll({ where: { name: tech } });
+                if (find_tech) {
+                    let employee_tech = [];
+                    find_tech.forEach(tech => {
+                        employee_tech.push({
+                            employeeID: id,
+                            techID: tech.id
+                        })
+                    })
+                    await Employee_Tech.bulkCreate(employee_tech, { transaction: transaction })
+                } else {
+                    return res.status(404).json({
+                        message: "Invalid Tech"
+                    })
                 }
                 if(leave == 1){
                     await Unit_Employee.destroy({where: {employeeID: id}}, {transaction: transaction})

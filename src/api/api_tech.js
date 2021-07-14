@@ -13,15 +13,22 @@ const add_tech = async (req, res) => {
         const date = await new Date();
         const createAt = date.toString();
         const createBy = req.userData.id
-        const new_tech = await Tech.create({
-            name,
-            createAt,
-            createBy
-        });
-        return res.status(201).json({
-            message: "New Tech Added",
-            data: new_tech
-        })
+        const find_tech = await Tech.findOne({where:{name: name}})
+        if(find_tech){
+            const new_tech = await Tech.create({
+                name,
+                createAt,
+                createBy
+            });
+            return res.status(201).json({
+                message: "New Tech Added",
+                data: new_tech
+            })
+        }else{
+            return res.status(400).json({
+                message:"This Tech is already avaiable in the database"
+            })
+        }
     } catch (error) {
         return res.status(500).json({
             message: "Server Error"
@@ -40,7 +47,8 @@ const update_tech = async (req, res) => {
         const updateAt = date.toString();
         const updateBy = req.userData.id
         const check_tech = await Tech.findOne({where: {id:id}})
-        if(check_tech){
+        const find_tech = await Tech.findOne({where: {name:name}})
+        if(check_tech && find_tech === null){
             Tech.update({
                 name,
                 is_active,
@@ -52,7 +60,7 @@ const update_tech = async (req, res) => {
             })
         }else{
             return res.status(404).json({
-                message:"No Tech Found"
+                message:"Invalid Tech"
             });
         }
     } catch (error) {
