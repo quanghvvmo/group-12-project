@@ -108,6 +108,11 @@ const createNewForm = async (req, res) => {
 };
 
 const getAllForm = async (req, res) => {
+  const { page, size } = req.query;
+
+  const pageSize = parseInt(size);
+  const currentPage = parseInt(page);
+
   try {
     const allForm = await form.findAll({
       where: { isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
@@ -126,6 +131,8 @@ const getAllForm = async (req, res) => {
           ],
         },
       },
+      limit: pageSize,
+      offset: (currentPage - 1) * pageSize,
     });
 
     // Count number of forms

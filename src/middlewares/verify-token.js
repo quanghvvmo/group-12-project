@@ -7,7 +7,7 @@ const verifyToken = async (req, res, next) => {
 
     // Check if have no token
     if (!token) {
-      return res.status(400).json({ message: "Access Denied" });
+      return res.status(403).json({ message: "Access Denied" });
     }
 
     // Verify token
@@ -19,6 +19,5 @@ const verifyToken = async (req, res, next) => {
     return res.status(401).json({ message: "Invalid Token" });
   }
 };
-
 
 module.exports = { verifyToken };

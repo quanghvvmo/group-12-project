@@ -45,7 +45,7 @@ const createNewUser = async (req, res) => {
 
     // Check if email is existed
     if (checkEmail) {
-      return res.status(404).json({
+      return res.status(409).json({
         message:
           "Email is already used by another account. Please use a new email",
       });
@@ -129,7 +129,7 @@ const createNewUser = async (req, res) => {
         // Commit transaction
         await transaction.commit();
 
-        return res.status(200).json({
+        return res.status(201).json({
           message: "Created New User Successfully",
           newUser,
           newAccount,
@@ -137,18 +137,23 @@ const createNewUser = async (req, res) => {
         });
       } else {
         return res
-          .status(404)
+          .status(403)
           .json({ message: "You have no permission to create new user" });
       }
     }
   } catch (error) {
     console.log(error);
     await transaction.rollback();
-    return res.status(402).json({ message: "Create New User Failed" });
+    return res.status(400).json({ message: "Create New User Failed" });
   }
 };
 
 const getAllUsers = async (req, res) => {
+  const { page, size } = req.query;
+
+  const pageSize = parseInt(size);
+  const currentPage = parseInt(page);
+
   try {
     // Get user id from token
     const userIdToken = req.user.id;
@@ -166,6 +171,8 @@ const getAllUsers = async (req, res) => {
         const allUsers = await user.findAll({
           where: { isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
           include: { model: user_role, attributes: { exclude: ["id"] } },
+          limit: pageSize,
+          offset: (currentPage - 1) * pageSize,
         });
 
         // Count number of users
@@ -173,7 +180,7 @@ const getAllUsers = async (req, res) => {
 
         return res.status(200).json({ count, allUsers });
       } else {
-        return res.status(404).json({
+        return res.status(403).json({
           message: "You have no permission to get all users information",
         });
       }
@@ -233,7 +240,7 @@ const getUserById = async (req, res) => {
         return res.status(200).json({ message: "User Found", userId });
       } else {
         return res
-          .status(404)
+          .status(403)
           .json({ message: "You have no permission to read user information" });
       }
     }
@@ -275,7 +282,7 @@ const updateUser = async (req, res) => {
 
     // Check if email is existed
     if (checkEmail) {
-      return res.status(404).json({
+      return res.status(409).json({
         message:
           "Email is already used by another account. Please use a new email",
       });
@@ -354,7 +361,7 @@ const updateUser = async (req, res) => {
           updateRoleId,
         });
       } else {
-        return res.status(404).json({
+        return res.status(403).json({
           message: "You have no permission to update this user information",
         });
       }
@@ -362,7 +369,7 @@ const updateUser = async (req, res) => {
   } catch (error) {
     console.log(error);
     await transaction.rollback();
-    return res.status(402).json({ message: "Update User Failed" });
+    return res.status(400).json({ message: "Update User Failed" });
   }
 };
 
@@ -420,7 +427,7 @@ const deleteUser = async (req, res) => {
           accountId,
         });
       } else {
-        return res.status(404).json({
+        return res.status(403).json({
           message: "You have no permission to delete this user information",
         });
       }
@@ -428,7 +435,7 @@ const deleteUser = async (req, res) => {
   } catch (error) {
     console.log(error);
     await transaction.rollback();
-    return res.status(404).json({ message: "Delete User and Account Failed" });
+    return res.status(400).json({ message: "Delete User and Account Failed" });
   }
 };
 
@@ -458,7 +465,7 @@ const getAllAccounts = async (req, res) => {
           .status(200)
           .json({ message: "User Accounts Found", accounts });
       } else {
-        return res.status(404).json({
+        return res.status(403).json({
           message:
             "You have no permission to get all user accounts information",
         });
@@ -466,6 +473,9 @@ const getAllAccounts = async (req, res) => {
     }
   } catch (error) {
     console.log(error);
+    return res.status(400).json({
+      message: "Get all accounts failed",
+    });
   }
 };
 
@@ -506,7 +516,7 @@ const getUserAccountById = async (req, res) => {
           .status(200)
           .json({ message: "User Account Found", accountId });
       } else {
-        return res.status(404).json({
+        return res.status(403).json({
           message: "You have no permission to get user account information",
           accountId,
         });
@@ -514,7 +524,7 @@ const getUserAccountById = async (req, res) => {
     }
   } catch (error) {
     console.log(error);
-    return res.status(404).json({ message: "User Account Not Found" });
+    return res.status(400).json({ message: "User Account Not Found" });
   }
 };
 
@@ -589,14 +599,14 @@ const updateUserAccount = async (req, res) => {
           userId,
         });
       } else {
-        return res.status(404).json({
+        return res.status(403).json({
           message: "You have no permission to update user account information",
         });
       }
     }
   } catch (error) {
     console.log(error);
-    return res.status(404).json({ message: "Update User Account Failed" });
+    return res.status(400).json({ message: "Update User Account Failed" });
   }
 };
 
@@ -641,7 +651,7 @@ const deleteUserAccount = async (req, res) => {
           .status(200)
           .json({ message: "Deleted User Account Successfully", accountId });
       } else {
-        return res.status(404).json({
+        return res.status(403).json({
           message: "You have no permission to delete this user account",
         });
       }

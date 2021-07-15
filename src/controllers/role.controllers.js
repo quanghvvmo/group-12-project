@@ -37,13 +37,13 @@ const createNewRole = async (req, res) => {
           .json({ message: "Created New Role Successfully", newRole });
       } else {
         return res
-          .status(404)
+          .status(403)
           .json({ message: "You have no permission to create new role" });
       }
     }
   } catch (error) {
     console.log(error);
-    return res.status(404).json({ message: "Create Role Failed" });
+    return res.status(400).json({ message: "Create Role Failed" });
   }
 };
 
@@ -71,7 +71,7 @@ const getAllRoles = async (req, res) => {
 
         return res.status(200).json({ count, roles });
       } else {
-        return res.status(404).json({
+        return res.status(403).json({
           message: "You have no permission to get all roles information",
         });
       }
@@ -110,7 +110,7 @@ const getRoleById = async (req, res) => {
 
         return res.status(200).json({ message: "Role Found", roleId });
       } else {
-        return res.status(404).json({
+        return res.status(403).json({
           message: "You have no permission to get role detail information",
         });
       }
@@ -153,14 +153,14 @@ const updateRole = async (req, res) => {
           .status(200)
           .json({ message: "Updated Role Successfully", updatedRole });
       } else {
-        return res.status(404).json({
+        return res.status(403).json({
           message: "You have no permission to update role information",
         });
       }
     }
   } catch (error) {
     console.log(error);
-    return res.status(404).json({ message: "Update Role Failed" });
+    return res.status(400).json({ message: "Update Role Failed" });
   }
 };
 
@@ -199,14 +199,14 @@ const deleteRole = async (req, res) => {
           .status(200)
           .json({ message: "Deleted Role Successfully", roleId });
       } else {
-        return res.status(404).json({
+        return res.status(403).json({
           message: "You have no permission to delete role",
         });
       }
     }
   } catch (error) {
     console.log(error);
-    return res.status(404).json({ message: "Delete Role Failed" });
+    return res.status(400).json({ message: "Delete Role Failed" });
   }
 };
 

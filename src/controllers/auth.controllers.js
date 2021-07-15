@@ -9,7 +9,7 @@ const login = async (req, res) => {
   // Check if emai and password are empty
   if (!email || !password) {
     return res
-      .status(400)
+      .status(406)
       .json({ message: "Please provide email and password!" });
   }
 
@@ -31,7 +31,7 @@ const login = async (req, res) => {
     );
 
     if (!validPassword) {
-      return res.status(400).json({ message: "Invalid password" });
+      return res.status(404).json({ message: "Invalid password" });
     }
 
     // Signup token

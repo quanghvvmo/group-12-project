@@ -29,12 +29,12 @@ const getAllReports = async (req, res) => {
         .json({ message: "All Submitted Report Found", allSubmittedReport });
     } else {
       return res
-        .status(404)
+        .status(403)
         .json({ message: "Your role have no access to view all reports" });
     }
   } catch (error) {
     console.log(error);
-    return res.status(404).json({ message: "Submit Report Not Found" });
+    return res.status(404).json({ message: "All Reports Not Found" });
   }
 };
 
@@ -63,7 +63,7 @@ const getAllManagerReport = async (req, res) => {
         .json({ message: "Manager's Report Found", count, reports });
     } else {
       return res
-        .status(404)
+        .status(403)
         .json({ message: "You have no permission to get manager report" });
     }
   } catch (error) {
@@ -92,7 +92,7 @@ const getAllReportByStatus = async (req, res) => {
       rolePermission.role.role_name !== ROLE_ENUMS.ROLE.ADMIN
     ) {
       return res
-        .status(404)
+        .status(403)
         .json({ message: "Your role have no access to view all reports" });
     }
 
@@ -103,7 +103,7 @@ const getAllReportByStatus = async (req, res) => {
       status !== FORM_ENUMS.STATUS.APPROVED &&
       status !== FORM_ENUMS.STATUS.CLOSED
     ) {
-      return res.status(404).json({ message: "Invalid Form Status" });
+      return res.status(406).json({ message: "Invalid Form Status" });
     }
     // Find form by status
     const allSubmittedReport = await form.findAll({

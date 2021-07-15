@@ -81,7 +81,7 @@ const checkAdminOrHr = async (req, res, next) => {
       req.user = verifyToken;
       return next();
     } else {
-      return res.status(404).json({ message: "Your role have no access" });
+      return res.status(403).json({ message: "Your role have no access" });
     }
   } catch (error) {
     console.log(error);

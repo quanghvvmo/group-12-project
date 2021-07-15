@@ -29,14 +29,14 @@ const createNewModule = async (req, res) => {
           .status(200)
           .json({ message: "Created New Module Successfully", newModule });
       } else {
-        return res.status(404).json({
+        return res.status(403).json({
           message: "You have no permission to create new module",
         });
       }
     }
   } catch (error) {
     console.log(error);
-    return res.status(404).json({ message: "Create New Module Failed" });
+    return res.status(400).json({ message: "Create New Module Failed" });
   }
 };
 
@@ -61,7 +61,7 @@ const getAllModules = async (req, res) => {
 
         return res.status(200).json({ message: "Module Found", allModules });
       } else {
-        return res.status(404).json({
+        return res.status(403).json({
           message: "You have no permission to get all modules information",
         });
       }
@@ -101,14 +101,14 @@ const deleteModule = async (req, res) => {
           .status(200)
           .json({ message: "Deleted Module Successfully", deletedModule });
       } else {
-        return res.status(404).json({
+        return res.status(403).json({
           message: "You have no permission to delete module",
         });
       }
     }
   } catch (error) {
     console.log(error);
-    return res.status(404).json({ message: "Delete Module Failed" });
+    return res.status(400).json({ message: "Delete Module Failed" });
   }
 };
 
@@ -143,14 +143,14 @@ const updateModule = async (req, res) => {
           .status(200)
           .json({ message: "Updated Module Successfully", updatedModule });
       } else {
-        return res.status(404).json({
+        return res.status(403).json({
           message: "You have no permission to update module information",
         });
       }
     }
   } catch (error) {
     console.log(error);
-    return res.status(404).json({ message: "Update Module Failed" });
+    return res.status(400).json({ message: "Update Module Failed" });
   }
 };
 

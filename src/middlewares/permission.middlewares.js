@@ -8,7 +8,7 @@ const checkCanRead = async (req, res, next) => {
     const token = req.header("jwt");
     // Check if have no token
     if (!token) {
-      return res.status(400).json({ message: "Access Denied" });
+      return res.status(403).json({ message: "Access Denied" });
     }
     // Verify token
     const verifyToken = await jwt.verify(token, process.env.SECRET_TOKEN);
@@ -82,7 +82,7 @@ const checkCanRead = async (req, res, next) => {
       return next();
     } else {
       return res
-        .status(404)
+        .status(403)
         .json({ message: "Your role have no access. You can not read" });
     }
   } catch (error) {
@@ -96,7 +96,7 @@ const checkCanWrite = async (req, res, next) => {
     const token = req.header("jwt");
     // Check if have no token
     if (!token) {
-      return res.status(400).json({ message: "Access Denied" });
+      return res.status(403).json({ message: "Access Denied" });
     }
     // Verify token
     const verifyToken = await jwt.verify(token, process.env.SECRET_TOKEN);
@@ -169,7 +169,7 @@ const checkCanWrite = async (req, res, next) => {
       return next();
     } else {
       return res
-        .status(404)
+        .status(403)
         .json({ message: "Your role have no access. You can not write" });
     }
   } catch (error) {
@@ -183,7 +183,7 @@ const checkCanUpdate = async (req, res, next) => {
     const token = req.header("jwt");
     // Check if have no token
     if (!token) {
-      return res.status(400).json({ message: "Access Denied" });
+      return res.status(403).json({ message: "Access Denied" });
     }
     // Verify token
     const verifyToken = await jwt.verify(token, process.env.SECRET_TOKEN);
@@ -256,7 +256,7 @@ const checkCanUpdate = async (req, res, next) => {
       return next();
     } else {
       return res
-        .status(404)
+        .status(403)
         .json({ message: "Your role have no access. You can not update" });
     }
   } catch (error) {
@@ -270,7 +270,7 @@ const checkCanDelete = async (req, res, next) => {
     const token = req.header("jwt");
     // Check if have no token
     if (!token) {
-      return res.status(400).json({ message: "Access Denied" });
+      return res.status(403).json({ message: "Access Denied" });
     }
     // Verify token
     const verifyToken = await jwt.verify(token, process.env.SECRET_TOKEN);
@@ -343,7 +343,7 @@ const checkCanDelete = async (req, res, next) => {
       return next();
     } else {
       return res
-        .status(404)
+        .status(403)
         .json({ message: "Your role have no access. You can not delete" });
     }
   } catch (error) {
@@ -357,7 +357,7 @@ const checkCanApprove = async (req, res, next) => {
     const token = req.header("jwt");
     // Check if have no token
     if (!token) {
-      return res.status(400).json({ message: "Access Denied" });
+      return res.status(403).json({ message: "Access Denied" });
     }
     // Verify token
     const verifyToken = await jwt.verify(token, process.env.SECRET_TOKEN);
@@ -430,7 +430,7 @@ const checkCanApprove = async (req, res, next) => {
       return next();
     } else {
       return res
-        .status(404)
+        .status(403)
         .json({ message: "Your role have no access. You can not approve" });
     }
   } catch (error) {

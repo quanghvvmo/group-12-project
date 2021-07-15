@@ -51,13 +51,13 @@ const createNewUserRole = async (req, res) => {
           .json({ message: "Created New User Role Successfully", newUserRole });
       } else {
         return res
-          .status(404)
+          .status(403)
           .json({ message: "You have no permission to create new user role" });
       }
     }
   } catch (error) {
     console.log(error);
-    return res.status(404).json({ message: "Create New User Role Failed" });
+    return res.status(400).json({ message: "Create New User Role Failed" });
   }
 };
 
@@ -114,7 +114,7 @@ const getAllUserRoles = async (req, res) => {
           .json({ message: "User Role Found", count, allUserRole });
       } else {
         return res
-          .status(404)
+          .status(403)
           .json({ message: "You have no permission to get all user roles" });
       }
     }
@@ -152,7 +152,7 @@ const getUserRoleById = async (req, res) => {
         return res.status(200).json({ message: "User Role Found", userRoleId });
       } else {
         return res
-          .status(404)
+          .status(403)
           .json({ message: "You have no permission to get user role detail" });
       }
     }
@@ -197,13 +197,13 @@ const updateUserRole = async (req, res) => {
           .json({ message: "Update User Role Successfully", updatedUserRole });
       } else {
         return res
-          .status(404)
+          .status(403)
           .json({ message: "You have no permission to update user role" });
       }
     }
   } catch (error) {
     console.log(error);
-    return res.status(404).json({ message: "Update User Role Failed" });
+    return res.status(400).json({ message: "Update User Role Failed" });
   }
 };
 
@@ -245,14 +245,14 @@ const deleteUserRole = async (req, res) => {
           .status(200)
           .json({ message: "Deleted User Role Successfully", userRole });
       } else {
-        return res.status(404).json({
+        return res.status(403).json({
           message: "You have no permission to delete user role",
         });
       }
     }
   } catch (error) {
     console.log(error);
-    return res.status(404).json({ message: "Delete User Role Failed" });
+    return res.status(400).json({ message: "Delete User Role Failed" });
   }
 };
 

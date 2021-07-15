@@ -54,7 +54,7 @@ const createNewRolePermissionForm = async (req, res) => {
           rolePermission,
         });
       } else {
-        return res.status(404).json({
+        return res.status(403).json({
           message: "You have no permission to create new role permission form",
         });
       }
@@ -62,7 +62,7 @@ const createNewRolePermissionForm = async (req, res) => {
   } catch (error) {
     console.log(error);
     return res
-      .status(204)
+      .status(400)
       .json({ message: "Create New Permission Form Failed" });
   }
 };
@@ -92,7 +92,7 @@ const getAllRolePermissionForms = async (req, res) => {
 
         return res.status(200).json({ count, rolePermissions });
       } else {
-        return res.status(404).json({
+        return res.status(403).json({
           message: "You have no permission to get all role permission forms",
         });
       }
@@ -142,7 +142,7 @@ const updateRolePermissionForm = async (req, res) => {
           rolePermissionForm,
         });
       } else {
-        return res.status(404).json({
+        return res.status(403).json({
           message: "You have no permission to update role permission form",
         });
       }
@@ -150,7 +150,7 @@ const updateRolePermissionForm = async (req, res) => {
   } catch (error) {
     console.log(error);
     return res
-      .status(404)
+      .status(400)
       .json({ message: "Update Role Permission Form Failed" });
   }
 };
@@ -194,14 +194,14 @@ const deleteRolePermissionForm = async (req, res) => {
           rolePermissionId,
         });
       } else {
-        return res.status(404).json({
+        return res.status(403).json({
           message: "You have no permission to delete role permission form",
         });
       }
     }
   } catch (error) {
     console.log(error);
-    return res.status(404).json({ message: "Delete Failed" });
+    return res.status(400).json({ message: "Delete Failed" });
   }
 };
 
