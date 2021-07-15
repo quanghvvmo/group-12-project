@@ -126,4 +126,26 @@ const getAccountById = async(req, res) => {
     res.status(500).send("Internal server error");
   }
 }
-module.exports = { addNewAccount, updateAccount, deleteAccount, getAccountById }
+
+// get all account
+const getAllAccount = async(req, res) => {
+  const pageNum = req.query.currentPage;
+  const size = req.query.pageSize;
+
+  try {
+    const result = await account.findAll({
+      limit: parseInt(size),
+      offset: (parseInt(pageNum) - 1) * parseInt(size),
+    });
+    if (!result.length) {
+      res.status(404).send("Can not get all account");
+      return;
+    }
+    res.status(200).send(result);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal server error");
+  }
+}
+
+module.exports = { addNewAccount, updateAccount, deleteAccount, getAccountById, getAllAccount }

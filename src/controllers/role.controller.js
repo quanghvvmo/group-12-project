@@ -140,4 +140,25 @@ const getAllRoleOfUser = async(req, res) => {
   }
 }
 
-module.exports = { addNewRole, updateRole, deleteRole, getAllRoleOfUser }
+//get all role
+const getAllRole = async(req, res) => {
+  const pageNum = req.query.currentPage;
+  const size = req.query.pageSize;
+
+  try {
+    const result = await role.findAll({
+      limit: parseInt(size),
+      offset: (parseInt(pageNum) - 1) * parseInt(size),
+    });
+    if (!result.length) {
+      res.status(404).send("Can not get all role");
+      return;
+    }
+    res.status(200).send(result);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal server error");
+  }
+}
+
+module.exports = { addNewRole, updateRole, deleteRole, getAllRoleOfUser, getAllRole }

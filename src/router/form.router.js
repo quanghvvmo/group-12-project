@@ -10,6 +10,8 @@ formRouter.put('/forms/:id', checkRole.checkCanUpdate, formController.approveFor
 formRouter.put('/forms/:id/closed', checkRole.checkCanClose, formController.closeForm);
 formRouter.delete('/forms/:id', checkRole.checkCanDelete, formController.deleteForm);
 formRouter.get('/forms', checkRole.checkCanRead, formController.getFormOfUser);
+formRouter.get('/forms/all', checkRole.checkCanRead, formController.getAllForm);
+
 formRouter.get('/forms/:id', checkRole.checkCanRead, formController.getFormById);
 formRouter.get('/reports/yearly/finish', checkRole.checkRoleGetReport, formController.reportFinishYearlyForm);
 formRouter.get('/reports/basic/finish', checkRole.checkRoleGetReport, formController.reportFinishBasicForm);

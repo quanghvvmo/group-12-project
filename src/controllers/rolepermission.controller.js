@@ -150,4 +150,24 @@ const deleteRolePermission = async(req, res) => {
   }
 }
 
-module.exports = { addNewRolePermission, updateRolePermission, deleteRolePermission }
+//get all role-permission
+const getAllRolePermission = async(req, res) => {
+  const pageNum = req.query.currentPage;
+  const size = req.query.pageSize;
+  try {
+    const result = await rolePermission.findAll({
+      limit: parseInt(size),
+      offset: (parseInt(pageNum) - 1) * parseInt(size),
+    });
+    if (!result.length) {
+      res.status(404).send("Can not get all role-permission");
+      return;
+    }
+    res.status(200).send(result);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal server error");
+  }
+}
+
+module.exports = { addNewRolePermission, updateRolePermission, getAllRolePermission, deleteRolePermission }

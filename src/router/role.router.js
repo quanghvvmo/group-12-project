@@ -6,5 +6,7 @@ roleRouter.post('/roles', roleController.addNewRole);
 roleRouter.put('/roles/:id', roleController.updateRole);
 roleRouter.delete('/roles/:id', roleController.deleteRole);
 roleRouter.get('/roles', roleController.getAllRoleOfUser);
+roleRouter.get('/roles/all', roleController.getAllRole);
+
 
 module.exports = roleRouter;

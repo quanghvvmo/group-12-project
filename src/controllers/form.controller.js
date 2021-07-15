@@ -1,4 +1,4 @@
-const { form, user, userRole, rolePermission, role } = require('../models');
+const { form, user } = require('../models');
 const jwt = require('jsonwebtoken');
 const config = require('../config/auth.config');
 const events = require('events');
@@ -325,6 +325,27 @@ const deleteForm = async(req, res) => {
   }
 }
 
+//get all form
+const getAllForm = async(req, res) => {
+  const pageNum = req.query.currentPage;
+  const size = req.query.pageSize;
+
+  try {
+    const result = await form.findAll({
+      limit: parseInt(size),
+      offset: (parseInt(pageNum) - 1) * parseInt(size),
+    });
+    if (!result.length) {
+      res.status(404).send("Can not get all form");
+      return;
+    }
+    res.status(200).send(result);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal server error");
+  }
+}
+
 //get all finish yearly form 
 const reportFinishYearlyForm = async(req, res) => {
   try {
@@ -442,6 +463,7 @@ module.exports = {
   getFormById,
   approveForm,
   closeForm,
+  getAllForm,
   reportFinishYearlyForm,
   reportFinishBasicForm,
   reportIncompleteYearlyForm,

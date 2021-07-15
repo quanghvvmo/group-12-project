@@ -197,6 +197,7 @@ const deleteUser = async(req, res) => {
   }
 }
 
+//get user bu Id
 const getUserById = async(req, res) => {
   const id = req.params.id;
   try {
@@ -220,4 +221,24 @@ const getUserById = async(req, res) => {
   }
 }
 
-module.exports = { addNewUser, updateUser, deleteUser, getUserById }
+//get all user
+const getAllUser = async(req, res) => {
+  const pageNum = req.query.currentPage;
+  const size = req.query.pageSize;
+
+  try {
+    const result = await user.findAll({
+      limit: parseInt(size),
+      offset: (parseInt(pageNum) - 1) * parseInt(size),
+    });
+    if (!result.length) {
+      res.status(404).send("Can not get all user");
+      return;
+    }
+    res.status(200).send(result);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal server error");
+  }
+}
+module.exports = { addNewUser, updateUser, deleteUser, getUserById, getAllUser }

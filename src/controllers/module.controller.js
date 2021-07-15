@@ -117,4 +117,26 @@ const getModuleById = async(req, res) => {
     res.status(500).send("Internal server error");
   }
 }
-module.exports = { addNewModule, updateModule, deleteModule, getModuleById }
+
+//get all module
+const getALlModule = async(req, res) => {
+  const pageNum = req.query.currentPage;
+  const size = req.query.pageSize;
+
+  try {
+    const result = await Module.findAll({
+      limit: parseInt(size),
+      offset: (parseInt(pageNum) - 1) * parseInt(size),
+    });
+    if (!result.length) {
+      res.status(404).send("Can not get all moudle");
+      return;
+    }
+    res.status(200).send(result);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal server error");
+  }
+}
+
+module.exports = { addNewModule, getALlModule, updateModule, deleteModule, getModuleById }

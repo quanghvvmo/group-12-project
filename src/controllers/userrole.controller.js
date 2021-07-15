@@ -2,6 +2,7 @@ const { userRole, user, role } = require('../models');
 const jwt = require('jsonwebtoken');
 const config = require('../config/auth.config');
 
+//create new user-role
 const addNewUserRole = async(req, res) => {
   const token = req.header('token');
   let {
@@ -54,6 +55,7 @@ const addNewUserRole = async(req, res) => {
 
 }
 
+//update user-role
 const updateUserRole = async(req, res) => {
   const id = req.params.id;
   const token = req.header('token');
@@ -104,5 +106,24 @@ const updateUserRole = async(req, res) => {
   }
 }
 
+//get all user-role
+const getAllUserRole = async(req, res) => {
+  const pageNum = req.query.currentPage;
+  const size = req.query.pageSize;
 
-module.exports = { addNewUserRole, updateUserRole }
+  try {
+    const result = await userRole.findAll({
+      limit: parseInt(size),
+      offset: (parseInt(pageNum) - 1) * parseInt(size),
+    });
+    if (!result.length) {
+      res.status(404).send("Can not get all user-role");
+      return;
+    }
+    res.status(200).send(result);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal server error");
+  }
+}
+module.exports = { addNewUserRole, updateUserRole, getAllUserRole }

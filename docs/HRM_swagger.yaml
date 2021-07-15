@@ -96,6 +96,31 @@ paths:
         '200':
           description: ''
           headers: {}
+    get:
+      summary: get all user
+      tags:
+        - User API
+      operationId: getalluser
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: currentPage
+          in: query
+          required: true
+          type: integer
+          format: int32
+          description: ''
+        - name: pageSize
+          in: query
+          required: true
+          type: integer
+          format: int32
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
   '/users/{id}':
     delete:
       summary: delete user by id
@@ -178,7 +203,7 @@ paths:
           in: formData
           required: true
           type: integer
-          format: int32
+          format: int64
           description: ''
         - name: avatar
           in: formData
@@ -228,6 +253,31 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/createnewuserrolerequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    get:
+      summary: get all user-role
+      tags:
+        - UserRole API
+      operationId: getalluser-role
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: currentPage
+          in: query
+          required: true
+          type: integer
+          format: int32
+          description: ''
+        - name: pageSize
+          in: query
+          required: true
+          type: integer
+          format: int32
+          description: ''
       responses:
         '200':
           description: ''
@@ -347,6 +397,32 @@ paths:
         '200':
           description: ''
           headers: {}
+  /roles/all:
+    get:
+      summary: get all role
+      tags:
+        - Role API
+      operationId: getallrole
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: currentPage
+          in: query
+          required: true
+          type: integer
+          format: int32
+          description: ''
+        - name: pageSize
+          in: query
+          required: true
+          type: integer
+          format: int32
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
   /rolepermissions:
     post:
       summary: create new role permission
@@ -363,6 +439,31 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/createnewrolepermissionrequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    get:
+      summary: get all role-permission
+      tags:
+        - RolePermission API
+      operationId: getallrole-permission
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: currentPage
+          in: query
+          required: true
+          type: integer
+          format: int32
+          description: ''
+        - name: pageSize
+          in: query
+          required: true
+          type: integer
+          format: int32
+          description: ''
       responses:
         '200':
           description: ''
@@ -426,6 +527,31 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/createnewmodulerequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    get:
+      summary: get all module
+      tags:
+        - Module API
+      operationId: getallmodule
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: currentPage
+          in: query
+          required: true
+          type: integer
+          format: int32
+          description: ''
+        - name: pageSize
+          in: query
+          required: true
+          type: integer
+          format: int32
+          description: ''
       responses:
         '200':
           description: ''
@@ -679,6 +805,32 @@ paths:
         '200':
           description: ''
           headers: {}
+  /forms/all:
+    get:
+      summary: get all form
+      tags:
+        - Form API
+      operationId: getallform
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: currentPage
+          in: query
+          required: true
+          type: integer
+          format: int32
+          description: ''
+        - name: pageSize
+          in: query
+          required: true
+          type: integer
+          format: int32
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
   /accounts:
     post:
       summary: create new account
@@ -695,6 +847,31 @@ paths:
           description: ''
           schema:
             $ref: '#/definitions/createnewaccountrequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    get:
+      summary: get all account
+      tags:
+        - Account API
+      operationId: getallaccount
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: currentPage
+          in: query
+          required: true
+          type: integer
+          format: int32
+          description: ''
+        - name: pageSize
+          in: query
+          required: true
+          type: integer
+          format: int32
+          description: ''
       responses:
         '200':
           description: ''
@@ -832,7 +1009,7 @@ definitions:
   createnewrolerequest:
     title: createnewrolerequest
     example:
-      roleName: admin
+      roleName: demo
     type: object
     properties:
       roleName:
@@ -842,7 +1019,7 @@ definitions:
   updaterolebyidrequest:
     title: updaterolebyidrequest
     example:
-      roleName: sale
+      roleName: demo-update
     type: object
     properties:
       roleName:
@@ -957,7 +1134,6 @@ definitions:
       userId:
         - 2b105106-25ed-49d1-8bb5-d0d1001d5793
         - 8b8ba587-5ec4-4bac-aab7-4923f7af447e
-        - cab64ec3-e333-4675-985e-1c7cde4b444b
         - 9b878523-8f7c-4e8e-8ce0-bc9ae261a19f
         - fbd0d11c-6ae5-46f9-bd84-87e496a142f5
       typeOf: yearly
@@ -975,20 +1151,20 @@ definitions:
   approveformofuserrequest:
     title: approveformofuserrequest
     example:
-      managerCommnet: Ok Done
+      managerComment: Ok Done
     type: object
     properties:
-      managerCommnet:
+      managerComment:
         type: string
     required:
-      - managerCommnet
+      - managerComment
   submitform(employee)request:
     title: submitform(employee)request
     example:
       managerId: ac3a4c4b-1037-427d-a0ad-c3b2029c709b
-      note: 'Not '
-      task: 'Not '
-      achievement: 'Dont '
+      note: So many
+      task: Many
+      achievement: 'Nothing '
     type: object
     properties:
       managerId:

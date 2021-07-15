@@ -8,5 +8,6 @@ userRouter.post('/users', Upload.single('avatar'), checkRole.checkCanWrite, user
 userRouter.get('/users/:id', checkRole.checkCanRead, userController.getUserById);
 userRouter.put('/users/:id', Upload.single('avatar'), checkRole.checkCanUpdate, userController.updateUser);
 userRouter.delete('/users/:id', checkRole.checkCanDelete, userController.deleteUser);
+userRouter.get('/users', checkRole.checkCanRead, userController.getAllUser);
 
 module.exports = userRouter;
