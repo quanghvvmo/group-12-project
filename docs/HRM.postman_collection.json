@@ -1,1176 +1,1836 @@
 {
-  "info": {
-    "_postman_id": "c33f3680-7577-4338-856f-16d04830a4de",
-    "name": "HRM",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-  },
-  "item": [
-    {
-      "name": "User API",
-      "item": [
-        {
-          "name": "Create New User and Account",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "employee_code",
-                  "value": "805",
-                  "type": "text"
-                },
-                {
-                  "key": "firstname",
-                  "value": "Duc",
-                  "type": "text"
-                },
-                {
-                  "key": "lastname",
-                  "value": "Bui",
-                  "type": "text"
-                },
-                {
-                  "key": "email",
-                  "value": "ducbla@vmodev.com",
-                  "type": "text"
-                },
-                {
-                  "key": "password",
-                  "value": "ducbla",
-                  "type": "text"
-                },
-                {
-                  "key": "phone",
-                  "value": "0906583034",
-                  "type": "text"
-                },
-                {
-                  "key": "avatar",
-                  "type": "file",
-                  "src": "/C:/Users/anhdu/OneDrive/Hình ảnh/Saved Pictures/[OC][NEWBIE][CC] My first landscape attempt.png"
-                },
-                {
-                  "key": "identification_card",
-                  "value": "153123122",
-                  "type": "text"
-                },
-                {
-                  "key": "social_insurance",
-                  "value": "13242342",
-                  "type": "text"
-                },
-                {
-                  "key": "address",
-                  "value": "Ha Noi",
-                  "type": "text"
-                },
-                {
-                  "key": "department",
-                  "value": "Dev",
-                  "type": "text"
-                },
-                {
-                  "key": "parent",
-                  "value": "8536a99b-23e7-452f-bd93-ea021d015e6f",
-                  "type": "text"
-                },
-                {
-                  "key": "position",
-                  "value": "employee",
-                  "type": "text"
-                },
-                {
-                  "key": "role_id",
-                  "value": "1459bfb7-a981-4a5d-aa99-aa04aa0311f2",
-                  "type": "text"
-                }
-              ]
-            },
-            "url": {
-              "raw": "http://localhost:5000/api/v1/users",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": ["api", "v1", "users"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get All Users",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "jwt",
-                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2ZjYyZGQzLTU3NzUtNGIwZi05M2QxLTc2ZTQzMDQ0ZTA1NyIsImlhdCI6MTYyNTU0NDMwMX0.xv7oh80dA9sXCDTCq7YhXF-bk68hy4s5-Jo3-Tw6dCc",
-                "description": "hr",
-                "type": "text"
-              },
-              {
-                "key": "jwt",
-                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5ODRiNGNiLTg0MWUtNDg5Ny1iM2EwLTJkYmU3MWYyMWYyNiIsImlhdCI6MTYyNTA0MjI4NH0.MBz5p4BBFtYB5b5DPoGhMWYzOlBNV-z8TI3QQ9nOUY4",
-                "description": "employee",
-                "type": "text",
-                "disabled": true
-              },
-              {
-                "key": "jwt",
-                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1MzZhOTliLTIzZTctNDUyZi1iZDkzLWVhMDIxZDAxNWU2ZiIsImlhdCI6MTYyNTU0NTg1N30.HBuRYJ1NhUZWNubRu_K9XmMrxnjt-4ProrRq2qiNFUk",
-                "description": "manager",
-                "type": "text",
-                "disabled": true
-              }
-            ],
-            "url": {
-              "raw": "http://localhost:5000/api/v1/users",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": ["api", "v1", "users"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get User By ID",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:5000/api/v1/users/e6f62dd3-5775-4b0f-93d1-76e43044e057",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": [
-                "api",
-                "v1",
-                "users",
-                "e6f62dd3-5775-4b0f-93d1-76e43044e057"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Update User and Account Info",
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "employee_code",
-                  "value": "0856",
-                  "type": "text"
-                },
-                {
-                  "key": "firstname",
-                  "value": "Admin",
-                  "type": "text"
-                },
-                {
-                  "key": "lastname",
-                  "value": "Admin",
-                  "type": "text"
-                },
-                {
-                  "key": "email",
-                  "value": "admin@vmodev.com",
-                  "type": "text"
-                },
-                {
-                  "key": "phone",
-                  "value": "988877656",
-                  "type": "text"
-                },
-                {
-                  "key": "avatar",
-                  "type": "file",
-                  "src": "/C:/Users/anhdu/OneDrive/Hình ảnh/Saved Pictures/[OC][NEWBIE][CC] My first landscape attempt.png"
-                },
-                {
-                  "key": "identification_card",
-                  "value": "1122334455",
-                  "type": "text"
-                },
-                {
-                  "key": "social_insurance",
-                  "value": "1122334455",
-                  "type": "text"
-                },
-                {
-                  "key": "address",
-                  "value": "Ha Noi",
-                  "type": "text"
-                },
-                {
-                  "key": "department",
-                  "value": "Admin",
-                  "type": "text"
-                },
-                {
-                  "key": "parent",
-                  "value": "f52da109-d7fd-4e20-8536-957da064a8f1",
-                  "type": "text"
-                },
-                {
-                  "key": "position",
-                  "value": "Admin",
-                  "type": "text"
-                },
-                {
-                  "key": "password",
-                  "value": "admin",
-                  "type": "text"
-                },
-                {
-                  "key": "role_id",
-                  "value": "c6220169-3d04-4ce4-86bc-e5ddb251e3dc",
-                  "type": "text"
-                }
-              ]
-            },
-            "url": {
-              "raw": "http://localhost:5000/api/v1/users/f52da109-d7fd-4e20-8536-957da064a8f1",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": [
-                "api",
-                "v1",
-                "users",
-                "f52da109-d7fd-4e20-8536-957da064a8f1"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Delete User and Account",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:5000/api/v1/users/f52da109-d7fd-4e20-8536-957da064a8f1",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": [
-                "api",
-                "v1",
-                "users",
-                "f52da109-d7fd-4e20-8536-957da064a8f1"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Login",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"email\": \"huongntt@vmodev.com\",\r\n    \"password\": \"huongntt\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:5000/api/v1/login",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": ["api", "v1", "login"]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Form API",
-      "item": [
-        {
-          "name": "Create New Form",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "jwt",
-                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2ZjYyZGQzLTU3NzUtNGIwZi05M2QxLTc2ZTQzMDQ0ZTA1NyIsImlhdCI6MTYyNTU0NDMwMX0.xv7oh80dA9sXCDTCq7YhXF-bk68hy4s5-Jo3-Tw6dCc",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"user_id\": \"5984b4cb-841e-4897-b3a0-2dbe71f21f26\",\r\n    \"form_type\": \"1\",\r\n    \"status\": \"submitted\",\r\n    \"hr_review\": \"Test Form 1\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:5000/api/v1/forms",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": ["api", "v1", "forms"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get All Forms",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "jwt",
-                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1MzZhOTliLTIzZTctNDUyZi1iZDkzLWVhMDIxZDAxNWU2ZiIsImlhdCI6MTYyNTEwOTAwNH0.q3_5uLYl6A5OaroqGvzUEqac95jFMLgh4lSwxft6zps",
-                "description": "hr",
-                "type": "text",
-                "disabled": true
-              },
-              {
-                "key": "jwt",
-                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5ODRiNGNiLTg0MWUtNDg5Ny1iM2EwLTJkYmU3MWYyMWYyNiIsImlhdCI6MTYyNTA0MjI4NH0.MBz5p4BBFtYB5b5DPoGhMWYzOlBNV-z8TI3QQ9nOUY4",
-                "description": "employee",
-                "type": "text",
-                "disabled": true
-              }
-            ],
-            "url": {
-              "raw": "http://localhost:5000/api/v1/forms",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": ["api", "v1", "forms"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get Form By ID",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "jwt",
-                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1MzZhOTliLTIzZTctNDUyZi1iZDkzLWVhMDIxZDAxNWU2ZiIsImlhdCI6MTYyNTEwOTAwNH0.q3_5uLYl6A5OaroqGvzUEqac95jFMLgh4lSwxft6zps",
-                "type": "text",
-                "disabled": true
-              },
-              {
-                "key": "jwt",
-                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2ZjYyZGQzLTU3NzUtNGIwZi05M2QxLTc2ZTQzMDQ0ZTA1NyIsImlhdCI6MTYyNTU0NDMwMX0.xv7oh80dA9sXCDTCq7YhXF-bk68hy4s5-Jo3-Tw6dCc",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "http://localhost:5000/api/v1/forms/b7457fe1-afec-4849-a6c8-835474481855",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": [
-                "api",
-                "v1",
-                "forms",
-                "b7457fe1-afec-4849-a6c8-835474481855"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "User - Update Form",
-          "request": {
-            "method": "PATCH",
-            "header": [
-              {
-                "key": "jwt",
-                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5ODRiNGNiLTg0MWUtNDg5Ny1iM2EwLTJkYmU3MWYyMWYyNiIsImlhdCI6MTYyNTE5NzMwN30.dso_WJlBEQ8C8sMnCuD0Lc2P0a2H4WggPYO1CJMTIs0",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"manager\": \"5bba59cc-30e3-430d-934d-522fb72c0d81\",\r\n    \"status\": \"pending approve\",\r\n    \"personal_review\": \"Excellent\",\r\n    \"task\": \"HRM SYS\",\r\n    \"archivement\": \"HRM SYS\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:5000/api/v1/forms/b7457fe1-afec-4849-a6c8-835474481855",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": [
-                "api",
-                "v1",
-                "forms",
-                "b7457fe1-afec-4849-a6c8-835474481855"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Manager - Approve Form",
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "jwt",
-                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYmE1OWNjLTMwZTMtNDMwZC05MzRkLTUyMmZiNzJjMGQ4MSIsImlhdCI6MTYyNTE5NzM2NX0.afI01bR9XS8G0InxfGILC48CwgUdYQwDtOIn6tLgu7A",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"status\": \"approved\",\r\n    \"manager_review\": \"Awesome\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:5000/api/v1/forms/b7457fe1-afec-4849-a6c8-835474481855",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": [
-                "api",
-                "v1",
-                "forms",
-                "b7457fe1-afec-4849-a6c8-835474481855"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Delete Form",
-          "request": {
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "jwt",
-                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2ZjYyZGQzLTU3NzUtNGIwZi05M2QxLTc2ZTQzMDQ0ZTA1NyIsImlhdCI6MTYyNDc3OTQwMn0.rxIQIFZgA-3m0l1RJ3JNPTtL9E3aRK3ZYfKKeSPMrfY",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "http://localhost:5000/api/v1/forms/6691f93e-9b4c-455e-9442-d5fc513e4294",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": [
-                "api",
-                "v1",
-                "forms",
-                "6691f93e-9b4c-455e-9442-d5fc513e4294"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Employee Update Form",
-          "request": {
-            "method": "PATCH",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:5000/api/v1/forms",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": ["api", "v1", "forms"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Approve Form",
-          "request": {
-            "method": "PATCH",
-            "header": [
-              {
-                "key": "jwt",
-                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1MzZhOTliLTIzZTctNDUyZi1iZDkzLWVhMDIxZDAxNWU2ZiIsImlhdCI6MTYyNDg2OTY4OH0.kVUGcyEz_e5ns25KYrvQAtMJMZWMMkZ49nkAV5aYzfw",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"status\": \"approved\",\r\n    \"manager_review\": \"Good Chop\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:5000/api/v1/form-approve/d4d72685-384b-4998-8fcf-8abcc4ecb2bc",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": [
-                "api",
-                "v1",
-                "form-approve",
-                "d4d72685-384b-4998-8fcf-8abcc4ecb2bc"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Account API",
-      "item": [
-        {
-          "name": "Delete Account",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:5000/api/v1/accounts/79781226-62bb-421a-8621-0aa132e58064",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": [
-                "api",
-                "v1",
-                "accounts",
-                "79781226-62bb-421a-8621-0aa132e58064"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get All User Accounts",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:5000/api/v1/accounts",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": ["api", "v1", "accounts"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get User Account By ID",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:5000/api/v1/accounts/607eebc7-72a4-4541-aa95-2f3277e42175",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": [
-                "api",
-                "v1",
-                "accounts",
-                "607eebc7-72a4-4541-aa95-2f3277e42175"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Update User Account",
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"user_id\": \"b6e75566-e457-4f16-9bba-a1929fb153dd\",\r\n    \"email\": \"ducbla9999@gmail.com\",\r\n    \"password\": \"ducbla\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:5000/api/v1/accounts/607eebc7-72a4-4541-aa95-2f3277e42175",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": [
-                "api",
-                "v1",
-                "accounts",
-                "607eebc7-72a4-4541-aa95-2f3277e42175"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Role & Permission Management API",
-      "item": [
-        {
-          "name": "Role API",
-          "item": [
-            {
-              "name": "Create New Role",
-              "request": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n    \"role_name\": \"employee\"\r\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "http://localhost:5000/api/v1/roles",
-                  "protocol": "http",
-                  "host": ["localhost"],
-                  "port": "5000",
-                  "path": ["api", "v1", "roles"]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Get All Roles",
-              "request": {
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:5000/api/v1/roles",
-                  "protocol": "http",
-                  "host": ["localhost"],
-                  "port": "5000",
-                  "path": ["api", "v1", "roles"]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Get Role By ID",
-              "request": {
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:5000/api/v1/roles/ffc8c623-ee2f-48e7-9f7c-42edad317a69",
-                  "protocol": "http",
-                  "host": ["localhost"],
-                  "port": "5000",
-                  "path": [
-                    "api",
-                    "v1",
-                    "roles",
-                    "ffc8c623-ee2f-48e7-9f7c-42edad317a69"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Update Role",
-              "request": {
-                "method": "PUT",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n    \"createBy\": \"2d4683cd-37ae-4952-af63-da027f8cc6af\",\r\n    \"updateBy\": \"2d4683cd-37ae-4952-af63-da027f8cc6af\"\r\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "http://localhost:5000/api/v1/roles/ffc8c623-ee2f-48e7-9f7c-42edad317a69",
-                  "protocol": "http",
-                  "host": ["localhost"],
-                  "port": "5000",
-                  "path": [
-                    "api",
-                    "v1",
-                    "roles",
-                    "ffc8c623-ee2f-48e7-9f7c-42edad317a69"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Delete Role",
-              "request": {
-                "method": "DELETE",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:5000/api/v1/roles/8409a9b1-3e99-4abc-9940-52d8c116d6ec",
-                  "protocol": "http",
-                  "host": ["localhost"],
-                  "port": "5000",
-                  "path": [
-                    "api",
-                    "v1",
-                    "roles",
-                    "8409a9b1-3e99-4abc-9940-52d8c116d6ec"
-                  ]
-                }
-              },
-              "response": []
-            }
-          ]
-        },
-        {
-          "name": "User Role API",
-          "item": [
-            {
-              "name": "Create New User Role",
-              "request": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n    \"role_id\": \"ffc8c623-ee2f-48e7-9f7c-42edad317a69\",\r\n    \"user_id\": \"e6f62dd3-5775-4b0f-93d1-76e43044e057\",\r\n    \"createBy\": \"2d4683cd-37ae-4952-af63-da027f8cc6af\",\r\n    \"updateBy\": \"2d4683cd-37ae-4952-af63-da027f8cc6af\"\r\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "http://localhost:5000/api/v1/user-role",
-                  "protocol": "http",
-                  "host": ["localhost"],
-                  "port": "5000",
-                  "path": ["api", "v1", "user-role"]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Get All User Roles",
-              "protocolProfileBehavior": {
-                "disableBodyPruning": true
-              },
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "jwt",
-                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTYyNTAzOX0.CNT8fvKAFwvdtZMhKwAmFumCdAFfFqpeNSM9Sjld97M",
-                    "description": "admin",
-                    "type": "text"
-                  },
-                  {
-                    "key": "jwt",
-                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2ZjYyZGQzLTU3NzUtNGIwZi05M2QxLTc2ZTQzMDQ0ZTA1NyIsImlhdCI6MTYyNTYyOTczM30.az8DozKdhwr15MwGPZv1Eh1VBk0C9vU1ij2I-oRi_WU",
-                    "description": "hr",
-                    "type": "text",
-                    "disabled": true
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "http://localhost:5000/api/v1/user-roles",
-                  "protocol": "http",
-                  "host": ["localhost"],
-                  "port": "5000",
-                  "path": ["api", "v1", "user-roles"]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Get User Role By ID",
-              "request": {
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:5000/api/v1/user-role/684eeb16-4c9e-4e79-9913-2ccf3deae9e4",
-                  "protocol": "http",
-                  "host": ["localhost"],
-                  "port": "5000",
-                  "path": [
-                    "api",
-                    "v1",
-                    "user-role",
-                    "684eeb16-4c9e-4e79-9913-2ccf3deae9e4"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Update User Role",
-              "request": {
-                "method": "PUT",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n    \"createBy\": \"2d4683cd-37ae-4952-af63-da027f8cc6af\",\r\n    \"updateBy\": \"2d4683cd-37ae-4952-af63-da027f8cc6af\"\r\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "http://localhost:5000/api/v1/user-role/efa541d9-12ca-4e7c-8d64-f210375ff45b",
-                  "protocol": "http",
-                  "host": ["localhost"],
-                  "port": "5000",
-                  "path": [
-                    "api",
-                    "v1",
-                    "user-role",
-                    "efa541d9-12ca-4e7c-8d64-f210375ff45b"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Delete User Role",
-              "request": {
-                "method": "DELETE",
-                "header": [
-                  {
-                    "key": "jwt",
-                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTYyNTAzOX0.CNT8fvKAFwvdtZMhKwAmFumCdAFfFqpeNSM9Sjld97M",
-                    "description": "admin",
-                    "type": "text"
-                  },
-                  {
-                    "key": "jwt",
-                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2ZjYyZGQzLTU3NzUtNGIwZi05M2QxLTc2ZTQzMDQ0ZTA1NyIsImlhdCI6MTYyNTYyOTczM30.az8DozKdhwr15MwGPZv1Eh1VBk0C9vU1ij2I-oRi_WU",
-                    "description": "hr",
-                    "type": "text",
-                    "disabled": true
-                  }
-                ],
-                "url": {
-                  "raw": "http://localhost:5000/api/v1/user-roles/aca58357-34c2-44d6-930e-dd2b0f1215d3",
-                  "protocol": "http",
-                  "host": ["localhost"],
-                  "port": "5000",
-                  "path": [
-                    "api",
-                    "v1",
-                    "user-roles",
-                    "aca58357-34c2-44d6-930e-dd2b0f1215d3"
-                  ]
-                }
-              },
-              "response": []
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Role Permission Form API",
-      "item": [
-        {
-          "name": "Create New Role Permission Form",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"role_id\": \"ffc8c623-ee2f-48e7-9f7c-42edad317a69\",\r\n    \"module_id\": \"3a50a4d0-1815-4bdf-b590-558b3533f6eb\",\r\n    \"canCreate\": \"1\",\r\n    \"canRead\": \"1\",\r\n    \"canUpdate\": \"1\",\r\n    \"canDelete\": \"1\",\r\n    \"canApprove\": \"1\",\r\n    \"url\": \"/users\",\r\n    \"createBy\": \"2d4683cd-37ae-4952-af63-da027f8cc6af\",\r\n    \"updateBy\": \"2d4683cd-37ae-4952-af63-da027f8cc6af\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:5000/api/v1/permissions",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": ["api", "v1", "permissions"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get All Role Permission Form",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "jwt",
-                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTYyNTAzOX0.CNT8fvKAFwvdtZMhKwAmFumCdAFfFqpeNSM9Sjld97M",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "http://localhost:5000/api/v1/permissions",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": ["api", "v1", "permissions"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Update Role Permission Form",
-          "request": {
-            "method": "PATCH",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"createBy\": \"2d4683cd-37ae-4952-af63-da027f8cc6af\",\r\n    \"updateBy\": \"2d4683cd-37ae-4952-af63-da027f8cc6af\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:5000/api/v1/permissions/b54b1a75-d7b3-4791-869e-5d5605bce1e1",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": [
-                "api",
-                "v1",
-                "permissions",
-                "b54b1a75-d7b3-4791-869e-5d5605bce1e1"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Delete Role Permission Form",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:5000/api/v1/permissions/63d9c105-1718-461c-be23-09423ec0fd13",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": [
-                "api",
-                "v1",
-                "permissions",
-                "63d9c105-1718-461c-be23-09423ec0fd13"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Module API",
-      "item": [
-        {
-          "name": "Create New Module",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "jwt",
-                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTYyNTAzOX0.CNT8fvKAFwvdtZMhKwAmFumCdAFfFqpeNSM9Sjld97M",
-                "description": "admin",
-                "type": "text"
-              },
-              {
-                "key": "jwt",
-                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5ODRiNGNiLTg0MWUtNDg5Ny1iM2EwLTJkYmU3MWYyMWYyNiIsImlhdCI6MTYyNTYyMzQ4NX0.oDTYnaDhZwhLCkQzIxgfmMesTVSGj8ZYLy1E6jCdffo",
-                "description": "huongntt",
-                "type": "text",
-                "disabled": true
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"module_name\": \"permissions\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:5000/api/v1/modules",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": ["api", "v1", "modules"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get All Modules",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:5000/api/v1/roles/8409a9b1-3e99-4abc-9940-52d8c116d6ec",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": [
-                "api",
-                "v1",
-                "roles",
-                "8409a9b1-3e99-4abc-9940-52d8c116d6ec"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Update Module",
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"createBy\": \"2d4683cd-37ae-4952-af63-da027f8cc6af\",\r\n    \"updateBy\": \"2d4683cd-37ae-4952-af63-da027f8cc6af\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:5000/api/v1/modules/8dd504a7-c244-48e3-a9cc-09f90fbc0da3",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": [
-                "api",
-                "v1",
-                "modules",
-                "8dd504a7-c244-48e3-a9cc-09f90fbc0da3"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Delete Modules",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": null
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Report API",
-      "item": [
-        {
-          "name": "Get All Reports",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "jwt",
-                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1MzZhOTliLTIzZTctNDUyZi1iZDkzLWVhMDIxZDAxNWU2ZiIsImlhdCI6MTYyNTU0NTg1N30.HBuRYJ1NhUZWNubRu_K9XmMrxnjt-4ProrRq2qiNFUk",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "http://localhost:5000/api/v1/reports/forms",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": ["api", "v1", "reports", "forms"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get All Manager Reports",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "jwt",
-                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1MzZhOTliLTIzZTctNDUyZi1iZDkzLWVhMDIxZDAxNWU2ZiIsImlhdCI6MTYyNTE5ODkzNH0.jgNj69rqnTwFRgRyeHTRFwoUsXc95y38KInaQnTYgJk",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "http://localhost:5000/api/v1/reports-manager/forms",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": ["api", "v1", "reports-manager", "forms"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get All Report By Status",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "jwt",
-                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTE5MzM0M30.oOsLXHx2X69AZXJskrV6pqK6NQig8b0GwQSg1BmqX_g",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "http://localhost:5000/api/v1/reports-status/forms?status=approved",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": ["api", "v1", "reports-status", "forms"],
-              "query": [
-                {
-                  "key": "status",
-                  "value": "approved"
-                }
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    }
-  ]
+	"info": {
+		"_postman_id": "c33f3680-7577-4338-856f-16d04830a4de",
+		"name": "HRM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User API",
+			"item": [
+				{
+					"name": "Create New User and Account",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTc5NjU3N30.ceEulV7RsCw28k-SkbjPekwxNPZiKItCFv5UdLjB6-A",
+								"description": "admin linux",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "employee_code",
+									"value": "806",
+									"type": "text"
+								},
+								{
+									"key": "firstname",
+									"value": "Huy",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "Ta",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "huytq1@vmodev.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "huytq",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "0906583034",
+									"type": "text"
+								},
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/home/ad0x99/Pictures/1.png"
+								},
+								{
+									"key": "identification_card",
+									"value": "153123122",
+									"type": "text"
+								},
+								{
+									"key": "social_insurance",
+									"value": "13242342",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Ha Noi",
+									"type": "text"
+								},
+								{
+									"key": "department",
+									"value": "Dev",
+									"type": "text"
+								},
+								{
+									"key": "parent",
+									"value": "5bba59cc-30e3-430d-934d-522fb72c0d81",
+									"type": "text"
+								},
+								{
+									"key": "position",
+									"value": "employee",
+									"type": "text"
+								},
+								{
+									"key": "role_id",
+									"value": "1459bfb7-a981-4a5d-aa99-aa04aa0311f2",
+									"type": "text"
+								},
+								{
+									"key": "createBy",
+									"value": "e6f62dd3-5775-4b0f-93d1-76e43044e057",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "updateBy",
+									"value": "e6f62dd3-5775-4b0f-93d1-76e43044e057",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2ZjYyZGQzLTU3NzUtNGIwZi05M2QxLTc2ZTQzMDQ0ZTA1NyIsImlhdCI6MTYyNTU0NDMwMX0.xv7oh80dA9sXCDTCq7YhXF-bk68hy4s5-Jo3-Tw6dCc",
+								"description": "hr",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5ODRiNGNiLTg0MWUtNDg5Ny1iM2EwLTJkYmU3MWYyMWYyNiIsImlhdCI6MTYyNTA0MjI4NH0.MBz5p4BBFtYB5b5DPoGhMWYzOlBNV-z8TI3QQ9nOUY4",
+								"description": "employee",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1MzZhOTliLTIzZTctNDUyZi1iZDkzLWVhMDIxZDAxNWU2ZiIsImlhdCI6MTYyNTU0NTg1N30.HBuRYJ1NhUZWNubRu_K9XmMrxnjt-4ProrRq2qiNFUk",
+								"description": "manager",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5Njc4YzNmLTBlOWMtNDE3Yi1iYjlkLTBmNjg1ZWZhMmM1OCIsImlhdCI6MTYyNTY1MzczN30.WMKAjexgD-_NEwIcRsE2FSzQTTR3JM-uJMgLr1vHois",
+								"description": "admin",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTc5NjU3N30.ceEulV7RsCw28k-SkbjPekwxNPZiKItCFv5UdLjB6-A",
+								"description": "admin linux",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{url}}/api/v1/users?page=1&size=6",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User By ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTcwMDExM30.EOO_st24Xumv3tZsC4nnQTb9BWJa7-UZZ2n10ZXS0H0",
+								"description": "admin",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2ZjYyZGQzLTU3NzUtNGIwZi05M2QxLTc2ZTQzMDQ0ZTA1NyIsImlhdCI6MTYyNTcwMTM4OH0.qNQgnDoFfT0pucENSF60YHExy7QTcBdrCuTVcgAkqvI",
+								"description": "hr",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5ODRiNGNiLTg0MWUtNDg5Ny1iM2EwLTJkYmU3MWYyMWYyNiIsImlhdCI6MTYyNTA0MjI4NH0.MBz5p4BBFtYB5b5DPoGhMWYzOlBNV-z8TI3QQ9nOUY4",
+								"description": "ducbla",
+								"type": "text"
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ2Zjk2MTZkLWFmZWItNGI0ZS05NzFkLTRlMzRkMjQ3MjI5MiIsImlhdCI6MTYyNjA2MDE1OX0.pa41oIBOKHddplKeEoyftGzvPAcPclBi4lPndGwZ5VY",
+								"description": "huytq",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1MzZhOTliLTIzZTctNDUyZi1iZDkzLWVhMDIxZDAxNWU2ZiIsImlhdCI6MTYyNTcwMzk5MH0.Nmh2ko6tPlNvd69w1VcZ0QwPQTj_gvhILw7V9Tv7iAU",
+								"description": "manager",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://{{url}}/api/v1/users/5984b4cb-841e-4897-b3a0-2dbe71f21f26",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"5984b4cb-841e-4897-b3a0-2dbe71f21f26"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User and Account Info",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5ODRiNGNiLTg0MWUtNDg5Ny1iM2EwLTJkYmU3MWYyMWYyNiIsImlhdCI6MTYyNTkwMzg3MX0.LrzLUzm_o6cGq4d8EsaYv3cyrEFj5L2hpjsSXGhTtvg",
+								"description": "ducbla",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTc5NjU3N30.ceEulV7RsCw28k-SkbjPekwxNPZiKItCFv5UdLjB6-A",
+								"description": "admin linux",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ2Zjk2MTZkLWFmZWItNGI0ZS05NzFkLTRlMzRkMjQ3MjI5MiIsImlhdCI6MTYyNTkwNDM3NX0.pP2kMeULZJe5Avyh0uwn1YhJpRvaS71tlmQ-rZh8zKs",
+								"description": "huytq",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "employee_code",
+									"value": "806",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "firstname",
+									"value": "Huy",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "Ta",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "huytq1@vmodev.com",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "988877656",
+									"type": "text"
+								},
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/home/ad0x99/Pictures/1.png"
+								},
+								{
+									"key": "identification_card",
+									"value": "111111111111",
+									"type": "text"
+								},
+								{
+									"key": "social_insurance",
+									"value": "222222222",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Ha Noi",
+									"type": "text"
+								},
+								{
+									"key": "department",
+									"value": "Dev",
+									"type": "text"
+								},
+								{
+									"key": "parent",
+									"value": "5bba59cc-30e3-430d-934d-522fb72c0d81",
+									"type": "text"
+								},
+								{
+									"key": "position",
+									"value": "employee",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "huytq",
+									"type": "text"
+								},
+								{
+									"key": "role_id",
+									"value": "1459bfb7-a981-4a5d-aa99-aa04aa0311f2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{url}}/api/v1/users/46f9616d-afeb-4b4e-971d-4e34d2472292",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"46f9616d-afeb-4b4e-971d-4e34d2472292"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User and Account",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1MzZhOTliLTIzZTctNDUyZi1iZDkzLWVhMDIxZDAxNWU2ZiIsImlhdCI6MTYyNTcwMzk5MH0.Nmh2ko6tPlNvd69w1VcZ0QwPQTj_gvhILw7V9Tv7iAU",
+								"description": "manager",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ2Zjk2MTZkLWFmZWItNGI0ZS05NzFkLTRlMzRkMjQ3MjI5MiIsImlhdCI6MTYyNjA2MDE1OX0.pa41oIBOKHddplKeEoyftGzvPAcPclBi4lPndGwZ5VY",
+								"description": "huytq",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTcwMDExM30.EOO_st24Xumv3tZsC4nnQTb9BWJa7-UZZ2n10ZXS0H0",
+								"description": "admin",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{url}}/api/v1/users/46f9616d-afeb-4b4e-971d-4e34d2472292",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"46f9616d-afeb-4b4e-971d-4e34d2472292"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"vanvd@vmodev.com\",\r\n    \"password\": \"vanvd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}/api/v1/login",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Accounts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTcwMDExM30.EOO_st24Xumv3tZsC4nnQTb9BWJa7-UZZ2n10ZXS0H0",
+								"description": "admin",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{url}}/api/v1/accounts",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Account By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTcwMDExM30.EOO_st24Xumv3tZsC4nnQTb9BWJa7-UZZ2n10ZXS0H0",
+								"description": "admin",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1MzZhOTliLTIzZTctNDUyZi1iZDkzLWVhMDIxZDAxNWU2ZiIsImlhdCI6MTYyNTcwMzk5MH0.Nmh2ko6tPlNvd69w1VcZ0QwPQTj_gvhILw7V9Tv7iAU",
+								"description": "manager",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ2Zjk2MTZkLWFmZWItNGI0ZS05NzFkLTRlMzRkMjQ3MjI5MiIsImlhdCI6MTYyNjA2MDE1OX0.pa41oIBOKHddplKeEoyftGzvPAcPclBi4lPndGwZ5VY",
+								"description": "huytq",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{url}}/api/v1/accounts/df51b1e1-18fe-4f2e-ac1d-b860125bbd5f",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"accounts",
+								"df51b1e1-18fe-4f2e-ac1d-b860125bbd5f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Account",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ2Zjk2MTZkLWFmZWItNGI0ZS05NzFkLTRlMzRkMjQ3MjI5MiIsImlhdCI6MTYyNjA2MDE1OX0.pa41oIBOKHddplKeEoyftGzvPAcPclBi4lPndGwZ5VY",
+								"description": "huytq",
+								"type": "text"
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTcwMDExM30.EOO_st24Xumv3tZsC4nnQTb9BWJa7-UZZ2n10ZXS0H0",
+								"description": "admin",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"huytq@vmodev.com\",\n    \"password\": \"huytq\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}/api/v1/accounts/df51b1e1-18fe-4f2e-ac1d-b860125bbd5f",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"accounts",
+								"df51b1e1-18fe-4f2e-ac1d-b860125bbd5f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Account",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTczNDY1N30.MNc_ujeNEJ8dzTJC4lfOaXvRbaM_qzGWCQGEtJAblK8",
+								"description": "admin",
+								"type": "text"
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1MzZhOTliLTIzZTctNDUyZi1iZDkzLWVhMDIxZDAxNWU2ZiIsImlhdCI6MTYyNTcwMzk5MH0.Nmh2ko6tPlNvd69w1VcZ0QwPQTj_gvhILw7V9Tv7iAU",
+								"description": "manager",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://{{url}}/api/v1/accounts/c1fb2c36-60cd-4ede-abe4-be1093ff1ace",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"accounts",
+								"c1fb2c36-60cd-4ede-abe4-be1093ff1ace"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Form API",
+			"item": [
+				{
+					"name": "Create New Form",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2ZjYyZGQzLTU3NzUtNGIwZi05M2QxLTc2ZTQzMDQ0ZTA1NyIsImlhdCI6MTYyNTkwNTg3NH0.Sdrwfnr0JYL6tK6iHr_mLPgd5eSG0WK3LbIdpKSs7rQ",
+								"description": "anhvtk (hr)",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1MzZhOTliLTIzZTctNDUyZi1iZDkzLWVhMDIxZDAxNWU2ZiIsImlhdCI6MTYyNTk4NDE4OX0.cQKsaDcm8Sz2d12QvEI3oYXYUB_fNMJbAnTrw2RgsWc",
+								"description": "huongntt",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTc5NjU3N30.ceEulV7RsCw28k-SkbjPekwxNPZiKItCFv5UdLjB6-A",
+								"description": "admin linux",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5ODRiNGNiLTg0MWUtNDg5Ny1iM2EwLTJkYmU3MWYyMWYyNiIsImlhdCI6MTYyNTA0MjI4NH0.MBz5p4BBFtYB5b5DPoGhMWYzOlBNV-z8TI3QQ9nOUY4",
+								"description": "ducbla",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\": \"46f9616d-afeb-4b4e-971d-4e34d2472292\",\r\n    \"form_type\": \"1\",\r\n    \"status\": \"submitted\",\r\n    \"hr_review\": \"Best ReactJS Dev of The Year\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}/api/v1/forms",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"forms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Forms",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2ZjYyZGQzLTU3NzUtNGIwZi05M2QxLTc2ZTQzMDQ0ZTA1NyIsImlhdCI6MTYyNTkwNTg3NH0.Sdrwfnr0JYL6tK6iHr_mLPgd5eSG0WK3LbIdpKSs7rQ",
+								"description": "hr",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5ODRiNGNiLTg0MWUtNDg5Ny1iM2EwLTJkYmU3MWYyMWYyNiIsImlhdCI6MTYyNTA0MjI4NH0.MBz5p4BBFtYB5b5DPoGhMWYzOlBNV-z8TI3QQ9nOUY4",
+								"description": "employee",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTc5NjU3N30.ceEulV7RsCw28k-SkbjPekwxNPZiKItCFv5UdLjB6-A",
+								"description": "admin linux",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5ODRiNGNiLTg0MWUtNDg5Ny1iM2EwLTJkYmU3MWYyMWYyNiIsImlhdCI6MTYyNTA0MjI4NH0.MBz5p4BBFtYB5b5DPoGhMWYzOlBNV-z8TI3QQ9nOUY4",
+								"description": "ducbla",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{url}}/api/v1/forms",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"forms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Form By ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2ZjYyZGQzLTU3NzUtNGIwZi05M2QxLTc2ZTQzMDQ0ZTA1NyIsImlhdCI6MTYyNTkwNTg3NH0.Sdrwfnr0JYL6tK6iHr_mLPgd5eSG0WK3LbIdpKSs7rQ",
+								"description": "anhvtk",
+								"type": "text"
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1MzZhOTliLTIzZTctNDUyZi1iZDkzLWVhMDIxZDAxNWU2ZiIsImlhdCI6MTYyNTEwOTAwNH0.q3_5uLYl6A5OaroqGvzUEqac95jFMLgh4lSwxft6zps",
+								"description": "hr",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5ODRiNGNiLTg0MWUtNDg5Ny1iM2EwLTJkYmU3MWYyMWYyNiIsImlhdCI6MTYyNjE0MjQwOH0.zyolo3nuNz1SWkP_N3nEvnapuJon20QDzaDZvFiTous",
+								"description": "ducbla",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYmE1OWNjLTMwZTMtNDMwZC05MzRkLTUyMmZiNzJjMGQ4MSIsImlhdCI6MTYyNjE0Mjc3MX0.bqa2F9OHqjgF4Gk4sHai75KKqdVPodmKRGyt5W4Ow9A",
+								"description": "vanvd",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://{{url}}/api/v1/forms/25d2b504-b7fe-426b-8883-b6f9b29585ad",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"forms",
+								"25d2b504-b7fe-426b-8883-b6f9b29585ad"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User - Update Form",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1MzZhOTliLTIzZTctNDUyZi1iZDkzLWVhMDIxZDAxNWU2ZiIsImlhdCI6MTYyNTYyMzQ0M30.-Q-sg_JLY-5XGSIGTXNhboFcaY7F4zkBQ_JlOcvjRiM",
+								"description": "huongntt",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5ODRiNGNiLTg0MWUtNDg5Ny1iM2EwLTJkYmU3MWYyMWYyNiIsImlhdCI6MTYyNTkwNjI2Mn0.cuuHdcDmzZIl9uuCKZbpEhLcwvxFbAJbxMz_yhi1BSE",
+								"description": "ducbla",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"manager\": \"8536a99b-23e7-452f-bd93-ea021d015e6f\",\r\n    \"status\": \"pending approve\",\r\n    \"personal_review\": \"Excellent\",\r\n    \"task\": \"HRM API\",\r\n    \"archivement\": \"HRM API\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}/api/v1/forms/25d2b504-b7fe-426b-8883-b6f9b29585ad",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"forms",
+								"25d2b504-b7fe-426b-8883-b6f9b29585ad"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Manager - Approve Form",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYmE1OWNjLTMwZTMtNDMwZC05MzRkLTUyMmZiNzJjMGQ4MSIsImlhdCI6MTYyNTE5NzM2NX0.afI01bR9XS8G0InxfGILC48CwgUdYQwDtOIn6tLgu7A",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1MzZhOTliLTIzZTctNDUyZi1iZDkzLWVhMDIxZDAxNWU2ZiIsImlhdCI6MTYyNTkwNjU5OX0.3izlhh-oGyOEgTZ48QHV6mjH6KVzgnEMkk6vnkMubSk",
+								"description": "huongntt",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYmE1OWNjLTMwZTMtNDMwZC05MzRkLTUyMmZiNzJjMGQ4MSIsImlhdCI6MTYyNjE0Mjc3MX0.bqa2F9OHqjgF4Gk4sHai75KKqdVPodmKRGyt5W4Ow9A",
+								"description": "vanvd",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"approved\",\r\n    \"manager_review\": \"Amazing\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}/api/v1/forms/25d2b504-b7fe-426b-8883-b6f9b29585ad",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"forms",
+								"25d2b504-b7fe-426b-8883-b6f9b29585ad"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Close Form",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2ZjYyZGQzLTU3NzUtNGIwZi05M2QxLTc2ZTQzMDQ0ZTA1NyIsImlhdCI6MTYyNTkwNTg3NH0.Sdrwfnr0JYL6tK6iHr_mLPgd5eSG0WK3LbIdpKSs7rQ",
+								"description": "anhvtk",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTc5NjU3N30.ceEulV7RsCw28k-SkbjPekwxNPZiKItCFv5UdLjB6-A",
+								"description": "admin linux",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5ODRiNGNiLTg0MWUtNDg5Ny1iM2EwLTJkYmU3MWYyMWYyNiIsImlhdCI6MTYyNTkwNjI2Mn0.cuuHdcDmzZIl9uuCKZbpEhLcwvxFbAJbxMz_yhi1BSE",
+								"description": "ducbla",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"closed\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}/api/v1/forms-close/25d2b504-b7fe-426b-8883-b6f9b29585ad",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"forms-close",
+								"25d2b504-b7fe-426b-8883-b6f9b29585ad"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Form",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2ZjYyZGQzLTU3NzUtNGIwZi05M2QxLTc2ZTQzMDQ0ZTA1NyIsImlhdCI6MTYyNjE0MjUyOH0.lHMjDUjLBAB46C--DFekUz5muGvNeVGqDNzdTTNbX44",
+								"description": "anhvtk",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTc5NjU3N30.ceEulV7RsCw28k-SkbjPekwxNPZiKItCFv5UdLjB6-A",
+								"description": "admin linux",
+								"type": "text"
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5ODRiNGNiLTg0MWUtNDg5Ny1iM2EwLTJkYmU3MWYyMWYyNiIsImlhdCI6MTYyNjE0MjQwOH0.zyolo3nuNz1SWkP_N3nEvnapuJon20QDzaDZvFiTous",
+								"description": "ducbla",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://{{url}}/api/v1/forms/delete/70a78599-e261-4ffd-9be4-98b00ae9445f",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"forms",
+								"delete",
+								"70a78599-e261-4ffd-9be4-98b00ae9445f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Employee Update Form",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/api/v1/forms",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"forms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Approve Form",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1MzZhOTliLTIzZTctNDUyZi1iZDkzLWVhMDIxZDAxNWU2ZiIsImlhdCI6MTYyNDg2OTY4OH0.kVUGcyEz_e5ns25KYrvQAtMJMZWMMkZ49nkAV5aYzfw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"approved\",\r\n    \"manager_review\": \"Good Chop\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}/api/v1/form-approve/d4d72685-384b-4998-8fcf-8abcc4ecb2bc",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"form-approve",
+								"d4d72685-384b-4998-8fcf-8abcc4ecb2bc"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Account API",
+			"item": [
+				{
+					"name": "Delete Account",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/api/v1/accounts/79781226-62bb-421a-8621-0aa132e58064",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"accounts",
+								"79781226-62bb-421a-8621-0aa132e58064"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All User Accounts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/api/v1/accounts",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Account By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/api/v1/accounts/607eebc7-72a4-4541-aa95-2f3277e42175",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"accounts",
+								"607eebc7-72a4-4541-aa95-2f3277e42175"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Account",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\": \"b6e75566-e457-4f16-9bba-a1929fb153dd\",\r\n    \"email\": \"ducbla9999@gmail.com\",\r\n    \"password\": \"ducbla\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}/api/v1/accounts/607eebc7-72a4-4541-aa95-2f3277e42175",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"accounts",
+								"607eebc7-72a4-4541-aa95-2f3277e42175"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Role & Permission Management API",
+			"item": [
+				{
+					"name": "Role API",
+					"item": [
+						{
+							"name": "Create New Role",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "jwt",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1MzZhOTliLTIzZTctNDUyZi1iZDkzLWVhMDIxZDAxNWU2ZiIsImlhdCI6MTYyNTU0NTg1N30.HBuRYJ1NhUZWNubRu_K9XmMrxnjt-4ProrRq2qiNFUk",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "jwt",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTc5NjU3N30.ceEulV7RsCw28k-SkbjPekwxNPZiKItCFv5UdLjB6-A",
+										"description": "admin linux",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"role_name\": \"admin 1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{url}}/api/v1/roles",
+									"protocol": "http",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"roles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Roles",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "jwt",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5Njc4YzNmLTBlOWMtNDE3Yi1iYjlkLTBmNjg1ZWZhMmM1OCIsImlhdCI6MTYyNTY1MzczN30.WMKAjexgD-_NEwIcRsE2FSzQTTR3JM-uJMgLr1vHois",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "jwt",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTc5NjU3N30.ceEulV7RsCw28k-SkbjPekwxNPZiKItCFv5UdLjB6-A",
+										"description": "admin linux",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{url}}/api/v1/roles",
+									"protocol": "http",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"roles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Role By ID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "jwt",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTc5NjU3N30.ceEulV7RsCw28k-SkbjPekwxNPZiKItCFv5UdLjB6-A",
+										"description": "admin linux",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{url}}/api/v1/roles/f7126a6c-8dcf-4afb-b071-24a3963b8242",
+									"protocol": "http",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"roles",
+										"f7126a6c-8dcf-4afb-b071-24a3963b8242"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Role",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"createBy\": \"2d4683cd-37ae-4952-af63-da027f8cc6af\",\r\n    \"updateBy\": \"2d4683cd-37ae-4952-af63-da027f8cc6af\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{url}}/api/v1/roles/ffc8c623-ee2f-48e7-9f7c-42edad317a69",
+									"protocol": "http",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"roles",
+										"ffc8c623-ee2f-48e7-9f7c-42edad317a69"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Role",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "jwt",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTc5NjU3N30.ceEulV7RsCw28k-SkbjPekwxNPZiKItCFv5UdLjB6-A",
+										"description": "admin linux",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{url}}/api/v1/roles/f7126a6c-8dcf-4afb-b071-24a3963b8242",
+									"protocol": "http",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"roles",
+										"f7126a6c-8dcf-4afb-b071-24a3963b8242"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User Role API",
+					"item": [
+						{
+							"name": "Create New User Role",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "jwt",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5ODRiNGNiLTg0MWUtNDg5Ny1iM2EwLTJkYmU3MWYyMWYyNiIsImlhdCI6MTYyNTYyMzQ4NX0.oDTYnaDhZwhLCkQzIxgfmMesTVSGj8ZYLy1E6jCdffo",
+										"description": "huongntt",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "jwt",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTc5NjU3N30.ceEulV7RsCw28k-SkbjPekwxNPZiKItCFv5UdLjB6-A",
+										"description": "admin linux",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"role_id\": \"1459bfb7-a981-4a5d-aa99-aa04aa0311f2\",\r\n    \"user_id\": \"5984b4cb-841e-4897-b3a0-2dbe71f21f26\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{url}}/api/v1/user-roles",
+									"protocol": "http",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"user-roles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All User Roles",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "jwt",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTYyNTAzOX0.CNT8fvKAFwvdtZMhKwAmFumCdAFfFqpeNSM9Sjld97M",
+										"description": "admin",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "jwt",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2ZjYyZGQzLTU3NzUtNGIwZi05M2QxLTc2ZTQzMDQ0ZTA1NyIsImlhdCI6MTYyNTYyOTczM30.az8DozKdhwr15MwGPZv1Eh1VBk0C9vU1ij2I-oRi_WU",
+										"description": "hr",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "jwt",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTc5NjU3N30.ceEulV7RsCw28k-SkbjPekwxNPZiKItCFv5UdLjB6-A",
+										"description": "admin linux",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{url}}/api/v1/user-roles",
+									"protocol": "http",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"user-roles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User Role By ID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "jwt",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTYyNTAzOX0.CNT8fvKAFwvdtZMhKwAmFumCdAFfFqpeNSM9Sjld97M",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{url}}/api/v1/user-roles/322ec5ed-bc92-4fa4-ba7d-a01c80056f88",
+									"protocol": "http",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"user-roles",
+										"322ec5ed-bc92-4fa4-ba7d-a01c80056f88"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update User Role",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"createBy\": \"2d4683cd-37ae-4952-af63-da027f8cc6af\",\r\n    \"updateBy\": \"2d4683cd-37ae-4952-af63-da027f8cc6af\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{url}}/api/v1/user-role/efa541d9-12ca-4e7c-8d64-f210375ff45b",
+									"protocol": "http",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"user-role",
+										"efa541d9-12ca-4e7c-8d64-f210375ff45b"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User Role",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "jwt",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTYyNTAzOX0.CNT8fvKAFwvdtZMhKwAmFumCdAFfFqpeNSM9Sjld97M",
+										"description": "admin",
+										"type": "text"
+									},
+									{
+										"key": "jwt",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2ZjYyZGQzLTU3NzUtNGIwZi05M2QxLTc2ZTQzMDQ0ZTA1NyIsImlhdCI6MTYyNTYyOTczM30.az8DozKdhwr15MwGPZv1Eh1VBk0C9vU1ij2I-oRi_WU",
+										"description": "hr",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://{{url}}/api/v1/user-roles/da88c103-1dd0-4dda-99ba-f5dbf1ae9484",
+									"protocol": "http",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"user-roles",
+										"da88c103-1dd0-4dda-99ba-f5dbf1ae9484"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Role Permission Form API",
+			"item": [
+				{
+					"name": "Create New Role Permission Form",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTc5NjU3N30.ceEulV7RsCw28k-SkbjPekwxNPZiKItCFv5UdLjB6-A",
+								"description": "admin linux\n",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"role_id\": \"7b8badc1-44a6-4e12-9f25-5d7753468549\",\r\n    \"module_id\": \"3a50a4d0-1815-4bdf-b590-558b3533f6eb\",\r\n    \"canCreate\": \"0\",\r\n    \"canRead\": \"1\",\r\n    \"canUpdate\": \"1\",\r\n    \"canDelete\": \"1\",\r\n    \"canApprove\": \"0\",\r\n    \"url\": \"/users\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}/api/v1/permissions",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"permissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Role Permission Form",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTYyNTAzOX0.CNT8fvKAFwvdtZMhKwAmFumCdAFfFqpeNSM9Sjld97M",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTc5NjU3N30.ceEulV7RsCw28k-SkbjPekwxNPZiKItCFv5UdLjB6-A",
+								"description": "admin linux",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{url}}/api/v1/permissions",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"permissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Role Permission Form",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"createBy\": \"2d4683cd-37ae-4952-af63-da027f8cc6af\",\r\n    \"updateBy\": \"2d4683cd-37ae-4952-af63-da027f8cc6af\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}/api/v1/permissions/b54b1a75-d7b3-4791-869e-5d5605bce1e1",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"permissions",
+								"b54b1a75-d7b3-4791-869e-5d5605bce1e1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Role Permission Form",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/api/v1/permissions/63d9c105-1718-461c-be23-09423ec0fd13",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"permissions",
+								"63d9c105-1718-461c-be23-09423ec0fd13"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Module API",
+			"item": [
+				{
+					"name": "Create New Module",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTYyNTAzOX0.CNT8fvKAFwvdtZMhKwAmFumCdAFfFqpeNSM9Sjld97M",
+								"description": "admin",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5ODRiNGNiLTg0MWUtNDg5Ny1iM2EwLTJkYmU3MWYyMWYyNiIsImlhdCI6MTYyNTYyMzQ4NX0.oDTYnaDhZwhLCkQzIxgfmMesTVSGj8ZYLy1E6jCdffo",
+								"description": "huongntt",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5Njc4YzNmLTBlOWMtNDE3Yi1iYjlkLTBmNjg1ZWZhMmM1OCIsImlhdCI6MTYyNTY1MzczN30.WMKAjexgD-_NEwIcRsE2FSzQTTR3JM-uJMgLr1vHois",
+								"description": "admin 1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"module_name\": \"users\",\r\n    \"createBy\": \"69678c3f-0e9c-417b-bb9d-0f685efa2c58\",\r\n    \"updateBy\": \"69678c3f-0e9c-417b-bb9d-0f685efa2c58\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}/api/v1/modules",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"modules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Modules",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTYyNTAzOX0.CNT8fvKAFwvdtZMhKwAmFumCdAFfFqpeNSM9Sjld97M",
+								"description": "admin",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{url}}/api/v1/modules",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"modules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Module",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTYyNTAzOX0.CNT8fvKAFwvdtZMhKwAmFumCdAFfFqpeNSM9Sjld97M",
+								"description": "admin",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"module_name\": \"forms\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}/api/v1/modules/8dd504a7-c244-48e3-a9cc-09f90fbc0da3",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"modules",
+								"8dd504a7-c244-48e3-a9cc-09f90fbc0da3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Modules",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTYyNTAzOX0.CNT8fvKAFwvdtZMhKwAmFumCdAFfFqpeNSM9Sjld97M",
+								"description": "admin",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{url}}/api/v1/modules/7903aae5-b2c2-44b5-b982-c4a48ae79484",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"modules",
+								"7903aae5-b2c2-44b5-b982-c4a48ae79484"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Report API",
+			"item": [
+				{
+					"name": "Get All Reports",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2ZjYyZGQzLTU3NzUtNGIwZi05M2QxLTc2ZTQzMDQ0ZTA1NyIsImlhdCI6MTYyNTYzOTAxMH0.Rw049b07F6KRyMVW_h0h4wcEgW-2nrBtfXk8ejxIjjU",
+								"description": "hr",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTcwMDExM30.EOO_st24Xumv3tZsC4nnQTb9BWJa7-UZZ2n10ZXS0H0",
+								"description": "admin",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{url}}/api/v1/reports/forms",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reports",
+								"forms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Manager Reports",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1MzZhOTliLTIzZTctNDUyZi1iZDkzLWVhMDIxZDAxNWU2ZiIsImlhdCI6MTYyNTE5ODkzNH0.jgNj69rqnTwFRgRyeHTRFwoUsXc95y38KInaQnTYgJk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{url}}/api/v1/reports-manager/forms",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reports-manager",
+								"forms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Report By Status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "jwt",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNDY4M2NkLTM3YWUtNDk1Mi1hZjYzLWRhMDI3ZjhjYzZhZiIsImlhdCI6MTYyNTE5MzM0M30.oOsLXHx2X69AZXJskrV6pqK6NQig8b0GwQSg1BmqX_g",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{url}}/api/v1/reports-status/forms?status=submitted",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reports-status",
+								"forms"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "submitted"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
 }

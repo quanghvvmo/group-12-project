@@ -1,0 +1,1300 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: HRM
+  contact: {}
+host: 'localhost:5000'
+basePath: /api/v1
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /users:
+    post:
+      summary: Create New User and Account
+      tags:
+        - User API
+      operationId: CreateNewUserandAccount
+      deprecated: false
+      produces:
+        - application/json
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: admin linux
+        - name: employee_code
+          in: formData
+          required: true
+          type: integer
+          format: int32
+          description: ''
+        - name: firstname
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: lastname
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: email
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: password
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: phone
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: avatar
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: identification_card
+          in: formData
+          required: true
+          type: integer
+          format: int32
+          description: ''
+        - name: social_insurance
+          in: formData
+          required: true
+          type: integer
+          format: int32
+          description: ''
+        - name: address
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: department
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: parent
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: position
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: role_id
+          in: formData
+          required: true
+          type: string
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    get:
+      summary: Get All Users
+      tags:
+        - User API
+      operationId: GetAllUsers
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: page
+          in: query
+          required: true
+          type: integer
+          format: int32
+          description: ''
+        - name: size
+          in: query
+          required: true
+          type: integer
+          format: int32
+          description: ''
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: admin linux
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /users/5984b4cb-841e-4897-b3a0-2dbe71f21f26:
+    get:
+      summary: Get User By ID
+      tags:
+        - User API
+      operationId: GetUserByID
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: ducbla
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /users/46f9616d-afeb-4b4e-971d-4e34d2472292:
+    put:
+      summary: Update User and Account Info
+      tags:
+        - User API
+      operationId: UpdateUserandAccountInfo
+      deprecated: false
+      produces:
+        - application/json
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: huytq
+        - name: firstname
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: lastname
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: email
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: phone
+          in: formData
+          required: true
+          type: integer
+          format: int32
+          description: ''
+        - name: avatar
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: identification_card
+          in: formData
+          required: true
+          type: integer
+          format: int64
+          description: ''
+        - name: social_insurance
+          in: formData
+          required: true
+          type: integer
+          format: int32
+          description: ''
+        - name: address
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: department
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: parent
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: position
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: password
+          in: formData
+          required: true
+          type: string
+          description: ''
+        - name: role_id
+          in: formData
+          required: true
+          type: string
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    patch:
+      summary: Delete User and Account
+      tags:
+        - User API
+      operationId: DeleteUserandAccount
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: admin
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /login:
+    post:
+      summary: Login
+      tags:
+        - User API
+      operationId: Login
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/LoginRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /accounts:
+    get:
+      summary: Get All Accounts
+      tags:
+        - User API
+      operationId: GetAllAccounts
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: admin
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /accounts/df51b1e1-18fe-4f2e-ac1d-b860125bbd5f:
+    get:
+      summary: Get Account By Id
+      tags:
+        - User API
+      operationId: GetAccountById
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: huytq
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    put:
+      summary: Update Account
+      tags:
+        - User API
+      operationId: UpdateAccount
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: huytq
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/UpdateAccountRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /accounts/c1fb2c36-60cd-4ede-abe4-be1093ff1ace:
+    delete:
+      summary: Delete Account
+      tags:
+        - User API
+      operationId: DeleteAccount
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: admin
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /forms:
+    post:
+      summary: Create New Form
+      tags:
+        - Form API
+      operationId: CreateNewForm
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/CreateNewFormRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    get:
+      summary: Get All Forms
+      tags:
+        - Form API
+      operationId: GetAllForms
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: ducbla
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    patch:
+      summary: Employee Update Form
+      tags:
+        - Form API
+      operationId: EmployeeUpdateForm
+      deprecated: false
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /forms/25d2b504-b7fe-426b-8883-b6f9b29585ad:
+    get:
+      summary: Get Form By ID
+      tags:
+        - Form API
+      operationId: GetFormByID
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: anhvtk
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    patch:
+      summary: User - Update Form
+      tags:
+        - Form API
+      operationId: User-UpdateForm
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: ducbla
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/User-UpdateFormRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    put:
+      summary: Manager - Approve Form
+      tags:
+        - Form API
+      operationId: Manager-ApproveForm
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: vanvd
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/Manager-ApproveFormRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /forms-close/25d2b504-b7fe-426b-8883-b6f9b29585ad:
+    put:
+      summary: Close Form
+      tags:
+        - Form API
+      operationId: CloseForm
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: ducbla
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/CloseFormRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /forms/delete/70a78599-e261-4ffd-9be4-98b00ae9445f:
+    patch:
+      summary: Delete Form
+      tags:
+        - Form API
+      operationId: DeleteForm
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: admin linux
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /form-approve/d4d72685-384b-4998-8fcf-8abcc4ecb2bc:
+    patch:
+      summary: Approve Form
+      tags:
+        - Form API
+      operationId: ApproveForm
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: ''
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/ApproveFormRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /accounts/79781226-62bb-421a-8621-0aa132e58064:
+    delete:
+      summary: Delete Account
+      tags:
+        - Account API
+      operationId: DeleteAccount1
+      deprecated: false
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /accounts/607eebc7-72a4-4541-aa95-2f3277e42175:
+    get:
+      summary: Get User Account By ID
+      tags:
+        - Account API
+      operationId: GetUserAccountByID
+      deprecated: false
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    put:
+      summary: Update User Account
+      tags:
+        - Account API
+      operationId: UpdateUserAccount
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/UpdateUserAccountRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /roles:
+    post:
+      summary: Create New Role
+      tags:
+        - Role API
+      operationId: CreateNewRole
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: admin linux
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/CreateNewRoleRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    get:
+      summary: Get All Roles
+      tags:
+        - Role API
+      operationId: GetAllRoles
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: admin linux
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /roles/f7126a6c-8dcf-4afb-b071-24a3963b8242:
+    get:
+      summary: Get Role By ID
+      tags:
+        - Role API
+      operationId: GetRoleByID
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: admin linux
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    patch:
+      summary: Delete Role
+      tags:
+        - Role API
+      operationId: DeleteRole
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: admin linux
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /roles/ffc8c623-ee2f-48e7-9f7c-42edad317a69:
+    put:
+      summary: Update Role
+      tags:
+        - Role API
+      operationId: UpdateRole
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/UpdateRoleRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /user-roles:
+    post:
+      summary: Create New User Role
+      tags:
+        - User Role API
+      operationId: CreateNewUserRole
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: admin linux
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/CreateNewUserRoleRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    get:
+      summary: Get All User Roles
+      tags:
+        - User Role API
+      operationId: GetAllUserRoles
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: admin linux
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /user-roles/322ec5ed-bc92-4fa4-ba7d-a01c80056f88:
+    get:
+      summary: Get User Role By ID
+      tags:
+        - User Role API
+      operationId: GetUserRoleByID
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /user-role/efa541d9-12ca-4e7c-8d64-f210375ff45b:
+    put:
+      summary: Update User Role
+      tags:
+        - User Role API
+      operationId: UpdateUserRole
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/UpdateUserRoleRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /user-roles/da88c103-1dd0-4dda-99ba-f5dbf1ae9484:
+    patch:
+      summary: Delete User Role
+      tags:
+        - User Role API
+      operationId: DeleteUserRole
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: admin
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /permissions:
+    post:
+      summary: Create New Role Permission Form
+      tags:
+        - Role Permission Form API
+      operationId: CreateNewRolePermissionForm
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: admin linux
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/CreateNewRolePermissionFormRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    get:
+      summary: Get All Role Permission Form
+      tags:
+        - Role Permission Form API
+      operationId: GetAllRolePermissionForm
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: admin linux
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /permissions/b54b1a75-d7b3-4791-869e-5d5605bce1e1:
+    patch:
+      summary: Update Role Permission Form
+      tags:
+        - Role Permission Form API
+      operationId: UpdateRolePermissionForm
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/UpdateRolePermissionFormRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /permissions/63d9c105-1718-461c-be23-09423ec0fd13:
+    put:
+      summary: Delete Role Permission Form
+      tags:
+        - Role Permission Form API
+      operationId: DeleteRolePermissionForm
+      deprecated: false
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /modules:
+    post:
+      summary: Create New Module
+      tags:
+        - Module API
+      operationId: CreateNewModule
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: admin 1
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/CreateNewModuleRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    get:
+      summary: Get All Modules
+      tags:
+        - Module API
+      operationId: GetAllModules
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: admin
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /modules/8dd504a7-c244-48e3-a9cc-09f90fbc0da3:
+    put:
+      summary: Update Module
+      tags:
+        - Module API
+      operationId: UpdateModule
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: admin
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/UpdateModuleRequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /modules/7903aae5-b2c2-44b5-b982-c4a48ae79484:
+    patch:
+      summary: Delete Modules
+      tags:
+        - Module API
+      operationId: DeleteModules
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: admin
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /reports/forms:
+    get:
+      summary: Get All Reports
+      tags:
+        - Report API
+      operationId: GetAllReports
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: admin
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /reports-manager/forms:
+    get:
+      summary: Get All Manager Reports
+      tags:
+        - Report API
+      operationId: GetAllManagerReports
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /reports-status/forms:
+    get:
+      summary: Get All Report By Status
+      tags:
+        - Report API
+      operationId: GetAllReportByStatus
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: status
+          in: query
+          required: true
+          type: string
+          description: ''
+        - name: jwt
+          in: header
+          required: true
+          type: string
+          description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+definitions:
+  LoginRequest:
+    title: LoginRequest
+    example:
+      email: vanvd@vmodev.com
+      password: vanvd
+    type: object
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+      - email
+      - password
+  UpdateAccountRequest:
+    title: UpdateAccountRequest
+    example:
+      email: huytq@vmodev.com
+      password: huytq
+    type: object
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+      - email
+      - password
+  CreateNewFormRequest:
+    title: CreateNewFormRequest
+    example:
+      user_id: 46f9616d-afeb-4b4e-971d-4e34d2472292
+      form_type: '1'
+      status: submitted
+      hr_review: Best ReactJS Dev of The Year
+    type: object
+    properties:
+      user_id:
+        type: string
+      form_type:
+        type: string
+      status:
+        type: string
+      hr_review:
+        type: string
+    required:
+      - user_id
+      - form_type
+      - status
+      - hr_review
+  User-UpdateFormRequest:
+    title: User-UpdateFormRequest
+    example:
+      manager: 8536a99b-23e7-452f-bd93-ea021d015e6f
+      status: pending approve
+      personal_review: Excellent
+      task: HRM API
+      archivement: HRM API
+    type: object
+    properties:
+      manager:
+        type: string
+      status:
+        type: string
+      personal_review:
+        type: string
+      task:
+        type: string
+      archivement:
+        type: string
+    required:
+      - manager
+      - status
+      - personal_review
+      - task
+      - archivement
+  Manager-ApproveFormRequest:
+    title: Manager-ApproveFormRequest
+    example:
+      status: approved
+      manager_review: Amazing
+    type: object
+    properties:
+      status:
+        type: string
+      manager_review:
+        type: string
+    required:
+      - status
+      - manager_review
+  CloseFormRequest:
+    title: CloseFormRequest
+    example:
+      status: closed
+    type: object
+    properties:
+      status:
+        type: string
+    required:
+      - status
+  ApproveFormRequest:
+    title: ApproveFormRequest
+    example:
+      status: approved
+      manager_review: Good Chop
+    type: object
+    properties:
+      status:
+        type: string
+      manager_review:
+        type: string
+    required:
+      - status
+      - manager_review
+  UpdateUserAccountRequest:
+    title: UpdateUserAccountRequest
+    example:
+      user_id: b6e75566-e457-4f16-9bba-a1929fb153dd
+      email: ducbla9999@gmail.com
+      password: ducbla
+    type: object
+    properties:
+      user_id:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+    required:
+      - user_id
+      - email
+      - password
+  CreateNewRoleRequest:
+    title: CreateNewRoleRequest
+    example:
+      role_name: admin 1
+    type: object
+    properties:
+      role_name:
+        type: string
+    required:
+      - role_name
+  UpdateRoleRequest:
+    title: UpdateRoleRequest
+    example:
+      createBy: 2d4683cd-37ae-4952-af63-da027f8cc6af
+      updateBy: 2d4683cd-37ae-4952-af63-da027f8cc6af
+    type: object
+    properties:
+      createBy:
+        type: string
+      updateBy:
+        type: string
+    required:
+      - createBy
+      - updateBy
+  CreateNewUserRoleRequest:
+    title: CreateNewUserRoleRequest
+    example:
+      role_id: 1459bfb7-a981-4a5d-aa99-aa04aa0311f2
+      user_id: 5984b4cb-841e-4897-b3a0-2dbe71f21f26
+    type: object
+    properties:
+      role_id:
+        type: string
+      user_id:
+        type: string
+    required:
+      - role_id
+      - user_id
+  UpdateUserRoleRequest:
+    title: UpdateUserRoleRequest
+    example:
+      createBy: 2d4683cd-37ae-4952-af63-da027f8cc6af
+      updateBy: 2d4683cd-37ae-4952-af63-da027f8cc6af
+    type: object
+    properties:
+      createBy:
+        type: string
+      updateBy:
+        type: string
+    required:
+      - createBy
+      - updateBy
+  CreateNewRolePermissionFormRequest:
+    title: CreateNewRolePermissionFormRequest
+    example:
+      role_id: 7b8badc1-44a6-4e12-9f25-5d7753468549
+      module_id: 3a50a4d0-1815-4bdf-b590-558b3533f6eb
+      canCreate: '0'
+      canRead: '1'
+      canUpdate: '1'
+      canDelete: '1'
+      canApprove: '0'
+      url: /users
+    type: object
+    properties:
+      role_id:
+        type: string
+      module_id:
+        type: string
+      canCreate:
+        type: string
+      canRead:
+        type: string
+      canUpdate:
+        type: string
+      canDelete:
+        type: string
+      canApprove:
+        type: string
+      url:
+        type: string
+    required:
+      - role_id
+      - module_id
+      - canCreate
+      - canRead
+      - canUpdate
+      - canDelete
+      - canApprove
+      - url
+  UpdateRolePermissionFormRequest:
+    title: UpdateRolePermissionFormRequest
+    example:
+      createBy: 2d4683cd-37ae-4952-af63-da027f8cc6af
+      updateBy: 2d4683cd-37ae-4952-af63-da027f8cc6af
+    type: object
+    properties:
+      createBy:
+        type: string
+      updateBy:
+        type: string
+    required:
+      - createBy
+      - updateBy
+  CreateNewModuleRequest:
+    title: CreateNewModuleRequest
+    example:
+      module_name: users
+      createBy: 69678c3f-0e9c-417b-bb9d-0f685efa2c58
+      updateBy: 69678c3f-0e9c-417b-bb9d-0f685efa2c58
+    type: object
+    properties:
+      module_name:
+        type: string
+      createBy:
+        type: string
+      updateBy:
+        type: string
+    required:
+      - module_name
+      - createBy
+      - updateBy
+  UpdateModuleRequest:
+    title: UpdateModuleRequest
+    example:
+      module_name: forms
+    type: object
+    properties:
+      module_name:
+        type: string
+    required:
+      - module_name
+tags:
+  - name: User API
+  - name: Form API
+  - name: Account API
+  - name: Role API
+  - name: User Role API
+  - name: Role Permission Form API
+  - name: Module API
+  - name: Report API
