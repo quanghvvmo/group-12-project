@@ -81,7 +81,7 @@ const add_project = async (req, res) => {
                     })
                 }
                 await transaction.commit();
-                return res.status(200).json({
+                return res.status(201).json({
                     message: "New Project Added"
                 })
             } catch (error) {
