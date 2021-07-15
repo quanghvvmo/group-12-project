@@ -32,6 +32,6 @@ router.patch("/users/:id", checkCanDelete, deleteUser);
 router.get("/accounts", checkCanRead, getAllAccounts);
 router.get("/accounts/:id", checkCanRead, getUserAccountById);
 router.put("/accounts/:id", checkCanUpdate, updateUserAccount);
-router.delete("/accounts/:id", checkCanDelete, deleteUserAccount);
+router.patch("/accounts/:id", checkCanDelete, deleteUserAccount);
 
 module.exports = router;

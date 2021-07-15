@@ -11,7 +11,7 @@ const createNewModule = async (req, res) => {
 
     // Get role name
     const checkRole = await user_role.findAll({
-      where: { user_id: userId },
+      where: { user_id: userId, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
       include: { model: role },
     });
 
@@ -47,7 +47,7 @@ const getAllModules = async (req, res) => {
 
     // Get role name
     const checkRole = await user_role.findAll({
-      where: { user_id: userId },
+      where: { user_id: userId, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
       include: { model: role },
     });
 
@@ -81,7 +81,7 @@ const deleteModule = async (req, res) => {
 
     // Get role name
     const checkRole = await user_role.findAll({
-      where: { user_id: userId },
+      where: { user_id: userId, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
       include: { model: role },
     });
 
@@ -122,7 +122,7 @@ const updateModule = async (req, res) => {
 
     // Get role name
     const checkRole = await user_role.findAll({
-      where: { user_id: userId },
+      where: { user_id: userId, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
       include: { model: role },
     });
 

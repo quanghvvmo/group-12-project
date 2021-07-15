@@ -8,11 +8,11 @@ const getAllReports = async (req, res) => {
     const userId = req.user.id;
 
     const rolePermission = await user_role.findOne({
-      where: { user_id: userId },
+      where: { user_id: userId, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
       include: { model: role },
     });
 
-    console.log(rolePermission.role.role_name);
+    // console.log(rolePermission.role.role_name);
     // Check user role permission
     if (
       rolePermission.role.role_name === ROLE_ENUMS.ROLE.MANAGER ||
@@ -21,6 +21,7 @@ const getAllReports = async (req, res) => {
     ) {
       // Find form by status
       const allSubmittedReport = await form.findAll({
+        where: { isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
         attributes: { exclude: ["createdAt", "updatedAt", "isDeleted"] },
       });
 
@@ -45,7 +46,7 @@ const getAllManagerReport = async (req, res) => {
 
     // Check if invalid user id
     const rolePermission = await user_role.findOne({
-      where: { user_id: userId },
+      where: { user_id: userId, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
       include: { model: role },
     });
 
@@ -55,7 +56,7 @@ const getAllManagerReport = async (req, res) => {
       rolePermission.role.role_name === ROLE_ENUMS.ROLE.ADMIN
     ) {
       const reports = await form.findOne({
-        where: { manager: userId },
+        where: { manager: userId, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
       });
 
       return res
@@ -81,7 +82,7 @@ const getAllReportByStatus = async (req, res) => {
 
     // Check if invalid user id
     const rolePermission = await user_role.findOne({
-      where: { user_id: userId },
+      where: { user_id: userId, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
       include: { model: role },
     });
 
@@ -107,7 +108,7 @@ const getAllReportByStatus = async (req, res) => {
     }
     // Find form by status
     const allSubmittedReport = await form.findAll({
-      where: { status },
+      where: { status, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
     });
 
     // Count number of reports

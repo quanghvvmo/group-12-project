@@ -13,9 +13,11 @@ const createNewForm = async (req, res) => {
     // Get creator user id
     const creator = req.user.id;
     // Get user id
-    const userId = await user.findOne({ where: { id: user_id } });
+    const userId = await user.findOne({
+      where: { id: user_id, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
+    });
     // Check if invalid user id
-    if (!userId) {
+    if (!userId.id) {
       return res.status(404).json({ message: "Invalid User Id" });
     }
 
@@ -38,7 +40,7 @@ const createNewForm = async (req, res) => {
 
     // Get all forms of specific user
     const userForms = await user.findAll({
-      where: { id: user_id },
+      where: { id: user_id, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
       include: {
         model: form,
         attributes: {
@@ -57,11 +59,21 @@ const createNewForm = async (req, res) => {
 
     // Check if user has closed form, then can create a new form
     for (let uf in userForms) {
-      userForms[uf].forms.forEach(function (checkStatus) {
-        if (checkStatus.status.includes(FORM_ENUMS.STATUS.CLOSED)) {
-          return (temp = true);
-        }
-      });
+      if (userForms[uf].forms.length === 0) {
+        console.log(userForms[uf].forms.length);
+        temp = true;
+        continue;
+      }
+
+      if (userForms[uf].forms.length > 0) {
+        // console.log(userForms[uf].forms.length);
+
+        userForms[uf].forms.forEach(function (checkStatus) {
+          if (checkStatus.status.includes(FORM_ENUMS.STATUS.CLOSED)) {
+            return (temp = true);
+          }
+        });
+      }
     }
 
     if (temp) {
@@ -154,7 +166,7 @@ const getFormById = async (req, res) => {
 
     // Get role name
     const checkRole = await user_role.findAll({
-      where: { user_id: userId },
+      where: { user_id: userId, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
       include: { model: role },
     });
 
@@ -197,10 +209,18 @@ const updateForm = async (req, res) => {
     // Get user id from token
     const userId = req.user.id;
 
+    // Get manager id
+    const managerId = await user.findOne({ where: { id: userId } });
+
     // Check if form belongs to user
-    const formUserId = await form.findOne({
-      where: { id },
+    const formUserId = await form.findAll({
+      where: { id, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
     });
+
+    // Check if form does not exist
+    if (!formUserId.user_id) {
+      return res.status(404).json({ message: "Form does not exist" });
+    }
 
     // Check if user owns form then can update form
     if (formUserId.user_id !== userId) {
@@ -214,6 +234,10 @@ const updateForm = async (req, res) => {
       return res
         .status(404)
         .json({ message: "Form is closed. You can not update" });
+    }
+
+    if (managerId.parent !== manager) {
+      return res.status(404).json({ message: "Wrong Manager ID" });
     }
 
     // Update form
@@ -234,7 +258,7 @@ const updateForm = async (req, res) => {
       .json({ message: "Update Form Successfully", updatedForm });
   } catch (error) {
     console.log(error);
-    return res.status(204).json({ message: "Update Form Failed" });
+    return res.status(400).json({ message: "Update Form Failed" });
   }
 };
 
@@ -247,7 +271,14 @@ const approveForm = async (req, res) => {
     const userId = req.user.id;
 
     // Get manager Id of form
-    const formId = await form.findOne({ where: { id } });
+    const formId = await form.findAll({
+      where: { id, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
+    });
+
+    // Check if form does not exist
+    if (!formId.user_id) {
+      return res.status(404).json({ message: "Form does not exist" });
+    }
 
     // Check if user is manager of the form then can approve form
     if (formId.manager !== userId) {
@@ -291,9 +322,14 @@ const closeForm = async (req, res) => {
     const hrId = req.user.id;
 
     // Find hr id of form
-    const userIdForm = await form.findOne({
-      where: { id },
+    const userIdForm = await form.findAll({
+      where: { id, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
     });
+
+    // Check if form does not exist
+    if (!userIdForm.user_id) {
+      return res.status(404).json({ message: "Form does not exist" });
+    }
 
     // Get user id owns form
     const userId = await user.findOne({ where: { id: userIdForm.user_id } });
@@ -329,7 +365,7 @@ const closeForm = async (req, res) => {
     );
 
     // Send form status notification  of from to users
-    if (form_type === FORM_ENUMS.FORM_TYPE.YEARLY_FORM) {
+    if (userIdForm.form_type === FORM_ENUMS.FORM_TYPE.YEARLY_FORM) {
       // Content of email
       const subject = "[Announcement] - Update Yearly Review Form Status";
       const text = `Hello ${userId.lastname} ${userId.firstname} -Your yearly review form is closed`;
@@ -338,7 +374,7 @@ const closeForm = async (req, res) => {
       emailEvent.on("addNewForm", async () => {
         await sendMail(userId.email, subject, text);
       });
-    } else if (form_type === FORM_ENUMS.FORM_TYPE.WORKING_FORM) {
+    } else if (userIdForm.form_type === FORM_ENUMS.FORM_TYPE.WORKING_FORM) {
       const subject = "[Announcement] - Update Working Form Status";
       const text = `Hello ${userId.lastname} ${userId.firstname} - Your working form is closed`;
 
@@ -367,11 +403,15 @@ const deleteForm = async (req, res) => {
     // Get user id from token
     const userId = req.user.id;
     // Get form id
-    const formId = await form.findOne({ where: { id } });
+    const formId = await form.findOne({
+      where: { id, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
+    });
 
     // CHeck if invalid form id
     if (!formId) {
-      return res.status(404).json({ message: "Invalid Form Id" });
+      return res
+        .status(404)
+        .json({ message: "Invalid Form Id or Form does not exist" });
     }
 
     // Check if hr or admin owns form then can delete form

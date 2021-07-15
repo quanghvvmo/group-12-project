@@ -1,6 +1,7 @@
 const { account } = require("../models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { FORM_ENUMS } = require("../constants/form-enums");
 
 const login = async (req, res) => {
   // Get email and password from body
@@ -16,7 +17,7 @@ const login = async (req, res) => {
   try {
     // Get email and password
     const userCredential = await account.findOne({
-      where: { email },
+      where: { email, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
     });
 
     // Check if email do not exist

@@ -16,10 +16,12 @@ const createNewUserRole = async (req, res) => {
 
     // Get user id
     const userId = await user.findOne({
-      where: { id: user_id },
+      where: { id: user_id, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
     });
     // Get role id
-    const roleId = await role.findOne({ where: { id: role_id } });
+    const roleId = await role.findOne({
+      where: { id: role_id, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
+    });
 
     // Check if invalid user id and role id
     if (!userId) {
@@ -31,7 +33,7 @@ const createNewUserRole = async (req, res) => {
 
     // Get role name
     const checkRole = await user_role.findAll({
-      where: { user_id: adminId },
+      where: { user_id: adminId, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
       include: { model: role },
     });
 
@@ -68,7 +70,7 @@ const getAllUserRoles = async (req, res) => {
 
     // Get role name
     const checkRole = await user_role.findAll({
-      where: { user_id: adminId },
+      where: { user_id: adminId, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
       include: { model: role },
     });
 
@@ -133,7 +135,7 @@ const getUserRoleById = async (req, res) => {
 
     // Get role name
     const checkRole = await user_role.findAll({
-      where: { user_id: adminId },
+      where: { user_id: adminId, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
       include: { model: role },
     });
 
@@ -170,7 +172,7 @@ const updateUserRole = async (req, res) => {
     const adminId = req.user.id;
     // Check if invalid user id
     const userId = await user.findOne({
-      where: { id: createBy },
+      where: { id: createBy, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
     });
 
     if (!userId) {
@@ -179,7 +181,7 @@ const updateUserRole = async (req, res) => {
 
     // Get role name
     const checkRole = await user_role.findAll({
-      where: { user_id: adminId },
+      where: { user_id: adminId, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
       include: { model: role },
     });
 
@@ -213,7 +215,7 @@ const deleteUserRole = async (req, res) => {
   try {
     // Get user role ID
     const userRole = await user_role.findOne({
-      where: { id },
+      where: { id, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
     });
 
     // Check if invalid user role id
@@ -226,7 +228,10 @@ const deleteUserRole = async (req, res) => {
 
     // Get role name
     const checkRole = await user_role.findAll({
-      where: { user_id: userIdToken },
+      where: {
+        user_id: userIdToken,
+        isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED,
+      },
       include: { model: role },
     });
 

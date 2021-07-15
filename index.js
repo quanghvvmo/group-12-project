@@ -15,6 +15,12 @@ dotenv.config();
 // App Config
 const app = express();
 app.use(cors());
+app.use(
+  cors({
+    origin: `http://127.0.0.1:${process.env.PORT}`, // Block all other domains except this domain
+    credentials: true, // Enable cookie HTTP through cors
+  })
+);
 app.use(express.json());
 
 // APIs

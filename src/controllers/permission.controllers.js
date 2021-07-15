@@ -16,7 +16,9 @@ const createNewRolePermissionForm = async (req, res) => {
 
   try {
     // Get role id
-    const roleId = await role.findOne({ where: { id: role_id } });
+    const roleId = await role.findOne({
+      where: { id: role_id, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
+    });
 
     // Check if invalid role id
     if (!roleId) {
@@ -28,7 +30,7 @@ const createNewRolePermissionForm = async (req, res) => {
 
     // Get role name
     const checkRole = await user_role.findAll({
-      where: { user_id: adminId },
+      where: { user_id: adminId, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
       include: { model: role },
     });
 
@@ -74,7 +76,7 @@ const getAllRolePermissionForms = async (req, res) => {
 
     // Get role name
     const checkRole = await user_role.findAll({
-      where: { user_id: adminId },
+      where: { user_id: adminId, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
       include: { model: role },
     });
 
@@ -110,7 +112,7 @@ const updateRolePermissionForm = async (req, res) => {
   try {
     // Check if invalid user id
     const userId = await user.findOne({
-      where: { id: createBy },
+      where: { id: createBy, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
     });
 
     if (!userId) {
@@ -122,7 +124,7 @@ const updateRolePermissionForm = async (req, res) => {
 
     // Get role name
     const checkRole = await user_role.findAll({
-      where: { user_id: adminId },
+      where: { user_id: adminId, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
       include: { model: role },
     });
 
@@ -161,7 +163,7 @@ const deleteRolePermissionForm = async (req, res) => {
   try {
     // Get role permission id
     const rolePermissionId = await role_permission_form.findOne({
-      where: { id },
+      where: { id, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
     });
 
     // Check if invalid role permission id
@@ -174,7 +176,7 @@ const deleteRolePermissionForm = async (req, res) => {
 
     // Get role name
     const checkRole = await user_role.findAll({
-      where: { user_id: adminId },
+      where: { user_id: adminId, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
       include: { model: role },
     });
 

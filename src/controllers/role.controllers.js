@@ -7,7 +7,10 @@ const createNewRole = async (req, res) => {
 
   try {
     // Get role id
-    const roleId = await role.findOne({ where: { role_name } });
+    const roleId = await role.findOne({
+      where: { role_name, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
+    });
+
     // Check if role already exists
     if (roleId) {
       return res.status(409).json({ message: "Role Already Exist" });
@@ -18,7 +21,7 @@ const createNewRole = async (req, res) => {
 
     // Get role name
     const checkRole = await user_role.findAll({
-      where: { user_id: adminId },
+      where: { user_id: adminId, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
       include: { model: role },
     });
 
@@ -54,7 +57,7 @@ const getAllRoles = async (req, res) => {
 
     // Get role name
     const checkRole = await user_role.findAll({
-      where: { user_id: adminId },
+      where: { user_id: adminId, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
       include: { model: role },
     });
 
@@ -91,7 +94,7 @@ const getRoleById = async (req, res) => {
 
     // Get role name
     const checkRole = await user_role.findAll({
-      where: { user_id: adminId },
+      where: { user_id: adminId, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
       include: { model: role },
     });
 
@@ -127,7 +130,9 @@ const updateRole = async (req, res) => {
 
   try {
     // Check if invalid user id
-    const userId = await user.findOne({ where: { id: createBy } });
+    const userId = await user.findOne({
+      where: { id: createBy, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
+    });
 
     if (!userId) {
       return res.status(404).json({ message: "Invalid User Id" });
@@ -138,7 +143,7 @@ const updateRole = async (req, res) => {
 
     // Get role name
     const checkRole = await user_role.findAll({
-      where: { user_id: adminId },
+      where: { user_id: adminId, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
       include: { model: role },
     });
 
@@ -169,7 +174,9 @@ const deleteRole = async (req, res) => {
 
   try {
     // Get role id
-    const roleId = await role.findOne({ where: { id } });
+    const roleId = await role.findOne({
+      where: { id, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
+    });
 
     if (!roleId) {
       return res.status(404).json({ message: "Invalid Role Id" });

@@ -39,7 +39,7 @@ const createNewUser = async (req, res) => {
 
     // Get email from database
     const checkEmail = await user.findOne(
-      { where: { email } },
+      { where: { email, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED } },
       { transaction }
     );
 
@@ -61,7 +61,10 @@ const createNewUser = async (req, res) => {
     // Get role name
     const checkRole = await user_role.findAll(
       {
-        where: { user_id: adminId },
+        where: {
+          user_id: adminId,
+          isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED,
+        },
         include: { model: role },
       },
       { transaction }
@@ -160,7 +163,10 @@ const getAllUsers = async (req, res) => {
 
     // Get role name
     const checkRole = await user_role.findAll({
-      where: { user_id: userIdToken },
+      where: {
+        user_id: userIdToken,
+        isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED,
+      },
       include: { model: role },
     });
 
@@ -200,7 +206,7 @@ const getUserById = async (req, res) => {
 
     // Get role name
     const checkRole = await user_role.findAll({
-      where: { user_id: userId },
+      where: { user_id: userId, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
       include: { model: role },
     });
 
@@ -276,7 +282,7 @@ const updateUser = async (req, res) => {
 
     // Get email from database
     const checkEmail = await user.findOne(
-      { where: { email } },
+      { where: { email, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED } },
       { transaction }
     );
 
@@ -304,7 +310,7 @@ const updateUser = async (req, res) => {
 
     // Get role name
     const checkRole = await user_role.findAll({
-      where: { user_id: userId },
+      where: { user_id: userId, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
       include: { model: role },
     });
 
@@ -381,18 +387,20 @@ const deleteUser = async (req, res) => {
     const transaction = await sequelize.transaction();
 
     // Get user id
-    const userCheck = await user.findByPk(id);
+    const userCheck = await user.findOne({
+      where: { id, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
+    });
 
     // Get user id from token
     const userId = req.user.id;
 
-    if (!userId === userCheck) {
+    if (!userId === userCheck.id) {
       return res.status(404).json({ message: "Invalid User ID" });
     }
 
     // Get role name
     const checkRole = await user_role.findAll({
-      where: { user_id: userId },
+      where: { user_id: userId, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
       include: { model: role },
       transaction,
     });
@@ -447,7 +455,10 @@ const getAllAccounts = async (req, res) => {
 
     // Get role name
     const checkRole = await user_role.findAll({
-      where: { user_id: userIdToken },
+      where: {
+        user_id: userIdToken,
+        isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED,
+      },
       include: { model: role },
     });
 
@@ -455,7 +466,10 @@ const getAllAccounts = async (req, res) => {
     for (let checkAdmin in checkRole) {
       if (checkRole[checkAdmin].role.role_name === ROLE_ENUMS.ROLE.ADMIN) {
         // Find all user accounts
-        const accounts = await account.findAll({ include: { model: user } });
+        const accounts = await account.findAll({
+          where: { isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
+          include: { model: user },
+        });
 
         if (!accounts) {
           return res.status(404).json({ message: "User Accounts Not Found" });
@@ -488,12 +502,12 @@ const getUserAccountById = async (req, res) => {
 
     // Get user owns account
     const userIdAccount = await account.findOne({
-      where: { user_id: userId },
+      where: { user_id: userId, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
     });
 
     // Get role name
     const checkRole = await user_role.findAll({
-      where: { user_id: userId },
+      where: { user_id: userId, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
       include: { model: role },
     });
 
@@ -504,7 +518,7 @@ const getUserAccountById = async (req, res) => {
         userIdAccount
       ) {
         const accountId = await account.findOne({
-          where: { id },
+          where: { id, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
           include: { model: user },
         });
 
@@ -540,7 +554,9 @@ const updateUserAccount = async (req, res) => {
     const userIdToken = req.user.id;
 
     // Get user id from user table
-    const userId = await user.findOne({ where: { id: userIdToken } });
+    const userId = await user.findOne({
+      where: { id: userIdToken, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
+    });
 
     // Check if invalid user id
     if (!userId === userIdToken) {
@@ -549,7 +565,10 @@ const updateUserAccount = async (req, res) => {
 
     // Get role name
     const checkRole = await user_role.findAll({
-      where: { user_id: userIdToken },
+      where: {
+        user_id: userIdToken,
+        isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED,
+      },
       include: { model: role },
     });
 
@@ -561,7 +580,7 @@ const updateUserAccount = async (req, res) => {
       ) {
         // Get account id
         const accountId = await account.findOne({
-          where: { id },
+          where: { id, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
           transaction,
         });
 
@@ -616,7 +635,7 @@ const deleteUserAccount = async (req, res) => {
   try {
     // Get user account id from database
     const accounts = await account.findOne({
-      where: { id },
+      where: { id, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
       include: { model: user },
     });
 
@@ -625,7 +644,10 @@ const deleteUserAccount = async (req, res) => {
 
     // Get role name
     const checkRole = await user_role.findAll({
-      where: { user_id: userIdToken },
+      where: {
+        user_id: userIdToken,
+        isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED,
+      },
       include: { model: role },
     });
 
@@ -636,16 +658,21 @@ const deleteUserAccount = async (req, res) => {
         userIdToken === accounts.user.id
       ) {
         // Get user account id
-        const accountId = await account.findByPk(id);
+        const accountId = await account.findOne({
+          where: { id, isDeleted: FORM_ENUMS.IS_DELETE.NOT_DELETED },
+        });
 
         if (!accountId) {
           return res.status(404).json({ message: "Invalid Account ID" });
         }
 
         // Delete user account
-        await accountId.destroy({
-          where: { id },
-        });
+        await accountId.update(
+          {
+            isDeleted: FORM_ENUMS.IS_DELETE.DELETED,
+          },
+          { where: { id } }
+        );
 
         return res
           .status(200)
