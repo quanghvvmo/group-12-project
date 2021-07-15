@@ -36,7 +36,7 @@ const createNewForm = async (req, res) => {
       return res.status(404).json({ message: "Invalid form status" });
     }
 
-    // Check if form is not closed, cannot create new form
+    // Get all forms of specific user
     const userForms = await user.findAll({
       where: { id: user_id },
       include: {
@@ -162,7 +162,7 @@ const getFormById = async (req, res) => {
     }
 
     for (let checkAdmin in checkRole) {
-      // Check if hr or admin then can delete form
+      // Check if hr or admin or manager and owner of the form then can get form detail
       if (
         checkRole[checkAdmin].role.role_name === ROLE_ENUMS.ROLE.ADMIN ||
         formId.user_id === userId ||
@@ -284,26 +284,29 @@ const closeForm = async (req, res) => {
     const hrId = req.user.id;
 
     // Find hr id of form
-    const checkHrId = await form.findOne({
+    const userIdForm = await form.findOne({
       where: { id },
     });
 
+    // Get user id owns form
+    const userId = await user.findOne({ where: { id: userIdForm.user_id } });
+
     // Check if hr owns form then can close form
-    if (hrId !== checkHrId.createBy) {
+    if (hrId !== userIdForm.createBy) {
       return res
         .status(404)
         .json({ message: "You are not owner of this form" });
     }
 
     // Check if form status is closed then can not close form
-    if (checkHrId.status === FORM_ENUMS.STATUS.CLOSED) {
+    if (userIdForm.status === FORM_ENUMS.STATUS.CLOSED) {
       return res
         .status(404)
         .json({ message: "Form is closed, You can not close the form" });
     }
 
     // Check if form status is not in approved status then can not close form
-    if (checkHrId.status !== FORM_ENUMS.STATUS.APPROVED) {
+    if (userIdForm.status !== FORM_ENUMS.STATUS.APPROVED) {
       return res.status(404).json({
         message: "Form is not approved, You can not close the form",
       });
@@ -318,6 +321,29 @@ const closeForm = async (req, res) => {
       { where: { id } }
     );
 
+    // Send form status notification  of from to users
+    if (form_type === FORM_ENUMS.FORM_TYPE.YEARLY_FORM) {
+      // Content of email
+      const subject = "[Announcement] - Update Yearly Review Form Status";
+      const text = `Hello ${userId.lastname} ${userId.firstname} -Your yearly review form is closed`;
+
+      // Initialize an event
+      emailEvent.on("addNewForm", async () => {
+        await sendMail(userId.email, subject, text);
+      });
+    } else if (form_type === FORM_ENUMS.FORM_TYPE.WORKING_FORM) {
+      const subject = "[Announcement] - Update Working Form Status";
+      const text = `Hello ${userId.lastname} ${userId.firstname} - Your working form is closed`;
+
+      // Initialize a event
+      emailEvent.on("addNewForm", async () => {
+        await sendMail(userId.email, subject, text);
+      });
+    }
+
+    // Emit mail event
+    emailEvent.emit("addNewForm");
+
     return res
       .status(200)
       .json({ message: "Close Form Successfully", formClosed });
@@ -331,6 +357,8 @@ const deleteForm = async (req, res) => {
   const { id } = req.params;
 
   try {
+    // Get user id from token
+    const userId = req.user.id;
     // Get form id
     const formId = await form.findOne({ where: { id } });
 
@@ -339,37 +367,23 @@ const deleteForm = async (req, res) => {
       return res.status(404).json({ message: "Invalid Form Id" });
     }
 
-    // Get user id form token
-    const userId = req.user.id;
+    // Check if hr or admin owns form then can delete form
+    if (formId.createBy === userId) {
+      // Delete form
+      await formId.update(
+        {
+          isDeleted: FORM_ENUMS.IS_DELETE.DELETED,
+        },
+        { where: { id } }
+      );
 
-    // Get role name
-    const checkRole = await user_role.findAll({
-      where: { user_id: userId },
-      include: { model: role },
-    });
-
-    for (let checkAdmin in checkRole) {
-      // Check if hr or admin then can delete form
-      if (
-        checkRole[checkAdmin].role.role_name === ROLE_ENUMS.ROLE.ADMIN ||
-        formId.createBy === userId
-      ) {
-        // Delete form
-        await formId.update(
-          {
-            isDeleted: FORM_ENUMS.IS_DELETE.DELETED,
-          },
-          { where: { id } }
-        );
-
-        return res
-          .status(200)
-          .json({ message: "Delete Form Successfully", formId });
-      } else {
-        return res
-          .status(404)
-          .json({ message: "You have no access to delete this form" });
-      }
+      return res
+        .status(200)
+        .json({ message: "Delete Form Successfully", formId });
+    } else {
+      return res
+        .status(404)
+        .json({ message: "You have no access to delete this form" });
     }
   } catch (error) {
     console.log(error);
