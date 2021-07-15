@@ -39,7 +39,7 @@ const checkCanWrite = async(req, res, next) => {
     if (check) {
       next();
     } else {
-      res.send("Permission deny");
+      res.status(403).send("Permission deny");
       return;
     }
   } catch (error) {
@@ -72,7 +72,7 @@ const checkCanRead = async(req, res, next) => {
       req.role = roleName;
       next();
     } else {
-      res.send("Permission deny");
+      res.status(403).send("Permission deny");
       return;
     }
   } catch (error) {
@@ -106,7 +106,7 @@ const checkCanUpdate = async(req, res, next) => {
       req.role = roleName;
       next();
     } else {
-      res.send("Permission deny");
+      res.status(403).send("Permission deny");
       return;
     }
   } catch (error) {
@@ -134,7 +134,7 @@ const checkCanDelete = async(req, res, next) => {
     if (check) {
       next();
     } else {
-      res.send("Permission deny");
+      res.status(403).send("Permission deny");
       return;
     }
   } catch (error) {
@@ -162,7 +162,7 @@ const checkCanApprove = async(req, res, next) => {
     if (check) {
       next();
     } else {
-      res.send("Permission deny");
+      res.status(403).send("Permission deny");
       return;
     }
   } catch (error) {
@@ -187,7 +187,7 @@ const checkCanClose = async(req, res, next) => {
       }
     }
     if (!check) {
-      res.send("Permission deny");
+      res.status(403).send("Permission deny");
       return;
     }
     next();
@@ -249,7 +249,7 @@ const checkRoleGetReport = async(req, res, next) => {
       req.role = roleName;
       next();
     } else {
-      res.send("Permission deny");
+      res.status(403).send("Permission deny");
       return;
     }
   } catch (error) {

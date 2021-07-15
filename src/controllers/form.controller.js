@@ -178,7 +178,7 @@ const getFormOfUser = async(req, res) => {
       }
     }
     if (!result) {
-      res.send("Can not get fomr");
+      res.send("Can not get form");
       return;
     }
     res.status(200).send(result);
@@ -224,7 +224,7 @@ const getFormById = async(req, res) => {
       }
     }
     if (!check) {
-      res.send("Permission deny");
+      res.status(403).send("Permission deny");
       return;
     }
     res.status(200).send(formTemp);

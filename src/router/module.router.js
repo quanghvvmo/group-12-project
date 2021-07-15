@@ -1,9 +1,9 @@
 const moduleController = require('../controllers/module.controller');
-
+const CheckExist = require('../middlewares/checkExist');
 const express = require('express');
 const moduleRouter = express();
 
-moduleRouter.post('/modules', moduleController.addNewModule);
+moduleRouter.post('/modules', CheckExist.checkExistModule, moduleController.addNewModule);
 moduleRouter.get('/modules', moduleController.getALlModule);
 moduleRouter.put('/modules/:id', moduleController.updateModule);
 moduleRouter.delete('/modules/:id', moduleController.deleteModule);
