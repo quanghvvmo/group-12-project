@@ -85,7 +85,6 @@ const add_project = async (req, res) => {
                     message: "New Project Added"
                 })
             } catch (error) {
-                console.log(error)
                 await transaction.rollback();
                 res.status(500).json({
                     message: "Server Error"
@@ -172,7 +171,6 @@ const update_project = async (req, res) => {
         }
     } catch (error) {
         await transaction.rollback();
-        console.log(error)
         return res.status(500).json({
             message: "Server Error"
         })
@@ -215,7 +213,6 @@ const project_detail = async (req, res) => {
             })
         }
     } catch (error) {
-        console.log(error)
         return res.status(500).json({
             message: "Server Error"
         })
@@ -303,7 +300,6 @@ const project_stat = async (req, res) => {
             })
         }
     } catch (error) {
-        console.log(error)
         return res.status(500).json({
             message: "Server Error"
         })

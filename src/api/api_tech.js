@@ -86,7 +86,6 @@ const list_tech = async (req, res) => {
             data: page_list
         })
     } catch (error) {
-        console.log(error)
         return res.status(500).json({
             message: "Server Error"
         })

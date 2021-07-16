@@ -19,7 +19,6 @@ const add_unit = async (req, res) => {
         const duplicated_admin = await Unit.findOne({where:{adminID: adminID}});
         const createAt = find_date.toString();
         const createBy = req.userData.id
-        console.log(duplicated_admin)
         if(check_admin && duplicated_admin === null){
             const check_unit_existence = await Unit.findOne({where: {name: name}});
             if(check_unit_existence === null){
@@ -31,7 +30,7 @@ const add_unit = async (req, res) => {
                     createAt,
                     createBy
                 })
-                return res.status(200).json({
+                return res.status(201).json({
                     message: "New Unit Created",
                     data: new_unit
                 })
@@ -46,7 +45,6 @@ const add_unit = async (req, res) => {
             });
         }
     } catch (error) {
-        console.log(error)
         return res.status(500).json({
             message: "Server Error"
         })
@@ -144,7 +142,6 @@ const delete_unit = async (req, res) => {
     // const find_unit = await Unit.findOne({where: {id: id}});
     const check_employee_in_unit = await Unit_Employee.findAll({where: {unitID: id}});
     const check_unit_in_project = await Unit_In_Proj.findAll({where:{unitID: id}});
-    console.log(check_unit_in_project, check_employee_in_unit)
     // const check_admin = await Admin.findOne({where: {id: find_unit.adminID}});
     try {
         if(check_employee_in_unit.length === 0 && check_unit_in_project.length === 0){

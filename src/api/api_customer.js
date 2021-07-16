@@ -26,7 +26,6 @@ const add_customer = async (req, res) => {
             message: "New Customer Added"
         })
     } catch (error) {
-        console.log(error)
         return res.status(500).json({
             message: "Server Error"
         });
@@ -60,7 +59,6 @@ const update_customer = async (req, res) => {
             })
         }
     } catch (error) {
-        console.log(error)
         return res.status(500).json({
             message:"Server Error"
         })
@@ -84,7 +82,6 @@ const list_customer = async (req, res) => {
             data: page_list
         })
     } catch (error) {
-        console.log(error)
         return res.status(500).json({
             message: "Server Error"
         })

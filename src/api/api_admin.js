@@ -26,7 +26,6 @@ const register = async (req, res) => {
                         message: "Hello new admin!"
                     })
                 } catch (error) {
-                    console.log(error)
                     return res.status(500).json({
                         message: "Server Error"
                     })
@@ -37,7 +36,6 @@ const register = async (req, res) => {
                 });
             }
     } catch (error) {
-        console.log(error)
         return res.status(500).json({
             message: "Server Error"
         });
@@ -74,7 +72,6 @@ const login = async (req, res) => {
                     })
                 }
             } catch (error) {
-                console.log(error)
                 res.status(500).json({
                     message: "Server Error"
                 });

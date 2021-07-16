@@ -70,12 +70,11 @@ const add_employee = async (req, res) => {
                                 message: "Invalid Tech"
                             })
                         }
-                        res.status(200).json({
+                        res.status(201).json({
                             message: "Employee Added",
                             employee: new_employee
                         })
                     } catch (error) {
-                        console.log(error);
                         res.status(500).json({
                             message: "Server Error"
                         })
@@ -83,7 +82,6 @@ const add_employee = async (req, res) => {
                     await transaction.commit();
                 } catch (error) {
                     await transaction.rollback();
-                    console.log(error)
                     return res.status(500).json({
                         message: "Server Error"
                     });
@@ -102,7 +100,6 @@ const add_employee = async (req, res) => {
         }
     } catch (error) {
         await transaction.rollback();
-        console.log(error)
         return res.status(500).json({
             message: "Server Error"
         })
@@ -184,7 +181,6 @@ const update_employee = async (req, res) => {
         }
     } catch (error) {
         await transaction.rollback();
-        console.log(error)
         return res.status(500).json({
             message: "Server Error"
         })
@@ -295,7 +291,6 @@ const employee_stat = async(req, res) => {
             })
         }
     } catch (error) {
-        console.log(error)
         return res.status(500).json({
             message: "Server Error"
         })
