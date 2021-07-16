@@ -5,10 +5,10 @@ const express = require('express');
 const formRouter = express.Router();
 
 formRouter.post('/forms', checkRole.checkCanWrite, checkRole.checkClosedForm, formController.addNewForm);
-formRouter.put('/forms', checkRole.checkCanUpdate, formController.submitForm);
-formRouter.put('/forms/:id', checkRole.checkCanUpdate, formController.approveForm);
-formRouter.put('/forms/:id/closed', checkRole.checkCanClose, formController.closeForm);
-formRouter.delete('/forms/:id', checkRole.checkCanDelete, formController.deleteForm);
+formRouter.patch('/forms', checkRole.checkCanUpdate, formController.submitForm);
+formRouter.patch('/forms/:id/approve', checkRole.checkCanUpdate, formController.approveForm);
+formRouter.patch('/forms/:id/closed', checkRole.checkCanClose, formController.closeForm);
+formRouter.patch('/forms/:id', checkRole.checkCanDelete, formController.deleteForm);
 formRouter.get('/forms', checkRole.checkCanRead, formController.getFormOfUser);
 formRouter.get('/forms/all', checkRole.checkCanRead, formController.getAllForm);
 

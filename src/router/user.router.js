@@ -6,8 +6,8 @@ const userRouter = express.Router();
 
 userRouter.post('/users', Upload.single('avatar'), checkRole.checkCanWrite, userController.addNewUser);
 userRouter.get('/users/:id', checkRole.checkCanRead, userController.getUserById);
-userRouter.put('/users/:id', Upload.single('avatar'), checkRole.checkCanUpdate, userController.updateUser);
-userRouter.delete('/users/:id', checkRole.checkCanDelete, userController.deleteUser);
+userRouter.patch('/users/:id', Upload.single('avatar'), checkRole.checkCanUpdate, userController.updateUser);
+userRouter.patch('/users/:id', checkRole.checkCanDelete, userController.deleteUser);
 userRouter.get('/users', checkRole.checkCanRead, userController.getAllUser);
 
 module.exports = userRouter;

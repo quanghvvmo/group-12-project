@@ -125,7 +125,7 @@
 								}
 							]
 						},
-						"method": "DELETE",
+						"method": "PATCH",
 						"header": [],
 						"url": {
 							"raw": "http://{{url}}/api/users/:id",
@@ -207,7 +207,7 @@
 								}
 							]
 						},
-						"method": "PUT",
+						"method": "PATCH",
 						"header": [],
 						"body": {
 							"mode": "formdata",
@@ -400,7 +400,7 @@
 								}
 							]
 						},
-						"method": "PUT",
+						"method": "PATCH",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -512,7 +512,7 @@
 				{
 					"name": "delete role",
 					"request": {
-						"method": "DELETE",
+						"method": "PATCH",
 						"header": [],
 						"url": {
 							"raw": "http://{{url}}/api/roles/:id",
@@ -621,7 +621,7 @@
 								}
 							]
 						},
-						"method": "PUT",
+						"method": "PATCH",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -734,7 +734,7 @@
 				{
 					"name": "delete rolePermission",
 					"request": {
-						"method": "DELETE",
+						"method": "PATCH",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -779,7 +779,7 @@
 								}
 							]
 						},
-						"method": "PUT",
+						"method": "PATCH",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -853,7 +853,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNjQwNDMxMCwiZXhwIjoxNjI2NDkwNzEwfQ.wOpimBbUe2Mg8Neu8RUeCT2_JE4C9CJyKAu4_cL4d3U",
 									"type": "string"
 								},
 								{
@@ -867,7 +867,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"moduleName\": \"role\"\n}",
+							"raw": "{\n    \"moduleName\": \"test\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -891,7 +891,7 @@
 				{
 					"name": "delete module",
 					"request": {
-						"method": "DELETE",
+						"method": "PATCH",
 						"header": [],
 						"url": {
 							"raw": "http://{{url}}/api/modules/:id",
@@ -922,7 +922,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNjQwNDMxMCwiZXhwIjoxNjI2NDkwNzEwfQ.wOpimBbUe2Mg8Neu8RUeCT2_JE4C9CJyKAu4_cL4d3U",
 									"type": "string"
 								},
 								{
@@ -932,7 +932,7 @@
 								}
 							]
 						},
-						"method": "PUT",
+						"method": "PATCH",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -957,7 +957,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "6b33259f-fcb2-4178-ab81-589cd894f9f4"
+									"value": "b9454673-e0de-4cbe-ae0a-932b18fb51bd"
 								}
 							]
 						}
@@ -1043,7 +1043,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNjI0ODM2OSwiZXhwIjoxNjI2MzM0NzY5fQ.gtu5tTC8zLzI2S8Mv5mNU8TM2bVhh8tjS7aRHN2xeq8",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNjQwNDk5OSwiZXhwIjoxNjI2NDkxMzk5fQ.D0Pm8NMbXu2sritRXtDnTiaWkvGO0u4z8NPgJWfHZB0",
 									"type": "string"
 								},
 								{
@@ -1057,7 +1057,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userId\": [\n        \"2b105106-25ed-49d1-8bb5-d0d1001d5793\",\n        \"8b8ba587-5ec4-4bac-aab7-4923f7af447e\",\n        \"9b878523-8f7c-4e8e-8ce0-bc9ae261a19f\",\n        \"fbd0d11c-6ae5-46f9-bd84-87e496a142f5\"\n    ],\n    \"typeOf\": \"yearly\"\n}",
+							"raw": "{\n    \"userId\": [\n        \"2b105106-25ed-49d1-8bb5-d0d1001d5793\",\n        \"8b8ba587-5ec4-4bac-aab7-4923f7af447e\",\n        \"9b878523-8f7c-4e8e-8ce0-bc9ae261a19f\",\n        \"fbd0d11c-6ae5-46f9-bd84-87e496a142f5\",\n        \"cab64ec3-e333-4675-985e-1c7cde4b444b\"\n    ],\n    \"typeOf\": \"yearly\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1086,7 +1086,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiMTA1MTA2LTI1ZWQtNDlkMS04YmI1LWQwZDEwMDFkNTc5MyIsImlhdCI6MTYyNDg1NDA0MSwiZXhwIjoxNjI0OTQwNDQxfQ.lUtH3Eg0tk3jefVhLYB7cRhwFotr-7bbPJ8BRht1I6k",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNjQwNDc5OCwiZXhwIjoxNjI2NDkxMTk4fQ.0ZCBcjAFvw-USHuCv1eE5NLeP8Q_97Od6btJ9GIuX-E",
 									"type": "string"
 								},
 								{
@@ -1096,7 +1096,7 @@
 								}
 							]
 						},
-						"method": "DELETE",
+						"method": "PATCH",
 						"header": [],
 						"url": {
 							"raw": "http://{{url}}/api/forms/:id",
@@ -1112,7 +1112,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "dedacfb7-afea-4f69-aa5d-9901d49837a2"
+									"value": "6b873f24-e472-4ac7-ac49-2734a9879a5c"
 								}
 							]
 						}
@@ -1202,7 +1202,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNjI1MDM4OSwiZXhwIjoxNjI2MzM2Nzg5fQ.Z_-ZS_ixnaw9vTAZHqr-la_qh2RAu9l_6A_82CPrOCs",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNjQwNDk5OSwiZXhwIjoxNjI2NDkxMzk5fQ.D0Pm8NMbXu2sritRXtDnTiaWkvGO0u4z8NPgJWfHZB0",
 									"type": "string"
 								},
 								{
@@ -1238,7 +1238,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNjI1MDM4OSwiZXhwIjoxNjI2MzM2Nzg5fQ.Z_-ZS_ixnaw9vTAZHqr-la_qh2RAu9l_6A_82CPrOCs",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNjQwNDk5OSwiZXhwIjoxNjI2NDkxMzk5fQ.D0Pm8NMbXu2sritRXtDnTiaWkvGO0u4z8NPgJWfHZB0",
 									"type": "string"
 								},
 								{
@@ -1274,7 +1274,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNjI1MDM4OSwiZXhwIjoxNjI2MzM2Nzg5fQ.Z_-ZS_ixnaw9vTAZHqr-la_qh2RAu9l_6A_82CPrOCs",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNjQwNDk5OSwiZXhwIjoxNjI2NDkxMzk5fQ.D0Pm8NMbXu2sritRXtDnTiaWkvGO0u4z8NPgJWfHZB0",
 									"type": "string"
 								},
 								{
@@ -1310,7 +1310,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNjI1MDM4OSwiZXhwIjoxNjI2MzM2Nzg5fQ.Z_-ZS_ixnaw9vTAZHqr-la_qh2RAu9l_6A_82CPrOCs",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNjQwNDk5OSwiZXhwIjoxNjI2NDkxMzk5fQ.D0Pm8NMbXu2sritRXtDnTiaWkvGO0u4z8NPgJWfHZB0",
 									"type": "string"
 								},
 								{
@@ -1346,7 +1346,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFjM2E0YzRiLTEwMzctNDI3ZC1hMGFkLWMzYjIwMjljNzA5YiIsImlhdCI6MTYyNjI0OTcyOSwiZXhwIjoxNjI2MzM2MTI5fQ.gOPANdzWQ6F_J7E-9f9BEY68EiNBkAG9SEUET0Zc9sM",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFjM2E0YzRiLTEwMzctNDI3ZC1hMGFkLWMzYjIwMjljNzA5YiIsImlhdCI6MTYyNjQwNTA2MCwiZXhwIjoxNjI2NDkxNDYwfQ.OozRJ8t943tXYdEA6Se3bevgL9u0WriIbxSEKSaFQ30",
 									"type": "string"
 								},
 								{
@@ -1356,7 +1356,7 @@
 								}
 							]
 						},
-						"method": "PUT",
+						"method": "PATCH",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -1368,7 +1368,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{url}}/api/forms/:id",
+							"raw": "http://{{url}}/api/forms/:id/approve",
 							"protocol": "http",
 							"host": [
 								"{{url}}"
@@ -1376,12 +1376,13 @@
 							"path": [
 								"api",
 								"forms",
-								":id"
+								":id",
+								"approve"
 							],
 							"variable": [
 								{
 									"key": "id",
-									"value": "e5406929-ae8c-47ed-8673-3ce3457be948"
+									"value": "cfcc6188-af5d-429c-9953-87c21de58d51"
 								}
 							]
 						}
@@ -1396,7 +1397,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiMTA1MTA2LTI1ZWQtNDlkMS04YmI1LWQwZDEwMDFkNTc5MyIsImlhdCI6MTYyNjI0OTYzNCwiZXhwIjoxNjI2MzM2MDM0fQ.Y0celGIBnZE5Rh2d0_ONQsC6v_VEKTDDmGq0JmCqEUg",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiMTA1MTA2LTI1ZWQtNDlkMS04YmI1LWQwZDEwMDFkNTc5MyIsImlhdCI6MTYyNjQwNTAyOCwiZXhwIjoxNjI2NDkxNDI4fQ.jocrolek1LX1TWTyxkBL99ypCbERG0LPrHUjvHZmayI",
 									"type": "string"
 								},
 								{
@@ -1406,7 +1407,7 @@
 								}
 							]
 						},
-						"method": "PUT",
+						"method": "PATCH",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -1439,7 +1440,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNjI1MDM4OSwiZXhwIjoxNjI2MzM2Nzg5fQ.Z_-ZS_ixnaw9vTAZHqr-la_qh2RAu9l_6A_82CPrOCs",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNjQwNDk5OSwiZXhwIjoxNjI2NDkxMzk5fQ.D0Pm8NMbXu2sritRXtDnTiaWkvGO0u4z8NPgJWfHZB0",
 									"type": "string"
 								},
 								{
@@ -1449,7 +1450,7 @@
 								}
 							]
 						},
-						"method": "PUT",
+						"method": "PATCH",
 						"header": [],
 						"url": {
 							"raw": "http://{{url}}/api/forms/:id/closed",
@@ -1466,7 +1467,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "e5406929-ae8c-47ed-8673-3ce3457be948"
+									"value": "cfcc6188-af5d-429c-9953-87c21de58d51"
 								}
 							]
 						}
@@ -1531,7 +1532,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNTIxMDY3MCwiZXhwIjoxNjI1Mjk3MDcwfQ.FPVElgZFacTY0yN3ukGxGNQl_nBm_FkO8S4gBIy8Kx8",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4NTUyMjk4LTcwNzUtNDViYi05ZmMxLTRmOWUyOGMxMjdhMSIsImlhdCI6MTYyNjM1NTQ5MCwiZXhwIjoxNjI2NDQxODkwfQ.LCZicOkN253L0EGlWpYuSM7IZSDFw6uysjXPbJwuRcg",
 									"type": "string"
 								},
 								{
@@ -1570,7 +1571,7 @@
 				{
 					"name": "delete account by id",
 					"request": {
-						"method": "DELETE",
+						"method": "PATCH",
 						"header": [],
 						"url": {
 							"raw": "http://{{url}}/api/accounts/:id",
@@ -1611,7 +1612,7 @@
 								}
 							]
 						},
-						"method": "PUT",
+						"method": "PATCH",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -1708,7 +1709,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\": \"hraccount\",\n    \"password\": \"hraccount01\"\n}",
+					"raw": "{\n    \"username\": \"manager\",\n    \"password\": \"manager01\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"

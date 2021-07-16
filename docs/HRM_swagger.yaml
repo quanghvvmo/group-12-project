@@ -122,7 +122,7 @@ paths:
           description: ''
           headers: {}
   '/users/{id}':
-    delete:
+    patch:
       summary: delete user by id
       tags:
         - User API
@@ -153,85 +153,6 @@ paths:
           in: path
           required: true
           type: string
-          description: ''
-      responses:
-        '200':
-          description: ''
-          headers: {}
-    put:
-      summary: update user
-      tags:
-        - User API
-      operationId: updateuser
-      deprecated: false
-      produces:
-        - application/json
-      consumes:
-        - application/x-www-form-urlencoded
-      parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-          description: ''
-        - name: employeeId
-          in: formData
-          required: true
-          type: string
-          description: ''
-        - name: managerId
-          in: formData
-          required: true
-          type: string
-          description: ''
-        - name: firstName
-          in: formData
-          required: true
-          type: string
-          description: ''
-        - name: lastName
-          in: formData
-          required: true
-          type: string
-          description: ''
-        - name: email
-          in: formData
-          required: true
-          type: string
-          description: ''
-        - name: phone
-          in: formData
-          required: true
-          type: integer
-          format: int64
-          description: ''
-        - name: avatar
-          in: formData
-          required: true
-          type: string
-          description: ''
-        - name: address
-          in: formData
-          required: true
-          type: integer
-          format: int32
-          description: ''
-        - name: department
-          in: formData
-          required: true
-          type: string
-          description: ''
-        - name: identificationNumber
-          in: formData
-          required: true
-          type: integer
-          format: int32
-          description: ''
-        - name: insuranceNumber
-          in: formData
-          required: true
-          type: integer
-          format: int32
           description: ''
       responses:
         '200':
@@ -283,7 +204,7 @@ paths:
           description: ''
           headers: {}
   '/userroles/{id}':
-    put:
+    patch:
       summary: update userrole
       tags:
         - UserRole API
@@ -341,7 +262,7 @@ paths:
           description: ''
           headers: {}
   '/roles/{id}':
-    delete:
+    patch:
       summary: delete role
       tags:
         - Role API
@@ -355,30 +276,6 @@ paths:
           required: true
           type: string
           description: ''
-      responses:
-        '200':
-          description: ''
-          headers: {}
-    put:
-      summary: update role by id
-      tags:
-        - Role API
-      operationId: updaterolebyid
-      deprecated: false
-      produces:
-        - application/json
-      parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-          description: ''
-        - name: Body
-          in: body
-          required: true
-          description: ''
-          schema:
-            $ref: '#/definitions/updaterolebyidrequest'
       responses:
         '200':
           description: ''
@@ -469,7 +366,7 @@ paths:
           description: ''
           headers: {}
   '/rolePermissions/{id}':
-    delete:
+    patch:
       summary: delete rolePermission
       tags:
         - RolePermission API
@@ -483,30 +380,6 @@ paths:
           required: true
           type: string
           description: ''
-      responses:
-        '200':
-          description: ''
-          headers: {}
-    put:
-      summary: update rolePermission by id
-      tags:
-        - RolePermission API
-      operationId: updaterolePermissionbyid
-      deprecated: false
-      produces:
-        - application/json
-      parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-          description: ''
-        - name: Body
-          in: body
-          required: true
-          description: ''
-          schema:
-            $ref: '#/definitions/updaterolePermissionbyidRequest'
       responses:
         '200':
           description: ''
@@ -557,7 +430,7 @@ paths:
           description: ''
           headers: {}
   '/modules/{id}':
-    delete:
+    patch:
       summary: delete module
       tags:
         - Module API
@@ -571,30 +444,6 @@ paths:
           required: true
           type: string
           description: ''
-      responses:
-        '200':
-          description: ''
-          headers: {}
-    put:
-      summary: update module by id
-      tags:
-        - Module API
-      operationId: updatemodulebyid
-      deprecated: false
-      produces:
-        - application/json
-      parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-          description: ''
-        - name: Body
-          in: body
-          required: true
-          description: ''
-          schema:
-            $ref: '#/definitions/updatemodulebyidrequest'
       responses:
         '200':
           description: ''
@@ -650,7 +499,7 @@ paths:
         '200':
           description: ''
           headers: {}
-    put:
+    patch:
       summary: submit form (employee)
       tags:
         - Form API
@@ -670,7 +519,7 @@ paths:
           description: ''
           headers: {}
   '/forms/{id}':
-    delete:
+    patch:
       summary: delete form by id
       tags:
         - Form API
@@ -702,30 +551,6 @@ paths:
           required: true
           type: string
           description: ''
-      responses:
-        '200':
-          description: ''
-          headers: {}
-    put:
-      summary: approve form of user
-      tags:
-        - Form API
-      operationId: approveformofuser
-      deprecated: false
-      produces:
-        - application/json
-      parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-          description: ''
-        - name: Body
-          in: body
-          required: true
-          description: ''
-          schema:
-            $ref: '#/definitions/approveformofuserrequest'
       responses:
         '200':
           description: ''
@@ -786,8 +611,33 @@ paths:
         '200':
           description: ''
           headers: {}
+  '/forms/{id}/approve':
+    patch:
+      summary: approve form of user
+      tags:
+        - Form API
+      operationId: approveformofuser
+      deprecated: false
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
+        - name: Body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/approveformofuserrequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
   '/forms/{id}/closed':
-    put:
+    patch:
       summary: close form by HR
       tags:
         - Form API
@@ -877,7 +727,7 @@ paths:
           description: ''
           headers: {}
   '/accounts/{id}':
-    delete:
+    patch:
       summary: delete account by id
       tags:
         - Account API
@@ -891,30 +741,6 @@ paths:
           required: true
           type: string
           description: ''
-      responses:
-        '200':
-          description: ''
-          headers: {}
-    put:
-      summary: update account by id
-      tags:
-        - Account API
-      operationId: updateaccountbyid
-      deprecated: false
-      produces:
-        - application/json
-      parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-          description: ''
-        - name: Body
-          in: body
-          required: true
-          description: ''
-          schema:
-            $ref: '#/definitions/updateaccountbyidrequest'
       responses:
         '200':
           description: ''
@@ -1111,7 +937,7 @@ definitions:
   createnewmodulerequest:
     title: createnewmodulerequest
     example:
-      moduleName: role
+      moduleName: test
     type: object
     properties:
       moduleName:
@@ -1136,6 +962,7 @@ definitions:
         - 8b8ba587-5ec4-4bac-aab7-4923f7af447e
         - 9b878523-8f7c-4e8e-8ce0-bc9ae261a19f
         - fbd0d11c-6ae5-46f9-bd84-87e496a142f5
+        - cab64ec3-e333-4675-985e-1c7cde4b444b
       typeOf: yearly
     type: object
     properties:
@@ -1219,8 +1046,8 @@ definitions:
   LoginRequest:
     title: LoginRequest
     example:
-      username: hraccount
-      password: hraccount01
+      username: manager
+      password: manager01
     type: object
     properties:
       username:

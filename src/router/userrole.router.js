@@ -3,7 +3,7 @@ const express = require('express');
 const userRoleRouter = express();
 
 userRoleRouter.post('/userroles', userRoleController.addNewUserRole);
-userRoleRouter.put('/userroles/:id', userRoleController.updateUserRole);
+userRoleRouter.patch('/userroles/:id', userRoleController.updateUserRole);
 userRoleRouter.get('/userroles', userRoleController.getAllUserRole);
 
 module.exports = userRoleRouter;
